@@ -452,7 +452,7 @@ Similarly when we assign an element or slice of the symbolic matrix to a numeric
 
 On April 28, 2026 this repository moved to the **RAI-Opensource** GitHub organization.  If you are still pulling from the previous bdaiinstitute GitHub organization, please update your git remote:
    ```bash
-   git remote set-url origin https://github.com/RAI-Opensource/spot_ros2
+   git remote set-url origin https://github.com/RAI-Opensource/spatialmath-python.git
    ```
 
 Also update any links of `https://bdaiinstitute.github.io/spatialmath-python` to  <https://spatialmath-python.rai-inst.com/>.
