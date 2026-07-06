@@ -33,8 +33,6 @@ A Python implementation of the <a href="https://github.com/petercorke/spatial-ma
 
 Spatial mathematics capability underpins all of robotics and robotic vision where we need to describe the position, orientation or pose of objects in 2D or 3D spaces.
 
-
-
 # What it does
 
 The package provides classes to represent pose and orientation in 3D and 2D
