@@ -21,7 +21,7 @@
 A Python implementation of the <a href="https://github.com/petercorke/spatial-math">Spatial Math Toolbox for MATLAB<sup>&reg;</sup></a>
 <ul>
 <li><a href="https://github.com/rai-opensource/spatialmath-python">GitHub repository </a></li>
-<li><a href="https://https://spatialmath-python.rai-inst.com">Documentation</a></li>
+<li><a href="https://spatialmath-python.rai-inst.com">Documentation</a></li>
 <li><a href=https://github.com/rai-opensource/spatialmath-python/discussions/categories/changes>Recent changes</a>
 <li><a href="https://github.com/rai-opensource/spatialmath-python/wiki">Wiki (examples and details)</a></li>
 <li><a href="installation#">Installation</a></li>
