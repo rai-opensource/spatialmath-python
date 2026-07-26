@@ -789,7 +789,7 @@ def qslerp(
     :type s: float
     :arg shortest: choose shortest distance [default False]
     :type shortest: bool
-    :param tol: Tolerance when checking for identical quaternions, in multiples of eps, defaults to 20
+    :param tol: Tolerance when checking for coincident quaternions, in multiples of eps, defaults to 20
     :type tol: float, optional
     :return: interpolated unit-quaternion
     :rtype: ndarray(4)
@@ -813,6 +813,9 @@ def qslerp(
         >>> qprint(qslerp(q0, q1, 0))           # this is q0
         >>> qprint(qslerp(q0, q1, 1))           # this is q1
         >>> qprint(qslerp(q0, q1, 0.5))         # this is in "half way" between
+
+    .. note:: If ``q0`` and ``q1`` are the same rotation, ie. their dot product is
+        :math:`\\pm 1`, the interpolate is that rotation for all ``s``.
 
     .. warning:: There is no check that the passed values are unit-quaternions.
 
@@ -838,13 +841,20 @@ def qslerp(
             dotprod = -dotprod  # pylint: disable=invalid-unary-operand-type
 
     dotprod = np.clip(dotprod, -1, 1)  # Clip within domain of acos()
-    theta = math.acos(dotprod)  # theta is the angle between rotation vectors
-    if abs(theta) > tol * _eps:
+
+    # sin(theta) is the length of the component of q1 orthogonal to q0.  Computing
+    # it this way keeps full relative precision as theta approaches 0 or pi, where
+    # sin(acos(dotprod)) does not: acos loses the small angle to rounding.
+    sin_theta = float(np.linalg.norm(q1 - dotprod * q0))
+    theta = math.atan2(sin_theta, dotprod)  # theta is the angle between q0 and q1
+
+    if sin_theta > tol * _eps:
         s0 = math.sin((1 - s) * theta)
         s1 = math.sin(s * theta)
-        return ((q0 * s0) + (q1 * s1)) / math.sin(theta)
+        return ((q0 * s0) + (q1 * s1)) / sin_theta
     else:
-        # quaternions are identical
+        # theta is 0 or pi: q0 and q1 are the same rotation, so is every
+        # interpolate between them
         return q0
 
 

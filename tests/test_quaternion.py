@@ -701,6 +701,37 @@ class TestUnitQuaternion(unittest.TestCase):
         # qcompare( qq(6), UnitQuaternion.Rx(pi) )
         # TODO interp
 
+    def test_interp_same_rotation(self):
+        # endpoints that are the same rotation make the slerp weights singular
+        q = UnitQuaternion.Rx(0.3)
+        for s in (0, 0.4, 1):
+            for shortest in (False, True):
+                qcompare(q.interp(q, s, shortest=shortest), q)
+                qcompare(
+                    q.interp(UnitQuaternion.Rx(0.3 + 1e-9), s, shortest=shortest), q
+                )
+        qq = q.interp(q, 5)
+        self.assertEqual(len(qq), 5)
+        qcompare(qq[3], q)
+
+        u = UnitQuaternion()
+        for s in (0, 0.4, 1):
+            qcompare(u.interp1(s), u)
+            qcompare(UnitQuaternion.Rx(1e-9).interp1(s), u)
+        self.assertEqual(len(u.interp1(5)), 5)
+
+        # Rx(pi) and Rx(-pi) are the same rotation, with a dot product of -1
+        p = UnitQuaternion.Rx(pi)
+        m = UnitQuaternion.Rx(-pi)
+        self.assertAlmostEqual(np.dot(p.vec, m.vec), -1)
+        for shortest in (False, True):
+            for s in (0, 0.4, 1):
+                qi = p.interp(m, s, shortest=shortest)
+                self.assertAlmostEqual(np.linalg.norm(qi.vec), 1)
+                nt.assert_array_almost_equal(qi.R, p.R)
+        for qi in p.interp(m, 5):
+            nt.assert_array_almost_equal(qi.R, p.R)
+
     def test_increment(self):
         q = UnitQuaternion()
 
