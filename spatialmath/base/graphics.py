@@ -327,7 +327,8 @@ try:
         return handles
 
     def plot_box(
-        *fmt: Optional[str],
+        fmt: str | None = None,
+        *,
         lbrt: Optional[ArrayLike4] = None,
         lrbt: Optional[ArrayLike4] = None,
         lbwh: Optional[ArrayLike4] = None,
@@ -339,6 +340,7 @@ try:
         rt: Optional[ArrayLike2] = None,
         wh: Optional[ArrayLike2] = None,
         centre: Optional[ArrayLike2] = None,
+        center: Optional[ArrayLike2] = None,
         w: Optional[float] = None,
         h: Optional[float] = None,
         ax: Optional[plt.Axes] = None,
@@ -358,39 +360,79 @@ try:
         :type rt: array_like(2), optional
         :param wh: width and height, if both are the same provide scalar, defaults to None
         :type wh: scalar, array_like(2), optional
-        :param centre: centre of box, defaults to None
+        :param centre: centre of box, defaults to None (alias: ``center``)
         :type centre: array_like(2), optional
         :param w: width of box, defaults to None
         :type w: float, optional
         :param h: height of box, defaults to None
         :type h: float, optional
+        ;param lbrt: left-bottom, right-top corners, defaults to None
+        :type lbrt: array_like(4), optional
+        :param lrbt: left-right, bottom-top corners, defaults to None
+        :type lrbt: array_like(4), optional
+        :param lbwh: left-bottom corner, width and height, defaults to None
+        :type lbwh: array_like(4), optional
+        :param ltrb: left-top, right-bottom corners, defaults to None
+        :type ltrb: array_like(4), optional
         :param ax: the axes to draw on, defaults to ``gca()``
         :type ax: Axis, optional
         :param bbox: bounding box matrix, defaults to None
         :type bbox: array_like(4), optional
-        :param color: box outline color
-        :type color: array_like(3) or str
-        :param fillcolor: box fill color
-        :type fillcolor: array_like(3) or str
-        :param alpha: transparency, defaults to 1
-        :type alpha: float, optional
-        :param thickness: line thickness, defaults to None
+        :param filled: fill the box, defaults to False (alias for Matplotlib ``fill``)
+        :type filled: bool
+        :param thickness: line thickness (alias for Matplotlib ``linewidth``)
         :type thickness: float, optional
+        :param kwargs: additional arguments passed to ``pyplot.Rectangle()``
+
         :return: the matplotlib object
         :rtype: Patch.Rectangle instance
 
-        The box can be specified in many ways:
+        Appearance is controlled by Matplotlib properties passed as keyword arguments, for example:
 
-        - bounding box [xmin, xmax, ymin, ymax]
-        - alternative box [xmin, ymin, xmax, ymax]
-        - centre and width+height
-        - left-bottom and right-top corners
-        - left-bottom corner and width+height
-        - right-top corner and width+height
-        - left-top corner and width+height
+        :param color: box outline and fill color
+        :type color: array_like(3) or str
+        :param edgecolor: box outline colour (alias: ``ec``)
+        :type edgecolor: array_like(3) or str
+        :param fillcolor: box fill colour
+        :type fillcolor: array_like(3) or str
+        :param filled: fill the box, defaults to False
+        :type filled: bool
+        :param alpha: transparency, defaults to 1
+        :type alpha: float, optional
+        :param linestyle: box outline line style (alias: ``ls``)
+        :type linestyle: str, optional
+        :param linewidth: box outline line thickness (alias: ``lw``)
+        :type linewidth: float, optional
+
+        Additionally, the line style and color can be conveniently set using the pyplot
+        convention where the first argument is a ``fmt`` string, for example ``"r--"``
+        for dashed red. The allowable color letters are ``"rgbcmyk"`` and the line style
+        characters are ``"-", "--", "-.", ":"``.
+
+        The box can be specified in many ways.  Two corners:
+
+        - `lb` = left-bottom corner
+        - `lt` = left-top corner
+        - `rb` = right-bottom corner
+        - `rt` = right-top corner
+
+        Alternatively, one corner or `centre` plus the dimensons:
+
+        - `wh` = [width, height]
+        - `w` = width
+        - `h` = height
+
+        Alternatively, the box can be specified by a number of 4-vectors, various
+        conventions are in use across different packages, so we support them all:
+
+        - `lbrt` = [umin, vmin, umax, vmax]
+        - `lrbt` = [umin, umax, vmin, vmax]
+        - `lbwh` = [umin, vmin, w, h]
+        - `bbox` same as `lbwh`
+        - `ltrb` = [umin, vmin, umax, vmax]`
 
         For plots where the y-axis is inverted (eg. for images) then top is the
-        smaller vertical coordinate.
+        smaller vertical coordinate (highest in the window).
 
         Example::
 
@@ -440,6 +482,8 @@ try:
         elif w is not None and h is not None:
             # we have width & height, one corner is enough
 
+            if centre is None:
+                centre = center
             if centre is not None:
                 lb = (centre[0] - w / 2, centre[1] - h / 2)
 
@@ -464,7 +508,7 @@ try:
                 h = lt[1] - rb[1]
 
             else:
-                raise ValueError("cant compute box")
+                raise ValueError("insufficient parameters to compute a box")
 
         if w < 0:
             raise ValueError("width must be positive")
@@ -479,9 +523,9 @@ try:
         else:
             ec = None
             ls = ""
-            if len(fmt) > 0:
+            if fmt is not None:
                 colors = "rgbcmywk"
-                for f in fmt[0]:
+                for f in fmt:
                     if f in colors:
                         ec = f
                     else:
@@ -490,8 +534,13 @@ try:
                 ls = None
 
             if "color" in kwargs:
-                ec = kwargs["color"]
-                del kwargs["color"]
+                ec = kwargs.pop("color")
+            if "edgecolor" in kwargs:
+                ec = kwargs.pop("edgecolor")
+            if "linestyle" in kwargs:
+                ls = kwargs.pop("linestyle")
+            elif "ls" in kwargs:
+                ls = kwargs.pop("ls")
             r = plt.Rectangle(
                 lb, w, h, clip_on=True, linestyle=ls, edgecolor=ec, fill=False, **kwargs
             )
@@ -558,7 +607,7 @@ try:
             ax = plotvol2(5)
             ax.grid()
             plot_arrow(
-                (-2, -2), (2, 4), label="$\mathit{p}_3$", color="r", width=0.1
+                (-2, -2), (2, 4), label=r"$\mathit{p}_3$", color="r", width=0.1
             )
             plt.show(block=True)
 
