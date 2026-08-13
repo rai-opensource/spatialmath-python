@@ -9,9 +9,57 @@ from spatialmath.base.transforms3d import *  # lgtm [py/polluting-import]
 from spatialmath.base.transformsNd import *  # lgtm [py/polluting-import]
 from spatialmath.base.vectors import *  # lgtm [py/polluting-import]
 from spatialmath.base.symbolic import *  # lgtm [py/polluting-import]
-from spatialmath.base.animate import *  # lgtm [py/polluting-import]
-from spatialmath.base.graphics import *  # lgtm [py/polluting-import]
 from spatialmath.base.numeric import *  # lgtm [py/polluting-import]
+
+import importlib
+
+# `animate` and `graphics` both import Matplotlib, which is slow to import
+# (mostly backend resolution in matplotlib.pyplot) and is only actually
+# needed once something tries to plot. Load them lazily, on first access
+# of one of their names below, instead of unconditionally at package
+# import time.
+_LAZY_SUBMODULES = ("animate", "graphics")
+
+_LAZY_ATTRS = {
+    "Animate": "animate",
+    "Animate2": "animate",
+    "plot_text": "graphics",
+    "plot_point": "graphics",
+    "plot_homline": "graphics",
+    "plot_box": "graphics",
+    "plot_arrow": "graphics",
+    "plot_polygon": "graphics",
+    "circle": "graphics",
+    "plot_circle": "graphics",
+    "ellipse": "graphics",
+    "plot_ellipse": "graphics",
+    "sphere": "graphics",
+    "plot_sphere": "graphics",
+    "ellipsoid": "graphics",
+    "plot_ellipsoid": "graphics",
+    "cylinder": "graphics",
+    "plot_cylinder": "graphics",
+    "plot_cone": "graphics",
+    "plot_cuboid": "graphics",
+    "axes_logic": "graphics",
+    "plotvol2": "graphics",
+    "plotvol3": "graphics",
+    "expand_dims": "graphics",
+    "isnotebook": "graphics",
+}
+
+
+def __getattr__(name):
+    if name in _LAZY_SUBMODULES:
+        return importlib.import_module(f"spatialmath.base.{name}")
+    modname = _LAZY_ATTRS.get(name)
+    if modname is None:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+    module = importlib.import_module(f"spatialmath.base.{modname}")
+    value = getattr(module, name)
+    globals()[name] = value  # cache so future lookups skip __getattr__
+    return value
+
 
 from spatialmath.base.argcheck import (
     assertmatrix,

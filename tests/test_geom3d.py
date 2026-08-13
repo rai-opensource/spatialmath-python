@@ -14,6 +14,7 @@ import numpy.testing as nt
 import spatialmath.base as base
 import pytest
 import sys
+import matplotlib.pyplot as plt
 
 
 class Line3Test(unittest.TestCase):

@@ -6,11 +6,14 @@ from __future__ import annotations
 import numpy as np
 import math
 from collections import namedtuple
-import matplotlib.pyplot as plt
+from typing import TYPE_CHECKING
 import spatialmath.base as base
 from spatialmath.base.types import *
 from spatialmath.baseposelist import BasePoseList
 import warnings
+
+if TYPE_CHECKING:
+    import matplotlib.pyplot as plt
 
 _eps = np.finfo(np.float64).eps
 
@@ -1232,6 +1235,8 @@ class Line3(BasePoseList):
 
         :seealso: :meth:`intersect_volume`
         """
+        import matplotlib.pyplot as plt
+
         if ax is None:
             ax = plt.gca()
 

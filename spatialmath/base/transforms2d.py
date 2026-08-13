@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 # Part of Spatial Math Toolbox for Python
 # Copyright (c) 2000 Peter Corke
 # MIT Licence, see details in top-level file: LICENCE
@@ -16,19 +18,22 @@ tuple, numpy array, numpy row vector or numpy column vector.
 
 import sys
 import math
+import importlib.util
+from typing import TYPE_CHECKING
 import numpy as np
 
-try:
-    import matplotlib.pyplot as plt
-
-    _matplotlib_exists = True
-except ImportError:
-    _matplotlib_exists = False
+# cheap existence check, doesn't actually import matplotlib: the real
+# import happens lazily inside trplot2()/tranimate2() when a plot is
+# actually made
+_matplotlib_exists = importlib.util.find_spec("matplotlib") is not None
 
 import spatialmath.base as smb
 from spatialmath.base.types import *
 from spatialmath.base.transformsNd import rt2tr
 from spatialmath.base.vectors import unitvec
+
+if TYPE_CHECKING:
+    from matplotlib.axes import Axes
 
 _eps = np.finfo(np.float64).eps
 
@@ -1227,10 +1232,6 @@ def ICP2d(
 
 
 if _matplotlib_exists:
-    import matplotlib.pyplot as plt
-
-    # from mpl_toolkits.axisartist import Axes
-    from matplotlib.axes import Axes
 
     def trplot2(
         T: Union[SO2Array, SE2Array],
@@ -1485,6 +1486,8 @@ if _matplotlib_exists:
 
         if block is not None:
             # calling this at all, causes FuncAnimation to fail so when invoked from tranimate2 skip this bit
+            import matplotlib.pyplot as plt
+
             plt.show(block=block)
         return ax
 
