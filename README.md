@@ -79,7 +79,7 @@ The class, method and functions names largely mirror those of the MATLAB toolbox
 
 # Citing
 
-Check out our ICRA 2021 paper on [IEEE Xplore](https://ieeexplore.ieee.org/document/9561366) or get the PDF from [Peter's website](https://bit.ly/icra_rtb).  This describes the [Robotics Toolbox for Python](https://github.com/petercorke/robotics-toolbox-python) as well Spatial Maths.
+Check out our ICRA 2021 paper on [IEEE Xplore](https://ieeexplore.ieee.org/document/9561366) or get the PDF from [Peter's website](https://bit.ly/icra_rtb).  This describes the [Robotics Toolbox for Python](https://github.com/petercorke/robotics-toolbox-python) as well as Spatial Maths.
 
 If the toolbox helped you in your research, please cite
 

@@ -4,10 +4,10 @@ Introduction
 ************
 
 
-Spatial maths capability underpins all of robotics and robotic vision. 
-It provides the means to describe the relative position and orientation of objects in 2D or 3D space.  
+Spatial maths capability underpins all of robotics and robotic vision.
+It provides the means to describe the relative position and orientation of objects in 2D or 3D space.
 This package provides Python classes and functions to represent, print, plot, manipulate and covert between such representations.
-This includes relevant mathematical objects such as rotation matrices :math:`\mat{R} \in \SO{2}, \SO{3}`, 
+This includes relevant mathematical objects such as rotation matrices :math:`\mat{R} \in \SO{2}, \SO{3}`,
 homogeneous transformation matrices :math:`\mat{T} \in \SE{2}, \SE{3}`, unit quaternions :math:`\q \in \mathrm{S}^3`,
 and twists :math:`S \in \se{2}, \se{3}`.
 
@@ -27,7 +27,7 @@ which results in a NumPy :math:`4 \times 4` array that belongs to the group
     >>> from spatialmath import *
     >>> T = SE3.Rx(30, 'deg')
     >>> type(T)
-    >>> print(T)                
+    >>> print(T)
 
 which is *internally* represented as a :math:`4 \times 4` NumPy array.
 
@@ -81,7 +81,7 @@ Group                             Name                            Class
 ================================  ==============================  ======================
 
 
-In addition to the merits of classes outlined above, classes ensure that the numerical value is always valid because the 
+In addition to the merits of classes outlined above, classes ensure that the numerical value is always valid because the
 constraints (eg. orthogonality, unit norm) are enforced when the object is constructed.  For example::
 
   >>> SE3(np.zeros((4,4)))
@@ -90,7 +90,7 @@ constraints (eg. orthogonality, unit norm) are enforced when the object is const
     .
   AssertionError: array must have valid value for the class
 
-Type safety and type validity are particularly important when we deal with a sequence of values.  
+Type safety and type validity are particularly important when we deal with a sequence of values.
 In robotics we frequently deal with a multiplicity of objects (poses, cameras), or a trajectory of
 objects moving over time.
 However a list of these items, for example::
@@ -114,7 +114,7 @@ The Spatial Math package give these classes list *super powers* so that, for exa
     >>> from spatialmath import *
     >>> X = SE3.Rx([0, 0.2, 0.4, 0.6])
     >>> len(X)
-    >>> print(X[1])          
+    >>> print(X[1])
 
 
 The classes form a rich hierarchy
@@ -127,7 +127,7 @@ The classes form a rich hierarchy
 Ultimately they all inherit from ``collections.UserList`` and have all the functionality of Python lists, and this is discussed further in
 section :ref:`list-powers`
 The pose objects are a list subclass so we can index it or slice it as we
-would a list, but the result always belongs to the class it was sliced from.  
+would a list, but the result always belongs to the class it was sliced from.
 
 
 Operators for pose objects
@@ -176,9 +176,9 @@ Vector transformation
 ^^^^^^^^^^^^^^^^^^^^^
 
 
-The classes ``SE3``, ``SO3``, ``SE2``, ``SO2`` and ``UnitQuaternion`` support vector transformation when 
+The classes ``SE3``, ``SO3``, ``SE2``, ``SO2`` and ``UnitQuaternion`` support vector transformation when
 premultiplying a vector (or a set of vectors columnwise in a NumPy array) using the ``*`` operator.
-This is either rotation about the origin (for ``SO3``, ``SO2`` and ``UnitQuaternion``) or rotation and translation (``SE3``, ``SE2``).  
+This is either rotation about the origin (for ``SO3``, ``SO2`` and ``UnitQuaternion``) or rotation and translation (``SE3``, ``SE2``).
 The implementation depends on the class of the object involved:
 
 - for ``UnitQuaternion`` this is performed directly using Hamilton products
@@ -238,7 +238,7 @@ Compare this to the unit quaternion case:
     >>> 2 * q
 
 Noting that unit quaternions are denoted by double angle bracket delimiters of their vector part,
-whereas a general quaternion uses single angle brackets.  The product of a general quaternion and a 
+whereas a general quaternion uses single angle brackets.  The product of a general quaternion and a
 unit quaternion is always a general quaternion.
 
 
@@ -387,7 +387,7 @@ a Python list
     >>> len(R)
     >>> R = SO3.Rx(np.arange(0, 2*np.pi, 0.2))
     >>> len(R)
-    >>> R[0]  
+    >>> R[0]
     >>> R[-1]
     >>> R[2:4]
 
@@ -405,12 +405,12 @@ In particular it supports iteration which allows looping and comprehensions:
     >>> eul = [x.eul() for x in R]
     >>> len(eul)
     >>> eul[10]
-  
+
 Useful functions that be used on such objects include
 
-=============  ================================================ 
+=============  ================================================
 Method              Operation
-=============  ================================================ 
+=============  ================================================
 ``clear``       Clear all elements, object now has zero length
 ``append``      Append a single element
 ``del``
@@ -422,7 +422,7 @@ Method              Operation
 ``pop``         Remove first element and return it
 ``slice``       Index from a slice object
 ``zip``         Iterate over the elments
-=============  ================================================ 
+=============  ================================================
 
 
 Vectorization
@@ -445,7 +445,7 @@ the lengths of the operands and the results are given by
 ======   ======   ======  ========================
      operands           results
 ---------------   --------------------------------
-len(X)   len(Y)   len(Z)     results         
+len(X)   len(Y)   len(Z)     results
 ======   ======   ======  ========================
   1        1        1       Z    = X op Y
   1        M        M       Z[i] = X op Y[i]
@@ -524,20 +524,20 @@ Spatial object       equivalent class   NumPy ndarray.shape
 n/a                  Quaternion            (4,)
 =================    ================   ===================
 
-.. note:: ``SpatialVector`` and ``Line3`` objects have no equivalent in the 
+.. note:: ``SpatialVector`` and ``Line3`` objects have no equivalent in the
   ``base`` package.
 
 Inputs to functions in this package are either floats, lists, tuples or
-numpy.ndarray objects describing vectors or arrays.  
+numpy.ndarray objects describing vectors or arrays.
 
 NumPy arrays have a shape described by a shape tuple which is a list of the
 dimensions.  Typically all ``ndarray`` **vectors** have the shape ``(N,)``, that is,
 they have only one dimension.  The ``@`` product of an ``(M,N)`` array and a ``(N,)``
-vector is an ``(M,)`` vector.  
+vector is an ``(M,)`` vector.
 
 A numpy column vector has shape ``(N,1)`` and a row vector
-has shape ``(1,N)`` but functions also accept row ``(1,N)``  and column ``(N,1)`` 
-where a vector argument is required.  
+has shape ``(1,N)`` but functions also accept row ``(1,N)``  and column ``(N,1)``
+where a vector argument is required.
 
 .. warning::
 
@@ -546,14 +546,14 @@ where a vector argument is required.
     - the use of 1D arrays -- all MATLAB arrays have two dimensions,
       even if one of them is equal to one.
     - Iterating over a 1D NumPy array (N,) returns consecutive elements
-    - Iterating over a 2D NumPy array is done by row, not columns as in MATLAB.  
+    - Iterating over a 2D NumPy array is done by row, not columns as in MATLAB.
     - Iterating over a row vector ``(1,N)`` returns the entire row
     - Iterating a column vector ``(N,1)`` returns consecutive elements (rows).
 
 .. note::
   - Functions that require vector can be passed a list, tuple or numpy.ndarray
     for a vector -- described in the documentation as being of type
-    *array_like*. 
+    *array_like*.
   - This toolbox documentation refers to NumPy arrays succinctly as:
 
     - ``ndarray(N)`` for a 1D array of length ``N``
@@ -636,7 +636,7 @@ If ``matplotlib`` is installed then we can add 2D coordinate frames to a figure 
     >>> trplot2( transl2(4, 3)@trot2(math.pi/3), color='green', frame='c')
     >>> plt.grid(True)
 
-.. figure:: ../figs/transforms2d.png 
+.. figure:: ../figs/transforms2d.png
    :align: center
 
    Output of ``trplot2``
@@ -692,7 +692,7 @@ matrix
     >>> a
     >>> type(a)
     >>> a = T[1,1]
-    >>> a 
+    >>> a
     >>> type(a)
 
 We see that the symbolic constants have been converted back to Python numeric
@@ -733,7 +733,7 @@ comprises:
     >>> from spatialmath.base import rotx, trotx
 
   and works with NumPy arrays.  This package also includes a set of functions,
-  not present in the MATLAB version, to handle quaternions, unit-quaternions 
+  not present in the MATLAB version, to handle quaternions, unit-quaternions
   which are represented as 4-element NumPy arrays, and twists.
 * the classes (which appeared in Robotics Toolbox for MATLAB release 10 in 2017) such as ``SE3``, ``UnitQuaternion`` etc.  The only significant difference
   is that the MATLAB ``Twist`` class is now called ``Twist3``.
@@ -769,6 +769,3 @@ which has the familiar *classic* functions like ``rotx`` and ``rpy2r`` available
     R2 = rpy2r(0.1, 0.2, 0.3)
 
     T = SE3(1, 2, 3)
-
-
-
