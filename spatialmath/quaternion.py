@@ -19,6 +19,7 @@ import math
 import numpy as np
 from typing import Any
 import spatialmath.base as smb
+from spatialmath.base.quaternions import _qslerp
 from spatialmath.pose3d import SO3, SE3
 from spatialmath.baseposelist import BasePoseList
 from spatialmath.base.types import *
@@ -1950,9 +1951,8 @@ class UnitQuaternion(Quaternion):
         if not isinstance(end, UnitQuaternion):
             raise TypeError("end argument must be a UnitQuaternion")
 
-        return UnitQuaternion(
-            [smb.qslerp(self.vec, end.vec, sk, shortest=shortest) for sk in s]
-        )
+        interpolate = _qslerp(self.vec, end.vec, shortest=shortest)
+        return UnitQuaternion([interpolate(sk) for sk in s])
 
     def interp1(self, s: float = 0, shortest: Optional[bool] = False) -> UnitQuaternion:
         """
@@ -1999,9 +1999,8 @@ class UnitQuaternion(Quaternion):
             s = smb.getvector(s)
             s = np.clip(s, 0, 1)  # enforce valid values
 
-        return UnitQuaternion(
-            [smb.qslerp(smb.qeye(), self.vec, sk, shortest=shortest) for sk in s]
-        )
+        interpolate = _qslerp(smb.qeye(), self.vec, shortest=shortest)
+        return UnitQuaternion([interpolate(sk) for sk in s])
 
     def increment(self, w: ArrayLike3, normalize: Optional[bool] = False) -> None:
         """

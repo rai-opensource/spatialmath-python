@@ -2,6 +2,7 @@ import math
 from math import pi
 import numpy.testing as nt
 import unittest
+from unittest.mock import patch
 
 from spatialmath import *
 from spatialmath.base import *
@@ -731,6 +732,15 @@ class TestUnitQuaternion(unittest.TestCase):
                 nt.assert_array_almost_equal(qi.R, p.R)
         for qi in p.interp(m, 5):
             nt.assert_array_almost_equal(qi.R, p.R)
+
+    def test_interp_prepares_slerp_once(self):
+        q0 = UnitQuaternion.RPY([0.2, 0.3, 0.4])
+        q1 = UnitQuaternion.RPY([-0.3, 0.1, 0.2])
+
+        for interpolate in (lambda: q0.interp1(5), lambda: q0.interp(q1, 5)):
+            with patch("spatialmath.base.quaternions.np.dot", wraps=np.dot) as dot:
+                self.assertEqual(len(interpolate()), 5)
+            self.assertEqual(dot.call_count, 1)
 
     def test_increment(self):
         q = UnitQuaternion()
