@@ -16,6 +16,7 @@ To use::
 # pylint: disable=invalid-name
 from __future__ import annotations
 import math
+import warnings
 import numpy as np
 from typing import Any
 import spatialmath.base as smb
@@ -2073,7 +2074,7 @@ class UnitQuaternion(Quaternion):
         """
         Interpolate a unit quaternion
 
-        :param shortest: Take the shortest path along the great circle
+        :param shortest: deprecated, has no effect
         :param s: interpolation coefficient, range 0 to 1, or number of steps
         :type s: array_like or int
         :return: interpolated unit quaternion
@@ -2104,9 +2105,31 @@ class UnitQuaternion(Quaternion):
 
         .. note:: values of ``s`` are silently clipped to the range [0, 1]
 
+        .. note:: ``shortest`` can never change the result here. Every
+            ``UnitQuaternion`` has a non-negative scalar part by construction
+            (see :func:`~spatialmath.base.quaternions.qunit`), and this method
+            always interpolates *from* the identity quaternion ``[1,0,0,0]``
+            -- whose dot product with any unit quaternion is just that
+            quaternion's own (always non-negative) scalar part. A negative
+            dot product is what ``shortest`` checks for to detect "the long
+            way round", and that condition can never occur here, unlike
+            :meth:`interp`, where it can.
+
+        .. deprecated:: 1.1.19
+            ``shortest`` has no effect and will be removed in a future
+            release.
+
         :seealso: :func:`~spatialmath.base.quaternions.qslerp`
         """
         # TODO allow self to have len() > 1
+
+        if shortest:
+            warnings.warn(
+                "shortest has no effect on interp1 and will be removed in a "
+                "future release: interpolation from the identity quaternion "
+                "is always the shortest path",
+                DeprecationWarning,
+            )
 
         if isinstance(s, int) and s > 1:
             s = np.linspace(0, 1, s)
@@ -2114,9 +2137,7 @@ class UnitQuaternion(Quaternion):
             s = smb.getvector(s)
             s = np.clip(s, 0, 1)  # enforce valid values
 
-        q0_endpoint, q0, q1, sin_theta, theta = _qslerp_prepare(
-            smb.qeye(), self.vec, shortest=shortest
-        )
+        q0_endpoint, q0, q1, sin_theta, theta = _qslerp_prepare(smb.qeye(), self.vec)
         qi = []
         for sk in s:
             if sk == 0:
