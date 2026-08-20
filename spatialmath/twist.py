@@ -886,12 +886,13 @@ class Twist3(BaseTwist):
             >>> S = Twist3.Rx(0.3)
             >>> S.Ad()
 
-        .. note:: This method computes the equivalent SE(3) matrix, then the adjoint
-            of that.
+        .. note:: Equivalent to, but faster than, ``self.SE3().Ad()`` -- computes
+            the adjoint directly from the twist's exponential without
+            constructing an intermediate ``SE3`` instance.
 
         :seealso: :func:`Twist3.ad`, :func:`Twist3.SE3`, :func:`Twist3.exp`
         """
-        return self.SE3().Ad()
+        return smb.tr2adjoint(smb.trexp(self.S, check=False))
 
     def skewa(self):
         """
