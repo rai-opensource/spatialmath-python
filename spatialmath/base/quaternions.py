@@ -17,7 +17,7 @@ import spatialmath.base as smb
 from spatialmath.base.argcheck import getunit
 from spatialmath.base.types import *
 import scipy.interpolate as interpolate
-from typing import Callable, Optional
+from typing import Optional
 from functools import lru_cache
 import warnings
 
@@ -771,13 +771,23 @@ def r2q(
 #         return np.r_[qs, (math.sqrt(1.0 - qs**2) / nm) * kv]
 
 
-def _qslerp(
+def _qslerp_prepare(
     q0: ArrayLike4,
     q1: ArrayLike4,
     shortest: Optional[bool] = False,
-    tol: float = 20,
-) -> Callable[[float], UnitQuaternionArray]:
-    """Prepare an interpolator for a pair of unit quaternions."""
+) -> tuple[
+    UnitQuaternionArray,
+    UnitQuaternionArray,
+    UnitQuaternionArray,
+    float,
+    float,
+]:
+    """Compute the loop-invariant slerp terms for two unit quaternions.
+
+    The original ``q0`` endpoint is returned separately from the sign-adjusted
+    value used by shortest-path interpolation, preserving the exact value at
+    ``s=0``.
+    """
     q0 = smb.getvector(q0, 4)
     q1 = smb.getvector(q1, 4)
     q0_endpoint = q0
@@ -799,23 +809,7 @@ def _qslerp(
     # sin(acos(dotprod)) does not: acos loses the small angle to rounding.
     sin_theta = float(np.linalg.norm(q1 - dotprod * q0))
     theta = math.atan2(sin_theta, dotprod)  # theta is the angle between q0 and q1
-
-    def interpolate(s: float) -> UnitQuaternionArray:
-        if s == 0:
-            return q0_endpoint
-        elif s == 1:
-            return q1
-
-        if sin_theta > tol * _eps:
-            s0 = math.sin((1 - s) * theta)
-            s1 = math.sin(s * theta)
-            return ((q0 * s0) + (q1 * s1)) / sin_theta
-        else:
-            # theta is 0 or pi: q0 and q1 are the same rotation, so is every
-            # interpolate between them
-            return q0
-
-    return interpolate
+    return q0_endpoint, q0, q1, sin_theta, theta
 
 
 def qslerp(
@@ -869,7 +863,20 @@ def qslerp(
     """
     if not 0 <= s <= 1:
         raise ValueError("s must be in the interval [0,1]")
-    return _qslerp(q0, q1, shortest=shortest, tol=tol)(s)
+    q0_endpoint, q0, q1, sin_theta, theta = _qslerp_prepare(q0, q1, shortest=shortest)
+    if s == 0:
+        return q0_endpoint
+    elif s == 1:
+        return q1
+
+    if sin_theta > tol * _eps:
+        s0 = math.sin((1 - s) * theta)
+        s1 = math.sin(s * theta)
+        return ((q0 * s0) + (q1 * s1)) / sin_theta
+    else:
+        # theta is 0 or pi: q0 and q1 are the same rotation, so is every
+        # interpolate between them
+        return q0
 
 
 def _compute_cdf_sin_squared(theta: float):

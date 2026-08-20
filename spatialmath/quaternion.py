@@ -19,7 +19,7 @@ import math
 import numpy as np
 from typing import Any
 import spatialmath.base as smb
-from spatialmath.base.quaternions import _qslerp
+from spatialmath.base.quaternions import _qslerp_prepare
 from spatialmath.pose3d import SO3, SE3
 from spatialmath.baseposelist import BasePoseList
 from spatialmath.base.types import *
@@ -1951,8 +1951,23 @@ class UnitQuaternion(Quaternion):
         if not isinstance(end, UnitQuaternion):
             raise TypeError("end argument must be a UnitQuaternion")
 
-        interpolate = _qslerp(self.vec, end.vec, shortest=shortest)
-        return UnitQuaternion([interpolate(sk) for sk in s])
+        q0_endpoint, q0, q1, sin_theta, theta = _qslerp_prepare(
+            self.vec, end.vec, shortest=shortest
+        )
+        qi = []
+        for sk in s:
+            if sk == 0:
+                out = q0_endpoint
+            elif sk == 1:
+                out = q1
+            elif sin_theta > 20 * _eps:
+                s0 = math.sin((1 - sk) * theta)
+                s1 = math.sin(sk * theta)
+                out = ((q0 * s0) + (q1 * s1)) / sin_theta
+            else:
+                out = q0
+            qi.append(out)
+        return UnitQuaternion(qi)
 
     def interp1(self, s: float = 0, shortest: Optional[bool] = False) -> UnitQuaternion:
         """
@@ -1999,8 +2014,23 @@ class UnitQuaternion(Quaternion):
             s = smb.getvector(s)
             s = np.clip(s, 0, 1)  # enforce valid values
 
-        interpolate = _qslerp(smb.qeye(), self.vec, shortest=shortest)
-        return UnitQuaternion([interpolate(sk) for sk in s])
+        q0_endpoint, q0, q1, sin_theta, theta = _qslerp_prepare(
+            smb.qeye(), self.vec, shortest=shortest
+        )
+        qi = []
+        for sk in s:
+            if sk == 0:
+                out = q0_endpoint
+            elif sk == 1:
+                out = q1
+            elif sin_theta > 20 * _eps:
+                s0 = math.sin((1 - sk) * theta)
+                s1 = math.sin(sk * theta)
+                out = ((q0 * s0) + (q1 * s1)) / sin_theta
+            else:
+                out = q0
+            qi.append(out)
+        return UnitQuaternion(qi)
 
     def increment(self, w: ArrayLike3, normalize: Optional[bool] = False) -> None:
         """
