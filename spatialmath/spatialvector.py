@@ -287,7 +287,10 @@ class SpatialVector(BasePoseList):
             if isinstance(right, SpatialM6):
                 return right.__class__(X @ right.A)
             else:
-                return right.__class__(X.T @ right.A)
+                # Force/momentum are dual to motion and transform by the
+                # coadjoint (inverse-transpose of the adjoint), not the
+                # adjoint transpose. These are only equal for a pure rotation.
+                return right.__class__(np.linalg.inv(X).T @ right.A)
         else:
             raise TypeError("left operand of * must be SE3 or Twist3")
 
@@ -487,7 +490,9 @@ class SpatialForce(SpatialF6):
         right, left
     ):  # lgtm[py/not-named-self] pylint: disable=no-self-argument
         # Twist * SpatialForce -> SpatialForce
-        return SpatialForce(left.Ad().T @ right.A)
+        # A force is dual to motion, so it transforms by the coadjoint
+        # (inverse-transpose of the adjoint), not the adjoint transpose.
+        return SpatialForce(np.linalg.inv(left.Ad()).T @ right.A)
 
 
 # ------------------------------------------------------------------------- #
