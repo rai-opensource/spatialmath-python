@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>spatialmath.base.numeric &mdash; Spatial Maths package  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -82,14 +82,16 @@
 <span class="c1"># this is a collection of useful algorithms, not otherwise categorized</span>
 
 
-<div class="viewcode-block" id="numjac"><a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.numjac">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">numjac</span><span class="p">(</span>
+<div class="viewcode-block" id="numjac">
+<a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.numjac">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">numjac</span><span class="p">(</span>
     <span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span>
     <span class="n">dx</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-8</span><span class="p">,</span>
     <span class="n">SO</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">SE</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Numerically compute Jacobian of function</span>
 
 <span class="sd">    :param f: the function, returns an m-vector</span>
@@ -129,7 +131,7 @@
 <span class="sd">            &gt;&gt;&gt; numjac(rotx, [0])</span>
 <span class="sd">            &gt;&gt;&gt; numjac(rotx, [0], SO=3)</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">Jcol</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">J0</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -154,8 +156,11 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">Jcol</span><span class="p">]</span><span class="o">.</span><span class="n">T</span></div>
 
 
-<div class="viewcode-block" id="numhess"><a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.numhess">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">numhess</span><span class="p">(</span><span class="n">J</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">dx</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-8</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="numhess">
+<a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.numhess">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">numhess</span><span class="p">(</span><span class="n">J</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">dx</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-8</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Numerically compute Hessian given Jacobian function</span>
 
 <span class="sd">    :param J: the Jacobian function, returns an ndarray(m,n)</span>
@@ -177,7 +182,7 @@
 <span class="sd">        H_{i,j,k} = \frac{\partial J_{j,k}}{\partial x_i}</span>
 
 <span class="sd">    Uses first-order difference :math:`H[:,:,i] = (J(x + dx) - J(x)) / dx`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
     <span class="n">Hcol</span> <span class="o">=</span> <span class="p">[]</span>
@@ -191,27 +196,30 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">Hcol</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="array2str"><a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.array2str">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">array2str</span><span class="p">(</span>
+
+<div class="viewcode-block" id="array2str">
+<a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.array2str">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">array2str</span><span class="p">(</span>
     <span class="n">X</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
-    <span class="n">valuesep</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="p">,</span>
-    <span class="n">rowsep</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot; | &quot;</span><span class="p">,</span>
-    <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.3g}</span><span class="s2">&quot;</span><span class="p">,</span>
-    <span class="n">brackets</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;[ &quot;</span><span class="p">,</span> <span class="s2">&quot; ]&quot;</span><span class="p">),</span>
+    <span class="n">valuesep</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">", "</span><span class="p">,</span>
+    <span class="n">rowsep</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">" | "</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"</span><span class="si">{:.3g}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">brackets</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"[ "</span><span class="p">,</span> <span class="s2">" ]"</span><span class="p">),</span>
     <span class="n">suppress_small</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Convert array to single line string</span>
 
 <span class="sd">    :param X: 1D or 2D array to convert</span>
 <span class="sd">    :type X: ndarray(N,M), array_like(N)</span>
-<span class="sd">    :param valuesep: separator between numbers, defaults to &quot;, &quot;</span>
+<span class="sd">    :param valuesep: separator between numbers, defaults to ", "</span>
 <span class="sd">    :type valuesep: str, optional</span>
-<span class="sd">    :param rowsep: separator between rows, defaults to &quot; | &quot;</span>
+<span class="sd">    :param rowsep: separator between rows, defaults to " | "</span>
 <span class="sd">    :type rowsep: str, optional</span>
-<span class="sd">    :param format: format string, defaults to &quot;{:.3g}&quot;</span>
+<span class="sd">    :param format: format string, defaults to "{:.3g}"</span>
 <span class="sd">    :type precision: str, optional</span>
 <span class="sd">    :param brackets: strings to be added to start and end of the string,</span>
-<span class="sd">        defaults to (&quot;[ &quot;, &quot; ]&quot;).  Set to None to suppress brackets.</span>
+<span class="sd">        defaults to ("[ ", " ]").  Set to None to suppress brackets.</span>
 <span class="sd">    :type brackets: list, tuple of str</span>
 <span class="sd">    :param suppress_small: small values (:math:`|x| &lt; 10^{-12}` are converted</span>
 <span class="sd">        to zero, defaults to True</span>
@@ -228,19 +236,19 @@
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base import array2str</span>
 <span class="sd">        &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">        &gt;&gt;&gt; array2str(np.random.rand(2,2))</span>
-<span class="sd">        &gt;&gt;&gt; array2str(np.random.rand(2,2), rowsep=&quot;; &quot;)  # MATLAB-like</span>
+<span class="sd">        &gt;&gt;&gt; array2str(np.random.rand(2,2), rowsep="; ")  # MATLAB-like</span>
 <span class="sd">        &gt;&gt;&gt; array2str(np.random.rand(3,))</span>
 <span class="sd">        &gt;&gt;&gt; array2str(np.random.rand(3,1))</span>
 
 
 <span class="sd">    :seealso: :func:`array2str`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># convert to ndarray if not already</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">format_row</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s2">""</span>
         <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-12</span><span class="p">:</span>
                 <span class="n">e</span> <span class="o">=</span> <span class="mi">0</span>
@@ -254,7 +262,7 @@
         <span class="n">s</span> <span class="o">=</span> <span class="n">format_row</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># 2D case</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s2">""</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">s</span> <span class="o">+=</span> <span class="n">rowsep</span>
@@ -265,8 +273,11 @@
     <span class="k">return</span> <span class="n">s</span></div>
 
 
-<div class="viewcode-block" id="str2array"><a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.str2array">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">str2array</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="str2array">
+<a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.str2array">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">str2array</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Convert compact single line string to array</span>
 
 <span class="sd">    :param s: string to convert</span>
@@ -274,7 +285,7 @@
 <span class="sd">    :return: array</span>
 <span class="sd">    :rtype: ndarray</span>
 
-<span class="sd">    Convert a string containing a &quot;MATLAB-like&quot; matrix definition to a NumPy</span>
+<span class="sd">    Convert a string containing a "MATLAB-like" matrix definition to a NumPy</span>
 <span class="sd">    array.  A scalar has no delimiting square brackets and becomes a 1x1 array.</span>
 <span class="sd">    A 2D array is delimited by square brackets, elements are separated by a comma,</span>
 <span class="sd">    and rows are separated by a semicolon.  Extra white spaces are ignored.</span>
@@ -284,25 +295,28 @@
 <span class="sd">    .. runblock:: pycon</span>
 
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base import str2array</span>
-<span class="sd">        &gt;&gt;&gt; str2array(&quot;5&quot;)</span>
-<span class="sd">        &gt;&gt;&gt; str2array(&quot;[1 2 3]&quot;)</span>
-<span class="sd">        &gt;&gt;&gt; str2array(&quot;[1 2; 3 4]&quot;)</span>
-<span class="sd">        &gt;&gt;&gt; str2array(&quot; [  1  , 2 ; 3 4  ] &quot;)</span>
-<span class="sd">        &gt;&gt;&gt; str2array(&quot;[1; 2; 3]&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; str2array("5")</span>
+<span class="sd">        &gt;&gt;&gt; str2array("[1 2 3]")</span>
+<span class="sd">        &gt;&gt;&gt; str2array("[1 2; 3 4]")</span>
+<span class="sd">        &gt;&gt;&gt; str2array(" [  1  , 2 ; 3 4  ] ")</span>
+<span class="sd">        &gt;&gt;&gt; str2array("[1; 2; 3]")</span>
 
 <span class="sd">    :seealso: :func:`array2str`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot; [&quot;</span><span class="p">)</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot; ]&quot;</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">" ["</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">" ]"</span><span class="p">)</span>
     <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">):</span>
-        <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;[, ]+&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">strip</span><span class="p">())])</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">";"</span><span class="p">):</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"[, ]+"</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">strip</span><span class="p">())])</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="bresenham"><a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.bresenham">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">bresenham</span><span class="p">(</span><span class="n">p0</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">p1</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="bresenham">
+<a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.bresenham">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">bresenham</span><span class="p">(</span><span class="n">p0</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">p1</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Line drawing in a grid</span>
 
 <span class="sd">    :param p0: initial point</span>
@@ -332,8 +346,8 @@
 <span class="sd">        import matplotlib.pyplot as plt</span>
 <span class="sd">        p = bresenham((2, 4), (10, 10))</span>
 <span class="sd">        plt.plot((2, 10), (4, 10))</span>
-<span class="sd">        plt.plot(p[0], p[1], &#39;ok&#39;)</span>
-<span class="sd">        plt.plot(p[0], p[1], &#39;k&#39;, drawstyle=&#39;steps-post&#39;)</span>
+<span class="sd">        plt.plot(p[0], p[1], 'ok')</span>
+<span class="sd">        plt.plot(p[0], p[1], 'k', drawstyle='steps-post')</span>
 <span class="sd">        ax = plt.gca()</span>
 <span class="sd">        ax.grid()</span>
 
@@ -341,7 +355,7 @@
 <span class="sd">    .. note:: The API is similar to the Bresenham algorithm but this</span>
 <span class="sd">        implementation uses NumPy vectorised arithmetic which makes it</span>
 <span class="sd">        faster than the Bresenham algorithm in Python.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="n">p0</span>
     <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">p1</span>
 
@@ -382,8 +396,11 @@
     <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="mpq_point"><a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.mpq_point">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">mpq_point</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Points2</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="mpq_point">
+<a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.mpq_point">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mpq_point</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Points2</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Moments of polygon</span>
 
 <span class="sd">    :param data: polygon vertices, points as columns</span>
@@ -393,7 +410,7 @@
 <span class="sd">    :param q: moment order y</span>
 <span class="sd">    :type q: int</span>
 
-<span class="sd">    Returns the pq&#39;th moment of the polygon</span>
+<span class="sd">    Returns the pq'th moment of the polygon</span>
 
 <span class="sd">    .. math::</span>
 
@@ -410,15 +427,18 @@
 <span class="sd">        &gt;&gt;&gt; mpq_point(p, 3, 0)</span>
 
 <span class="sd">    .. note:: is negative for clockwise perimeter.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="n">p</span> <span class="o">*</span> <span class="n">y</span><span class="o">**</span><span class="n">q</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="gauss1d"><a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.gauss1d">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">gauss1d</span><span class="p">(</span><span class="n">mu</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="gauss1d">
+<a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.gauss1d">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">gauss1d</span><span class="p">(</span><span class="n">mu</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Gaussian function in 1D</span>
 
 <span class="sd">    :param mu: mean</span>
@@ -445,7 +465,7 @@
 <span class="sd">        plt.grid()</span>
 
 <span class="sd">    :seealso: :func:`gauss2d`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
@@ -456,8 +476,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="gauss2d"><a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.gauss2d">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">gauss2d</span><span class="p">(</span><span class="n">mu</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">P</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="gauss2d">
+<a class="viewcode-back" href="../../../func_numeric.html#spatialmath.base.numeric.gauss2d">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">gauss2d</span><span class="p">(</span><span class="n">mu</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">P</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Gaussian function in 2D</span>
 
 <span class="sd">    :param mu: mean</span>
@@ -493,7 +516,7 @@
 <span class="sd">        ax.plot_surface(x, y, g)</span>
 
 <span class="sd">    :seealso: :func:`gauss1d`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -507,7 +530,8 @@
     <span class="k">return</span> <span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">gauss2d</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
@@ -530,7 +554,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 30-Jan-2025.
+      <span class="lastupdated">Last updated on 27-Aug-2026.
       </span></p>
   </div>
 

@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>spatialmath.base.symbolic &mdash; Spatial Maths package  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -78,20 +78,20 @@
 <span class="c1"># Copyright (c) 2000 Peter Corke</span>
 <span class="c1"># MIT Licence, see details in top-level file: LICENCE</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="sd">This package provides a light-weight wrapper to support use of SymPy.  It</span>
 <span class="sd">generalizes some common functions so that they can accept numerical or</span>
 <span class="sd">Symbolic arguments.</span>
 
 <span class="sd">If SymPy is not installed then only the standard numeric operations are</span>
-<span class="sd">supported. </span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">supported.</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.types</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="k">try</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-    <span class="c1"># print(&#39;Using SymPy&#39;)</span>
+    <span class="c1"># print('Using SymPy')</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span>
 
     <span class="n">_symbolics</span> <span class="o">=</span> <span class="kc">True</span>
@@ -109,10 +109,12 @@
 
 <span class="k">if</span> <span class="n">_symbolics</span><span class="p">:</span>
 
-<div class="viewcode-block" id="symbol"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.symbol">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">symbol</span><span class="p">(</span>
+<div class="viewcode-block" id="symbol">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.symbol">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">symbol</span><span class="p">(</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">real</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Symbol</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Symbol</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create symbolic variables</span>
 
 <span class="sd">        :param name: symbol names</span>
@@ -125,27 +127,30 @@
 <span class="sd">        .. runblock:: pycon</span>
 
 <span class="sd">            &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
-<span class="sd">            &gt;&gt;&gt; theta = symbol(&#39;theta&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; theta = symbol('theta')</span>
 <span class="sd">            &gt;&gt;&gt; theta</span>
-<span class="sd">            &gt;&gt;&gt; theta, psi = symbol(&#39;theta psi&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; theta, psi = symbol('theta psi')</span>
 <span class="sd">            &gt;&gt;&gt; theta</span>
 <span class="sd">            &gt;&gt;&gt; psi</span>
-<span class="sd">            &gt;&gt;&gt; q = symbol(&#39;q_:6&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; q = symbol('q_:6')</span>
 <span class="sd">            &gt;&gt;&gt; q</span>
 
 <span class="sd">        .. note:: In Jupyter symbols are pretty printed.</span>
 
 <span class="sd">            - symbols named after greek letters will appear as greek letters</span>
 <span class="sd">            - underscore means subscript as it does in LaTex, so the symbols ``q``</span>
-<span class="sd">            above will be subscripted.</span>
+<span class="sd">              above will be subscripted.</span>
 
 <span class="sd">        :seealso: :func:`sympy.symbols`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="n">real</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="issymbol"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.issymbol">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">issymbol</span><span class="p">(</span><span class="n">var</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="issymbol">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.issymbol">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">issymbol</span><span class="p">(</span><span class="n">var</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Test if variable is symbolic</span>
 
 <span class="sd">    :param var: variable to test</span>
@@ -155,11 +160,11 @@
 <span class="sd">    .. runblock:: pycon</span>
 
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
-<span class="sd">        &gt;&gt;&gt; theta = symbol(&#39;theta&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; theta = symbol('theta')</span>
 <span class="sd">        &gt;&gt;&gt; issymbol(theta)</span>
 <span class="sd">        &gt;&gt;&gt; issymbol(3.4)</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">_symbolics</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
             <span class="k">return</span> <span class="nb">any</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">symtype</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">var</span><span class="p">])</span>
@@ -167,6 +172,7 @@
             <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">symtype</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span></div>
+
 
 
 <span class="nd">@overload</span>
@@ -179,8 +185,10 @@
     <span class="o">...</span>
 
 
-<div class="viewcode-block" id="sin"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.sin">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="sin">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.sin">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Generalized sine function</span>
 
 <span class="sd">    :param θ: argument</span>
@@ -191,16 +199,17 @@
 <span class="sd">    .. runblock:: pycon</span>
 
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
-<span class="sd">        &gt;&gt;&gt; theta = symbol(&#39;theta&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; theta = symbol('theta')</span>
 <span class="sd">        &gt;&gt;&gt; sin(theta)</span>
 <span class="sd">        &gt;&gt;&gt; sin(0.5)</span>
 
 <span class="sd">    :seealso: :func:`sympy.sin`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">issymbol</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span></div>
+
 
 
 <span class="nd">@overload</span>
@@ -213,8 +222,10 @@
     <span class="o">...</span>
 
 
-<div class="viewcode-block" id="cos"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.cos">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="cos">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.cos">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Generalized cosine function</span>
 
 <span class="sd">    :param θ: argument</span>
@@ -225,16 +236,17 @@
 <span class="sd">    .. runblock:: pycon</span>
 
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
-<span class="sd">        &gt;&gt;&gt; theta = symbol(&#39;theta&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; theta = symbol('theta')</span>
 <span class="sd">        &gt;&gt;&gt; cos(theta)</span>
 <span class="sd">        &gt;&gt;&gt; cos(0.5)</span>
 
 <span class="sd">    :seealso: :func:`sympy.cos`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">issymbol</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span></div>
+
 
 
 <span class="nd">@overload</span>
@@ -247,8 +259,10 @@
     <span class="o">...</span>
 
 
-<div class="viewcode-block" id="tan"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.tan">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="tan">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.tan">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Generalized tangent function</span>
 
 <span class="sd">    :param θ: argument</span>
@@ -259,16 +273,17 @@
 <span class="sd">    .. runblock:: pycon</span>
 
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
-<span class="sd">        &gt;&gt;&gt; theta = symbol(&#39;theta&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; theta = symbol('theta')</span>
 <span class="sd">        &gt;&gt;&gt; tan(theta)</span>
 <span class="sd">        &gt;&gt;&gt; tan(0.5)</span>
 
 <span class="sd">    :seealso: :func:`sympy.cos`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">issymbol</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span></div>
+
 
 
 <span class="nd">@overload</span>
@@ -281,8 +296,10 @@
     <span class="o">...</span>
 
 
-<div class="viewcode-block" id="sqrt"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.sqrt">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="sqrt">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.sqrt">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Generalized sqrt function</span>
 
 <span class="sd">    :param v: argument</span>
@@ -293,20 +310,23 @@
 <span class="sd">    .. runblock:: pycon</span>
 
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
-<span class="sd">        &gt;&gt;&gt; x = symbol(&#39;x&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x = symbol('x')</span>
 <span class="sd">        &gt;&gt;&gt; sqrt(x ** 2)</span>
 <span class="sd">        &gt;&gt;&gt; sqrt(4)</span>
 
 <span class="sd">    :seealso: :func:`sympy.sqrt`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">issymbol</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="zero"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.zero">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">zero</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Symbol</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="zero">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.zero">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">zero</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Symbol</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Symbolic constant: zero</span>
 
 <span class="sd">    :return: 0</span>
@@ -315,17 +335,20 @@
 <span class="sd">    .. runblock:: pycon</span>
 
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
-<span class="sd">        &gt;&gt;&gt; x = symbol(&#39;x&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x = symbol('x')</span>
 <span class="sd">        &gt;&gt;&gt; zero()</span>
 <span class="sd">        &gt;&gt;&gt; x + zero()</span>
 
 <span class="sd">    :seealso: :func:`sympy.S.Zero`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">Zero</span></div>
 
 
-<div class="viewcode-block" id="one"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.one">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">one</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Symbol</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="one">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.one">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">one</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Symbol</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Symbolic constant: one</span>
 
 <span class="sd">    :return: 1</span>
@@ -334,17 +357,20 @@
 <span class="sd">    .. runblock:: pycon</span>
 
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
-<span class="sd">        &gt;&gt;&gt; x = symbol(&#39;x&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x = symbol('x')</span>
 <span class="sd">        &gt;&gt;&gt; one()</span>
 <span class="sd">        &gt;&gt;&gt; one() * x</span>
 
 <span class="sd">    :seealso: :func:`sympy.S.One`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">One</span></div>
 
 
-<div class="viewcode-block" id="negative_one"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.negative_one">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">negative_one</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Symbol</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="negative_one">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.negative_one">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">negative_one</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Symbol</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Symbolic constant: negative one</span>
 
 <span class="sd">    :return: -1</span>
@@ -353,17 +379,20 @@
 <span class="sd">    .. runblock:: pycon</span>
 
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
-<span class="sd">        &gt;&gt;&gt; x = symbol(&#39;x&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x = symbol('x')</span>
 <span class="sd">        &gt;&gt;&gt; negative_one()</span>
 <span class="sd">        &gt;&gt;&gt; negative_one() * x</span>
 
 <span class="sd">    :seealso: :func:`sympy.S.NegativeOne`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">NegativeOne</span></div>
 
 
-<div class="viewcode-block" id="pi"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.pi">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">pi</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Symbol</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="pi">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.pi">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">pi</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Symbol</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Symbolic constant: pi</span>
 
 <span class="sd">    :return: π</span>
@@ -377,12 +406,15 @@
 <span class="sd">        &gt;&gt;&gt; sin(math.pi)</span>
 
 <span class="sd">    :seealso: :func:`sympy.S.Pi`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">Pi</span></div>
 
 
-<div class="viewcode-block" id="simplify"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.simplify">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">simplify</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Symbol</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Symbol</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="simplify">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.simplify">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">simplify</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Symbol</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Symbol</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Symbolic simplification</span>
 
 <span class="sd">    :param x: expression to simplify</span>
@@ -393,21 +425,24 @@
 <span class="sd">    .. runblock:: pycon</span>
 
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
-<span class="sd">        &gt;&gt;&gt; x = symbol(&#39;x&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x = symbol('x')</span>
 <span class="sd">        &gt;&gt;&gt; y = (x - 1) * (x + 1) - x ** 2</span>
 <span class="sd">        &gt;&gt;&gt; y</span>
 <span class="sd">        &gt;&gt;&gt; simplify(y)</span>
 
 <span class="sd">    :seealso: :func:`sympy.simplify`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">_symbolics</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">x</span></div>
 
 
-<div class="viewcode-block" id="det"><a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.det">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">det</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="det">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.det">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">det</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Symbolic determinant</span>
 
 <span class="sd">    :param m: matrix</span>
@@ -419,16 +454,17 @@
 
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
 <span class="sd">        &gt;&gt;&gt; from spatialmath.base import rot2</span>
-<span class="sd">        &gt;&gt;&gt; theta = symbol(&#39;theta&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; theta = symbol('theta')</span>
 <span class="sd">        &gt;&gt;&gt; R = rot2(theta)</span>
 <span class="sd">        &gt;&gt;&gt; print(R)</span>
 <span class="sd">        &gt;&gt;&gt; print(det(R))</span>
-<span class="sd">        &gt;&gt;&gt; simplify(print(det(R)))</span>
+<span class="sd">        &gt;&gt;&gt; print(simplify(det(R)))</span>
 
 <span class="sd">    .. note:: Converts to a SymPy ``Matrix`` and then back again.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">det</span><span class="p">()</span></div>
+
 </pre></div>
 
            </div>
@@ -439,7 +475,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 30-Jan-2025.
+      <span class="lastupdated">Last updated on 27-Aug-2026.
       </span></p>
   </div>
 

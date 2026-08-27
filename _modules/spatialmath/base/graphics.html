@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>spatialmath.base.graphics &mdash; Spatial Maths package  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -86,17 +86,17 @@
 <span class="c1"># To assist code portability to headless platforms, these graphics primitives</span>
 <span class="c1"># are defined as null functions.</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="sd">Set of functions to draw 2D and 3D graphical primitives using matplotlib.</span>
 
 <span class="sd">The 2D functions all allow color and line style to be specified by a fmt string</span>
-<span class="sd">like, &#39;r&#39; or &#39;b--&#39;.</span>
+<span class="sd">like, 'r' or 'b--'.</span>
 
-<span class="sd">The 3D functions require explicity arguments to set properties, like color=&#39;b&#39;</span>
+<span class="sd">The 3D functions require explicity arguments to set properties, like color='b'</span>
 
 <span class="sd">All return a list of the graphic objects they create.</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -120,7 +120,7 @@
         <span class="n">color</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot text using matplotlib</span>
 
 <span class="sd">        :param pos: position of text</span>
@@ -139,23 +139,23 @@
 
 <span class="sd">            &gt;&gt;&gt; from spatialmath.base import plotvol2, plot_text</span>
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
-<span class="sd">            &gt;&gt;&gt; plot_text((1,3), &#39;foo&#39;)</span>
-<span class="sd">            &gt;&gt;&gt; plot_text((2,2), &#39;bar&#39;, color=&#39;b&#39;)</span>
-<span class="sd">            &gt;&gt;&gt; plot_text((2,2), &#39;baz&#39;, fontsize=14, horizontalalignment=&#39;centre&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; plot_text((1,3), 'foo')</span>
+<span class="sd">            &gt;&gt;&gt; plot_text((2,2), 'bar', color='b')</span>
+<span class="sd">            &gt;&gt;&gt; plot_text((2,2), 'baz', fontsize=14, horizontalalignment='centre')</span>
 
 <span class="sd">        .. plot::</span>
 
 <span class="sd">            from spatialmath.base import plotvol2, plot_text</span>
 <span class="sd">            ax = plotvol2(5)</span>
-<span class="sd">            plot_text((0,0), &#39;foo&#39;)</span>
-<span class="sd">            plot_text((1,1), &#39;bar&#39;, color=&#39;b&#39;)</span>
-<span class="sd">            plot_text((2,2), &#39;baz&#39;, fontsize=14, horizontalalignment=&#39;center&#39;)</span>
+<span class="sd">            plot_text((0,0), 'foo')</span>
+<span class="sd">            plot_text((1,1), 'bar', color='b')</span>
+<span class="sd">            plot_text((2,2), 'baz', fontsize=14, horizontalalignment='center')</span>
 <span class="sd">            ax.grid()</span>
 
 <span class="sd">        :seealso: :func:`plot_point`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
-        <span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;horizontalalignment&quot;</span><span class="p">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;verticalalignment&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">}</span>
+        <span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"horizontalalignment"</span><span class="p">:</span> <span class="s2">"left"</span><span class="p">,</span> <span class="s2">"verticalalignment"</span><span class="p">:</span> <span class="s2">"center"</span><span class="p">}</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">defaults</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
                 <span class="n">kwargs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
@@ -165,21 +165,23 @@
         <span class="n">handle</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">text</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">handle</span><span class="p">]</span>
 
-<div class="viewcode-block" id="plot_point"><a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_point">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_point</span><span class="p">(</span>
+<div class="viewcode-block" id="plot_point">
+<a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_point">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_point</span><span class="p">(</span>
         <span class="n">pos</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span>
-        <span class="n">marker</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bs&quot;</span><span class="p">,</span>
+        <span class="n">marker</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"bs"</span><span class="p">,</span>
         <span class="n">text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">textargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">textcolor</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot a point using matplotlib</span>
 
 <span class="sd">        :param pos: position of marker</span>
 <span class="sd">        :type pos: array_like(2), ndarray(2,n), list of 2-tuples</span>
-<span class="sd">        :param marker: matplotlub marker style, defaults to &#39;bs&#39;</span>
+<span class="sd">        :param marker: matplotlub marker style, defaults to 'bs'</span>
 <span class="sd">        :type marker: str or list of str, optional</span>
 <span class="sd">        :param text: text label, defaults to None</span>
 <span class="sd">        :type text: str, optional</span>
@@ -191,44 +193,43 @@
 <span class="sd">        Plot one or more points, with optional text label.</span>
 
 <span class="sd">        - The color of the marker can be different to the color of the text, the</span>
-<span class="sd">        marker color is specified by a single letter in the marker string.</span>
+<span class="sd">          marker color is specified by a single letter in the marker string.</span>
 
 <span class="sd">        - A point can have multiple markers, given as a list, which will be</span>
-<span class="sd">        overlaid, for instance ``[&quot;rx&quot;, &quot;ro&quot;]`` will give a ⨂ symbol.</span>
+<span class="sd">          overlaid, for instance ``["rx", "ro"]`` will give a ⨂ symbol.</span>
 
 <span class="sd">        - The optional text label is placed to the right of the marker, and</span>
-<span class="sd">        vertically aligned.</span>
+<span class="sd">          vertically aligned.</span>
 
 <span class="sd">        - Multiple points can be marked if ``pos`` is a 2xn array or a list of</span>
-<span class="sd">        coordinate pairs.  In this case:</span>
+<span class="sd">          coordinate pairs.  In this case:</span>
 
 <span class="sd">            - all points have the same ``text`` label</span>
 <span class="sd">            - ``text`` can include the format string {} which is susbstituted for the</span>
-<span class="sd">            point index, starting at zero</span>
+<span class="sd">              point index, starting at zero</span>
 <span class="sd">            - ``text`` can be a tuple containing a format string followed by vectors</span>
-<span class="sd">            of shape(n).  For example::</span>
+<span class="sd">              of shape(n).  For example::</span>
 
-<span class="sd">                ``(&quot;#{0} a={1:.1f}, b={2:.1f}&quot;, a, b)``</span>
+<span class="sd">                ("#{0} a={1:.1f}, b={2:.1f}", a, b)</span>
 
 <span class="sd">            will label each point with its index (argument 0) and consecutive</span>
 <span class="sd">            elements of ``a`` and ``b`` which are arguments 1 and 2 respectively.</span>
 
 <span class="sd">        Example::</span>
 
-<span class="sd">            &gt;&gt;&gt; from spatialmath.base import plotvol2, plot_text</span>
+<span class="sd">            &gt;&gt;&gt; from spatialmath.base import plotvol2, plot_point</span>
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
-<span class="sd">            &gt;&gt;&gt; plot_point((0, 0))        # plot default marker at coordinate (1,2)</span>
-<span class="sd">            &gt;&gt;&gt; plot_point((1,1), &#39;r*&#39;)  # plot red star at coordinate (1,2)</span>
-<span class="sd">            &gt;&gt;&gt; plot_point((2,2), &#39;r*&#39;, &#39;foo&#39;)  # plot red star at coordinate (1,2) and</span>
-<span class="sd">        label it as &#39;foo&#39;</span>
+<span class="sd">            &gt;&gt;&gt; plot_point((0,0))        # plot default marker at coordinate (1,2)</span>
+<span class="sd">            &gt;&gt;&gt; plot_point((1,1), 'r*')  # plot red star at coordinate (1,2)</span>
+<span class="sd">            &gt;&gt;&gt; plot_point((2,2), 'r*', 'foo')  # plot red star at coordinate (1,2) and label it as 'foo'</span>
 
 <span class="sd">        .. plot::</span>
 
-<span class="sd">            from spatialmath.base import plotvol2, plot_text</span>
+<span class="sd">            from spatialmath.base import plotvol2, plot_point</span>
 <span class="sd">            ax = plotvol2(5)</span>
-<span class="sd">            plot_point((0, 0))</span>
-<span class="sd">            plot_point((1,1), &#39;r*&#39;)</span>
-<span class="sd">            plot_point((2,2), &#39;r*&#39;, &#39;foo&#39;)</span>
+<span class="sd">            plot_point((0,0))</span>
+<span class="sd">            plot_point((1,1), 'r*')</span>
+<span class="sd">            plot_point((2,2), 'r*', 'foo')</span>
 <span class="sd">            ax.grid()</span>
 
 <span class="sd">        Plot red star at points defined by columns of ``p`` and label them sequentially</span>
@@ -236,7 +237,7 @@
 
 <span class="sd">            &gt;&gt;&gt; p = np.random.uniform(size=(2,10), low=-5, high=5)</span>
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
-<span class="sd">            &gt;&gt;&gt; plot_point(p, &#39;r*&#39;, &#39;{0}&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; plot_point(p, 'r*', '{0}')</span>
 
 <span class="sd">        .. plot::</span>
 
@@ -244,7 +245,7 @@
 <span class="sd">            import numpy as np</span>
 <span class="sd">            p = np.random.uniform(size=(2,10), low=-5, high=5)</span>
 <span class="sd">            ax = plotvol2(5)</span>
-<span class="sd">            plot_point(p, &#39;r*&#39;, &#39;{0}&#39;)</span>
+<span class="sd">            plot_point(p, 'r*', '{0}')</span>
 <span class="sd">            ax.grid()</span>
 
 <span class="sd">        Plot red star at points defined by columns of ``p`` and label them all with</span>
@@ -253,7 +254,7 @@
 <span class="sd">            &gt;&gt;&gt; p = np.random.uniform(size=(2,10), low=-5, high=5)</span>
 <span class="sd">            &gt;&gt;&gt; value = np.random.uniform(size=(1,10))</span>
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
-<span class="sd">            &gt;&gt;&gt; plot_point(p, &#39;r*&#39;, (&#39;{1:.2f}&#39;, value))</span>
+<span class="sd">            &gt;&gt;&gt; plot_point(p, 'r*', ('{1:.2f}', value))</span>
 
 <span class="sd">        .. plot::</span>
 
@@ -262,13 +263,13 @@
 <span class="sd">            p = np.random.uniform(size=(2,10), low=-5, high=5)</span>
 <span class="sd">            value = np.random.uniform(size=(10,))</span>
 <span class="sd">            ax = plotvol2(5)</span>
-<span class="sd">            plot_point(p, &#39;r*&#39;, (&#39;{1:.2f}&#39;, value))</span>
+<span class="sd">            plot_point(p, 'r*', ('{1:.2f}', value))</span>
 <span class="sd">            ax.grid()</span>
 
 <span class="sd">        :seealso: :func:`plot_text`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
-        <span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;horizontalalignment&quot;</span><span class="p">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;verticalalignment&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">}</span>
+        <span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"horizontalalignment"</span><span class="p">:</span> <span class="s2">"left"</span><span class="p">,</span> <span class="s2">"verticalalignment"</span><span class="p">:</span> <span class="s2">"center"</span><span class="p">}</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">pos</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -293,14 +294,14 @@
                 <span class="n">y</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="n">textopts</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;fontsize&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-            <span class="s2">&quot;horizontalalignment&quot;</span><span class="p">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;verticalalignment&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+            <span class="s2">"fontsize"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+            <span class="s2">"horizontalalignment"</span><span class="p">:</span> <span class="s2">"left"</span><span class="p">,</span>
+            <span class="s2">"verticalalignment"</span><span class="p">:</span> <span class="s2">"center"</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="k">if</span> <span class="n">textargs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">textopts</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">textopts</span><span class="p">,</span> <span class="o">**</span><span class="n">textargs</span><span class="p">}</span>
-        <span class="k">if</span> <span class="n">textcolor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;color&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">textopts</span><span class="p">:</span>
-            <span class="n">textopts</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">textcolor</span>
+        <span class="k">if</span> <span class="n">textcolor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">"color"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">textopts</span><span class="p">:</span>
+            <span class="n">textopts</span><span class="p">[</span><span class="s2">"color"</span><span class="p">]</span> <span class="o">=</span> <span class="n">textcolor</span>
 
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
@@ -319,7 +320,7 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                 <span class="c1"># simple string, but might have format chars</span>
                 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xy</span><span class="p">):</span>
-                    <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">text</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="o">**</span><span class="n">textopts</span><span class="p">))</span>
+                    <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">text</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="o">**</span><span class="n">textopts</span><span class="p">))</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
                 <span class="p">(</span>
                     <span class="n">fmt</span><span class="p">,</span>
@@ -330,13 +331,16 @@
                         <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
                             <span class="n">x</span><span class="p">,</span>
                             <span class="n">y</span><span class="p">,</span>
-                            <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]),</span>
+                            <span class="s2">" "</span> <span class="o">+</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]),</span>
                             <span class="o">**</span><span class="n">textopts</span><span class="p">,</span>
                         <span class="p">)</span>
                     <span class="p">)</span>
         <span class="k">return</span> <span class="n">handles</span></div>
 
-<div class="viewcode-block" id="plot_homline"><a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_homline">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_homline</span><span class="p">(</span>
+
+<div class="viewcode-block" id="plot_homline">
+<a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_homline">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_homline</span><span class="p">(</span>
         <span class="n">lines</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike3</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">],</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -344,7 +348,7 @@
         <span class="n">ylim</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Plot homogeneous lines using matplotlib</span>
 
 <span class="sd">        :param lines: homgeneous line or lines</span>
@@ -368,18 +372,18 @@
 <span class="sd">            &gt;&gt;&gt; from spatialmath.base import plotvol2, plot_homline</span>
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
 <span class="sd">            &gt;&gt;&gt; plot_homline((1, -2, 3))</span>
-<span class="sd">            &gt;&gt;&gt; plot_homline((1, -2, 3), &#39;k--&#39;) # dashed black line</span>
+<span class="sd">            &gt;&gt;&gt; plot_homline((1, -2, 3), 'k--') # dashed black line</span>
 
 <span class="sd">        .. plot::</span>
 
 <span class="sd">            from spatialmath.base import plotvol2, plot_homline</span>
 <span class="sd">            ax = plotvol2(5)</span>
 <span class="sd">            plot_homline((1, -2, 3))</span>
-<span class="sd">            plot_homline((1, -2, 3), &#39;k--&#39;) # dashed black line</span>
+<span class="sd">            plot_homline((1, -2, 3), 'k--') # dashed black line</span>
 <span class="sd">            ax.grid()</span>
 
 <span class="sd">        :seealso: :func:`plot_arrow`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">axes_logic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="c1"># get plot limits from current graph</span>
         <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -402,8 +406,10 @@
 
         <span class="k">return</span> <span class="n">handles</span></div>
 
+
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_box</span><span class="p">(</span>
-        <span class="o">*</span><span class="n">fmt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
         <span class="n">lbrt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike4</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">lrbt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike4</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">lbwh</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike4</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -415,13 +421,14 @@
         <span class="n">rt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">wh</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">centre</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">w</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">h</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">filled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot a 2D box using matplotlib</span>
 
 <span class="sd">        :param lb: left-bottom corner, defaults to None</span>
@@ -434,54 +441,94 @@
 <span class="sd">        :type rt: array_like(2), optional</span>
 <span class="sd">        :param wh: width and height, if both are the same provide scalar, defaults to None</span>
 <span class="sd">        :type wh: scalar, array_like(2), optional</span>
-<span class="sd">        :param centre: centre of box, defaults to None</span>
+<span class="sd">        :param centre: centre of box, defaults to None (alias: ``center``)</span>
 <span class="sd">        :type centre: array_like(2), optional</span>
 <span class="sd">        :param w: width of box, defaults to None</span>
 <span class="sd">        :type w: float, optional</span>
 <span class="sd">        :param h: height of box, defaults to None</span>
 <span class="sd">        :type h: float, optional</span>
+<span class="sd">        ;param lbrt: left-bottom, right-top corners, defaults to None</span>
+<span class="sd">        :type lbrt: array_like(4), optional</span>
+<span class="sd">        :param lrbt: left-right, bottom-top corners, defaults to None</span>
+<span class="sd">        :type lrbt: array_like(4), optional</span>
+<span class="sd">        :param lbwh: left-bottom corner, width and height, defaults to None</span>
+<span class="sd">        :type lbwh: array_like(4), optional</span>
+<span class="sd">        :param ltrb: left-top, right-bottom corners, defaults to None</span>
+<span class="sd">        :type ltrb: array_like(4), optional</span>
 <span class="sd">        :param ax: the axes to draw on, defaults to ``gca()``</span>
 <span class="sd">        :type ax: Axis, optional</span>
 <span class="sd">        :param bbox: bounding box matrix, defaults to None</span>
 <span class="sd">        :type bbox: array_like(4), optional</span>
-<span class="sd">        :param color: box outline color</span>
-<span class="sd">        :type color: array_like(3) or str</span>
-<span class="sd">        :param fillcolor: box fill color</span>
-<span class="sd">        :type fillcolor: array_like(3) or str</span>
-<span class="sd">        :param alpha: transparency, defaults to 1</span>
-<span class="sd">        :type alpha: float, optional</span>
-<span class="sd">        :param thickness: line thickness, defaults to None</span>
+<span class="sd">        :param filled: fill the box, defaults to False (alias for Matplotlib ``fill``)</span>
+<span class="sd">        :type filled: bool</span>
+<span class="sd">        :param thickness: line thickness (alias for Matplotlib ``linewidth``)</span>
 <span class="sd">        :type thickness: float, optional</span>
+<span class="sd">        :param kwargs: additional arguments passed to ``pyplot.Rectangle()``</span>
+
 <span class="sd">        :return: the matplotlib object</span>
 <span class="sd">        :rtype: Patch.Rectangle instance</span>
 
-<span class="sd">        The box can be specified in many ways:</span>
+<span class="sd">        Appearance is controlled by Matplotlib properties passed as keyword arguments, for example:</span>
 
-<span class="sd">        - bounding box [xmin, xmax, ymin, ymax]</span>
-<span class="sd">        - alternative box [xmin, ymin, xmax, ymax]</span>
-<span class="sd">        - centre and width+height</span>
-<span class="sd">        - left-bottom and right-top corners</span>
-<span class="sd">        - left-bottom corner and width+height</span>
-<span class="sd">        - right-top corner and width+height</span>
-<span class="sd">        - left-top corner and width+height</span>
+<span class="sd">        :param color: box outline and fill color</span>
+<span class="sd">        :type color: array_like(3) or str</span>
+<span class="sd">        :param edgecolor: box outline colour (alias: ``ec``)</span>
+<span class="sd">        :type edgecolor: array_like(3) or str</span>
+<span class="sd">        :param fillcolor: box fill colour</span>
+<span class="sd">        :type fillcolor: array_like(3) or str</span>
+<span class="sd">        :param filled: fill the box, defaults to False</span>
+<span class="sd">        :type filled: bool</span>
+<span class="sd">        :param alpha: transparency, defaults to 1</span>
+<span class="sd">        :type alpha: float, optional</span>
+<span class="sd">        :param linestyle: box outline line style (alias: ``ls``)</span>
+<span class="sd">        :type linestyle: str, optional</span>
+<span class="sd">        :param linewidth: box outline line thickness (alias: ``lw``)</span>
+<span class="sd">        :type linewidth: float, optional</span>
+
+<span class="sd">        Additionally, the line style and color can be conveniently set using the pyplot</span>
+<span class="sd">        convention where the first argument is a ``fmt`` string, for example ``"r--"``</span>
+<span class="sd">        for dashed red. The allowable color letters are ``"rgbcmyk"`` and the line style</span>
+<span class="sd">        characters are ``"-", "--", "-.", ":"``.</span>
+
+<span class="sd">        The box can be specified in many ways.  Two corners:</span>
+
+<span class="sd">        - `lb` = left-bottom corner</span>
+<span class="sd">        - `lt` = left-top corner</span>
+<span class="sd">        - `rb` = right-bottom corner</span>
+<span class="sd">        - `rt` = right-top corner</span>
+
+<span class="sd">        Alternatively, one corner or `centre` plus the dimensons:</span>
+
+<span class="sd">        - `wh` = [width, height]</span>
+<span class="sd">        - `w` = width</span>
+<span class="sd">        - `h` = height</span>
+
+<span class="sd">        Alternatively, the box can be specified by a number of 4-vectors, various</span>
+<span class="sd">        conventions are in use across different packages, so we support them all:</span>
+
+<span class="sd">        - `lbrt` = [umin, vmin, umax, vmax]</span>
+<span class="sd">        - `lrbt` = [umin, umax, vmin, vmax]</span>
+<span class="sd">        - `lbwh` = [umin, vmin, w, h]</span>
+<span class="sd">        - `bbox` same as `lbwh`</span>
+<span class="sd">        - `ltrb` = [umin, vmin, umax, vmax]`</span>
 
 <span class="sd">        For plots where the y-axis is inverted (eg. for images) then top is the</span>
-<span class="sd">        smaller vertical coordinate.</span>
+<span class="sd">        smaller vertical coordinate (highest in the window).</span>
 
 <span class="sd">        Example::</span>
 
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
-<span class="sd">            &gt;&gt;&gt; plot_box(&quot;b--&quot;, centre=(2, 3), wh=1)  # w=h=1</span>
-<span class="sd">            &gt;&gt;&gt; plot_box(lt=(0, 0), rb=(3, -2), filled=True, color=&quot;r&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; plot_box("b--", centre=(2, 3), wh=1)  # w=h=1</span>
+<span class="sd">            &gt;&gt;&gt; plot_box(lt=(0, 0), rb=(3, -2), filled=True, color="r")</span>
 
 <span class="sd">        .. plot::</span>
 
 <span class="sd">            from spatialmath.base import plotvol2, plot_box</span>
 <span class="sd">            ax = plotvol2(5)</span>
-<span class="sd">            plot_box(&quot;b--&quot;, centre=(2, 3), wh=1)  # w=h=1</span>
-<span class="sd">            plot_box(lt=(0, 0), rb=(3, -2), filled=True, hatch=&quot;/&quot;, edgecolor=&quot;k&quot;, color=&quot;r&quot;)</span>
+<span class="sd">            plot_box("b--", centre=(2, 3), wh=1)  # w=h=1</span>
+<span class="sd">            plot_box(lt=(0, 0), rb=(3, -2), filled=True, hatch="/", edgecolor="k", color="r")</span>
 <span class="sd">            ax.grid()</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="k">if</span> <span class="n">wh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">smb</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">wh</span><span class="p">):</span>
@@ -516,6 +563,8 @@
         <span class="k">elif</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">h</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># we have width &amp; height, one corner is enough</span>
 
+            <span class="k">if</span> <span class="n">centre</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">centre</span> <span class="o">=</span> <span class="n">center</span>
             <span class="k">if</span> <span class="n">centre</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">lb</span> <span class="o">=</span> <span class="p">(</span><span class="n">centre</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">w</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">centre</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
@@ -540,12 +589,12 @@
                 <span class="n">h</span> <span class="o">=</span> <span class="n">lt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">rb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cant compute box&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"insufficient parameters to compute a box"</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;width must be positive&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"width must be positive"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">h</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;height must be positive&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"height must be positive"</span><span class="p">)</span>
 
         <span class="c1"># we only need lb, wh</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">axes_logic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -554,20 +603,25 @@
             <span class="n">r</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ec</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">ls</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">colors</span> <span class="o">=</span> <span class="s2">&quot;rgbcmywk&quot;</span>
-                <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fmt</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">ls</span> <span class="o">=</span> <span class="s2">""</span>
+            <span class="k">if</span> <span class="n">fmt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">colors</span> <span class="o">=</span> <span class="s2">"rgbcmywk"</span>
+                <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fmt</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">:</span>
                         <span class="n">ec</span> <span class="o">=</span> <span class="n">f</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">ls</span> <span class="o">+=</span> <span class="n">f</span>
-            <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
                 <span class="n">ls</span> <span class="o">=</span> <span class="kc">None</span>
 
-            <span class="k">if</span> <span class="s2">&quot;color&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-                <span class="n">ec</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span>
-                <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">"color"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">ec</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"color"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">"edgecolor"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">ec</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"edgecolor"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">"linestyle"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">ls</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"linestyle"</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s2">"ls"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">ls</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"ls"</span><span class="p">)</span>
             <span class="n">r</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
                 <span class="n">lb</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">ec</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
             <span class="p">)</span>
@@ -579,11 +633,11 @@
         <span class="n">start</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span>
         <span class="n">end</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span>
         <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">label_pos</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;above:0.5&quot;</span><span class="p">,</span>
+        <span class="n">label_pos</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"above:0.5"</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Plot 2D arrow</span>
 
 <span class="sd">        :param start: start point, arrow tail</span>
@@ -592,7 +646,7 @@
 <span class="sd">        :type end: array_like(2)</span>
 <span class="sd">        :param label: arrow label text, optional</span>
 <span class="sd">        :type label: str</span>
-<span class="sd">        :param label_pos: position of arrow label &quot;above|below:fraction&quot;, optional</span>
+<span class="sd">        :param label_pos: position of arrow label "above|below:fraction", optional</span>
 <span class="sd">        :type label_pos: str</span>
 <span class="sd">        :param ax: axes to draw into, defaults to None</span>
 <span class="sd">        :type ax: Axes, optional</span>
@@ -602,7 +656,7 @@
 
 <span class="sd">        A ``label``, if given, is drawn above or below the arrow.  The position of the</span>
 <span class="sd">        label is controlled by ``label_pos`` which is of the form</span>
-<span class="sd">        ``&quot;position:fraction&quot;`` where ``position`` is either ``&quot;above&quot;`` or ``&quot;below&quot;``</span>
+<span class="sd">        ``"position:fraction"`` where ``position`` is either ``"above"`` or ``"below"``</span>
 <span class="sd">        the arrow, and ``fraction`` is a float between 0 (tail) and 1 (head) indicating</span>
 <span class="sd">        the distance along the arrow where the label will be placed.  The text is</span>
 <span class="sd">        suitably justified to not overlap the arrow.</span>
@@ -611,22 +665,22 @@
 
 <span class="sd">            &gt;&gt;&gt; from spatialmath.base import plotvol2, plot_arrow</span>
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
-<span class="sd">            &gt;&gt;&gt; plot_arrow((-2, 2), (2, 4), color=&#39;r&#39;, width=0.1)  # red arrow</span>
-<span class="sd">            &gt;&gt;&gt; plot_arrow((4, 1), (2, 4), color=&#39;b&#39;, width=0.1)  # blue arrow</span>
+<span class="sd">            &gt;&gt;&gt; plot_arrow((-2, 2), (2, 4), color='r', width=0.1)  # red arrow</span>
+<span class="sd">            &gt;&gt;&gt; plot_arrow((4, 1), (2, 4), color='b', width=0.1)  # blue arrow</span>
 
 <span class="sd">        .. plot::</span>
 
 <span class="sd">            from spatialmath.base import plotvol2, plot_arrow</span>
 <span class="sd">            ax = plotvol2(5)</span>
-<span class="sd">            plot_arrow((-2, 2), (3, 4), color=&#39;r&#39;, width=0.1)  # red arrow</span>
-<span class="sd">            plot_arrow((4, 1), (3, 4), color=&#39;b&#39;, width=0.1)  # blue arrow</span>
+<span class="sd">            plot_arrow((-2, 2), (3, 4), color='r', width=0.1)  # red arrow</span>
+<span class="sd">            plot_arrow((4, 1), (3, 4), color='b', width=0.1)  # blue arrow</span>
 <span class="sd">            ax.grid()</span>
 
 <span class="sd">        Example::</span>
 
 <span class="sd">            &gt;&gt;&gt; from spatialmath.base import plotvol2, plot_arrow</span>
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
-<span class="sd">            &gt;&gt;&gt; plot_arrow((-2, -2), (2, 4), label=r&quot;$\mathit{p}_3$&quot;, color=&#39;r&#39;, width=0.1)</span>
+<span class="sd">            &gt;&gt;&gt; plot_arrow((-2, -2), (2, 4), label=r"$\mathit{p}_3$", color='r', width=0.1)</span>
 
 <span class="sd">        .. plot::</span>
 
@@ -634,12 +688,12 @@
 <span class="sd">            ax = plotvol2(5)</span>
 <span class="sd">            ax.grid()</span>
 <span class="sd">            plot_arrow(</span>
-<span class="sd">                (-2, -2), (2, 4), label=&quot;$\mathit{p}_3$&quot;, color=&quot;r&quot;, width=0.1</span>
+<span class="sd">                (-2, -2), (2, 4), label=r"$\mathit{p}_3$", color="r", width=0.1</span>
 <span class="sd">            )</span>
 <span class="sd">            plt.show(block=True)</span>
 
 <span class="sd">        :seealso: :func:`plot_homline`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">axes_logic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
         <span class="n">dx</span> <span class="o">=</span> <span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -655,8 +709,8 @@
 
         <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># add a label</span>
-            <span class="n">label_pos</span> <span class="o">=</span> <span class="n">label_pos</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">label_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;below&quot;</span><span class="p">:</span>
+            <span class="n">label_pos</span> <span class="o">=</span> <span class="n">label_pos</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">":"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">label_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"below"</span><span class="p">:</span>
                 <span class="n">above</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">fraction</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">label_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -668,18 +722,20 @@
             <span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">fraction</span> <span class="o">*</span> <span class="n">dx</span><span class="p">,</span> <span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">fraction</span> <span class="o">*</span> <span class="n">dy</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">quadrant</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
                 <span class="c1"># quadrants 1 and 3, line is sloping up to right or down to left</span>
-                <span class="n">opt</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;verticalalignment&quot;</span><span class="p">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="s2">&quot;horizontalalignment&quot;</span><span class="p">:</span> <span class="s2">&quot;right&quot;</span><span class="p">}</span>
-                <span class="n">label</span> <span class="o">=</span> <span class="n">label</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+                <span class="n">opt</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"verticalalignment"</span><span class="p">:</span> <span class="s2">"bottom"</span><span class="p">,</span> <span class="s2">"horizontalalignment"</span><span class="p">:</span> <span class="s2">"right"</span><span class="p">}</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="n">label</span> <span class="o">+</span> <span class="s2">" "</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># quadrants 2 and 4, line is sloping up to left or down to right</span>
-                <span class="n">opt</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;verticalalignment&quot;</span><span class="p">:</span> <span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="s2">&quot;horizontalalignment&quot;</span><span class="p">:</span> <span class="s2">&quot;left&quot;</span><span class="p">}</span>
-                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">label</span>
+                <span class="n">opt</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"verticalalignment"</span><span class="p">:</span> <span class="s2">"top"</span><span class="p">,</span> <span class="s2">"horizontalalignment"</span><span class="p">:</span> <span class="s2">"left"</span><span class="p">}</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">label</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">*</span><span class="n">pos</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="o">**</span><span class="n">opt</span><span class="p">)</span>
 
-<div class="viewcode-block" id="plot_polygon"><a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_polygon">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_polygon</span><span class="p">(</span>
+<div class="viewcode-block" id="plot_polygon">
+<a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_polygon">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_polygon</span><span class="p">(</span>
         <span class="n">vertices</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,</span> <span class="n">close</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot polygon</span>
 
 <span class="sd">        :param vertices: vertices</span>
@@ -695,20 +751,21 @@
 <span class="sd">            &gt;&gt;&gt; from spatialmath.base import plotvol2, plot_polygon</span>
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
 <span class="sd">            &gt;&gt;&gt; vertices = np.array([[-1, 2, -1], [1, 0, -1]])</span>
-<span class="sd">            &gt;&gt;&gt; plot_polygon(vertices, filled=True, facecolor=&#39;g&#39;)  # green filled triangle</span>
+<span class="sd">            &gt;&gt;&gt; plot_polygon(vertices, filled=True, facecolor='g')  # green filled triangle</span>
 
 <span class="sd">        .. plot::</span>
 
 <span class="sd">            from spatialmath.base import plotvol2, plot_polygon</span>
 <span class="sd">            ax = plotvol2(5)</span>
 <span class="sd">            vertices = np.array([[-1, 2, -1], [1, 0, -1]])</span>
-<span class="sd">            plot_polygon(vertices, filled=True, facecolor=&#39;g&#39;)  # green filled triangle</span>
+<span class="sd">            plot_polygon(vertices, filled=True, facecolor='g')  # green filled triangle</span>
 <span class="sd">            ax.grid()</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="k">if</span> <span class="n">close</span><span class="p">:</span>
             <span class="n">vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">vertices</span><span class="p">,</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>
         <span class="k">return</span> <span class="n">_render2D</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="n">fmt</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_render2D</span><span class="p">(</span>
         <span class="n">vertices</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
@@ -725,13 +782,13 @@
 
         <span class="k">if</span> <span class="n">filled</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">color</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;facecolor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
-                <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;edgecolor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s2">"facecolor"</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s2">"edgecolor"</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
             <span class="n">r</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">vertices</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">color</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s2">"color"</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
             <span class="n">r</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">vertices</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span>
 
@@ -741,7 +798,7 @@
         <span class="n">resolution</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
         <span class="n">closed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Points2</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Points on a circle</span>
 
 <span class="sd">        :param centre: centre of circle, defaults to (0, 0)</span>
@@ -762,7 +819,7 @@
 <span class="sd">        circle lies in the xy-plane and the z-coordinate comes from ``centre[2]``.</span>
 
 <span class="sd">        .. note:: By default returns a unit circle centred at the origin.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">closed</span><span class="p">:</span>
             <span class="n">resolution</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">closed</span><span class="p">)</span>
@@ -783,7 +840,7 @@
         <span class="n">filled</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot a circle using matplotlib</span>
 
 <span class="sd">        :param centre: centre of circle, defaults to (0,0)</span>
@@ -804,19 +861,19 @@
 
 <span class="sd">            &gt;&gt;&gt; from spatialmath.base import plotvol2, plot_circle</span>
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
-<span class="sd">            &gt;&gt;&gt; plot_circle(1, (0,0), &#39;r&#39;)  # red circle</span>
-<span class="sd">            &gt;&gt;&gt; plot_circle(2, (1, 2), &#39;b--&#39;)  # blue dashed circle</span>
-<span class="sd">            &gt;&gt;&gt; plot_circle(0.5, (3,4), filled=True, facecolor=&#39;y&#39;)  # yellow filled circle</span>
+<span class="sd">            &gt;&gt;&gt; plot_circle(1, (0,0), 'r')  # red circle</span>
+<span class="sd">            &gt;&gt;&gt; plot_circle(2, (1, 2), 'b--')  # blue dashed circle</span>
+<span class="sd">            &gt;&gt;&gt; plot_circle(0.5, (3,4), filled=True, facecolor='y')  # yellow filled circle</span>
 
 <span class="sd">        .. plot::</span>
 
 <span class="sd">            from spatialmath.base import plotvol2, plot_circle</span>
 <span class="sd">            ax = plotvol2(5)</span>
-<span class="sd">            plot_circle(1, (0,0), &#39;r&#39;)  # red circle</span>
-<span class="sd">            plot_circle(2, (1, 2), &#39;b--&#39;)  # blue dashed circle</span>
-<span class="sd">            plot_circle(0.5, (3,4), filled=True, facecolor=&#39;y&#39;)  # yellow filled circle</span>
+<span class="sd">            plot_circle(1, (0,0), 'r')  # red circle</span>
+<span class="sd">            plot_circle(2, (1, 2), 'b--')  # blue dashed circle</span>
+<span class="sd">            plot_circle(0.5, (3,4), filled=True, facecolor='y')  # yellow filled circle</span>
 <span class="sd">            ax.grid()</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">centres</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getmatrix</span><span class="p">(</span><span class="n">centre</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
 
         <span class="n">ax</span> <span class="o">=</span> <span class="n">axes_logic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -839,7 +896,7 @@
         <span class="n">inverted</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">closed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Points2</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Points on ellipse</span>
 
 <span class="sd">        :param E: ellipse</span>
@@ -871,11 +928,11 @@
 <span class="sd">            :math:`(x - \mu)^T \mat{P}^{-1} (x - \mu)`</span>
 <span class="sd">            so to avoid inverting ``E`` twice to compute the ellipse, we flag that</span>
 <span class="sd">            the inverse is provided using ``inverted``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrtm</span>
 
         <span class="k">if</span> <span class="n">E</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;ellipse is defined by a 2x2 matrix&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"ellipse is defined by a 2x2 matrix"</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">confidence</span><span class="p">:</span>
             <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats.distributions</span><span class="w"> </span><span class="kn">import</span> <span class="n">chi2</span>
@@ -905,7 +962,7 @@
         <span class="n">filled</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Plot an ellipse using matplotlib</span>
 
 <span class="sd">        :param E: matrix describing ellipse</span>
@@ -922,13 +979,15 @@
 <span class="sd">        The ellipse is defined by :math:`x^T \mat{E} x = s^2` where :math:`x \in</span>
 <span class="sd">        \mathbb{R}^2` and :math:`s` is the scale factor.</span>
 
-<span class="sd">        .. note:: For some common cases we require :math:`\mat{E}^{-1}`, for example</span>
+<span class="sd">        .. note::</span>
+<span class="sd">            For some common cases we require :math:`\mat{E}^{-1}`, for example:</span>
+
 <span class="sd">            - for robot manipulability</span>
-<span class="sd">            :math:`\nu (\mat{J} \mat{J}^T)^{-1} \nu` i</span>
+<span class="sd">              :math:`\nu (\mat{J} \mat{J}^T)^{-1} \nu` i</span>
 <span class="sd">            - a covariance matrix</span>
-<span class="sd">            :math:`(x - \mu)^T \mat{P}^{-1} (x - \mu)`</span>
-<span class="sd">            so to avoid inverting ``E`` twice to compute the ellipse, we flag that</span>
-<span class="sd">            the inverse is provided using ``inverted``.</span>
+<span class="sd">              :math:`(x - \mu)^T \mat{P}^{-1} (x - \mu)`</span>
+<span class="sd">              so to avoid inverting ``E`` twice to compute the ellipse, we flag that</span>
+<span class="sd">              the inverse is provided using ``inverted``.</span>
 
 <span class="sd">        Returns a set of ``resolution``  that lie on the circumference of a circle</span>
 <span class="sd">        of given ``center`` and ``radius``.</span>
@@ -937,19 +996,19 @@
 
 <span class="sd">            &gt;&gt;&gt; from spatialmath.base import plotvol2, plot_ellipse</span>
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
-<span class="sd">            &gt;&gt;&gt; plot_ellipse(np.array([[1, 1], [1, 2]]), [0,0], &#39;r&#39;)  # red ellipse</span>
-<span class="sd">            &gt;&gt;&gt; plot_ellipse(np.array([[1, 1], [1, 2]]), [1, 2], &#39;b--&#39;)  # blue dashed ellipse</span>
-<span class="sd">            &gt;&gt;&gt; plot_ellipse(np.array([[1, 1], [1, 2]]), [-2, -1], filled=True, facecolor=&#39;y&#39;)  # yellow filled ellipse</span>
+<span class="sd">            &gt;&gt;&gt; plot_ellipse(np.array([[1, 1], [1, 2]]), [0,0], 'r')  # red ellipse</span>
+<span class="sd">            &gt;&gt;&gt; plot_ellipse(np.array([[1, 1], [1, 2]]), [1, 2], 'b--')  # blue dashed ellipse</span>
+<span class="sd">            &gt;&gt;&gt; plot_ellipse(np.array([[1, 1], [1, 2]]), [-2, -1], filled=True, facecolor='y')  # yellow filled ellipse</span>
 
 <span class="sd">        .. plot::</span>
 
 <span class="sd">            from spatialmath.base import plotvol2, plot_ellipse</span>
 <span class="sd">            ax = plotvol2(5)</span>
-<span class="sd">            plot_ellipse(np.array([[1, 1], [1, 2]]), [0,0], &#39;r&#39;)  # red ellipse</span>
-<span class="sd">            plot_ellipse(np.array([[1, 1], [1, 2]]), [1, 2], &#39;b--&#39;)  # blue dashed ellipse</span>
-<span class="sd">            plot_ellipse(np.array([[1, 1], [1, 2]]), [-2, -1], filled=True, facecolor=&#39;y&#39;)  # yellow filled ellipse</span>
+<span class="sd">            plot_ellipse(np.array([[1, 1], [1, 2]]), [0,0], 'r')  # red ellipse</span>
+<span class="sd">            plot_ellipse(np.array([[1, 1], [1, 2]]), [1, 2], 'b--')  # blue dashed ellipse</span>
+<span class="sd">            plot_ellipse(np.array([[1, 1], [1, 2]]), [-2, -1], filled=True, facecolor='y')  # yellow filled ellipse</span>
 <span class="sd">            ax.grid()</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># allow for centre[2] to plot ellipse in a plane in a 3D plot</span>
 
         <span class="n">xy</span> <span class="o">=</span> <span class="n">ellipse</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">confidence</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">inverted</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -967,7 +1026,7 @@
         <span class="n">centre</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">resolution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Points on a sphere</span>
 
 <span class="sd">        :param centre: centre of sphere, defaults to (0, 0, 0)</span>
@@ -982,7 +1041,7 @@
 <span class="sd">        .. note:: By default returns a unit sphere centred at the origin.</span>
 
 <span class="sd">        :seealso: :func:`plot_sphere`, :func:`~matplotlib.pyplot.plot_surface`, :func:`~matplotlib.pyplot.plot_wireframe`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">theta_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">resolution</span><span class="p">)</span>
         <span class="n">phi_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">resolution</span><span class="p">)</span>
 
@@ -1002,7 +1061,7 @@
         <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot a sphere using matplotlib</span>
 
 <span class="sd">        :param centre: centre of sphere, defaults to (0, 0, 0)</span>
@@ -1030,8 +1089,8 @@
 <span class="sd">        Example::</span>
 
 <span class="sd">            &gt;&gt;&gt; from spatialmath.base import plot_sphere</span>
-<span class="sd">            &gt;&gt;&gt; plot_sphere(radius=1, color=&quot;r&quot;, resolution=10)   # red sphere wireframe</span>
-<span class="sd">            &gt;&gt;&gt; plot_sphere(radius=1, centre=(1,1,1), filled=True, facecolor=&#39;b&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; plot_sphere(radius=1, color="r", resolution=10)   # red sphere wireframe</span>
+<span class="sd">            &gt;&gt;&gt; plot_sphere(radius=1, centre=(1,1,1), filled=True, facecolor='b')</span>
 
 
 <span class="sd">        .. plot::</span>
@@ -1039,18 +1098,18 @@
 <span class="sd">            from spatialmath.base import plot_sphere, plotvol3</span>
 
 <span class="sd">            plotvol3(2)</span>
-<span class="sd">            plot_sphere(radius=1, color=&#39;r&#39;, resolution=5)   # red sphere wireframe</span>
+<span class="sd">            plot_sphere(radius=1, color='r', resolution=5)   # red sphere wireframe</span>
 
 <span class="sd">        .. plot::</span>
 
 <span class="sd">            from spatialmath.base import plot_sphere, plotvol3</span>
 
 <span class="sd">            plotvol3(5)</span>
-<span class="sd">            plot_sphere(radius=1, centre=(1,1,1), filled=True, facecolor=&#39;b&#39;)</span>
+<span class="sd">            plot_sphere(radius=1, centre=(1,1,1), filled=True, facecolor='b')</span>
 
 
 <span class="sd">        :seealso: :func:`~matplotlib.pyplot.plot_surface`, :func:`~matplotlib.pyplot.plot_wireframe`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">axes_logic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
         <span class="n">centre</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getmatrix</span><span class="p">(</span><span class="n">centre</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
@@ -1070,7 +1129,7 @@
         <span class="n">resolution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span>
         <span class="n">inverted</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Points on an ellipsoid</span>
 
 <span class="sd">        :param centre: centre of ellipsoid, defaults to (0, 0, 0)</span>
@@ -1098,11 +1157,11 @@
 <span class="sd">            the inverse is provided using ``inverted``.</span>
 
 <span class="sd">        :seealso: :func:`plot_ellipsoid`, :func:`~matplotlib.pyplot.plot_surface`, :func:`~matplotlib.pyplot.plot_wireframe`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrtm</span>
 
         <span class="k">if</span> <span class="n">E</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;ellipsoid is defined by a 3x3 matrix&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"ellipsoid is defined by a 3x3 matrix"</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">confidence</span><span class="p">:</span>
             <span class="c1"># process the probability</span>
@@ -1116,7 +1175,7 @@
             <span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
 
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">sphere</span><span class="p">()</span>  <span class="c1"># unit sphere</span>
-        <span class="n">centre</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">centre</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="s2">&quot;col&quot;</span><span class="p">)</span>
+        <span class="n">centre</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">centre</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="s2">"col"</span><span class="p">)</span>
         <span class="n">e</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">scale</span> <span class="o">*</span> <span class="n">sqrtm</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">z</span><span class="o">.</span><span class="n">flatten</span><span class="p">()])</span>
             <span class="o">+</span> <span class="n">centre</span>
@@ -1137,7 +1196,7 @@
         <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Draw an ellipsoid using matplotlib</span>
 
 <span class="sd">        :param E: ellipsoid</span>
@@ -1164,7 +1223,7 @@
 
 <span class="sd">        Example::</span>
 
-<span class="sd">            &gt;&gt;&gt; plot_ellipsoid(np.diag([1, 2, 3]), [1, 1, 0], color=&quot;r&quot;, resolution=10); # draw red ellipsoid</span>
+<span class="sd">            &gt;&gt;&gt; plot_ellipsoid(np.diag([1, 2, 3]), [1, 1, 0], color="r", resolution=10); # draw red ellipsoid</span>
 
 <span class="sd">        .. plot::</span>
 
@@ -1172,15 +1231,15 @@
 <span class="sd">            import numpy as np</span>
 
 <span class="sd">            plotvol3(4)</span>
-<span class="sd">            plot_ellipsoid(np.diag([1, 2, 3]), [1, 1, 0], color=&quot;r&quot;, resolution=5); # draw red ellipsoid</span>
+<span class="sd">            plot_ellipsoid(np.diag([1, 2, 3]), [1, 1, 0], color="r", resolution=5); # draw red ellipsoid</span>
 
 <span class="sd">        .. note::</span>
 
 <span class="sd">            - If a confidence interval is given then ``E`` is interpretted as a covariance</span>
-<span class="sd">            matrix and the ellipse size is computed using an inverse chi-squared function.</span>
+<span class="sd">              matrix and the ellipse size is computed using an inverse chi-squared function.</span>
 
 <span class="sd">        :seealso: :func:`~matplotlib.pyplot.plot_surface`, :func:`~matplotlib.pyplot.plot_wireframe`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">ellipsoid</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">confidence</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">inverted</span><span class="p">)</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">axes_logic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
         <span class="n">handle</span> <span class="o">=</span> <span class="n">_render3D</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1193,7 +1252,7 @@
         <span class="n">height_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">resolution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Points on a cylinder</span>
 
 <span class="sd">        :param centre: centre of cylinder, defaults to (0, 0, 0)</span>
@@ -1216,7 +1275,7 @@
 <span class="sd">        and orientated by setting ``pose``.</span>
 
 <span class="sd">        :seealso: :func:`~matplotlib.pyplot.plot_surface`, :func:`~matplotlib.pyplot.plot_wireframe`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">height_z</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
         <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
         <span class="n">theta_grid</span><span class="p">,</span> <span class="n">z_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
@@ -1237,7 +1296,7 @@
         <span class="n">filled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot a cylinder using matplotlib</span>
 
 <span class="sd">        :param radius: radius of cylinder</span>
@@ -1276,7 +1335,7 @@
 
 
 <span class="sd">        :seealso: :func:`~matplotlib.pyplot.plot_surface`, :func:`~matplotlib.pyplot.plot_wireframe`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">smb</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
             <span class="n">height</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="p">]</span>
 
@@ -1295,15 +1354,15 @@
             <span class="n">_render3D</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">centre</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Y</span><span class="p">),</span> <span class="n">Z</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="n">filled</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="n">pose</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">ends</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;filled&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ends</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"filled"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
             <span class="c1"># TODO: this should handle the pose argument, zdir can be a 3-tuple</span>
             <span class="n">floor</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">centre</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">radius</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">floor</span><span class="p">))</span>
-            <span class="n">pathpatch_2d_to_3d</span><span class="p">(</span><span class="n">floor</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">height</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">zdir</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+            <span class="n">pathpatch_2d_to_3d</span><span class="p">(</span><span class="n">floor</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">height</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">zdir</span><span class="o">=</span><span class="s2">"z"</span><span class="p">)</span>
 
             <span class="n">ceiling</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">centre</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">radius</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ceiling</span><span class="p">))</span>
-            <span class="n">pathpatch_2d_to_3d</span><span class="p">(</span><span class="n">ceiling</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">height</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">zdir</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+            <span class="n">pathpatch_2d_to_3d</span><span class="p">(</span><span class="n">ceiling</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">height</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">zdir</span><span class="o">=</span><span class="s2">"z"</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">handles</span>
 
@@ -1319,7 +1378,7 @@
         <span class="n">filled</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot a cone using matplotlib</span>
 
 <span class="sd">        :param radius: radius of cone at open end</span>
@@ -1357,7 +1416,7 @@
 <span class="sd">            plot_cone(radius=1, height=2)</span>
 
 <span class="sd">        :seealso: :func:`~matplotlib.pyplot.plot_surface`, :func:`~matplotlib.pyplot.plot_wireframe`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">axes_logic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
         <span class="c1"># https://stackoverflow.com/questions/26874791/disconnected-surfaces-when-plotting-cones</span>
@@ -1379,14 +1438,14 @@
             <span class="n">_render3D</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">centre</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Y</span><span class="p">),</span> <span class="n">Z</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="n">pose</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="n">filled</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">ends</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;filled&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ends</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"filled"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
             <span class="n">floor</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">centre</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">radius</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">floor</span><span class="p">))</span>
-            <span class="n">pathpatch_2d_to_3d</span><span class="p">(</span><span class="n">floor</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">height</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">zdir</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+            <span class="n">pathpatch_2d_to_3d</span><span class="p">(</span><span class="n">floor</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">height</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">zdir</span><span class="o">=</span><span class="s2">"z"</span><span class="p">)</span>
 
             <span class="n">ceiling</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">centre</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">radius</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ceiling</span><span class="p">))</span>
-            <span class="n">pathpatch_2d_to_3d</span><span class="p">(</span><span class="n">ceiling</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">height</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">zdir</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+            <span class="n">pathpatch_2d_to_3d</span><span class="p">(</span><span class="n">ceiling</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">height</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">zdir</span><span class="o">=</span><span class="s2">"z"</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">handles</span>
 
@@ -1398,7 +1457,7 @@
         <span class="n">filled</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot a cuboid (3D box) using matplotlib</span>
 
 <span class="sd">        :param sides: side lengths, defaults to 1</span>
@@ -1429,7 +1488,7 @@
 <span class="sd">            plot_cuboid(sides=(3,2,1), centre=(0,1,2))</span>
 
 <span class="sd">        :seealso: :func:`~matplotlib.pyplot.plot_surface`, :func:`~matplotlib.pyplot.plot_wireframe`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="n">vertices</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
@@ -1473,14 +1532,14 @@
                 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">edge</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
                     <span class="n">E</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="n">line</span><span class="p">]</span>
                     <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">E</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-            <span class="k">if</span> <span class="s2">&quot;color&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-                <span class="k">if</span> <span class="s2">&quot;alpha&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-                    <span class="n">alpha</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span>
-                    <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">"color"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">"alpha"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                    <span class="n">alpha</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">"alpha"</span><span class="p">]</span>
+                    <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">"alpha"</span><span class="p">]</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span>
-                <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;colors&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">to_rgba</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="p">)</span>
-                <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s2">"colors"</span><span class="p">]</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">to_rgba</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">"color"</span><span class="p">],</span> <span class="n">alpha</span><span class="p">)</span>
+                <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">"color"</span><span class="p">]</span>
             <span class="n">collection</span> <span class="o">=</span> <span class="n">Line3DCollection</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">add_collection3d</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">collection</span>
@@ -1519,30 +1578,30 @@
         <span class="k">if</span> <span class="n">filled</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;colors&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">"colors"</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
             <span class="k">return</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_axes_dimensions</span><span class="p">(</span><span class="n">ax</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Dimensions of axes</span>
 
 <span class="sd">        :param ax: axes</span>
 <span class="sd">        :type ax: Axes3DSubplot or AxesSubplot</span>
 <span class="sd">        :return: dimensionality of axes, either 2 or 3</span>
 <span class="sd">        :rtype: int</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">):</span>
             <span class="c1"># handle the case of some kind of matplotlib Axes</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="mi">3</span> <span class="k">if</span> <span class="n">ax</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;3d&quot;</span> <span class="k">else</span> <span class="mi">2</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="mi">3</span> <span class="k">if</span> <span class="n">ax</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"3d"</span> <span class="k">else</span> <span class="mi">2</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># handle the case of Animate objects pretending to be Axes</span>
             <span class="n">classname</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-            <span class="k">if</span> <span class="n">classname</span> <span class="o">==</span> <span class="s2">&quot;Animate&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">classname</span> <span class="o">==</span> <span class="s2">"Animate"</span><span class="p">:</span>
                 <span class="n">ret</span> <span class="o">=</span> <span class="mi">3</span>
-            <span class="k">elif</span> <span class="n">classname</span> <span class="o">==</span> <span class="s2">&quot;Animate2&quot;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">classname</span> <span class="o">==</span> <span class="s2">"Animate2"</span><span class="p">:</span>
                 <span class="n">ret</span> <span class="o">=</span> <span class="mi">2</span>
-        <span class="c1"># print(&quot;_axes_dimensions &quot;, ax, ret)</span>
+        <span class="c1"># print("_axes_dimensions ", ax, ret)</span>
         <span class="k">return</span> <span class="n">ret</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">axes_get_limits</span><span class="p">(</span><span class="n">ax</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
@@ -1565,7 +1624,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">axes_logic</span><span class="p">(</span>
         <span class="n">ax</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Axes3D</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
         <span class="n">dimensions</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="n">projection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ortho&quot;</span><span class="p">,</span>
+        <span class="n">projection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"ortho"</span><span class="p">,</span>
         <span class="n">autoscale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">new</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Axes3D</span><span class="p">:</span>
@@ -1574,18 +1633,18 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">axes_logic</span><span class="p">(</span>
         <span class="n">ax</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span> <span class="n">Axes3D</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
         <span class="n">dimensions</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">projection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ortho&quot;</span><span class="p">,</span>
+        <span class="n">projection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"ortho"</span><span class="p">,</span>
         <span class="n">autoscale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">new</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span> <span class="n">Axes3D</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Axis creation logic</span>
 
 <span class="sd">        :param ax: axes to draw in</span>
 <span class="sd">        :type ax: Axes3DSubplot, AxesSubplot or None</span>
 <span class="sd">        :param dimensions: required dimensionality, 2 or 3</span>
 <span class="sd">        :type dimensions: int</span>
-<span class="sd">        :param projection: 3D projection type, defaults to &#39;ortho&#39;</span>
+<span class="sd">        :param projection: 3D projection type, defaults to 'ortho'</span>
 <span class="sd">        :type projection: str, optional</span>
 <span class="sd">        :param new: create a new figure, defaults to False</span>
 <span class="sd">        :type new: bool</span>
@@ -1602,50 +1661,52 @@
 <span class="sd">        current axis is 3D.</span>
 
 <span class="sd">        Used by all plot_xxx() functions in this module.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
-        <span class="c1"># print(f&quot;new axis logic ({dimensions}D): &quot;, end=&#39;&#39;)</span>
+        <span class="c1"># print(f"new axis logic ({dimensions}D): ", end='')</span>
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="c1"># no axes passed in, find out what&#39;s happening</span>
+            <span class="c1"># no axes passed in, find out what's happening</span>
             <span class="c1"># need to be careful to not use gcf() or gca() since they</span>
             <span class="c1"># auto create fig/axes if none exist</span>
             <span class="n">nfigs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">get_fignums</span><span class="p">())</span>
-            <span class="c1"># print(f&quot;there are {nfigs} figures&quot;)</span>
+            <span class="c1"># print(f"there are {nfigs} figures")</span>
 
             <span class="k">if</span> <span class="n">nfigs</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="c1"># there are figures</span>
                 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>  <span class="c1"># get current figure</span>
                 <span class="n">naxes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
-                <span class="c1"># print(f&quot;existing fig with {naxes} axes&quot;)</span>
+                <span class="c1"># print(f"existing fig with {naxes} axes")</span>
                 <span class="k">if</span> <span class="n">naxes</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>  <span class="c1"># get current axes</span>
-                    <span class="c1"># print(f&quot;ax has {_axes_dimensions(ax)} dimensions&quot;)</span>
+                    <span class="c1"># print(f"ax has {_axes_dimensions(ax)} dimensions")</span>
                     <span class="k">if</span> <span class="n">_axes_dimensions</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">==</span> <span class="n">dimensions</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">new</span><span class="p">:</span>
                         <span class="k">return</span> <span class="n">ax</span>
             <span class="c1"># otherwise it doesnt exist or dimension mismatch, create new axes</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># print(&quot;ax given&quot;, ax)</span>
+            <span class="c1"># print("ax given", ax)</span>
             <span class="c1"># axis was given</span>
 
             <span class="k">if</span> <span class="n">_axes_dimensions</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">==</span> <span class="n">dimensions</span><span class="p">:</span>
-                <span class="c1"># print(&quot;use existing axes&quot;)</span>
+                <span class="c1"># print("use existing axes")</span>
                 <span class="k">return</span> <span class="n">ax</span>
-            <span class="c1"># print(&quot;mismatch in dimensions, create new axes&quot;)</span>
-        <span class="c1"># print(&quot;create new axes&quot;)</span>
+            <span class="c1"># print("mismatch in dimensions, create new axes")</span>
+        <span class="c1"># print("create new axes")</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">dimensions</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">autoscale</span><span class="p">:</span>
                 <span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">,</span> <span class="n">proj_type</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s2">"3d"</span><span class="p">,</span> <span class="n">proj_type</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
 
         <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
         <span class="c1"># plt.axes(ax)</span>
 
         <span class="k">return</span> <span class="n">ax</span>
 
-<div class="viewcode-block" id="plotvol2"><a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plotvol2">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plotvol2</span><span class="p">(</span>
+<div class="viewcode-block" id="plotvol2">
+<a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plotvol2">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plotvol2</span><span class="p">(</span>
         <span class="n">dim</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">equal</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -1653,7 +1714,7 @@
         <span class="n">labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">new</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create 2D plot area</span>
 
 <span class="sd">        :param ax: axes of initializer, defaults to new subplot</span>
@@ -1674,7 +1735,7 @@
 <span class="sd">        ==============  ======  ======</span>
 
 <span class="sd">        :seealso: :func:`plotvol3`, :func:`expand_dims`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">axes_logic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="n">new</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1687,11 +1748,11 @@
         <span class="c1">#     ax = plt.subplot()</span>
 
         <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"X"</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Y"</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">equal</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">"equal"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">grid</span><span class="p">:</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">set_axisbelow</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -1700,16 +1761,19 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">_plotvol</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="n">ax</span></div>
 
-<div class="viewcode-block" id="plotvol3"><a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plotvol3">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plotvol3</span><span class="p">(</span>
+
+<div class="viewcode-block" id="plotvol3">
+<a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plotvol3">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plotvol3</span><span class="p">(</span>
         <span class="n">dim</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">equal</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">grid</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="n">projection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ortho&quot;</span><span class="p">,</span>
+        <span class="n">projection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"ortho"</span><span class="p">,</span>
         <span class="n">new</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Axes3D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create 3D plot volume</span>
 
 <span class="sd">        :param ax: axes of initializer, defaults to new subplot</span>
@@ -1730,7 +1794,7 @@
 <span class="sd">        ==================  ======  ======  =======</span>
 
 <span class="sd">        :seealso: :func:`plotvol2`, :func:`expand_dims`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># create an axis if none existing</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">axes_logic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="n">new</span><span class="p">)</span>
 
@@ -1742,17 +1806,17 @@
             <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim3d</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">dims</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">dims</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
-                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
-                <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
-                <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;Z&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"X"</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Y"</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">"Z"</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">equal</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">ax</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">((</span><span class="mi">1</span><span class="p">,)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-                <span class="c1"># old version of MPL doesn&#39;t support this</span>
+                <span class="c1"># old version of MPL doesn't support this</span>
                 <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                    <span class="s2">&quot;Current version of matplotlib does not support set_box_aspect()&quot;</span>
+                    <span class="s2">"Current version of matplotlib does not support set_box_aspect()"</span>
                 <span class="p">)</span>
         <span class="k">if</span> <span class="n">grid</span><span class="p">:</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -1761,8 +1825,9 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">_plotvol</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="n">ax</span></div>
 
+
     <span class="k">def</span><span class="w"> </span><span class="nf">expand_dims</span><span class="p">(</span><span class="n">dim</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nd</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Expand compact axis dimensions</span>
 
 <span class="sd">        :param dim: dimensions, defaults to None</span>
@@ -1784,7 +1849,7 @@
 <span class="sd">            * A -&gt; [-A, A, -A, A, -A, A]</span>
 <span class="sd">            * [A,B] -&gt; [A, B, A, B, A, B]</span>
 <span class="sd">            * [A,B,C,D,E,F] -&gt; [A, B, C, D, E, F]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">dim</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">nd</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -1795,7 +1860,7 @@
             <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">dim</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bad dimension specified&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"bad dimension specified"</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">nd</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="o">-</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="o">-</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="o">-</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">]</span>
@@ -1804,76 +1869,106 @@
             <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">dim</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bad dimension specified&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"bad dimension specified"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;nd is 2 or 3&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"nd is 2 or 3"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">isnotebook</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Determine if code is being run from a Jupyter notebook</span>
 
 <span class="sd">        :references:</span>
 
 <span class="sd">            - https://stackoverflow.com/questions/15411967/how-can-i-check-if-code-</span>
 <span class="sd">            is-executed-in-the-ipython-notebook/39662359#39662359</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">shell</span> <span class="o">=</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-            <span class="k">if</span> <span class="n">shell</span> <span class="o">==</span> <span class="s2">&quot;ZMQInteractiveShell&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">shell</span> <span class="o">==</span> <span class="s2">"ZMQInteractiveShell"</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">True</span>  <span class="c1"># Jupyter notebook or qtconsole</span>
-            <span class="k">elif</span> <span class="n">shell</span> <span class="o">==</span> <span class="s2">&quot;TerminalInteractiveShell&quot;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">shell</span> <span class="o">==</span> <span class="s2">"TerminalInteractiveShell"</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Terminal running IPython</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Other type (?)</span>
         <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Probably standard Python interpreter</span>
 
-    <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
 
         <span class="n">exec</span><span class="p">(</span>
             <span class="nb">open</span><span class="p">(</span>
                 <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
-                <span class="o">/</span> <span class="s2">&quot;tests&quot;</span>
-                <span class="o">/</span> <span class="s2">&quot;base&quot;</span>
-                <span class="o">/</span> <span class="s2">&quot;test_graphics.py&quot;</span>
+                <span class="o">/</span> <span class="s2">"tests"</span>
+                <span class="o">/</span> <span class="s2">"base"</span>
+                <span class="o">/</span> <span class="s2">"test_graphics.py"</span>
             <span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
         <span class="p">)</span>  <span class="c1"># pylint: disable=exec-used</span>
 
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_text</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Matplotlib is not installed: pip install matplotlib&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Matplotlib is not installed: pip install matplotlib"</span><span class="p">)</span>
 
-<div class="viewcode-block" id="plot_box"><a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_box">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_box</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Matplotlib is not installed: pip install matplotlib&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="plot_box">
+<a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_box">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_box</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Matplotlib is not installed: pip install matplotlib"</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="plot_circle"><a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_circle">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_circle</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Matplotlib is not installed: pip install matplotlib&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="plot_ellipse"><a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_ellipse">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_ellipse</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Matplotlib is not installed: pip install matplotlib&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="plot_circle">
+<a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_circle">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_circle</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Matplotlib is not installed: pip install matplotlib"</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="plot_arrow"><a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_arrow">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_arrow</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Matplotlib is not installed: pip install matplotlib&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="plot_sphere"><a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plot_sphere">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_sphere</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Matplotlib is not installed: pip install matplotlib&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="plot_ellipse">
+<a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_ellipse">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_ellipse</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Matplotlib is not installed: pip install matplotlib"</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="plot_ellipsoid"><a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plot_ellipsoid">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_ellipsoid</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Matplotlib is not installed: pip install matplotlib&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="plot_text"><a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_text">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_text</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Matplotlib is not installed: pip install matplotlib&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="plot_arrow">
+<a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_arrow">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_arrow</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Matplotlib is not installed: pip install matplotlib"</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="plot_cuboid"><a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plot_cuboid">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_cuboid</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Matplotlib is not installed: pip install matplotlib&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="plot_cone"><a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plot_cone">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_cone</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Matplotlib is not installed: pip install matplotlib&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="plot_sphere">
+<a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plot_sphere">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_sphere</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Matplotlib is not installed: pip install matplotlib"</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="plot_cylinder"><a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plot_cylinder">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_cylinder</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Matplotlib is not installed: pip install matplotlib&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="plot_ellipsoid">
+<a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plot_ellipsoid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_ellipsoid</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Matplotlib is not installed: pip install matplotlib"</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="plot_text">
+<a class="viewcode-back" href="../../../func_2d_graphics.html#spatialmath.base.graphics.plot_text">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_text</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Matplotlib is not installed: pip install matplotlib"</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="plot_cuboid">
+<a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plot_cuboid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_cuboid</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Matplotlib is not installed: pip install matplotlib"</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="plot_cone">
+<a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plot_cone">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_cone</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Matplotlib is not installed: pip install matplotlib"</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="plot_cylinder">
+<a class="viewcode-back" href="../../../func_3d_graphics.html#spatialmath.base.graphics.plot_cylinder">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_cylinder</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Matplotlib is not installed: pip install matplotlib"</span><span class="p">)</span></div>
+
 </pre></div>
 
            </div>
@@ -1884,7 +1979,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 30-Jan-2025.
+      <span class="lastupdated">Last updated on 27-Aug-2026.
       </span></p>
   </div>
 

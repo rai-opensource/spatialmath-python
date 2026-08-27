@@ -1,0 +1,7 @@
+<map id="inheritance369a13d465" name="inheritance369a13d465">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="7,5,79,31"/>
+<area shape="rect" id="node2" title="List properties for spatial math classes" alt="" coords="128,31,236,56"/>
+<area shape="rect" id="node4" title="Superclass for SO(N) and SE(N) objects" alt="" coords="284,31,411,56"/>
+<area shape="rect" id="node3" title="A more or less complete user&#45;defined wrapper around list objects." alt="" coords="5,55,80,80"/>
+<area shape="rect" id="node5" href="#spatialmath.pose2d.SO2" target="_top" title="SO(2) matrix class" alt="" coords="459,31,531,56"/>
+</map>

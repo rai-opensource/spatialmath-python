@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" sizes="16x16" href="_static/favicon-16x16.png" type="image/png">
@@ -12,18 +12,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SE(2) matrix &mdash; Spatial Maths package  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script>window.MathJax = {"tex": {"macros": {"presup": ["\\,{}^{\\scriptscriptstyle #1}\\!", 1], "SE": ["\\mathbf{SE}(#1)", 1], "SO": ["\\mathbf{SO}(#1)", 1], "se": ["\\mathbf{se}(#1)", 1], "so": ["\\mathbf{so}(#1)", 1], "vec": ["\\boldsymbol{#1}", 1], "dvec": ["\\dot{\\boldsymbol{#1}}", 1], "ddvec": ["\\ddot{\\boldsymbol{#1}}", 1], "fvec": ["\\presup{#1}\\boldsymbol{#2}", 2], "fdvec": ["\\presup{#1}\\dot{\\boldsymbol{#2}}", 2], "fddvec": ["\\presup{#1}\\ddot{\\boldsymbol{#2}}", 2], "norm": ["\\Vert #1 \\Vert", 1], "mat": ["\\mathbf{#1}", 1], "dmat": ["\\dot{\\mathbf{#1}}", 1], "fmat": ["\\presup{#1}\\mathbf{#2}", 2], "sk": ["\\left[#1\\right]", 1], "skx": ["\\left[#1\\right]_{\\times}", 1], "vex": ["\\vee\\left( #1\\right)", 1], "vexx": ["\\vee_{\\times}\\left( #1\\right)", 1], "q": "\\mathring{q}", "fq": ["\\presup{#1}\\mathring{q}", 1]}}}</script>
-      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -100,27 +100,27 @@
            <div itemprop="articleBody">
              
   <section id="se-2-matrix">
-<h1>SE(2) matrix<a class="headerlink" href="#se-2-matrix" title="Permalink to this heading"></a></h1>
+<h1>SE(2) matrix<a class="headerlink" href="#se-2-matrix" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SE2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">SE2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="2d_orient_SO2.html#spatialmath.pose2d.SO2" title="spatialmath.pose2d.SO2"><code class="xref py py-class docutils literal notranslate"><span class="pre">SO2</span></code></a></p>
 <blockquote>
 <div><p>SE(2) matrix class</p>
 <p>This subclass represents rigid-body motion (pose) in 2D space.  Internally
 it is a 3x3 homogeneous transformation matrix belonging to the group SE(2).</p>
 </div></blockquote>
-<div class="graphviz"><img src="_images/inheritance-c2a84441d94d4a1370f471e87c2317036eac86a9.png" alt="Inheritance diagram of spatialmath.pose2d.SE2" usemap="#inheritancefe6ab7f112" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="_images/inheritance-4316a54c3a9f699985405dceb1eb270bee5b4a4c.png" alt="Inheritance diagram of spatialmath.pose2d.SE2" usemap="#inheritancefe6ab7f112" class="inheritance graphviz" /></div>
 <map id="inheritancefe6ab7f112" name="inheritancefe6ab7f112">
 <area shape="rect" id="node6" href="2d_orient_SO2.html#spatialmath.pose2d.SO2" target="_top" title="SO(2) matrix class" alt="" coords="459,31,531,56"/>
 <area shape="rect" id="node5" href="#spatialmath.pose2d.SE2" target="_top" title="SE(2) matrix class" alt="" coords="579,31,651,56"/>
 </map><dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.Alloc">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Alloc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.Alloc" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Alloc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.Alloc" title="Link to this definition"></a></dt>
 <dd><p>Construct an instance with N default values (BasePoseList superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of values, defaults to 1</p>
+<dd class="field-odd"><p><strong>n</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span>) – Number of values, defaults to 1</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
@@ -153,7 +153,7 @@ vector.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.Empty">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.Empty" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.Empty" title="Link to this definition"></a></dt>
 <dd><p>Construct an empty instance (BasePoseList superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -174,7 +174,7 @@ vector.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.Exp">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Exp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Exp" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Exp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Exp" title="Link to this definition"></a></dt>
 <dd><p>Construct a new SE(2) from se(2) Lie algebra</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -210,7 +210,7 @@ vector array_like (the unique elements of the se(2) skew-symmetric matrix)</p></
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.Rand">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Rand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xrange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yrange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">6.283185307179586)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Rand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Rand" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Rand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xrange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yrange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">6.283185307179586)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Rand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Rand" title="Link to this definition"></a></dt>
 <dd><p>Construct a new random SE(2)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -245,7 +245,7 @@ poses.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.Rot">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Rot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Rot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Rot" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Rot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Rot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Rot" title="Link to this definition"></a></dt>
 <dd><p>Create an SE(2) rotation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -263,8 +263,19 @@ poses.</p></li>
 </dl>
 <p><cite>SE2.Rot(theta)</cite> is an SE(2) rotation of <code class="docutils literal notranslate"><span class="pre">theta</span></code></p>
 <p>Example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span>  File <span class="nb">&quot;&lt;input&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">NameError</span>: <span class="n">name &#39;SE2&#39; is not defined</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">SE2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SE2</span><span class="o">.</span><span class="n">Rot</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="go">SE2(array([[ 0.95533649, -0.29552021,  0.        ],</span>
+<span class="go">           [ 0.29552021,  0.95533649,  0.        ],</span>
+<span class="go">           [ 0.        ,  0.        ,  1.        ]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SE2</span><span class="o">.</span><span class="n">Rot</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="go">SE2([</span>
+<span class="go">array([[ 0.98006658, -0.19866933,  0.        ],</span>
+<span class="go">       [ 0.19866933,  0.98006658,  0.        ],</span>
+<span class="go">       [ 0.        ,  0.        ,  1.        ]]),</span>
+<span class="go">array([[ 0.95533649, -0.29552021,  0.        ],</span>
+<span class="go">       [ 0.29552021,  0.95533649,  0.        ],</span>
+<span class="go">       [ 0.        ,  0.        ,  1.        ]]) ])</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -278,8 +289,113 @@ poses.</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="spatialmath.pose2d.SE2.Tx">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Tx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Tx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Tx" title="Link to this definition"></a></dt>
+<dd><p>Create an SE(2) translation along the X-axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>float</em>) – translation distance along the X-axis</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SE(2) matrix</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SE2 instance</p>
+</dd>
+</dl>
+<p><cite>SE2.Tx(x)</cite> is an SE(2) translation of <code class="docutils literal notranslate"><span class="pre">x</span></code> along the x-axis</p>
+<p>Example:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">SE2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SE2</span><span class="o">.</span><span class="n">Tx</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">SE2(array([[1., 0., 2.],</span>
+<span class="go">           [0., 1., 0.],</span>
+<span class="go">           [0., 0., 1.]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SE2</span><span class="o">.</span><span class="n">Tx</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">SE2([</span>
+<span class="go">array([[1., 0., 2.],</span>
+<span class="go">       [0., 1., 0.],</span>
+<span class="go">       [0., 0., 1.]]),</span>
+<span class="go">array([[1., 0., 3.],</span>
+<span class="go">       [0., 1., 0.],</span>
+<span class="go">       [0., 0., 1.]]) ])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Seealso<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="func_3d.html#spatialmath.base.transforms3d.transl" title="spatialmath.base.transforms3d.transl"><code class="xref py py-func docutils literal notranslate"><span class="pre">transl()</span></code></a></p>
+</dd>
+<dt class="field-even">SymPy<span class="colon">:</span></dt>
+<dd class="field-even"><p>supported</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spatialmath.pose2d.SE2.Ty">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Ty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Ty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Ty" title="Link to this definition"></a></dt>
+<dd><p>Create an SE(2) translation along the Y-axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>y</strong> (<em>float</em>) – translation distance along the Y-axis</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SE(2) matrix</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SE2 instance</p>
+</dd>
+</dl>
+<p><cite>SE2.Ty(y) is an SE(2) translation of ``y`</cite> along the y-axis</p>
+<p>Example:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">SE2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SE2</span><span class="o">.</span><span class="n">Ty</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">SE2(array([[1., 0., 0.],</span>
+<span class="go">           [0., 1., 2.],</span>
+<span class="go">           [0., 0., 1.]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SE2</span><span class="o">.</span><span class="n">Ty</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">SE2([</span>
+<span class="go">array([[1., 0., 0.],</span>
+<span class="go">       [0., 1., 2.],</span>
+<span class="go">       [0., 0., 1.]]),</span>
+<span class="go">array([[1., 0., 0.],</span>
+<span class="go">       [0., 1., 3.],</span>
+<span class="go">       [0., 0., 1.]]) ])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Seealso<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="func_3d.html#spatialmath.base.transforms3d.transl" title="spatialmath.base.transforms3d.transl"><code class="xref py py-func docutils literal notranslate"><span class="pre">transl()</span></code></a></p>
+</dd>
+<dt class="field-even">SymPy<span class="colon">:</span></dt>
+<dd class="field-even"><p>supported</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spatialmath.pose2d.SE2.isvalid">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isvalid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.isvalid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.isvalid" title="Link to this definition"></a></dt>
+<dd><p>Test if matrix is valid SE(2)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><em>numpy.ndarray</em></a>) – matrix to test</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>true if the matrix is a valid element of SE(2), ie. it is a
+3x3 homogeneous rigid-body transformation matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Seealso<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-func docutils literal notranslate"><span class="pre">ishom()</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.SE2">
-<span class="sig-name descname"><span class="pre">SE2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.SE2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SE2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.SE2" title="Link to this definition"></a></dt>
 <dd><p>Create SE(2) from SO(2)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -293,7 +409,7 @@ poses.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.SE3">
-<span class="sig-name descname"><span class="pre">SE3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.SE3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.SE3" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SE3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.SE3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.SE3" title="Link to this definition"></a></dt>
 <dd><p>Create SE(3) from SE(2)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -312,81 +428,19 @@ z-coordinate is settable.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.Twist2">
-<span class="sig-name descname"><span class="pre">Twist2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Twist2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Twist2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">Twist2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Twist2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Twist2" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="spatialmath.pose2d.SE2.Tx">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Tx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Tx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Tx" title="Permalink to this definition"></a></dt>
-<dd><p>Create an SE(2) translation along the X-axis</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x</strong> (<em>float</em>) – translation distance along the X-axis</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>SE(2) matrix</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>SE2 instance</p>
-</dd>
-</dl>
-<p><cite>SE2.Tx(x)</cite> is an SE(2) translation of <code class="docutils literal notranslate"><span class="pre">x</span></code> along the x-axis</p>
-<p>Example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span>  File <span class="nb">&quot;&lt;input&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">NameError</span>: <span class="n">name &#39;SE2&#39; is not defined</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Seealso<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="func_3d.html#spatialmath.base.transforms3d.transl" title="spatialmath.base.transforms3d.transl"><code class="xref py py-func docutils literal notranslate"><span class="pre">transl()</span></code></a></p>
-</dd>
-<dt class="field-even">SymPy<span class="colon">:</span></dt>
-<dd class="field-even"><p>supported</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="spatialmath.pose2d.SE2.Ty">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Ty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.Ty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.Ty" title="Permalink to this definition"></a></dt>
-<dd><p>Create an SE(2) translation along the Y-axis</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>y</strong> (<em>float</em>) – translation distance along the Y-axis</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>SE(2) matrix</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>SE2 instance</p>
-</dd>
-</dl>
-<p><cite>SE2.Ty(y) is an SE(2) translation of ``y`</cite> along the y-axis</p>
-<p>Example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span>  File <span class="nb">&quot;&lt;input&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">NameError</span>: <span class="n">name &#39;SE2&#39; is not defined</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Seealso<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="func_3d.html#spatialmath.base.transforms3d.transl" title="spatialmath.base.transforms3d.transl"><code class="xref py py-func docutils literal notranslate"><span class="pre">transl()</span></code></a></p>
-</dd>
-<dt class="field-even">SymPy<span class="colon">:</span></dt>
-<dd class="field-even"><p>supported</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.__add__">
-<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__add__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__add__" title="Link to this definition"></a></dt>
 <dd><p>Overloaded <code class="docutils literal notranslate"><span class="pre">+</span></code> operator (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Sum of two operands</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>NumPy array, shape=(N,N)</p>
+<dd class="field-even"><p>NumPy array, shape=(<a class="reference internal" href="#spatialmath.pose2d.SE2.N" title="spatialmath.pose2d.SE2.N">N</a>,<a class="reference internal" href="#spatialmath.pose2d.SE2.N" title="spatialmath.pose2d.SE2.N">N</a>)</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ValueError</strong> – for incompatible arguments</p>
@@ -475,14 +529,14 @@ results in the sum holding more than one value according to:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.__eq__">
-<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__eq__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__eq__" title="Link to this definition"></a></dt>
 <dd><p>Overloaded <code class="docutils literal notranslate"><span class="pre">==</span></code> operator (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Equality of two operands</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool or list of bool</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 <p>Test two poses for equality</p>
@@ -525,7 +579,7 @@ results in the equality test holding more than one value according to:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.__init__" title="Link to this definition"></a></dt>
 <dd><p>Construct new SE(2) object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -574,7 +628,7 @@ N rigid-body motions, where each Xi is an SE2 instance.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.__mul__">
-<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__mul__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__mul__" title="Link to this definition"></a></dt>
 <dd><p>Overloaded <code class="docutils literal notranslate"><span class="pre">*</span></code> operator (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -739,7 +793,7 @@ form, transformed, then converted back to Euclidean form.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.__ne__">
-<span class="sig-name descname"><span class="pre">__ne__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__ne__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__ne__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__ne__" title="Link to this definition"></a></dt>
 <dd><p>Overloaded <code class="docutils literal notranslate"><span class="pre">!=</span></code> operator (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -791,17 +845,17 @@ results in the inequality test holding more than one value according to:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.__pow__">
-<span class="sig-name descname"><span class="pre">__pow__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__pow__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__pow__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__pow__" title="Link to this definition"></a></dt>
 <dd><p>Overloaded <code class="docutils literal notranslate"><span class="pre">**</span></code> operator (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – exponent</p>
+<dd class="field-odd"><p><strong>n</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – exponent</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>pose to the power <code class="docutils literal notranslate"><span class="pre">n</span></code></p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pose instance</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
 </dd>
 </dl>
 <p><code class="docutils literal notranslate"><span class="pre">X**n</span></code> raise all values held in <cite>X</cite> to the specified power using repeated
@@ -809,34 +863,34 @@ multiplication.  If <code class="docutils literal notranslate"><span class="pre"
 <p>Example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">SE3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
-<span class="go">SE3(array([[ 1.    ,  0.    ,  0.    ,  0.    ],</span>
-<span class="go">           [ 0.    ,  0.9801, -0.1987,  0.    ],</span>
-<span class="go">           [ 0.    ,  0.1987,  0.9801,  0.    ],</span>
-<span class="go">           [ 0.    ,  0.    ,  0.    ,  1.    ]]))</span>
+<span class="go">SE3(array([[ 1.        ,  0.        ,  0.        ,  0.        ],</span>
+<span class="go">           [ 0.        ,  0.98006658, -0.19866933,  0.        ],</span>
+<span class="go">           [ 0.        ,  0.19866933,  0.98006658,  0.        ],</span>
+<span class="go">           [ 0.        ,  0.        ,  0.        ,  1.        ]]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
 <span class="go">SE3([</span>
 <span class="go">array([[1., 0., 0., 0.],</span>
 <span class="go">       [0., 1., 0., 0.],</span>
 <span class="go">       [0., 0., 1., 0.],</span>
 <span class="go">       [0., 0., 0., 1.]]),</span>
-<span class="go">array([[ 1.    ,  0.    ,  0.    ,  0.    ],</span>
-<span class="go">       [ 0.    ,  0.9801, -0.1987,  0.    ],</span>
-<span class="go">       [ 0.    ,  0.1987,  0.9801,  0.    ],</span>
-<span class="go">       [ 0.    ,  0.    ,  0.    ,  1.    ]]) ])</span>
+<span class="go">array([[ 1.        ,  0.        ,  0.        ,  0.        ],</span>
+<span class="go">       [ 0.        ,  0.98006658, -0.19866933,  0.        ],</span>
+<span class="go">       [ 0.        ,  0.19866933,  0.98006658,  0.        ],</span>
+<span class="go">       [ 0.        ,  0.        ,  0.        ,  1.        ]]) ])</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.__sub__">
-<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__sub__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__sub__" title="Link to this definition"></a></dt>
 <dd><p>Overloaded <code class="docutils literal notranslate"><span class="pre">-</span></code> operator (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Difference of two operands</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>NumPy array, shape=(N,N)</p>
+<dd class="field-even"><p>NumPy array, shape=(<a class="reference internal" href="#spatialmath.pose2d.SE2.N" title="spatialmath.pose2d.SE2.N">N</a>,<a class="reference internal" href="#spatialmath.pose2d.SE2.N" title="spatialmath.pose2d.SE2.N">N</a>)</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ValueError</strong> – for incompatible arguments</p>
@@ -924,7 +978,7 @@ results in the difference holding more than one value according to:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.__truediv__">
-<span class="sig-name descname"><span class="pre">__truediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__truediv__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__truediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.__truediv__" title="Link to this definition"></a></dt>
 <dd><p>Overloaded <code class="docutils literal notranslate"><span class="pre">/</span></code> operator (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -1013,7 +1067,7 @@ results in the composition holding more than one value according to:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.animate">
-<span class="sig-name descname"><span class="pre">animate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.animate" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">animate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.animate" title="Link to this definition"></a></dt>
 <dd><p>Plot pose object as an animated coordinate frame (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1036,7 +1090,7 @@ many options, see the links below.</p></li>
 </ul>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">.</span><span class="n">animate</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">.</span><span class="n">animate</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s1">'A'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">.</span><span class="n">animate</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">SE3</span><span class="o">.</span><span class="n">Ry</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1049,7 +1103,7 @@ many options, see the links below.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.append">
-<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.append" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.append" title="Link to this definition"></a></dt>
 <dd><p>Append a value to an instance (BasePoseList superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1077,14 +1131,14 @@ many options, see the links below.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.arghandler">
-<span class="sig-name descname"><span class="pre">arghandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convertfrom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.arghandler" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">arghandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convertfrom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.arghandler" title="Link to this definition"></a></dt>
 <dd><p>Standard constructor support (BasePoseList superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>arg</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – initial value</p></li>
 <li><p><strong>convertfrom</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></span>) – list of classes to accept and convert from</p></li>
-<li><p><strong>check</strong> (<em>bool</em>) – check value is valid, defaults to True</p></li>
+<li><p><strong>check</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span>) – check value is valid, defaults to True</p></li>
 </ul>
 </dd>
 <dt class="field-even">Type<span class="colon">:</span></dt>
@@ -1128,16 +1182,16 @@ then <code class="docutils literal notranslate"><span class="pre">B.A()</span></
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.binop">
-<span class="sig-name descname"><span class="pre">binop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.binop" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">binop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.binop" title="Link to this definition"></a></dt>
 <dd><p>Perform binary operation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>left</strong> (<em>BasePoseList subclass</em>) – left operand</p></li>
-<li><p><strong>right</strong> (<em>BasePoseList subclass</em><em>, </em><em>scalar</em><em> or </em><em>array</em>) – right operand</p></li>
-<li><p><strong>op</strong> (<em>callable</em>) – binary operation</p></li>
-<li><p><strong>op2</strong> (<em>callable</em>) – binary operation</p></li>
-<li><p><strong>list1</strong> (<em>bool</em>) – return single array as a list, default True</p></li>
+<li><p><strong>right</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePoseList</span></code></span>) – right operand</p></li>
+<li><p><strong>op</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></span>) – binary operation</p></li>
+<li><p><strong>op2</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]</span>) – binary operation</p></li>
+<li><p><strong>list1</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span>) – return single array as a list, default True</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1147,7 +1201,7 @@ then <code class="docutils literal notranslate"><span class="pre">B.A()</span></
 <dd class="field-odd"><p>list of values</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></span></p>
 </dd>
 </dl>
 <p>The is a helper method for implementing binary operation with overloaded
@@ -1226,22 +1280,22 @@ The result is always a list, except for the first case above and
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.clear">
-<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">--</span> <span class="pre">remove</span> <span class="pre">all</span> <span class="pre">items</span> <span class="pre">from</span> <span class="pre">S</span></span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.clear" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">--</span> <span class="pre">remove</span> <span class="pre">all</span> <span class="pre">items</span> <span class="pre">from</span> <span class="pre">S</span></span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.clear" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.conjugation">
-<span class="sig-name descname"><span class="pre">conjugation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.conjugation" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">conjugation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.conjugation" title="Link to this definition"></a></dt>
 <dd><p>Matrix conjugation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>A</strong> (<em>ndarray</em>) – matrix to conjugate</p>
+<dd class="field-odd"><p><strong>A</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span>) – matrix to conjugate</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>conjugated matrix</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span></p>
 </dd>
 </dl>
 <p>Compute the conjugation <span class="math notranslate nohighlight">\(\mat{X} \mat{A} \mat{X}^{-1}\)</span> where <span class="math notranslate nohighlight">\(\mat{X}\)</span>
@@ -1252,25 +1306,25 @@ is the current object.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <span class="n">SO2</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">R</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">R</span><span class="o">.</span><span class="n">inv</span><span class="p">())</span>
-<span class="go">[[7.9314 3.7866]</span>
-<span class="go"> [3.7866 3.0686]]</span>
+<span class="go">[[7.93136038 3.78661943]</span>
+<span class="go"> [3.78661943 3.06863962]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">conjugation</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
-<span class="go">[[7.9314 3.7866]</span>
-<span class="go"> [3.7866 3.0686]]</span>
+<span class="go">[[7.93136038 3.78661943]</span>
+<span class="go"> [3.78661943 3.06863962]]</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.det">
-<span class="sig-name descname"><span class="pre">det</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.det" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">det</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.det" title="Link to this definition"></a></dt>
 <dd><p>Determinant of rotational component (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Determinant of rotational component</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>float or NumPy array</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ResizeEventType</span></code>[2]], <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.floating" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">floating</span></code></a>]], <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ResizeEventType</span></code>[3]], <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.floating" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">floating</span></code></a>]]]]</span></p>
 </dd>
 </dl>
 <p><code class="docutils literal notranslate"><span class="pre">x.det()</span></code> is the determinant of the rotation component of the values
@@ -1293,7 +1347,7 @@ of <code class="docutils literal notranslate"><span class="pre">x</span></code>.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.extend">
-<span class="sig-name descname"><span class="pre">extend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.extend" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">extend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.extend" title="Link to this definition"></a></dt>
 <dd><p>Extend sequence of values in an instance (BasePoseList superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1321,13 +1375,13 @@ of <code class="docutils literal notranslate"><span class="pre">x</span></code>.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.insert">
-<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.insert" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.insert" title="Link to this definition"></a></dt>
 <dd><p>Insert a value to an instance (BasePoseList superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>i</strong> (<em>int</em>) – element to insert value before</p></li>
-<li><p><strong>item</strong> (<em>instance</em><em> of </em><em>same type</em>) – the value to insert</p></li>
+<li><p><strong>i</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – element to insert value before</p></li>
+<li><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePoseList</span></code></span>) – the value to insert</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1360,59 +1414,58 @@ to the list</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.interp">
-<span class="sig-name descname"><span class="pre">interp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shortest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.interp" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shortest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.interp" title="Link to this definition"></a></dt>
 <dd><p>Interpolate between poses (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>end</strong> (same as <code class="docutils literal notranslate"><span class="pre">self</span></code>) – final pose</p></li>
-<li><p><strong>s</strong> (<em>array_like</em><em> or </em><em>int</em>) – interpolation coefficient, range 0 to 1, or number of steps</p></li>
-<li><p><strong>shortest</strong> (<em>bool</em><em>, </em><em>default to True</em>) – take the shortest path along the great circle for the rotation</p></li>
+<li><p><strong>end</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span>) – final pose</p></li>
+<li><p><strong>s</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – interpolation coefficient, range 0 to 1, or number of steps</p></li>
+<li><p><strong>shortest</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – take the shortest path along the great circle for the rotation</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>interpolated pose</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>same as <code class="docutils literal notranslate"><span class="pre">self</span></code></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
 </dd>
 </dl>
+<p>This interpolation is given by a scalar or the number of equally spaced
+steps:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">X.interp(Y,</span> <span class="pre">s)</span></code> interpolates pose between X between when s=0
 and Y when s=1.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X.interp(Y,</span> <span class="pre">N)</span></code> interpolates pose between X and Y in <code class="docutils literal notranslate"><span class="pre">N</span></code> steps.</p></li>
 </ul>
 <p>Example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">SE3</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">SE3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>    <span class="c1"># this is x</span>
-<span class="go">SE3(array([[ 1.    ,  0.    ,  0.    , -1.    ],</span>
-<span class="go">           [ 0.    ,  0.9553,  0.2955, -2.    ],</span>
-<span class="go">           [ 0.    , -0.2955,  0.9553,  0.    ],</span>
-<span class="go">           [ 0.    ,  0.    ,  0.    ,  1.    ]]))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>    <span class="c1"># this is y</span>
-<span class="go">SE3(array([[ 1.    ,  0.    ,  0.    ,  1.    ],</span>
-<span class="go">           [ 0.    ,  0.9553, -0.2955,  2.    ],</span>
-<span class="go">           [ 0.    ,  0.2955,  0.9553,  0.    ],</span>
-<span class="go">           [ 0.    ,  0.    ,  0.    ,  1.    ]]))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># this is in between</span>
-<span class="go">SE3(array([[1., 0., 0., 0.],</span>
-<span class="go">           [0., 1., 0., 0.],</span>
-<span class="go">           [0., 0., 1., 0.],</span>
-<span class="go">           [0., 0., 0., 1.]]))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>  <span class="c1"># in 11 steps</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
-<span class="go">11</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>              <span class="c1"># this is x</span>
-<span class="go">SE3(array([[ 1.    ,  0.    ,  0.    , -1.    ],</span>
-<span class="go">           [ 0.    ,  0.9553,  0.2955, -2.    ],</span>
-<span class="go">           [ 0.    , -0.2955,  0.9553,  0.    ],</span>
-<span class="go">           [ 0.    ,  0.    ,  0.    ,  1.    ]]))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>              <span class="c1"># this is in between</span>
-<span class="go">SE3(array([[1., 0., 0., 0.],</span>
-<span class="go">           [0., 1., 0., 0.],</span>
-<span class="go">           [0., 0., 1., 0.],</span>
-<span class="go">           [0., 0., 0., 1.]]))</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name 'SE3' is not defined</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name 'SE3' is not defined</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name 'x' is not defined</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name 'x' is not defined</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name 'x' is not defined</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name 'x' is not defined</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name 'z' is not defined</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name 'z' is not defined</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name 'z' is not defined</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1434,20 +1487,20 @@ and Y when s=1.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.interp1">
-<span class="sig-name descname"><span class="pre">interp1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.interp1" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interp1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.interp1" title="Link to this definition"></a></dt>
 <dd><p>Interpolate pose (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>end</strong> (same as <code class="docutils literal notranslate"><span class="pre">self</span></code>) – final pose</p></li>
-<li><p><strong>s</strong> (<em>array_like</em>) – interpolation coefficient, range 0 to 1</p></li>
+<li><p><strong>s</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – interpolation coefficient, range 0 to 1</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>interpolated pose</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="2d_orient_SO2.html#spatialmath.pose2d.SO2" title="spatialmath.pose2d.SO2">SO2</a>, <a class="reference internal" href="#spatialmath.pose2d.SE2" title="spatialmath.pose2d.SE2">SE2</a>, <a class="reference internal" href="3d_orient_SO3.html#spatialmath.pose3d.SO3" title="spatialmath.pose3d.SO3">SO3</a>, SE3 instance</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
 </dd>
 </dl>
 <ul>
@@ -1520,7 +1573,7 @@ and Y when s=1.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.inv">
-<span class="sig-name descname"><span class="pre">inv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.inv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.inv" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">inv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.inv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.inv" title="Link to this definition"></a></dt>
 <dd><p>Inverse of SE(2)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1544,14 +1597,14 @@ and Y when s=1.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.ishom">
-<span class="sig-name descname"><span class="pre">ishom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.ishom" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ishom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.ishom" title="Link to this definition"></a></dt>
 <dd><p>Test if object belongs to SE(3) group (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if object is instance of SE3</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 <p>For compatibility with Spatial Math Toolbox for MATLAB.
@@ -1569,14 +1622,14 @@ In Python use <code class="docutils literal notranslate"><span class="pre">isins
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.ishom2">
-<span class="sig-name descname"><span class="pre">ishom2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.ishom2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ishom2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.ishom2" title="Link to this definition"></a></dt>
 <dd><p>Test if object belongs to SE(2) group (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if object is instance of SE2</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 <p>For compatibility with Spatial Math Toolbox for MATLAB.
@@ -1594,14 +1647,14 @@ In Python use <code class="docutils literal notranslate"><span class="pre">isins
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.isrot">
-<span class="sig-name descname"><span class="pre">isrot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.isrot" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">isrot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.isrot" title="Link to this definition"></a></dt>
 <dd><p>Test if object belongs to SO(3) group (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if object is instance of SO3</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 <p>For compatibility with Spatial Math Toolbox for MATLAB.
@@ -1619,14 +1672,14 @@ In Python use <code class="docutils literal notranslate"><span class="pre">isins
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.isrot2">
-<span class="sig-name descname"><span class="pre">isrot2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.isrot2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">isrot2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.isrot2" title="Link to this definition"></a></dt>
 <dd><p>Test if object belongs to SO(2) group (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if object is instance of SO2</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 <p>For compatibility with Spatial Math Toolbox for MATLAB.
@@ -1643,42 +1696,25 @@ In Python use <code class="docutils literal notranslate"><span class="pre">isins
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="spatialmath.pose2d.SE2.isvalid">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isvalid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.isvalid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.isvalid" title="Permalink to this definition"></a></dt>
-<dd><p>Test if matrix is valid SE(2)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – matrix to test</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>true if the matrix is a valid element of SE(2), ie. it is a
-3x3 homogeneous rigid-body transformation matrix.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Seealso<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-func docutils literal notranslate"><span class="pre">ishom()</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.log">
-<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.log" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.log" title="Link to this definition"></a></dt>
 <dd><p>Logarithm of pose (superclass method)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>logarithm</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>twist</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span>) – return twist coordinates vector rather than matrix, defaults to False</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>ndarray</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>logarithm</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ValueError</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>]]</span></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p>ValueError</p>
 </dd>
 </dl>
-<p>An efficient closed-form solution of the matrix logarithm.</p>
+<p>An efficient closed-form solution of the matrix logarithm.  By default the
+result is a structured matrix</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Input</p></th>
@@ -1700,39 +1736,41 @@ In Python use <code class="docutils literal notranslate"><span class="pre">isins
 </tr>
 </tbody>
 </table>
+<p>but if <code class="docutils literal notranslate"><span class="pre">twist=True</span></code> the result is a vector, the twist coordinates, containing
+the unique elements with translational elements first.  The rotational
+elements are also known as the exponential coordinates of the rotation.</p>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">log</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
-<span class="go">array([[ 0. , -0. ,  0. ,  0. ],</span>
-<span class="go">       [ 0. ,  0. , -0.3,  0. ],</span>
-<span class="go">       [-0. ,  0.3,  0. ,  0. ],</span>
-<span class="go">       [ 0. ,  0. ,  0. ,  0. ]])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">runblock</span><span class="p">::</span> <span class="n">pycon</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">SO3</span><span class="p">,</span> <span class="n">SE3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span><span class="o">.</span><span class="n">log</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">twist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <span class="n">SO3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">twist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># exponential coordinates</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Seealso<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="func_2d.html#spatialmath.base.transforms2d.trlog2" title="spatialmath.base.transforms2d.trlog2"><code class="xref py py-func docutils literal notranslate"><span class="pre">trlog2()</span></code></a>,</p>
+<dd class="field-odd"><p><a class="reference internal" href="func_2d.html#spatialmath.base.transforms2d.trlog2" title="spatialmath.base.transforms2d.trlog2"><code class="xref py py-func docutils literal notranslate"><span class="pre">trlog2()</span></code></a> <a class="reference internal" href="func_3d.html#spatialmath.base.transforms3d.trlog" title="spatialmath.base.transforms3d.trlog"><code class="xref py py-func docutils literal notranslate"><span class="pre">trlog()</span></code></a></p>
 </dd>
-</dl>
-<p><a class="reference internal" href="func_3d.html#spatialmath.base.transforms3d.trlog" title="spatialmath.base.transforms3d.trlog"><code class="xref py py-func docutils literal notranslate"><span class="pre">trlog()</span></code></a></p>
-<dl class="field-list simple">
-<dt class="field-odd">SymPy<span class="colon">:</span></dt>
-<dd class="field-odd"><p>not supported</p>
+<dt class="field-even">SymPy<span class="colon">:</span></dt>
+<dd class="field-even"><p>not supported</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.norm">
-<span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.norm" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.norm" title="Link to this definition"></a></dt>
 <dd><p>Normalize pose (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pose</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="2d_orient_SO2.html#spatialmath.pose2d.SO2" title="spatialmath.pose2d.SO2">SO2</a>, <a class="reference internal" href="#spatialmath.pose2d.SE2" title="spatialmath.pose2d.SE2">SE2</a>, <a class="reference internal" href="3d_orient_SO3.html#spatialmath.pose3d.SO3" title="spatialmath.pose3d.SO3">SO3</a>, SE3 instance</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
 </dd>
 </dl>
 <ul class="simple">
@@ -1765,7 +1803,7 @@ become ‘unnormalized’.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.plot">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.plot" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.plot" title="Link to this definition"></a></dt>
 <dd><p>Plot pose object as a coordinate frame (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1781,7 +1819,7 @@ become ‘unnormalized’.</p></li>
 </ul>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s1">'A'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>(<a class="reference download internal" download="" href="_downloads/59622c592fdcfd2cd96ec6a48e99839c/2d_pose_SE2-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="_downloads/4c7dfa6726fab5ed471cbf37b816b851/2d_pose_SE2-1.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="_downloads/c4b28ae2d611a7e661d98563b2316b6f/2d_pose_SE2-1.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="_downloads/544b161df6f522d3fbd5ada32a338b72/2d_pose_SE2-1.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
@@ -1797,17 +1835,17 @@ become ‘unnormalized’.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.pop">
-<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.pop" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.pop" title="Link to this definition"></a></dt>
 <dd><p>Pop value from an instance (BasePoseList superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>i</strong> (<em>int</em>) – item in the list to pop, default is last</p>
+<dd class="field-odd"><p><strong>i</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span>) – item in the list to pop, default is last</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the popped value</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>instance of same type</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>IndexError</strong> – if there are no values to pop</p>
@@ -1832,13 +1870,13 @@ instance is modified.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.print">
-<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.print" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.print" title="Link to this definition"></a></dt>
 <dd><p>Print pose as a matrix (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>label</strong> (<em>str</em><em>, </em><em>optional</em>) – label to print before the matrix, defaults to None</p></li>
-<li><p><strong>file</strong> (<em>file object</em><em>, </em><em>optional</em>) – file to write to, defaults to None</p></li>
+<li><p><strong>label</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – label to print before the matrix, defaults to None</p></li>
+<li><p><strong>file</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TextIO</span></code>]</span>) – file to write to, defaults to None</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -1855,7 +1893,7 @@ the matrix is printed to stdout.</p>
 <span class="go">   0         0         1         0         </span>
 <span class="go">   0         0         0         1         </span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">SE3</span><span class="p">()</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;pose is:&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SE3</span><span class="p">()</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">"pose is:"</span><span class="p">)</span>
 <span class="go">pose is:</span>
 <span class="go">   1         0         0         0         </span>
 <span class="go">   0         1         0         0         </span>
@@ -1873,7 +1911,7 @@ the matrix is printed to stdout.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.printline">
-<span class="sig-name descname"><span class="pre">printline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.printline" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">printline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.printline" title="Link to this definition"></a></dt>
 <dd><p>Print pose in compact single line format (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1928,10 +1966,10 @@ values, print one per line.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">printline</span><span class="p">()</span>
 <span class="go">t = 0, 0, 0; rpy/zyx = 11.5°, 0°, 0°</span>
 <span class="go">t = 0, 0, 0; rpy/zyx = 17.2°, 0°, 0°</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">printline</span><span class="p">(</span><span class="s1">&#39;angvec&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">printline</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">"angvec"</span><span class="p">)</span>
 <span class="go">t = 0, 0, 0; angvec = (11.5° | 1, 0, 0)</span>
 <span class="go">t = 0, 0, 0; angvec = (17.2° | 1, 0, 0)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">printline</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;angvec&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{:.6f}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">printline</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">"angvec"</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">"</span><span class="si">{:.6f}</span><span class="s2">"</span><span class="p">)</span>
 <span class="go">t = 0.000000, 0.000000, 0.000000; angvec = (11.459156° | 1.000000, 0.000000, 0.000000)</span>
 <span class="go">t = 0.000000, 0.000000, 0.000000; angvec = (17.188734° | 1.000000, 0.000000, 0.000000)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">SE2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
@@ -1956,7 +1994,7 @@ values, print one per line.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.prod">
-<span class="sig-name descname"><span class="pre">prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.prod" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.prod" title="Link to this definition"></a></dt>
 <dd><p>Product of elements (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1972,7 +2010,7 @@ values, print one per line.</p>
 <dd class="field-odd"><p>Product of elements</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>pose instance</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
 </dd>
 </dl>
 <p><code class="docutils literal notranslate"><span class="pre">x.prod()</span></code> is the product of the values held by <code class="docutils literal notranslate"><span class="pre">x</span></code>, ie.
@@ -1980,10 +2018,10 @@ values, print one per line.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">SE3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
-<span class="go">SE3(array([[ 1.    ,  0.    ,  0.    ,  0.    ],</span>
-<span class="go">           [ 0.    ,  0.8253, -0.5646,  0.    ],</span>
-<span class="go">           [ 0.    ,  0.5646,  0.8253,  0.    ],</span>
-<span class="go">           [ 0.    ,  0.    ,  0.    ,  1.    ]]))</span>
+<span class="go">SE3(array([[ 1.        ,  0.        ,  0.        ,  0.        ],</span>
+<span class="go">           [ 0.        ,  0.82533561, -0.56464247,  0.        ],</span>
+<span class="go">           [ 0.        ,  0.56464247,  0.82533561,  0.        ],</span>
+<span class="go">           [ 0.        ,  0.        ,  0.        ,  1.        ]]))</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1997,26 +2035,26 @@ which is risky, or normalize the result by <code class="docutils literal notrans
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.reverse">
-<span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.reverse" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.reverse" title="Link to this definition"></a></dt>
 <dd><p>S.reverse() – reverse <em>IN PLACE</em></p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.simplify">
-<span class="sig-name descname"><span class="pre">simplify</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.simplify" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">simplify</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.simplify" title="Link to this definition"></a></dt>
 <dd><p>Symbolically simplify matrix values (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pose with symbolic elements</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>pose instance</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
 </dd>
 </dl>
 <p>Apply symbolic simplification to every element of every value in the
 pose instance.</p>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;theta&#39;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">'theta'</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
 <span class="go">SE3(array([[1, 0, 0, 0.0],</span>
@@ -2039,14 +2077,14 @@ pose instance.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.stack">
-<span class="sig-name descname"><span class="pre">stack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.stack" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.stack" title="Link to this definition"></a></dt>
 <dd><p>Convert to 3-dimensional matrix</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>3-dimensional NumPy array</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>ndarray(n,n,m)</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span></p>
 </dd>
 </dl>
 <p>Converts the value to a 3-dimensional NumPy array where the values are
@@ -2056,7 +2094,7 @@ stacked along the third axis.  The first two dimensions are given by
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.strline">
-<span class="sig-name descname"><span class="pre">strline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.strline" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">strline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.strline" title="Link to this definition"></a></dt>
 <dd><p>Convert pose to compact single line string (superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2073,7 +2111,7 @@ only</p></li>
 <dd class="field-even"><p>pose in string format</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
 </dd>
 </dl>
 <p>Convert pose in a compact single line format. If <code class="docutils literal notranslate"><span class="pre">X</span></code> has multiple
@@ -2107,17 +2145,17 @@ values, the string has one pose per line.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">SE2</span><span class="p">,</span> <span class="n">SE3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strline</span><span class="p">()</span>
-<span class="go">&#39;t = 0, 0, 0; rpy/zyx = 17.2°, 0°, 0°&#39;</span>
+<span class="go">'t = 0, 0, 0; rpy/zyx = 17.2°, 0°, 0°'</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strline</span><span class="p">()</span>
-<span class="go">&#39;t = 0, 0, 0; rpy/zyx = 11.5°, 0°, 0°t = 0, 0, 0; rpy/zyx = 17.2°, 0°, 0°&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strline</span><span class="p">(</span><span class="s1">&#39;angvec&#39;</span><span class="p">)</span>
-<span class="go">&#39;t = 0, 0, 0; angvec = (11.5° | 1, 0, 0)t = 0, 0, 0; angvec = (17.2° | 1, 0, 0)&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strline</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;angvec&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{:.6f}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="go">&#39;t = 0.000000, 0.000000, 0.000000; angvec = (11.459156° | 1.000000, 0.000000, 0.000000)t = 0.000000, 0.000000, 0.000000; angvec = (17.188734° | 1.000000, 0.000000, 0.000000)&#39;</span>
+<span class="go">'t = 0, 0, 0; rpy/zyx = 11.5°, 0°, 0°t = 0, 0, 0; rpy/zyx = 17.2°, 0°, 0°'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strline</span><span class="p">(</span><span class="s1">'angvec'</span><span class="p">)</span>
+<span class="go">'t = 0, 0, 0; angvec = (11.5° | 1, 0, 0)t = 0, 0, 0; angvec = (17.2° | 1, 0, 0)'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strline</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">'angvec'</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">"</span><span class="si">{:.6f}</span><span class="s2">"</span><span class="p">)</span>
+<span class="go">'t = 0.000000, 0.000000, 0.000000; angvec = (11.459156° | 1.000000, 0.000000, 0.000000)t = 0.000000, 0.000000, 0.000000; angvec = (17.188734° | 1.000000, 0.000000, 0.000000)'</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">SE2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strline</span><span class="p">()</span>
-<span class="go">&#39;t = 1, 2; 17.2°&#39;</span>
+<span class="go">'t = 1, 2; 17.2°'</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -2137,7 +2175,7 @@ values, the string has one pose per line.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.theta">
-<span class="sig-name descname"><span class="pre">theta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.theta" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">theta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.theta" title="Link to this definition"></a></dt>
 <dd><p>SO(2) as a rotation angle</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2155,21 +2193,21 @@ values, the string has one pose per line.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.unop">
-<span class="sig-name descname"><span class="pre">unop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.unop" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">unop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.pose2d.SE2.unop" title="Link to this definition"></a></dt>
 <dd><p>Perform unary operation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>self</strong> (<em>BasePoseList subclass</em>) – operand</p></li>
-<li><p><strong>op</strong> (<em>callable</em>) – unnary operation</p></li>
-<li><p><strong>matrix</strong> (<em>bool</em>) – return array instead of list, default False</p></li>
+<li><p><strong>op</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></span>) – unnary operation</p></li>
+<li><p><strong>matrix</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span>) – return array instead of list, default False</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>operation results</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list or NumPy array</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>]</span></p>
 </dd>
 </dl>
 <p>The is a helper method for implementing unary operations where the
@@ -2211,7 +2249,7 @@ that the value is a 1D array.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.xyt">
-<span class="sig-name descname"><span class="pre">xyt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.xyt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.xyt" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">xyt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/pose2d.html#SE2.xyt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.pose2d.SE2.xyt" title="Link to this definition"></a></dt>
 <dd><p>SE(2) as a configuration vector</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -2229,7 +2267,7 @@ rotation expressed in vector form as <span class="math notranslate nohighlight">
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.A">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">A</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.2)"><span class="pre">dtype</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ScalarType</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.2)"><span class="pre">dtype</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ScalarType</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#spatialmath.pose2d.SE2.A" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">A</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">NDArray</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">NDArray</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.A" title="Link to this definition"></a></dt>
 <dd><p>Array value of an instance (BasePoseList superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -2252,7 +2290,7 @@ instance.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.N">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">N</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#spatialmath.pose2d.SE2.N" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">N</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.N" title="Link to this definition"></a></dt>
 <dd><p>Dimension of the object’s group (superclass property)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -2276,14 +2314,14 @@ rotations or rigid-body motions apply.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.R">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">R</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.R" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">R</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.R" title="Link to this definition"></a></dt>
 <dd><p>SO(2) or SE(2) as rotation matrix</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>rotational component</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a>, shape=(2,2)</p>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a>, shape=(2,2)</p>
 </dd>
 </dl>
 <p><code class="docutils literal notranslate"><span class="pre">x.R</span></code> returns the rotation matrix, when <cite>x</cite> is <cite>SO2</cite> or <cite>SE2</cite>. If <cite>len(x)</cite> is:</p>
@@ -2295,7 +2333,7 @@ rotations or rigid-body motions apply.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.about">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">about</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#spatialmath.pose2d.SE2.about" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">about</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.about" title="Link to this definition"></a></dt>
 <dd><p>Succinct summary of object type and length (superclass property)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -2318,7 +2356,7 @@ example:</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.isSE">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isSE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#spatialmath.pose2d.SE2.isSE" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isSE</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.isSE" title="Link to this definition"></a></dt>
 <dd><p>Test if object belongs to SE(n) group (superclass property)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2335,7 +2373,7 @@ example:</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.isSO">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isSO</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#spatialmath.pose2d.SE2.isSO" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isSO</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.isSO" title="Link to this definition"></a></dt>
 <dd><p>Test if object belongs to SO(n) group (superclass property)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2352,7 +2390,7 @@ example:</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.shape">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.shape" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.shape" title="Link to this definition"></a></dt>
 <dd><p>Shape of the object’s interal matrix representation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -2366,7 +2404,7 @@ example:</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.t">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">t</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.t" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">t</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.t" title="Link to this definition"></a></dt>
 <dd><p>Translational component of SE(2)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2376,7 +2414,7 @@ example:</p>
 <dd class="field-even"><p>translational component</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
 </dd>
 </dl>
 <p><code class="docutils literal notranslate"><span class="pre">x.t</span></code> is the translational vector component.  If <code class="docutils literal notranslate"><span class="pre">len(x)</span></code> is:</p>
@@ -2388,7 +2426,7 @@ example:</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.x">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.x" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.x" title="Link to this definition"></a></dt>
 <dd><p>First element of the translational component of SE(2)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2410,7 +2448,7 @@ example:</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.pose2d.SE2.y">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.y" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#spatialmath.pose2d.SE2.y" title="Link to this definition"></a></dt>
 <dd><p>Second element of the translational component of SE(2)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2446,7 +2484,7 @@ example:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 30-Jan-2025.
+      <span class="lastupdated">Last updated on 27-Aug-2026.
       </span></p>
   </div>
 

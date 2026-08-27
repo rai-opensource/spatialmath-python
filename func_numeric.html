@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" sizes="16x16" href="_static/favicon-16x16.png" type="image/png">
@@ -12,18 +12,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Numerical utility functions &mdash; Spatial Maths package  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script>window.MathJax = {"tex": {"macros": {"presup": ["\\,{}^{\\scriptscriptstyle #1}\\!", 1], "SE": ["\\mathbf{SE}(#1)", 1], "SO": ["\\mathbf{SO}(#1)", 1], "se": ["\\mathbf{se}(#1)", 1], "so": ["\\mathbf{so}(#1)", 1], "vec": ["\\boldsymbol{#1}", 1], "dvec": ["\\dot{\\boldsymbol{#1}}", 1], "ddvec": ["\\ddot{\\boldsymbol{#1}}", 1], "fvec": ["\\presup{#1}\\boldsymbol{#2}", 2], "fdvec": ["\\presup{#1}\\dot{\\boldsymbol{#2}}", 2], "fddvec": ["\\presup{#1}\\ddot{\\boldsymbol{#2}}", 2], "norm": ["\\Vert #1 \\Vert", 1], "mat": ["\\mathbf{#1}", 1], "dmat": ["\\dot{\\mathbf{#1}}", 1], "fmat": ["\\presup{#1}\\mathbf{#2}", 2], "sk": ["\\left[#1\\right]", 1], "skx": ["\\left[#1\\right]_{\\times}", 1], "vex": ["\\vee\\left( #1\\right)", 1], "vexx": ["\\vee_{\\times}\\left( #1\\right)", 1], "q": "\\mathring{q}", "fq": ["\\presup{#1}\\mathring{q}", 1]}}}</script>
-      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -108,21 +108,21 @@
            <div itemprop="articleBody">
              
   <section id="module-spatialmath.base.numeric">
-<span id="numerical-utility-functions"></span><h1>Numerical utility functions<a class="headerlink" href="#module-spatialmath.base.numeric" title="Permalink to this heading"></a></h1>
+<span id="numerical-utility-functions"></span><h1>Numerical utility functions<a class="headerlink" href="#module-spatialmath.base.numeric" title="Link to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.numeric.array2str">
-<span class="sig-name descname"><span class="pre">array2str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valuesep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">',</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rowsep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">|</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'{:.3g}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brackets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('[</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">]')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suppress_small</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#array2str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.array2str" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">array2str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valuesep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">',</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rowsep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">|</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'{:.3g}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brackets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('[</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">]')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suppress_small</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#array2str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.array2str" title="Link to this definition"></a></dt>
 <dd><p>Convert array to single line string</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>ndarray</em><em>(</em><em>N</em><em>,</em><em>M</em><em>)</em><em>, </em><em>array_like</em><em>(</em><em>N</em><em>)</em>) – 1D or 2D array to convert</p></li>
-<li><p><strong>valuesep</strong> (<em>str</em><em>, </em><em>optional</em>) – separator between numbers, defaults to “, “</p></li>
-<li><p><strong>rowsep</strong> (<em>str</em><em>, </em><em>optional</em>) – separator between rows, defaults to “ | “</p></li>
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span>) – 1D or 2D array to convert</p></li>
+<li><p><strong>valuesep</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – separator between numbers, defaults to “, “</p></li>
+<li><p><strong>rowsep</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – separator between rows, defaults to “ | “</p></li>
 <li><p><strong>format</strong> – format string, defaults to “{:.3g}”</p></li>
-<li><p><strong>brackets</strong> (<em>list</em><em>, </em><em>tuple</em><em> of </em><em>str</em>) – strings to be added to start and end of the string,
+<li><p><strong>brackets</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – strings to be added to start and end of the string,
 defaults to (”[ “, “ ]”).  Set to None to suppress brackets.</p></li>
-<li><p><strong>suppress_small</strong> (<em>bool</em><em>, </em><em>optional</em>) – small values (<span class="math notranslate nohighlight">\(|x| &lt; 10^{-12}\)</span> are converted
+<li><p><strong>suppress_small</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – small values (<span class="math notranslate nohighlight">\(|x| &lt; 10^{-12}\)</span> are converted
 to zero, defaults to True</p></li>
 </ul>
 </dd>
@@ -130,7 +130,7 @@ to zero, defaults to True</p></li>
 <dd class="field-even"><p>compact string representation of array</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
 </dd>
 </dl>
 <p>Converts a small array to a compact single line representation.</p>
@@ -138,13 +138,13 @@ to zero, defaults to True</p></li>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">array2str</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array2str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="go">&#39;[ 0.267, 0.513 | 0.0304, 0.0636 ]&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">array2str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">rowsep</span><span class="o">=</span><span class="s2">&quot;; &quot;</span><span class="p">)</span>  <span class="c1"># MATLAB-like</span>
-<span class="go">&#39;[ 0.169, 0.171; 0.828, 0.288 ]&#39;</span>
+<span class="go">'[ 0.0277, 0.367 | 0.386, 0.269 ]'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array2str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">rowsep</span><span class="o">=</span><span class="s2">"; "</span><span class="p">)</span>  <span class="c1"># MATLAB-like</span>
+<span class="go">'[ 0.239, 0.716; 0.612, 0.367 ]'</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array2str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,))</span>
-<span class="go">&#39;[ 0.399, 0.725, 0.541 ]&#39;</span>
+<span class="go">'[ 0.742, 0.365, 0.419 ]'</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array2str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="go">&#39;[ 0.391 | 0.279 | 0.936 ]&#39;</span>
+<span class="go">'[ 0.83 | 0.0332 | 0.832 ]'</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -156,20 +156,20 @@ to zero, defaults to True</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.numeric.bresenham">
-<span class="sig-name descname"><span class="pre">bresenham</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#bresenham"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.bresenham" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">bresenham</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#bresenham"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.bresenham" title="Link to this definition"></a></dt>
 <dd><p>Line drawing in a grid</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>p0</strong> (<em>array_like</em><em>(</em><em>2</em><em>) of </em><em>int</em>) – initial point</p></li>
-<li><p><strong>p1</strong> (<em>array_like</em><em>(</em><em>2</em><em>) of </em><em>int</em>) – end point</p></li>
+<li><p><strong>p0</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ResizeEventType</span></code>[2]], <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.floating" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">floating</span></code></a>]]]</span>) – initial point</p></li>
+<li><p><strong>p1</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ResizeEventType</span></code>[2]], <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.floating" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">floating</span></code></a>]]]</span>) – end point</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>arrays of x and y coordinates for points along the line</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray(N), ndarray(N) of int</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>]</span></p>
 </dd>
 </dl>
 <p>Return x and y coordinate vectors for points in a grid that lie on
@@ -198,21 +198,21 @@ faster than the Bresenham algorithm in Python.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.numeric.gauss1d">
-<span class="sig-name descname"><span class="pre">gauss1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#gauss1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.gauss1d" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">gauss1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#gauss1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.gauss1d" title="Link to this definition"></a></dt>
 <dd><p>Gaussian function in 1D</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mu</strong> (<em>float</em>) – mean</p></li>
-<li><p><strong>var</strong> (<em>float</em>) – variance</p></li>
-<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>n</em><em>)</em>) – x-coordinate values</p></li>
+<li><p><strong>mu</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – mean</p></li>
+<li><p><strong>var</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – variance</p></li>
+<li><p><strong>x</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code>], <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.floating" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">floating</span></code></a>]]]</span>) – x-coordinate values</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Gaussian <span class="math notranslate nohighlight">\(G(x)\)</span></p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray(n)</p>
+<dd class="field-odd"><p>ndarray(<a class="reference internal" href="3d_orient_SO3.html#spatialmath.pose3d.SO3.n" title="spatialmath.pose3d.SO3.n">n</a>)</p>
 </dd>
 </dl>
 <p>Example:</p>
@@ -232,22 +232,22 @@ faster than the Bresenham algorithm in Python.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.numeric.gauss2d">
-<span class="sig-name descname"><span class="pre">gauss2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#gauss2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.gauss2d" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">gauss2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#gauss2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.gauss2d" title="Link to this definition"></a></dt>
 <dd><p>Gaussian function in 2D</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mu</strong> (<em>array_like</em><em>(</em><em>2</em><em>)</em>) – mean</p></li>
-<li><p><strong>P</strong> (<em>ndarray</em><em>(</em><em>2</em><em>,</em><em>2</em><em>)</em>) – covariance matrix</p></li>
-<li><p><strong>X</strong> (<em>ndarray</em><em>(</em><em>n</em><em>,</em><em>m</em><em>)</em>) – array of x-coordinates</p></li>
-<li><p><strong>Y</strong> (<em>ndarray</em><em>(</em><em>n</em><em>,</em><em>m</em><em>)</em>) – array of y-coordinates</p></li>
+<li><p><strong>mu</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ResizeEventType</span></code>[2]], <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.floating" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">floating</span></code></a>]]]</span>) – mean</p></li>
+<li><p><strong>P</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span>) – covariance matrix</p></li>
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span>) – array of x-coordinates</p></li>
+<li><p><strong>Y</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span>) – array of y-coordinates</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Gaussian <span class="math notranslate nohighlight">\(g(x,y)\)</span></p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray(n,m)</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span></p>
 </dd>
 </dl>
 <p>Computed <span class="math notranslate nohighlight">\(g_{i,j} = G(x_{i,j}, y_{i,j})\)</span></p>
@@ -271,14 +271,14 @@ faster than the Bresenham algorithm in Python.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.numeric.mpq_point">
-<span class="sig-name descname"><span class="pre">mpq_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#mpq_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.mpq_point" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mpq_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#mpq_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.mpq_point" title="Link to this definition"></a></dt>
 <dd><p>Moments of polygon</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>ndarray</em><em>(</em><em>2</em><em>,</em><em>N</em><em>)</em>) – polygon vertices, points as columns</p></li>
-<li><p><strong>p</strong> (<em>int</em>) – moment order x</p></li>
-<li><p><strong>q</strong> (<em>int</em>) – moment order y</p></li>
+<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span>) – polygon vertices, points as columns</p></li>
+<li><p><strong>p</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – moment order x</p></li>
+<li><p><strong>q</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – moment order y</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -293,9 +293,9 @@ faster than the Bresenham algorithm in Python.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mpq_point</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># area</span>
-<span class="go">3</span>
+<span class="go">np.int64(3)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mpq_point</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">36</span>
+<span class="go">np.int64(36)</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -306,21 +306,21 @@ faster than the Bresenham algorithm in Python.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.numeric.numhess">
-<span class="sig-name descname"><span class="pre">numhess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">J</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#numhess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.numhess" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">numhess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">J</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#numhess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.numhess" title="Link to this definition"></a></dt>
 <dd><p>Numerically compute Hessian given Jacobian function</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>J</strong> (<em>callable</em>) – the Jacobian function, returns an ndarray(m,n)</p></li>
-<li><p><strong>x</strong> (<em>ndarray</em><em>(</em><em>n</em><em>)</em>) – function argument</p></li>
-<li><p><strong>dx</strong> (<em>float</em><em>, </em><em>optional</em>) – the numerical perturbation, defaults to 1e-8</p></li>
+<li><p><strong>J</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></span>) – the Jacobian function, returns an ndarray(m,n)</p></li>
+<li><p><strong>x</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span>) – function argument</p></li>
+<li><p><strong>dx</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – the numerical perturbation, defaults to 1e-8</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Hessian matrix</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray(m,n,n)</p>
+<dd class="field-odd"><p>ndarray(m,<a class="reference internal" href="3d_orient_SO3.html#spatialmath.pose3d.SO3.n" title="spatialmath.pose3d.SO3.n">n</a>,<a class="reference internal" href="3d_orient_SO3.html#spatialmath.pose3d.SO3.n" title="spatialmath.pose3d.SO3.n">n</a>)</p>
 </dd>
 </dl>
 <p>Computes a numerical approximation to the Hessian for <code class="docutils literal notranslate"><span class="pre">J(x)</span></code> where
@@ -333,23 +333,23 @@ faster than the Bresenham algorithm in Python.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.numeric.numjac">
-<span class="sig-name descname"><span class="pre">numjac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SE</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#numjac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.numjac" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">numjac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SE</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#numjac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.numjac" title="Link to this definition"></a></dt>
 <dd><p>Numerically compute Jacobian of function</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>f</strong> (<em>callable</em>) – the function, returns an m-vector</p></li>
-<li><p><strong>x</strong> (<em>ndarray</em><em>(</em><em>n</em><em>)</em>) – function argument</p></li>
-<li><p><strong>dx</strong> (<em>float</em><em>, </em><em>optional</em>) – the numerical perturbation, defaults to 1e-8</p></li>
-<li><p><strong>SO</strong> (<em>int</em><em>, </em><em>optional</em>) – function returns SO(N) matrix, defaults to 0</p></li>
-<li><p><strong>SE</strong> (<em>int</em><em>, </em><em>optional</em>) – function returns SE(N) matrix, defaults to 0</p></li>
+<li><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></span>) – the function, returns an m-vector</p></li>
+<li><p><strong>x</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code>], <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.floating" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">floating</span></code></a>]]]</span>) – function argument</p></li>
+<li><p><strong>dx</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – the numerical perturbation, defaults to 1e-8</p></li>
+<li><p><strong>SO</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – function returns SO(N) matrix, defaults to 0</p></li>
+<li><p><strong>SE</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – function returns SE(N) matrix, defaults to 0</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Jacobian matrix</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray(m,n)</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span></p>
 </dd>
 </dl>
 <p>Computes a numerical approximation to the Jacobian for <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> where
@@ -363,23 +363,30 @@ an SO(N) matrix and the derivative is converted to a column vector</p>
 an SE(N) matrix and the derivative is converted to a colun vector.</p>
 <p>Example:</p>
 <blockquote>
-<div><div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">rotx</span><span class="p">,</span> <span class="n">numjac</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">numjac</span><span class="p">(</span><span class="n">rotx</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">array([[[ 0.],</span>
-<span class="go">        [ 0.],</span>
-<span class="go">        [ 0.]],</span>
-
-<span class="go">       [[ 0.],</span>
-<span class="go">        [ 0.],</span>
-<span class="go">        [ 1.]],</span>
-
-<span class="go">       [[ 0.],</span>
-<span class="go">        [-1.],</span>
-<span class="go">        [ 0.]]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">numjac</span><span class="p">(</span><span class="n">rotx</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">SO</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="go">array([[1.],</span>
-<span class="go">       [0.],</span>
-<span class="go">       [0.]])</span>
+<div><div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/spatialmath/base/numeric.py"</span>, line <span class="m">59</span>, in <span class="n">numjac</span>
+<span class="w">    </span><span class="n">J0</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">         </span><span class="pm">^^^^</span>
+  File <span class="nb">"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/spatialmath/base/transforms3d.py"</span>, line <span class="m">82</span>, in <span class="n">rotx</span>
+<span class="w">    </span><span class="n">ct</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="w">         </span><span class="pm">^^^^^^^^^^^^^^</span>
+  File <span class="nb">"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/spatialmath/base/symbolic.py"</span>, line <span class="m">161</span>, in <span class="n">cos</span>
+<span class="w">    </span><span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="w">           </span><span class="pm">^^^^^^^^^^^^^^^</span>
+<span class="gr">TypeError</span>: <span class="n">only 0-dimensional arrays can be converted to Python scalars</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/spatialmath/base/numeric.py"</span>, line <span class="m">59</span>, in <span class="n">numjac</span>
+<span class="w">    </span><span class="n">J0</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">         </span><span class="pm">^^^^</span>
+  File <span class="nb">"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/spatialmath/base/transforms3d.py"</span>, line <span class="m">82</span>, in <span class="n">rotx</span>
+<span class="w">    </span><span class="n">ct</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="w">         </span><span class="pm">^^^^^^^^^^^^^^</span>
+  File <span class="nb">"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/spatialmath/base/symbolic.py"</span>, line <span class="m">161</span>, in <span class="n">cos</span>
+<span class="w">    </span><span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="w">           </span><span class="pm">^^^^^^^^^^^^^^^</span>
+<span class="gr">TypeError</span>: <span class="n">only 0-dimensional arrays can be converted to Python scalars</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -387,17 +394,17 @@ an SE(N) matrix and the derivative is converted to a colun vector.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.numeric.str2array">
-<span class="sig-name descname"><span class="pre">str2array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#str2array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.str2array" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">str2array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/numeric.html#str2array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.numeric.str2array" title="Link to this definition"></a></dt>
 <dd><p>Convert compact single line string to array</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>s</strong> (<em>str</em>) – string to convert</p>
+<dd class="field-odd"><p><strong>s</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – string to convert</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>array</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a></span></p>
 </dd>
 </dl>
 <p>Convert a string containing a “MATLAB-like” matrix definition to a NumPy
@@ -406,17 +413,17 @@ A 2D array is delimited by square brackets, elements are separated by a comma,
 and rows are separated by a semicolon.  Extra white spaces are ignored.</p>
 <p>Example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">str2array</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">str2array</span><span class="p">(</span><span class="s2">&quot;5&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">str2array</span><span class="p">(</span><span class="s2">"5"</span><span class="p">)</span>
 <span class="go">array([[5.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">str2array</span><span class="p">(</span><span class="s2">&quot;[1 2 3]&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">str2array</span><span class="p">(</span><span class="s2">"[1 2 3]"</span><span class="p">)</span>
 <span class="go">array([[1., 2., 3.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">str2array</span><span class="p">(</span><span class="s2">&quot;[1 2; 3 4]&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">str2array</span><span class="p">(</span><span class="s2">"[1 2; 3 4]"</span><span class="p">)</span>
 <span class="go">array([[1., 2.],</span>
 <span class="go">       [3., 4.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">str2array</span><span class="p">(</span><span class="s2">&quot; [  1  , 2 ; 3 4  ] &quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">str2array</span><span class="p">(</span><span class="s2">" [  1  , 2 ; 3 4  ] "</span><span class="p">)</span>
 <span class="go">array([[1., 2.],</span>
 <span class="go">       [3., 4.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">str2array</span><span class="p">(</span><span class="s2">&quot;[1; 2; 3]&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">str2array</span><span class="p">(</span><span class="s2">"[1; 2; 3]"</span><span class="p">)</span>
 <span class="go">array([[1.],</span>
 <span class="go">       [2.],</span>
 <span class="go">       [3.]])</span>
@@ -443,7 +450,7 @@ and rows are separated by a semicolon.  Extra white spaces are ignored.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 30-Jan-2025.
+      <span class="lastupdated">Last updated on 27-Aug-2026.
       </span></p>
   </div>
 

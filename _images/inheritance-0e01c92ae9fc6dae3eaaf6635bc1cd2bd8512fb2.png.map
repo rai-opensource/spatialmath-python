@@ -1,0 +1,23 @@
+<map id="inheritance8a10d5ee9d" name="inheritance8a10d5ee9d">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="7,174,77,199"/>
+<area shape="rect" id="node2" title="List properties for spatial math classes" alt="" coords="126,199,232,224"/>
+<area shape="rect" id="node4" title="Superclass for SO(N) and SE(N) objects" alt="" coords="279,54,404,79"/>
+<area shape="rect" id="node5" title="Superclass for 3D and 2D twist objects" alt="" coords="299,151,384,176"/>
+<area shape="rect" id="node6" href="3d_quaternion.html#spatialmath.quaternion.Quaternion" target="_top" title="Quaternion class" alt="" coords="295,199,388,224"/>
+<area shape="rect" id="node14" href="6d_spatial.html#spatialmath.spatialvector.SpatialVector" target="_top" title="Spatial 6&#45;vector abstract superclass" alt="" coords="288,248,394,273"/>
+<area shape="rect" id="node16" href="6d_inertia.html#spatialmath.spatialvector.SpatialInertia" target="_top" title="Spatial inertia class" alt="" coords="288,296,395,321"/>
+<area shape="rect" id="node3" title="A more or less complete user&#45;defined wrapper around list objects." alt="" coords="5,223,79,248"/>
+<area shape="rect" id="node8" href="2d_orient_SO2.html#spatialmath.pose2d.SO2" target="_top" title="SO(2) matrix class" alt="" coords="475,5,546,30"/>
+<area shape="rect" id="node10" href="3d_orient_SO3.html#spatialmath.pose3d.SO3" target="_top" title="SO(3) matrix class" alt="" coords="475,54,546,79"/>
+<area shape="rect" id="node19" href="2d_pose_twist.html#spatialmath.twist.Twist2" target="_top" title="Twist2" alt="" coords="475,102,546,127"/>
+<area shape="rect" id="node20" href="3d_pose_twist.html#spatialmath.twist.Twist3" target="_top" title="3D twist class" alt="" coords="475,151,546,176"/>
+<area shape="rect" id="node21" href="3d_orient_unitquaternion.html#spatialmath.quaternion.UnitQuaternion" target="_top" title="Unit quaternion class" alt="" coords="451,199,570,224"/>
+<area shape="rect" id="node7" href="2d_pose_SE2.html#spatialmath.pose2d.SE2" target="_top" title="SE(2) matrix class" alt="" coords="655,5,725,30"/>
+<area shape="rect" id="node9" href="3d_pose_SE3.html#spatialmath.pose3d.SE3" target="_top" title="SE(3) matrix class" alt="" coords="655,54,725,79"/>
+<area shape="rect" id="node11" href="6d_acceleration.html#spatialmath.spatialvector.SpatialAcceleration" target="_top" title="Spatial acceleration class" alt="" coords="617,199,763,224"/>
+<area shape="rect" id="node12" href="6d_m6.html#spatialmath.spatialvector.SpatialM6" target="_top" title="Spatial 6&#45;vector abstract motion superclass" alt="" coords="468,248,553,273"/>
+<area shape="rect" id="node18" href="6d_velocity.html#spatialmath.spatialvector.SpatialVelocity" target="_top" title="Spatial velocity class" alt="" coords="632,248,748,273"/>
+<area shape="rect" id="node13" href="6d_f6.html#spatialmath.spatialvector.SpatialF6" target="_top" title="Spatial 6&#45;vector abstract force superclass" alt="" coords="470,296,551,321"/>
+<area shape="rect" id="node15" href="6d_force.html#spatialmath.spatialvector.SpatialForce" target="_top" title="Spatial force class" alt="" coords="640,296,740,321"/>
+<area shape="rect" id="node17" href="6d_momentum.html#spatialmath.spatialvector.SpatialMomentum" target="_top" title="Spatial momentum class" alt="" coords="620,345,760,370"/>
+</map>

@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>spatialmath.geom3d &mdash; Spatial Maths package  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -93,8 +93,10 @@
 <span class="c1"># ======================================================================== #</span>
 
 
-<div class="viewcode-block" id="Plane3"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Plane3">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Plane3</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Plane3">
+<a class="viewcode-back" href="../../3d_plane.html#spatialmath.geom3d.Plane3">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Plane3</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Create a plane object from linear coefficients</span>
 
 <span class="sd">    :param c: Plane coefficients</span>
@@ -104,15 +106,20 @@
 
 <span class="sd">    Planes are represented by the 4-vector :math:`[a, b, c, d]` which describes</span>
 <span class="sd">    the plane :math:`\pi: ax + by + cz + d=0`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-<div class="viewcode-block" id="Plane3.__init__"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Plane3.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">ArrayLike4</span><span class="p">):</span>
+<div class="viewcode-block" id="Plane3.__init__">
+<a class="viewcode-back" href="../../3d_plane.html#spatialmath.geom3d.Plane3.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">ArrayLike4</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plane</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span></div>
 
+
     <span class="c1"># point and normal</span>
-<div class="viewcode-block" id="Plane3.PointNormal"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Plane3.PointNormal">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Plane3.PointNormal">
+<a class="viewcode-back" href="../../3d_plane.html#spatialmath.geom3d.Plane3.PointNormal">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">PointNormal</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create a plane object from point and normal</span>
 
 <span class="sd">        :param p: Point in the plane</span>
@@ -123,15 +130,18 @@
 <span class="sd">        :rtype: Plane</span>
 
 <span class="sd">        :seealso: :meth:`ThreePoints` :meth:`LinePoint`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># normal to the plane</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># point on the plane</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)])</span></div>
 
+
     <span class="c1"># point and normal</span>
-<div class="viewcode-block" id="Plane3.ThreePoints"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Plane3.ThreePoints">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Plane3.ThreePoints">
+<a class="viewcode-back" href="../../3d_plane.html#spatialmath.geom3d.Plane3.ThreePoints">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">ThreePoints</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">R3x3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create a plane object from three points</span>
 
 <span class="sd">        :param p: Three points in the plane</span>
@@ -142,7 +152,7 @@
 <span class="sd">        The points in ``p`` are arranged as columns.</span>
 
 <span class="sd">        :seealso: :meth:`PointNormal`  :meth:`LinePoint`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="n">p</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getmatrix</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
         <span class="n">v1</span> <span class="o">=</span> <span class="n">p</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
@@ -154,9 +164,12 @@
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">v1</span><span class="p">)])</span></div>
 
-<div class="viewcode-block" id="Plane3.LinePoint"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Plane3.LinePoint">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="Plane3.LinePoint">
+<a class="viewcode-back" href="../../3d_plane.html#spatialmath.geom3d.Plane3.LinePoint">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">LinePoint</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">l</span><span class="p">:</span> <span class="n">Line3</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create a plane object from a line and point</span>
 
 <span class="sd">        :param l: 3D line</span>
@@ -167,15 +180,18 @@
 <span class="sd">        :rtype: Plane</span>
 
 <span class="sd">        :seealso: :meth:`PointNormal`  :meth:`ThreePoints`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
         <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="Plane3.TwoLines"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Plane3.TwoLines">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="Plane3.TwoLines">
+<a class="viewcode-back" href="../../3d_plane.html#spatialmath.geom3d.Plane3.TwoLines">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">TwoLines</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">l1</span><span class="p">:</span> <span class="n">Line3</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create a plane object from two line</span>
 
 <span class="sd">        :param l1: 3D line</span>
@@ -188,15 +204,18 @@
 <span class="sd">        .. warning:: This algorithm fails if the lines are parallel.</span>
 
 <span class="sd">        :seealso: :meth:`LinePoint` :meth:`PointNormal`  :meth:`ThreePoints`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">l2</span><span class="o">.</span><span class="n">w</span><span class="p">)</span>
         <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="n">l2</span><span class="o">.</span><span class="n">w</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="Plane3.intersection"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Plane3.intersection">[docs]</a>    <span class="nd">@staticmethod</span>
+
+<div class="viewcode-block" id="Plane3.intersection">
+<a class="viewcode-back" href="../../3d_plane.html#spatialmath.geom3d.Plane3.intersection">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">intersection</span><span class="p">(</span><span class="n">pi1</span><span class="p">:</span> <span class="n">Plane3</span><span class="p">,</span> <span class="n">pi2</span><span class="p">:</span> <span class="n">Plane3</span><span class="p">,</span> <span class="n">pi3</span><span class="p">:</span> <span class="n">Plane3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R3</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Intersection point of three planes</span>
 
 <span class="sd">        :param pi1: plane 1</span>
@@ -215,14 +234,15 @@
 <span class="sd">            intersect along a line.</span>
 
 <span class="sd">        :seealso: :meth:`Plane`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">pi1</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">pi2</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">pi3</span><span class="o">.</span><span class="n">n</span><span class="p">])</span>
         <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pi1</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="n">pi2</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="n">pi3</span><span class="o">.</span><span class="n">d</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="n">b</span></div>
 
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R3</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Normal to the plane</span>
 
 <span class="sd">        :return: Normal to the plane</span>
@@ -232,13 +252,13 @@
 <span class="sd">        :math:`[a,b,c]`.</span>
 
 <span class="sd">        :seealso: :meth:`d`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># normal</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plane</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">d</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Plane offset</span>
 
 <span class="sd">        :return: Offset of the plane</span>
@@ -249,11 +269,13 @@
 
 
 <span class="sd">        :seealso: :meth:`n`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plane</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Plane3.contains"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Plane3.contains">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">,</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Plane3.contains">
+<a class="viewcode-back" href="../../3d_plane.html#spatialmath.geom3d.Plane3.contains">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">,</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if point in plane</span>
 
 <span class="sd">        :param p: A 3D point</span>
@@ -262,16 +284,19 @@
 <span class="sd">        :type tol: float</span>
 <span class="sd">        :return: if the point is in the plane</span>
 <span class="sd">        :rtype: bool</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span> <span class="o">*</span> <span class="n">_eps</span></div>
 
-<div class="viewcode-block" id="Plane3.plot"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Plane3.plot">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Plane3.plot">
+<a class="viewcode-back" href="../../3d_plane.html#spatialmath.geom3d.Plane3.plot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">bounds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot plane</span>
 
 <span class="sd">        :param bounds: bounds of plot volume, defaults to None</span>
@@ -287,7 +312,7 @@
 <span class="sd">        The plane is drawn using ``plot_surface``.</span>
 
 <span class="sd">        :seealso: :func:`axes_logic`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">axes_logic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">(),</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_zlim</span><span class="p">()]</span>
@@ -303,29 +328,33 @@
         <span class="n">Z</span><span class="p">[</span><span class="n">Z</span> <span class="o">&gt;</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">5</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Convert plane to string representation</span>
 
 <span class="sd">        :return: Compact string representation of plane</span>
 <span class="sd">        :rtype: str</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plane</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Display parameters of plane</span>
 
 <span class="sd">        :return: Compact string representation of plane</span>
 <span class="sd">        :rtype: str</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
 
 
 <span class="c1"># ======================================================================== #</span>
 
 
-<div class="viewcode-block" id="Line3"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Line3</span><span class="p">(</span><span class="n">BasePoseList</span><span class="p">):</span>
+<div class="viewcode-block" id="Line3">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Line3</span><span class="p">(</span><span class="n">BasePoseList</span><span class="p">):</span>
     <span class="n">__array_ufunc__</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># allow pose matrices operators with NumPy values</span>
 
     <span class="nd">@overload</span>
@@ -336,8 +365,10 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">ArrayLike6</span><span class="p">):</span>
         <span class="o">...</span>
 
-<div class="viewcode-block" id="Line3.__init__"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Line3.__init__">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create a Line3 object</span>
 
 <span class="sd">        :param v: Plucker coordinate vector, or Plucker moment vector</span>
@@ -373,7 +404,7 @@
 <span class="sd">            - Some methods support operations on the internal list.</span>
 
 <span class="sd">        :seealso: :meth:`Join` :meth:`TwoPlanes` :meth:`PointDir`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.pose3d</span><span class="w"> </span><span class="kn">import</span> <span class="n">SE3</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>  <span class="c1"># enable list powers</span>
@@ -382,16 +413,17 @@
             <span class="c1"># zero or one arguments passed</span>
             <span class="k">if</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">arghandler</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">convertfrom</span><span class="o">=</span><span class="p">(</span><span class="n">SE3</span><span class="p">,)):</span>
                 <span class="k">if</span> <span class="n">check</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">base</span><span class="o">.</span><span class="n">iszero</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)):</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;invalid Plucker coordinates&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"invalid Plucker coordinates"</span><span class="p">)</span>
                 <span class="k">return</span>
 
         <span class="k">if</span> <span class="n">base</span><span class="o">.</span><span class="n">isvector</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="ow">and</span> <span class="n">base</span><span class="o">.</span><span class="n">isvector</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">check</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">base</span><span class="o">.</span><span class="n">iszero</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;invalid Plucker coordinates&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"invalid Plucker coordinates"</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">]]</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;invalid argument to Line3 constructor&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"invalid argument to Line3 constructor"</span><span class="p">)</span></div>
+
 
         <span class="c1"># needed to allow __rmul__ to work if left multiplied by ndarray</span>
         <span class="c1"># self.__array_priority__ = 100</span>
@@ -404,13 +436,18 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">_identity</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">R6</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,))</span>
 
-<div class="viewcode-block" id="Line3.isvalid"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.isvalid">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Line3.isvalid">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.isvalid">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">isvalid</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">check</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">6</span><span class="p">,)</span></div>
 
-<div class="viewcode-block" id="Line3.Join"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.Join">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="Line3.Join">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.Join">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">Join</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">P</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">,</span> <span class="n">Q</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create 3D line from two 3D points</span>
 
 <span class="sd">        :param P: First 3D point</span>
@@ -425,7 +462,7 @@
 <span class="sd">        is from ``Q`` to ``P``.</span>
 
 <span class="sd">        :seealso: :meth:`IntersectingPlanes` :meth:`PointDir`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">P</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
         <span class="n">Q</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
         <span class="c1"># compute direction and moment</span>
@@ -433,9 +470,12 @@
         <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="Line3.TwoPlanes"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.TwoPlanes">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="Line3.TwoPlanes">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.TwoPlanes">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">TwoPlanes</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pi1</span><span class="p">:</span> <span class="n">Plane3</span><span class="p">,</span> <span class="n">pi2</span><span class="p">:</span> <span class="n">Plane3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Create 3D line from intersection of two planes</span>
 
 <span class="sd">        :param pi1: First plane</span>
@@ -452,7 +492,7 @@
 <span class="sd">        the plane :math:`\pi: ax + by + cz + d=0`.</span>
 
 <span class="sd">        :seealso: :meth:`Join` :meth:`PointDir`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="c1"># TODO inefficient to create 2 temporary planes</span>
 
@@ -465,14 +505,20 @@
         <span class="n">v</span> <span class="o">=</span> <span class="n">pi2</span><span class="o">.</span><span class="n">d</span> <span class="o">*</span> <span class="n">pi1</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="n">pi1</span><span class="o">.</span><span class="n">d</span> <span class="o">*</span> <span class="n">pi2</span><span class="o">.</span><span class="n">n</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="Line3.IntersectingPlanes"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.IntersectingPlanes">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="Line3.IntersectingPlanes">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.IntersectingPlanes">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">IntersectingPlanes</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pi1</span><span class="p">:</span> <span class="n">Plane3</span><span class="p">,</span> <span class="n">pi2</span><span class="p">:</span> <span class="n">Plane3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;use TwoPlanes method instead&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"use TwoPlanes method instead"</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">TwoPlanes</span><span class="p">(</span><span class="n">pi1</span><span class="p">,</span> <span class="n">pi2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.PointDir"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.PointDir">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="Line3.PointDir">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.PointDir">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">PointDir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">,</span> <span class="nb">dir</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create 3D line from a point and direction</span>
 
 <span class="sd">        :param point: A 3D point</span>
@@ -486,15 +532,18 @@
 <span class="sd">        line containing the point ``P`` and parallel to the direction vector ``W``.</span>
 
 <span class="sd">        :seealso: :meth:`Join` :meth:`IntersectingPlanes`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="n">p</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
         <span class="n">w</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="Line3.append"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.append">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Line3</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Line3.append">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.append">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Line3</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Append a line</span>
 
 <span class="sd">        :param x: line object</span>
@@ -503,13 +552,14 @@
 <span class="sd">        :return: Line3 object with new line appended</span>
 <span class="sd">        :rtype: Line3 instance</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># print(&#39;in append method&#39;)</span>
+<span class="sd">        """</span>
+        <span class="c1"># print('in append method')</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;can only append Line3 object&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"can only append Line3 object"</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cant append a Line3 sequence - use extend&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"cant append a Line3 sequence - use extend"</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">A</span><span class="p">)</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">A</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R6</span><span class="p">:</span>
@@ -520,12 +570,12 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
-        <span class="c1"># print(&#39;getitem&#39;, i, &#39;class&#39;, self.__class__)</span>
+        <span class="c1"># print('getitem', i, 'class', self.__class__)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">v</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R3</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Moment vector</span>
 
 <span class="sd">        :return: the moment vector</span>
@@ -534,12 +584,12 @@
 <span class="sd">        The line is represented by a vector :math:`(\vec{v}, \vec{w}) \in \mathbb{R}^6`.</span>
 
 <span class="sd">        :seealso: :meth:`w`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">w</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R3</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Direction vector</span>
 
 <span class="sd">        :return: the direction vector</span>
@@ -548,12 +598,12 @@
 <span class="sd">        The line is represented by a vector :math:`(\vec{v}, \vec{w}) \in \mathbb{R}^6`.</span>
 
 <span class="sd">        :seealso: :meth:`v` :meth:`uw`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">uw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R3</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Line direction as a unit vector</span>
 
 <span class="sd">        :return: Line direction as a unit vector</span>
@@ -564,12 +614,12 @@
 <span class="sd">        The line is represented by a vector :math:`(\vec{v}, \vec{w}) \in \mathbb{R}^6`.</span>
 
 <span class="sd">        :seealso: :meth:`w`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">base</span><span class="o">.</span><span class="n">unitvec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">vec</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R6</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Line as a Plucker coordinate vector</span>
 
 <span class="sd">        :return: Plucker coordinate vector</span>
@@ -577,19 +627,21 @@
 
 <span class="sd">        ``line.vec`` is the  Plucker coordinate vector :math:`(\vec{v}, \vec{w}) \in \mathbb{R}^6`.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Line3.skew"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.skew">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">skew</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R4x4</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Line3.skew">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.skew">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">skew</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R4x4</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Line as a Plucker skew-symmetric matrix</span>
-<span class="sd">        </span>
+
 <span class="sd">        :return: Skew-symmetric matrix form of Plucker coordinates</span>
 <span class="sd">        :rtype: ndarray(4,4)</span>
 
 <span class="sd">        ``line.skew()`` is the Plucker matrix, a 4x4 skew-symmetric matrix</span>
-<span class="sd">        representation of the line whose six unique elements are the</span>
-<span class="sd">        Plucker coordinates of the line.</span>
+<span class="sd">        representation of the line whose six unique elements are the Plucker coordinates</span>
+<span class="sd">        of the line.</span>
 
 <span class="sd">        .. math::</span>
 
@@ -599,13 +651,13 @@
 <span class="sd">                -\omega_x &amp; -\omega_y &amp; -\omega_z &amp; 0 \end{bmatrix}</span>
 
 <span class="sd">        .. note::</span>
-<span class="sd">            </span>
-<span class="sd">            - For two homogeneous points P and Q on the line, :math:`PQ^T-QP^T` is</span>
-<span class="sd">            also skew symmetric.</span>
-<span class="sd">            - The projection of Plucker line by a perspective camera is a</span>
-<span class="sd">            homogeneous line (3x1) given by :math:`\vee C M C^T` where :math:`C</span>
-<span class="sd">            \in \mathbf{R}^{3 \times 4}` is the camera matrix.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+
+<span class="sd">            - For two homogeneous points P and Q on the line, :math:`PQ^T-QP^T` is also</span>
+<span class="sd">              skew symmetric.</span>
+<span class="sd">            - The projection of Plucker line by a perspective camera is a homogeneous</span>
+<span class="sd">              line (3x1) given by :math:`\vee C M C^T` where :math:`C \in \mathbf{R}^{3</span>
+<span class="sd">              \times 4}` is the camera matrix.</span>
+<span class="sd">        """</span>
 
         <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span>
         <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span>
@@ -620,9 +672,10 @@
             <span class="p">]</span>  <span class="c1"># type: ignore</span>
         <span class="p">)</span></div>
 
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">pp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R3</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Principal point of the 3D line</span>
 
 <span class="sd">        :return: Principal point of the line</span>
@@ -635,12 +688,12 @@
 <span class="sd">         - Same as Plucker.point(0)</span>
 
 <span class="sd">        :seealso: :meth:`ppd` :meth`point`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">ppd</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Distance from principal point to the origin</span>
 
 <span class="sd">        :return: Distance from principal point to the origin</span>
@@ -651,11 +704,13 @@
 <span class="sd">        to the origin.</span>
 
 <span class="sd">        :seealso: :meth:`pp`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Line3.point"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.point">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lam</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Points3</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Line3.point">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.point">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lam</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Points3</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Generate point on line</span>
 
 <span class="sd">        :param lam: Scalar distance from principal point</span>
@@ -669,12 +724,15 @@
 <span class="sd">        direction given by ``line.uw``.</span>
 
 <span class="sd">        :seealso: :meth:`pp` :meth:`closest` :meth:`uw` :meth:`lam`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">lam</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">)</span>
+<span class="sd">        """</span>
+        <span class="n">lam</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="s2">"row"</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Points3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">uw</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="n">lam</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.lam"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.lam">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">lam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Line3.lam">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.lam">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Parametric distance from principal point</span>
 
 <span class="sd">        :param point: 3D point</span>
@@ -686,17 +744,20 @@
 <span class="sd">        :math:`Q = P_p + \lambda \hat{d}` is closest to ``P``.</span>
 
 <span class="sd">        :seealso: :meth:`point`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uw</span><span class="p">)</span></div>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="s2">"row"</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uw</span><span class="p">)</span></div>
+
 
     <span class="c1"># ------------------------------------------------------------------------- #</span>
     <span class="c1">#  TESTS ON PLUCKER OBJECTS</span>
     <span class="c1"># ------------------------------------------------------------------------- #</span>
 
-<div class="viewcode-block" id="Line3.contains"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.contains">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span>
+<div class="viewcode-block" id="Line3.contains">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.contains">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">R3</span><span class="p">,</span> <span class="n">Points3</span><span class="p">],</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if points are on the line</span>
 
 <span class="sd">        :param x: 3D point</span>
@@ -712,7 +773,7 @@
 
 <span class="sd">        If ``X`` is an array with 3 rows, the test is performed on every column and</span>
 <span class="sd">        an array of booleans is returned.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">base</span><span class="o">.</span><span class="n">isvector</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">R3</span><span class="p">,</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
             <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">tol</span> <span class="o">*</span> <span class="n">_eps</span><span class="p">)</span>
@@ -722,12 +783,15 @@
                 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span>
             <span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bad argument&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"bad argument"</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.isequal"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.isequal">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">isequal</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Line3.isequal">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.isequal">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">isequal</span><span class="p">(</span>
         <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">,</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># type: ignore</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if two lines are equivalent</span>
 
 <span class="sd">        :param l2: Second line</span>
@@ -742,15 +806,18 @@
 <span class="sd">        equivalent even if their coordinate vectors are different.</span>
 
 <span class="sd">        :seealso: :meth:`__eq__`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span>
             <span class="nb">abs</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">unitvec</span><span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">vec</span><span class="p">),</span> <span class="n">base</span><span class="o">.</span><span class="n">unitvec</span><span class="p">(</span><span class="n">l2</span><span class="o">.</span><span class="n">vec</span><span class="p">)))</span> <span class="o">&lt;</span> <span class="n">tol</span> <span class="o">*</span> <span class="n">_eps</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.isparallel"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.isparallel">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">isparallel</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Line3.isparallel">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.isparallel">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">isparallel</span><span class="p">(</span>
         <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">,</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># type: ignore</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if lines are parallel</span>
 
 <span class="sd">        :param l2: Second line</span>
@@ -765,13 +832,16 @@
 <span class="sd">        ``l1 | l2`` as above but in binary operator form</span>
 
 <span class="sd">        :seealso: :meth:`__or__` :meth:`intersects`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">l2</span><span class="o">.</span><span class="n">w</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">tol</span> <span class="o">*</span> <span class="n">_eps</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.isintersecting"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.isintersecting">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">isintersecting</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Line3.isintersecting">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.isintersecting">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">isintersecting</span><span class="p">(</span>
         <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">,</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># type: ignore</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if lines are intersecting</span>
 
 <span class="sd">        :param l2: Second line</span>
@@ -787,11 +857,14 @@
 <span class="sd">              an infinite number of points.</span>
 
 <span class="sd">        :seealso: :meth:`__xor__` :meth:`intersects` :meth:`isparallel`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="n">l1</span><span class="o">.</span><span class="n">isparallel</span><span class="p">(</span><span class="n">l2</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">l1</span> <span class="o">*</span> <span class="n">l2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span> <span class="o">*</span> <span class="n">_eps</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.__eq__"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.__eq__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># type: ignore pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Line3.__eq__">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.__eq__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># type: ignore pylint: disable=no-self-argument</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if two lines are equivalent</span>
 
 <span class="sd">        :param l2: Second line</span>
@@ -806,11 +879,14 @@
 <span class="sd">        .. note:: There is a hardwired tolerance of 10eps.</span>
 
 <span class="sd">        :seealso: :meth:`isequal` :meth:`__ne__`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">l1</span><span class="o">.</span><span class="n">isequal</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.__ne__"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.__ne__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__ne__</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># type:ignore pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Line3.__ne__">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.__ne__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__ne__</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># type:ignore pylint: disable=no-self-argument</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if two lines are not equivalent</span>
 
 <span class="sd">        :param l2: Second line</span>
@@ -825,11 +901,14 @@
 <span class="sd">        .. note:: There is a hardwired tolerance of 10eps.</span>
 
 <span class="sd">        :seealso: :meth:`__ne__`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="n">l1</span><span class="o">.</span><span class="n">isequal</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.__or__"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.__or__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__or__</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># type:ignore pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Line3.__or__">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.__or__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__or__</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># type:ignore pylint: disable=no-self-argument</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Overloaded ``|`` operator tests for parallelism</span>
 
 <span class="sd">        :param l2: Second line</span>
@@ -844,11 +923,14 @@
 <span class="sd">        .. note:: There is a hardwired tolerance of 10eps.</span>
 
 <span class="sd">        :seealso: :meth:`isparallel` :meth:`__xor__`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">l1</span><span class="o">.</span><span class="n">isparallel</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.__xor__"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.__xor__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__xor__</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># type:ignore pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Line3.__xor__">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.__xor__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__xor__</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># type:ignore pylint: disable=no-self-argument</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Overloaded ``^`` operator tests for intersection</span>
 
 <span class="sd">        :param l2: Second line</span>
@@ -867,17 +949,20 @@
 <span class="sd">        .. note:: There is a hardwired tolerance of 10eps.</span>
 
 <span class="sd">        :seealso: :meth:`intersects` :meth:`isparallel` :meth:`isintersecting`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">l1</span><span class="o">.</span><span class="n">isintersecting</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span></div>
+
 
     <span class="c1"># ------------------------------------------------------------------------- #</span>
     <span class="c1">#  PLUCKER LINE DISTANCE AND INTERSECTION</span>
     <span class="c1"># ------------------------------------------------------------------------- #</span>
 
-<div class="viewcode-block" id="Line3.intersects"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.intersects">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">intersects</span><span class="p">(</span>
+<div class="viewcode-block" id="Line3.intersects">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.intersects">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">intersects</span><span class="p">(</span>
         <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span>  <span class="c1"># type:ignore</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">R3</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>  <span class="c1"># pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Intersection point of two lines</span>
 
 <span class="sd">        :param l2: Second line</span>
@@ -889,7 +974,7 @@
 <span class="sd">        ``None`` if the lines do not intersect or are equivalent.</span>
 
 <span class="sd">        :seealso: :meth:`commonperp :meth:`eq` :meth:`__xor__`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">l1</span> <span class="o">^</span> <span class="n">l2</span><span class="p">:</span>
             <span class="c1"># lines do intersect</span>
             <span class="k">return</span> <span class="o">-</span><span class="p">(</span>
@@ -898,13 +983,16 @@
                 <span class="o">-</span> <span class="n">l2</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">@</span> <span class="n">l1</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
             <span class="p">)</span> <span class="o">*</span> <span class="n">base</span><span class="o">.</span><span class="n">unitvec</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">l2</span><span class="o">.</span><span class="n">w</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># lines don&#39;t intersect</span>
+            <span class="c1"># lines don't intersect</span>
             <span class="k">return</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="Line3.distance"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.distance">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">distance</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Line3.distance">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.distance">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">distance</span><span class="p">(</span>
         <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span><span class="p">,</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># type:ignore</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>  <span class="c1"># pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Minimum distance between lines</span>
 
 <span class="sd">        :param l2: Second line</span>
@@ -914,12 +1002,12 @@
 <span class="sd">        :return: Closest distance between lines</span>
 <span class="sd">        :rtype: float</span>
 
-<span class="sd">        ``l1.distance(l2) is the minimum distance between two lines.</span>
+<span class="sd">        ``l1.distance(l2)`` is the minimum distance between two lines.</span>
 
 <span class="sd">        .. note:: Works for parallel, skew and intersecting lines.</span>
 
 <span class="sd">        :seealso: :meth:`closest_to_line`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">l1</span> <span class="o">|</span> <span class="n">l2</span><span class="p">:</span>
             <span class="c1"># lines are parallel</span>
             <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span>
@@ -931,14 +1019,17 @@
                 <span class="c1"># lines intersect at a point</span>
                 <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># lines don&#39;t intersect, find closest distance</span>
+                <span class="c1"># lines don't intersect, find closest distance</span>
                 <span class="n">l</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">l1</span> <span class="o">*</span> <span class="n">l2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">l2</span><span class="o">.</span><span class="n">w</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
         <span class="k">return</span> <span class="n">l</span></div>
 
-<div class="viewcode-block" id="Line3.closest_to_line"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.closest_to_line">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">closest_to_line</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Line3.closest_to_line">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.closest_to_line">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">closest_to_line</span><span class="p">(</span>
         <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span>  <span class="c1"># type:ignore</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Points3</span><span class="p">,</span> <span class="n">Rn</span><span class="p">]:</span>  <span class="c1"># pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Closest point between lines</span>
 
 <span class="sd">        :param l2: second line</span>
@@ -978,7 +1069,7 @@
 
 
 <span class="sd">        :seealso: :meth:`distance`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># point on line closest to another line</span>
         <span class="c1"># https://web.cs.iastate.edu/~cs577/handouts/plucker-coordinates.pdf</span>
         <span class="c1"># but (20) (21) is the negative of correct answer</span>
@@ -987,7 +1078,7 @@
         <span class="n">dists</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">intersection</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">):</span>
-            <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">"ignore"</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s2">"ignore"</span><span class="p">):</span>
                 <span class="c1"># compute the distance between all pairs of lines</span>
                 <span class="n">v1</span> <span class="o">=</span> <span class="n">line1</span><span class="o">.</span><span class="n">v</span>
                 <span class="n">w1</span> <span class="o">=</span> <span class="n">line1</span><span class="o">.</span><span class="n">w</span>
@@ -1030,8 +1121,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">points</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dists</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.closest_to_point"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.closest_to_point">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">closest_to_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">R3</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Line3.closest_to_point">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.closest_to_point">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">closest_to_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">R3</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Point on line closest to given point</span>
 
 <span class="sd">        :param x: An arbitrary 3D point</span>
@@ -1051,7 +1145,7 @@
 <span class="sd">            &gt;&gt;&gt; line1.closest_to_point([1, 1, 1])</span>
 
 <span class="sd">        :seealso: meth:`point`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># http://www.ahinson.com/algorithms_general/Sections/Geometry/PluckerLine.pdf</span>
         <span class="c1"># has different equation for moment, the negative</span>
 
@@ -1063,10 +1157,13 @@
 
         <span class="k">return</span> <span class="n">p</span><span class="p">,</span> <span class="n">d</span></div>
 
-<div class="viewcode-block" id="Line3.commonperp"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.commonperp">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">commonperp</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Line3.commonperp">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.commonperp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">commonperp</span><span class="p">(</span>
         <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Line3</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line3</span><span class="p">:</span>  <span class="c1"># type:ignore pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Common perpendicular to two lines</span>
 
 <span class="sd">        :param l2: Second line</span>
@@ -1078,7 +1175,7 @@
 <span class="sd">        Returns ``None`` if the lines are parallel.</span>
 
 <span class="sd">        :seealso: :meth:`intersect`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">l1</span> <span class="o">|</span> <span class="n">l2</span><span class="p">:</span>
             <span class="c1"># no common perpendicular if lines are parallel</span>
             <span class="k">return</span> <span class="kc">None</span>
@@ -1093,10 +1190,13 @@
 
         <span class="k">return</span> <span class="n">l1</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.__mul__"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.__mul__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Line3.__mul__">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.__mul__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span>
         <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">:</span> <span class="n">Line3</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>  <span class="c1"># type:ignore pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Reciprocal product</span>
 
 <span class="sd">        :param left: Left operand</span>
@@ -1114,17 +1214,20 @@
 <span class="sd">            - Pre-multiplication by an SE3 object is supported, see ``__rmul__``.</span>
 
 <span class="sd">        :seealso: :meth:`__rmul__`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">Line3</span><span class="p">):</span>
             <span class="c1"># reciprocal product</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">uw</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">right</span><span class="o">.</span><span class="n">uw</span><span class="p">,</span> <span class="n">left</span><span class="o">.</span><span class="n">v</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bad arguments&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"bad arguments"</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line3.__rmul__"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.__rmul__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__rmul__</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Line3.__rmul__">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.__rmul__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__rmul__</span><span class="p">(</span>
         <span class="n">right</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span> <span class="n">SE3</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line3</span><span class="p">:</span>  <span class="c1"># type:ignore pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Rigid-body transformation of 3D line</span>
 
 <span class="sd">        :param left: Rigid-body transform</span>
@@ -1137,23 +1240,26 @@
 <span class="sd">        ``T * line`` is the line transformed by the rigid body transformation ``T``.</span>
 
 <span class="sd">        :seealso: :meth:`__mul__`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.pose3d</span><span class="w"> </span><span class="kn">import</span> <span class="n">SE3</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">SE3</span><span class="p">):</span>
             <span class="n">A</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span><span class="o">.</span><span class="n">Ad</span><span class="p">()</span>
             <span class="k">return</span> <span class="n">right</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">right</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>  <span class="c1"># premultiply by SE3.Ad</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;can only premultiply Line3 by SE3&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"can only premultiply Line3 by SE3"</span><span class="p">)</span></div>
+
 
     <span class="c1"># ------------------------------------------------------------------------- #</span>
     <span class="c1">#  PLUCKER LINE DISTANCE AND INTERSECTION</span>
     <span class="c1"># ------------------------------------------------------------------------- #</span>
 
-<div class="viewcode-block" id="Line3.intersect_plane"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.intersect_plane">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">intersect_plane</span><span class="p">(</span>
+<div class="viewcode-block" id="Line3.intersect_plane">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.intersect_plane">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">intersect_plane</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">plane</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike4</span><span class="p">,</span> <span class="n">Plane3</span><span class="p">],</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">R3</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Line intersection with a plane</span>
 
 <span class="sd">        :param plane: A plane</span>
@@ -1178,7 +1284,7 @@
 <span class="sd">            - ``.lam`` the `lambda` value for the point on the line.</span>
 
 <span class="sd">        :sealso: :meth:`point` :class:`Plane`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="c1"># Line U, V</span>
         <span class="c1"># Plane N n</span>
@@ -1196,12 +1302,15 @@
             <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="n">plane</span><span class="o">.</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="n">plane</span><span class="o">.</span><span class="n">d</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)</span> <span class="o">/</span> <span class="n">den</span>
 
             <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lam</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;intersect_plane&quot;</span><span class="p">,</span> <span class="s2">&quot;p lam&quot;</span><span class="p">)(</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"intersect_plane"</span><span class="p">,</span> <span class="s2">"p lam"</span><span class="p">)(</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="Line3.intersect_volume"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.intersect_volume">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">intersect_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">:</span> <span class="n">ArrayLike6</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Points3</span><span class="p">,</span> <span class="n">Rn</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Line3.intersect_volume">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.intersect_volume">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">intersect_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">:</span> <span class="n">ArrayLike6</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Points3</span><span class="p">,</span> <span class="n">Rn</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Line intersection with a volume</span>
 
 <span class="sd">        :param bounds: Bounds of an axis-aligned rectangular cuboid</span>
@@ -1223,7 +1332,7 @@
 
 
 <span class="sd">        See also :meth:`plot` :meth:`point`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="n">intersections</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -1254,11 +1363,11 @@
             <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
                 <span class="k">continue</span>  <span class="c1"># no intersection with this plane</span>
 
-            <span class="c1"># print(&#39;face %d: n=(%f, %f, %f)&#39; % (face, plane.n[0], plane.n[1], plane.n[2]))</span>
-            <span class="c1"># print(&#39;       : p=(%f, %f, %f)  &#39; % (p[0], p[1], p[2]))</span>
+            <span class="c1"># print('face %d: n=(%f, %f, %f)' % (face, plane.n[0], plane.n[1], plane.n[2]))</span>
+            <span class="c1"># print('       : p=(%f, %f, %f)  ' % (p[0], p[1], p[2]))</span>
 
-            <span class="c1"># print(&#39;face&#39;, face, &#39; point &#39;, p, &#39; plane &#39;, plane)</span>
-            <span class="c1"># print(&#39;lamda&#39;, lam, self.point(lam))</span>
+            <span class="c1"># print('face', face, ' point ', p, ' plane ', plane)</span>
+            <span class="c1"># print('lamda', lam, self.point(lam))</span>
             <span class="c1"># find if intersection point is within the cube face</span>
             <span class="c1">#  test x,y,z simultaneously</span>
             <span class="n">k</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">&gt;=</span> <span class="n">bounds23</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">p</span> <span class="o">&lt;=</span> <span class="n">bounds23</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
@@ -1267,31 +1376,35 @@
                 <span class="c1"># if within bounds, add</span>
                 <span class="n">intersections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span>
 
-        <span class="c1">#                     print(&#39;  HIT&#39;);</span>
+        <span class="c1">#                     print('  HIT');</span>
 
         <span class="c1"># put them in ascending order</span>
         <span class="n">intersections</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
         <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">intersections</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;intersect_volume&quot;</span><span class="p">,</span> <span class="s2">&quot;p lam&quot;</span><span class="p">)(</span><span class="n">p</span><span class="p">,</span> <span class="n">intersections</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"intersect_volume"</span><span class="p">,</span> <span class="s2">"p lam"</span><span class="p">)(</span><span class="n">p</span><span class="p">,</span> <span class="n">intersections</span><span class="p">)</span></div>
+
 
     <span class="c1"># ------------------------------------------------------------------------- #</span>
     <span class="c1">#  PLOT AND DISPLAY</span>
     <span class="c1"># ------------------------------------------------------------------------- #</span>
 
-<div class="viewcode-block" id="Line3.plot"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.plot">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span>
+<div class="viewcode-block" id="Line3.plot">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.plot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="n">pos</span><span class="p">,</span>
         <span class="n">bounds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">         Plot a line</span>
 
 <span class="sd">        :param bounds: Bounds of an axis-aligned rectangular cuboid as [xmin xmax ymin ymax zmin zmax], optional</span>
 <span class="sd">        :type plane: 6-element array_like</span>
-<span class="sd">        :param **kwargs: Extra arguents passed to `Line2D &lt;https://matplotlib.org/3.2.2/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D&gt;`_</span>
+<span class="sd">        :param kwargs: Extra arguments passed to `Line2D &lt;https://matplotlib.org/3.2.2/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D&gt;`_</span>
+<span class="sd">        :type kwargs: dict</span>
 <span class="sd">        :return: Plotted line</span>
 <span class="sd">        :rtype: Matplotlib artists</span>
 
@@ -1303,11 +1416,11 @@
 
 <span class="sd">        The line color or style is specified by:</span>
 
-<span class="sd">            - a  MATLAB-style linestyle like &#39;k--&#39;</span>
+<span class="sd">            - a  MATLAB-style linestyle like ``"k--"``</span>
 <span class="sd">            - additional arguments passed to `Line2D &lt;https://matplotlib.org/3.2.2/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D&gt;`_</span>
 
 <span class="sd">        :seealso: :meth:`intersect_volume`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
@@ -1331,8 +1444,9 @@
                 <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">lines</span></div>
 
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Convert Line3 to a string</span>
 
 <span class="sd">        :return: String representation of line parameters</span>
@@ -1348,11 +1462,11 @@
 
 <span class="sd">        For a multi-valued ``Line3``, one line per value in ``Line3``.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="k">return</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="s2">&quot;{{ </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2">; </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2">}}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="s2">"{{ </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2">; </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2">}}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                     <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">removesmall</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">vec</span><span class="p">))</span>
                 <span class="p">)</span>
                 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span>
@@ -1360,7 +1474,7 @@
         <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Display Line3</span>
 
 <span class="sd">        :return: String representation of line parameters</span>
@@ -1369,28 +1483,28 @@
 <span class="sd">        Displays the line parameters in compact single line format.</span>
 
 <span class="sd">        For a multi-valued ``Line3``, one line per value in ``Line3``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;Line3([</span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">])&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="k">return</span> <span class="s2">"Line3([</span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">])"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span>
-                <span class="s2">&quot;Line3([</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="o">+</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="s2">"Line3([</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="o">+</span> <span class="s2">",</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
                     <span class="p">[</span>
-                        <span class="s2">&quot;  [</span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="s2">"  [</span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">, </span><span class="si">{:.5g}</span><span class="s2">]"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                             <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">tw</span><span class="p">)</span>
                         <span class="p">)</span>
                         <span class="k">for</span> <span class="n">tw</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
                     <span class="p">]</span>
                 <span class="p">)</span>
-                <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">])&quot;</span>
+                <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">])"</span>
             <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_repr_pretty_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Pretty string for IPython</span>
 
 <span class="sd">        :param p: pretty printer handle (ignored)</span>
@@ -1403,14 +1517,14 @@
 
 <span class="sd">            In [1]: x</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">p</span><span class="o">.</span><span class="n">break_</span><span class="p">()</span>
-                <span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="c1">#         function z = side(self1, pl2)</span>
     <span class="c1">#             Plucker.side Plucker side operator</span>
@@ -1420,16 +1534,18 @@
     <span class="c1">#</span>
     <span class="c1">#             # See also Plucker.or.</span>
     <span class="c1">#</span>
-    <span class="c1">#             if ~isa(self2, &#39;Plucker&#39;)</span>
-    <span class="c1">#                 error(&#39;SMTB:Plucker:badarg&#39;, &#39;both arguments to | must be Plucker objects&#39;);</span>
+    <span class="c1">#             if ~isa(self2, 'Plucker')</span>
+    <span class="c1">#                 error('SMTB:Plucker:badarg', 'both arguments to | must be Plucker objects');</span>
     <span class="c1">#             end</span>
     <span class="c1">#             L1 = pl1.line(); L2 = pl2.line();</span>
     <span class="c1">#</span>
-    <span class="c1">#             z = L1([1 5 2 6 3 4]) * L2([5 1 6 2 4 3])&#39;;</span>
+    <span class="c1">#             z = L1([1 5 2 6 3 4]) * L2([5 1 6 2 4 3])';</span>
     <span class="c1">#         end</span>
 
-<div class="viewcode-block" id="Line3.side"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Line3.side">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">side</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Line3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Line3.side">
+<a class="viewcode-back" href="../../3d_line.html#spatialmath.geom3d.Line3.side">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">side</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Line3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plucker side operator</span>
 
 <span class="sd">        :param other: second line</span>
@@ -1438,24 +1554,26 @@
 <span class="sd">        :rtype: float</span>
 
 <span class="sd">        This permuted dot product operator is zero whenever the lines intersect or are parallel.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Line3</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;argument must be a Line3&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"argument must be a Line3"</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span> <span class="n">other</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span></div></div>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span> <span class="n">other</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span></div>
+</div>
+
 
     <span class="c1"># Static factory methods for constructors from exotic representations</span>
 
 
-<div class="viewcode-block" id="Plucker"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Plucker">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Plucker</span><span class="p">(</span><span class="n">Line3</span><span class="p">):</span>
-<div class="viewcode-block" id="Plucker.__init__"><a class="viewcode-back" href="../../classes-3d.html#spatialmath.geom3d.Plucker.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Plucker</span><span class="p">(</span><span class="n">Line3</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;use Line class instead&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span></div></div>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"use Line class instead"</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
 
@@ -1469,17 +1587,17 @@
     <span class="c1"># print(L2)</span>
     <span class="c1"># print(L2.intersect_plane([0, 0, 1, 0]))</span>
 
-    <span class="c1"># print(&#39;rx&#39;)</span>
+    <span class="c1"># print('rx')</span>
     <span class="c1"># L2 = SE3.Rx(np.pi/4) * L</span>
     <span class="c1"># print(L2)</span>
     <span class="c1"># print(L2.intersect_plane([0, 0, 1, 0]))</span>
 
-    <span class="c1"># print(&#39;ry&#39;)</span>
+    <span class="c1"># print('ry')</span>
     <span class="c1"># L2 = SE3.Ry(np.pi/4) * L</span>
     <span class="c1"># print(L2)</span>
     <span class="c1"># print(L2.intersect_plane([0, 0, 1, 0]))</span>
 
-    <span class="c1"># print(&#39;rz&#39;)</span>
+    <span class="c1"># print('rz')</span>
     <span class="c1"># L2 = SE3.Rz(np.pi/4) * L</span>
     <span class="c1"># print(L2)</span>
     <span class="c1"># print(L2.intersect_plane([0, 0, 1, 0]))</span>
@@ -1487,18 +1605,18 @@
     <span class="c1"># base.plotvol3(10)</span>
     <span class="c1"># S = Twist3.UnitRevolute([0, 0, 1], [2, 3, 2], 0.5);</span>
     <span class="c1"># L = S.line()</span>
-    <span class="c1"># L.plot(&#39;k:&#39;, linewidth=2)</span>
+    <span class="c1"># L.plot('k:', linewidth=2)</span>
 
     <span class="c1"># a = Plane3([0.1, -1, -1, 2])</span>
     <span class="c1"># base.plotvol3(5)</span>
-    <span class="c1"># a.plot(color=&#39;r&#39;, alpha=0.3)</span>
+    <span class="c1"># a.plot(color='r', alpha=0.3)</span>
     <span class="c1"># plt.show(block=True)</span>
 
     <span class="c1"># a = SE3.Exp([2,0,0,0,0,0])</span>
 
     <span class="n">exec</span><span class="p">(</span>
         <span class="nb">open</span><span class="p">(</span>
-            <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;tests&quot;</span> <span class="o">/</span> <span class="s2">&quot;test_geom3d.py&quot;</span>
+            <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span> <span class="o">/</span> <span class="s2">"tests"</span> <span class="o">/</span> <span class="s2">"test_geom3d.py"</span>
         <span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
     <span class="p">)</span>  <span class="c1"># pylint: disable=exec-used</span>
 </pre></div>
@@ -1511,7 +1629,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 30-Jan-2025.
+      <span class="lastupdated">Last updated on 27-Aug-2026.
       </span></p>
   </div>
 

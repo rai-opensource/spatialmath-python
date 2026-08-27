@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>spatialmath.spatialvector &mdash; Spatial Maths package  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -78,17 +78,17 @@
 <span class="c1"># Copyright (c) 2000 Peter Corke</span>
 <span class="c1"># MIT Licence, see details in top-level file: LICENCE</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">A set of cooperating classes to support Featherstone&#39;s spatial vector formalism</span>
+<span class="sd">"""</span>
+<span class="sd">A set of cooperating classes to support Featherstone's spatial vector formalism</span>
 
 
 <span class="sd">.. inheritance-diagram:: spatialmath.spatialvector</span>
 <span class="sd">   :top-classes: collections.UserList</span>
 <span class="sd">   :parts: 1</span>
 
-<span class="sd">.. note:: Compared to Featherstone&#39;s papers these spatial vectors have the </span>
+<span class="sd">.. note:: Compared to Featherstone's papers these spatial vectors have the</span>
 <span class="sd">    translational components first, followed by rotational components.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">abstractmethod</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -98,8 +98,10 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.twist</span><span class="w"> </span><span class="kn">import</span> <span class="n">Twist3</span>
 
 
-<div class="viewcode-block" id="SpatialVector"><a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpatialVector</span><span class="p">(</span><span class="n">BasePoseList</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialVector">
+<a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpatialVector</span><span class="p">(</span><span class="n">BasePoseList</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Spatial 6-vector abstract superclass</span>
 
 <span class="sd">    This class has two abstract subclasses, which each have concrete subclasses.</span>
@@ -144,19 +146,21 @@
 
 <span class="sd">    **References:**</span>
 
-<span class="sd">    - &quot;Robot Dynamics Algorithms&quot;, R. Featherstone, volume 22,</span>
+<span class="sd">    - "Robot Dynamics Algorithms", R. Featherstone, volume 22,</span>
 <span class="sd">      Springer International Series in Engineering and Computer Science,</span>
 <span class="sd">      Springer, 1987.</span>
-<span class="sd">    - &quot;A beginner&#39;s guide to 6-d vectors (part 1)&quot;, R. Featherstone,</span>
+<span class="sd">    - "A beginner's guide to 6-d vectors (part 1)", R. Featherstone,</span>
 <span class="sd">      IEEE Robotics Automation Magazine, 17(3):83-94, Sep. 2010.</span>
 <span class="sd">    - `Online notes &lt;http://users.cecs.anu.edu.au/~roy/spatial&gt;`_</span>
 <span class="sd">      Methods:</span>
 
 <span class="sd">    :seealso: :func:`~spatialmath.spatialvector.SpatialM6`, :func:`~spatialmath.spatialvector.SpatialF6`, :func:`~spatialmath.spatialvector.SpatialVelocity`, :func:`~spatialmath.spatialvector.SpatialAcceleration`, :func:`~spatialmath.spatialvector.SpatialForce`, :func:`~spatialmath.spatialvector.SpatialMomentum`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-<div class="viewcode-block" id="SpatialVector.__init__"><a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialVector.__init__">
+<a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create a new spatial vector (abstract superclass)</span>
 
 <span class="sd">        :param value: Value of the</span>
@@ -167,8 +171,8 @@
 <span class="sd">        - ``SpatialVector(A)`` is a spatial vector array with N elements, constructed from the columns of the 6xN</span>
 <span class="sd">          array ``A``.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># print(&#39;spatialVec6 init&#39;)</span>
+<span class="sd">        """</span>
+        <span class="c1"># print('spatialVec6 init')</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">base</span><span class="o">.</span><span class="n">isvector</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
@@ -180,20 +184,23 @@
         <span class="k">elif</span> <span class="n">base</span><span class="o">.</span><span class="n">ismatrix</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="kc">None</span><span class="p">)):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">T</span><span class="p">]</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">arghandler</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bad argument to constructor&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"bad argument to constructor"</span><span class="p">)</span></div>
+
 
         <span class="c1"># elif isinstance(value, list):</span>
-        <span class="c1">#     assert all(map(lambda x: base.isvector(x, 6), value)), &#39;all elements of list must have valid shape and value for the class&#39;</span>
+        <span class="c1">#     assert all(map(lambda x: base.isvector(x, 6), value)), 'all elements of list must have valid shape and value for the class'</span>
         <span class="c1">#     self.data = [np.array(x) for x in value]</span>
         <span class="c1"># else:</span>
-        <span class="c1">#     raise ValueError(&#39;bad arguments to constructor&#39;)</span>
+        <span class="c1">#     raise ValueError('bad arguments to constructor')</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_identity</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,))</span>
 
-<div class="viewcode-block" id="SpatialVector.isvalid"><a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector.isvalid">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">isvalid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">check</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialVector.isvalid">
+<a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector.isvalid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">isvalid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">check</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if vector is valid spatial vector</span>
 
 <span class="sd">        :param x: vector to test</span>
@@ -202,22 +209,23 @@
 <span class="sd">        :type check: bool</span>
 <span class="sd">        :return: True if the matrix has shape (6,).</span>
 <span class="sd">        :rtype: bool</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_import</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">isvalid</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="n">check</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">value</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;bad type passed&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"bad type passed"</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Shape of the object&#39;s interal matrix representation</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Shape of the object's interal matrix representation</span>
 
 <span class="sd">        :return: (6,)</span>
 <span class="sd">        :rtype: tuple</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span><span class="mi">6</span><span class="p">,)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
@@ -226,7 +234,7 @@
     <span class="c1"># ------------------------------------------------------------------------ #</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 
 <span class="sd">        :return:</span>
 <span class="sd">        SpatialVec6.display Display parameters</span>
@@ -239,11 +247,11 @@
 <span class="sd">         - This method is invoked implicitly at the command line when the result</span>
 <span class="sd">           of an expression is a serial vector subclass object and the command has</span>
 <span class="sd">           no trailing semicolon.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Pretty string representation (superclass method)</span>
 
 <span class="sd">        :return: readable representation of the spatial vector</span>
@@ -254,17 +262,19 @@
 
 <span class="sd">        If V is an array of spatial vector objects return a string with one</span>
 <span class="sd">        line per element.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">typ</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="k">return</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="s2">&quot;</span><span class="si">{:s}</span><span class="s2">[</span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2">; </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+                <span class="s2">"</span><span class="si">{:s}</span><span class="s2">[</span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2">; </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{:.5g}</span><span class="s2">]"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
                 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
             <span class="p">]</span>
         <span class="p">)</span>
 
-<div class="viewcode-block" id="SpatialVector.__neg__"><a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector.__neg__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialVector.__neg__">
+<a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector.__neg__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Overloaded unary ``-`` operator (superclass method)</span>
 
 <span class="sd">        :return: negative of spatial vector</span>
@@ -274,17 +284,20 @@
 <span class="sd">        the element-wise negative of ``v``.</span>
 
 <span class="sd">        :seealso: :func:`__sub__`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="c1"># for i=1:numel(obj)</span>
         <span class="c1"># y(i) = obj.new(-obj(i).vw);</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">([</span><span class="o">-</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="SpatialVector.__add__"><a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector.__add__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span>
+
+<div class="viewcode-block" id="SpatialVector.__add__">
+<a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector.__add__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span>
         <span class="n">left</span><span class="p">,</span> <span class="n">right</span>
     <span class="p">):</span>  <span class="c1"># lgtm[py/not-named-self] pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Overloaded ``*`` operator (superclass method)</span>
 
 <span class="sd">        :return: sum of spatial vectors</span>
@@ -297,20 +310,23 @@
 <span class="sd">        V2 (1xN) the result is an array (1xN).</span>
 
 <span class="sd">        :seealso: :func:`__sub__`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="c1"># TODO broadcasting with binop</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">type</span><span class="p">(</span><span class="n">right</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;can only add spatial vectors of same type&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"can only add spatial vectors of same type"</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;can only add equal length arrays of spatial vectors&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"can only add equal length arrays of spatial vectors"</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">left</span><span class="o">.</span><span class="vm">__class__</span><span class="p">([</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">data</span><span class="p">)])</span></div>
 
-<div class="viewcode-block" id="SpatialVector.__sub__"><a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector.__sub__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__sub__</span><span class="p">(</span>
+
+<div class="viewcode-block" id="SpatialVector.__sub__">
+<a class="viewcode-back" href="../../6d_spatial.html#spatialmath.spatialvector.SpatialVector.__sub__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__sub__</span><span class="p">(</span>
         <span class="n">left</span><span class="p">,</span> <span class="n">right</span>
     <span class="p">):</span>  <span class="c1"># lgtm[py/not-named-self] pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Overloaded ``-`` operator (superclass method)</span>
 
 <span class="sd">        :return: difference of spatial vectors</span>
@@ -324,18 +340,19 @@
 <span class="sd">        an array (1xN).</span>
 
 <span class="sd">        :seealso: :func:`__add__`, :func:`__neg__`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">type</span><span class="p">(</span><span class="n">right</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;can only add spatial vectors of same type&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"can only add spatial vectors of same type"</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;can only add equal length arrays of spatial vectors&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"can only add equal length arrays of spatial vectors"</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">left</span><span class="o">.</span><span class="vm">__class__</span><span class="p">([</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">data</span><span class="p">)])</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__rmul__</span><span class="p">(</span>
         <span class="n">right</span><span class="p">,</span> <span class="n">left</span>
     <span class="p">):</span>  <span class="c1"># lgtm[py/not-named-self] pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Overloaded ``*`` operator (superclass method)</span>
 
 <span class="sd">        :return: transformed spatial vectors</span>
@@ -357,7 +374,7 @@
 <span class="sd">        SE3, Twist3  SpatialMomentum       SpatialMomentum      adjoint transpose product</span>
 <span class="sd">        SE3, Twist3  SpatialForce          SpatialForce         adjoint transpose product</span>
 <span class="sd">        ===========  ====================  ===================  =========================</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="p">(</span><span class="n">SE3</span><span class="p">,</span> <span class="n">Twist3</span><span class="p">)):</span>
             <span class="n">X</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">Ad</span><span class="p">()</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">SpatialM6</span><span class="p">):</span>
@@ -365,27 +382,32 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">right</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">right</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;left operand of * must be SE3 or Twist3&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"left operand of * must be SE3 or Twist3"</span><span class="p">)</span></div>
+
 
 
 <span class="c1"># ------------------------------------------------------------------------- #</span>
 
 
-<div class="viewcode-block" id="SpatialM6"><a class="viewcode-back" href="../../6d_m6.html#spatialmath.spatialvector.SpatialM6">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpatialM6</span><span class="p">(</span><span class="n">SpatialVector</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialM6">
+<a class="viewcode-back" href="../../6d_m6.html#spatialmath.spatialvector.SpatialM6">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpatialM6</span><span class="p">(</span><span class="n">SpatialVector</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Spatial 6-vector abstract motion superclass</span>
 
 <span class="sd">    Abstract superclass that represents the vector space for spatial motion.</span>
 
 <span class="sd">    :seealso: :func:`~spatialmath.spatialvector.SpatialVelocity`, :func:`~spatialmath.spatialvector.SpatialAcceleration`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SpatialM6.cross"><a class="viewcode-back" href="../../6d_m6.html#spatialmath.spatialvector.SpatialM6.cross">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialM6.cross">
+<a class="viewcode-back" href="../../6d_m6.html#spatialmath.spatialvector.SpatialM6.cross">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Spatial vector cross product</span>
 
 <span class="sd">        :param other: spatial motion vector</span>
@@ -404,7 +426,7 @@
 <span class="sd">        - if :math:`\vec{f} \in \mat{F}^6` is a spatial force vector fixed in a</span>
 <span class="sd">          body with velocity :math:`\vec{v}` then</span>
 <span class="sd">          :math:`\dvec{f} = \vec{v} \times^* \vec{f}` or the ``crm()`` function.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="c1"># v = obj.vw;</span>
         <span class="c1"># # vcross = [ skew(w) skew(v); zeros(3,3) skew(w) ]</span>
@@ -425,34 +447,44 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SpatialF6</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">SpatialForce</span><span class="p">(</span><span class="o">-</span><span class="n">vcross</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">other</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>  <span class="c1"># x* operator (crf)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;type mismatch&quot;</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"type mismatch"</span><span class="p">)</span></div>
+</div>
+
 
 
 <span class="c1"># ------------------------------------------------------------------------- #</span>
 
 
-<div class="viewcode-block" id="SpatialF6"><a class="viewcode-back" href="../../6d_f6.html#spatialmath.spatialvector.SpatialF6">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpatialF6</span><span class="p">(</span><span class="n">SpatialVector</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialF6">
+<a class="viewcode-back" href="../../6d_f6.html#spatialmath.spatialvector.SpatialF6">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpatialF6</span><span class="p">(</span><span class="n">SpatialVector</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Spatial 6-vector abstract force superclass</span>
 
 <span class="sd">    Abstract superclass that represents the vector space for spatial force.</span>
 
 <span class="sd">    :seealso: :func:`~spatialmath.spatialvector.SpatialForce`, :func:`~spatialmath.spatialvector.SpatialMomentum`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SpatialF6.dot"><a class="viewcode-back" href="../../6d_f6.html#spatialmath.spatialvector.SpatialF6.dot">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span></div></div>
+<div class="viewcode-block" id="SpatialF6.dot">
+<a class="viewcode-back" href="../../6d_f6.html#spatialmath.spatialvector.SpatialF6.dot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span></div>
+</div>
+
 
 
 <span class="c1"># ------------------------------------------------------------------------- #</span>
 
 
-<div class="viewcode-block" id="SpatialVelocity"><a class="viewcode-back" href="../../6d_velocity.html#spatialmath.spatialvector.SpatialVelocity">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpatialVelocity</span><span class="p">(</span><span class="n">SpatialM6</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialVelocity">
+<a class="viewcode-back" href="../../6d_velocity.html#spatialmath.spatialvector.SpatialVelocity">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpatialVelocity</span><span class="p">(</span><span class="n">SpatialM6</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Spatial velocity class</span>
 
 <span class="sd">    Concrete subclass of SpatialM6 that represents the</span>
@@ -464,13 +496,16 @@
 
 <span class="sd">    :seealso: :func:`~spatialmath.spatialvector.SpatialM6`, :func:`~spatialmath.spatialvector.SpatialAcceleration`</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-<div class="viewcode-block" id="SpatialVelocity.__init__"><a class="viewcode-back" href="../../6d_velocity.html#spatialmath.spatialvector.SpatialVelocity.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="SpatialVelocity.__init__">
+<a class="viewcode-back" href="../../6d_velocity.html#spatialmath.spatialvector.SpatialVelocity.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
+
     <span class="c1"># def cross(self, other):</span>
-    <span class="c1">#     r&quot;&quot;&quot;</span>
+    <span class="c1">#     r"""</span>
     <span class="c1">#     Spatial vector cross product</span>
 
     <span class="c1">#     :param other: spatial velocity vector</span>
@@ -485,13 +520,13 @@
     <span class="c1">#       ``v1`` and spatial momentum ``m2`` or :math:`\vec{v}_1 \times^* \vec{m}_2`</span>
 
     <span class="c1">#     :seealso: :func:`~spatialmath.spatialvector.SpatialM6`, :func:`~spatialmath.spatialvector.SpatialVelocity.__xor__`</span>
-    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     """</span>
     <span class="c1">#     if not len(self) == 1 or not len(other) == 1:</span>
-    <span class="c1">#         raise ValueError(&quot;can only perform cross product on single-valued spatial vectors&quot;)</span>
+    <span class="c1">#         raise ValueError("can only perform cross product on single-valued spatial vectors")</span>
     <span class="c1">#     return SpatialAcceleration(super().cross(other))</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__matmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Overloaded ``@`` operator (superclass method)</span>
 
 <span class="sd">        :param other: spatial velocity vector</span>
@@ -511,15 +546,18 @@
 <span class="sd">            and is somewhat invocative of multiplication.</span>
 
 <span class="sd">        :seealso: :func:`~spatialmath.spatialvector.SpatialVelocity.cross`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
 
 
 <span class="c1"># ------------------------------------------------------------------------- #</span>
 
 
-<div class="viewcode-block" id="SpatialAcceleration"><a class="viewcode-back" href="../../6d_acceleration.html#spatialmath.spatialvector.SpatialAcceleration">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpatialAcceleration</span><span class="p">(</span><span class="n">SpatialM6</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialAcceleration">
+<a class="viewcode-back" href="../../6d_acceleration.html#spatialmath.spatialvector.SpatialAcceleration">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpatialAcceleration</span><span class="p">(</span><span class="n">SpatialM6</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Spatial acceleration class</span>
 
 <span class="sd">    Concrete subclass of SpatialM6 that represents the</span>
@@ -531,17 +569,23 @@
 
 <span class="sd">    :seealso: :func:`~spatialmath.spatialvector.SpatialM6`, :func:`~spatialmath.spatialvector.SpatialVelocity`</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-<div class="viewcode-block" id="SpatialAcceleration.__init__"><a class="viewcode-back" href="../../6d_acceleration.html#spatialmath.spatialvector.SpatialAcceleration.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div></div>
+<div class="viewcode-block" id="SpatialAcceleration.__init__">
+<a class="viewcode-back" href="../../6d_acceleration.html#spatialmath.spatialvector.SpatialAcceleration.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+</div>
+
 
 
 <span class="c1"># ------------------------------------------------------------------------- #</span>
 
 
-<div class="viewcode-block" id="SpatialForce"><a class="viewcode-back" href="../../6d_force.html#spatialmath.spatialvector.SpatialForce">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpatialForce</span><span class="p">(</span><span class="n">SpatialF6</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialForce">
+<a class="viewcode-back" href="../../6d_force.html#spatialmath.spatialvector.SpatialForce">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpatialForce</span><span class="p">(</span><span class="n">SpatialF6</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Spatial force class</span>
 
 <span class="sd">    Concrete subclass of SpatialF6 and represents the</span>
@@ -552,10 +596,13 @@
 <span class="sd">       :parts: 1</span>
 
 <span class="sd">    :seealso: :func:`~spatialmath.spatialvector.SpatialF6`, :func:`~spatialmath.spatialvector.SpatialMomentum`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-<div class="viewcode-block" id="SpatialForce.__init__"><a class="viewcode-back" href="../../6d_force.html#spatialmath.spatialvector.SpatialForce.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="SpatialForce.__init__">
+<a class="viewcode-back" href="../../6d_force.html#spatialmath.spatialvector.SpatialForce.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
 
     <span class="c1"># n = SpatialForce(val);</span>
 
@@ -566,12 +613,15 @@
         <span class="k">return</span> <span class="n">SpatialForce</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">Ad</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">right</span><span class="o">.</span><span class="n">A</span><span class="p">)</span></div>
 
 
+
 <span class="c1"># ------------------------------------------------------------------------- #</span>
 
 
-<div class="viewcode-block" id="SpatialMomentum"><a class="viewcode-back" href="../../6d_momentum.html#spatialmath.spatialvector.SpatialMomentum">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpatialMomentum</span><span class="p">(</span><span class="n">SpatialF6</span><span class="p">):</span>
+<div class="viewcode-block" id="SpatialMomentum">
+<a class="viewcode-back" href="../../6d_momentum.html#spatialmath.spatialvector.SpatialMomentum">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpatialMomentum</span><span class="p">(</span><span class="n">SpatialF6</span><span class="p">):</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Spatial momentum class</span>
 
 <span class="sd">    Concrete subclass of SpatialF6 and represents the</span>
@@ -582,17 +632,23 @@
 <span class="sd">       :parts: 1</span>
 
 <span class="sd">    :seealso: :func:`~spatialmath.spatialvector.SpatialF6`,  :func:`~spatialmath.spatialvector.SpatialForce`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-<div class="viewcode-block" id="SpatialMomentum.__init__"><a class="viewcode-back" href="../../6d_momentum.html#spatialmath.spatialvector.SpatialMomentum.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div></div>
+<div class="viewcode-block" id="SpatialMomentum.__init__">
+<a class="viewcode-back" href="../../6d_momentum.html#spatialmath.spatialvector.SpatialMomentum.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+</div>
+
 
 
 <span class="c1"># ------------------------------------------------------------------------- #</span>
 
 
-<div class="viewcode-block" id="SpatialInertia"><a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpatialInertia</span><span class="p">(</span><span class="n">BasePoseList</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialInertia">
+<a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpatialInertia</span><span class="p">(</span><span class="n">BasePoseList</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Spatial inertia class</span>
 
 <span class="sd">    Spatial inertia of a body in 3D space.</span>
@@ -606,10 +662,12 @@
 
 <span class="sd">    :seealso: :func:`~spatialmath.spatialvector.SpatialM6`, :func:`~spatialmath.spatialvector.SpatialF6`, :func:`~spatialmath.spatialvector.SpatialVelocity`, :func:`~spatialmath.spatialvector.SpatialAcceleration`, :func:`~spatialmath.spatialvector.SpatialForce`, :func:`~spatialmath.spatialvector.SpatialMomentum`.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-<div class="viewcode-block" id="SpatialInertia.__init__"><a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialInertia.__init__">
+<a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create a new spatial inertia</span>
 
 <span class="sd">        :param m: mass</span>
@@ -627,7 +685,7 @@
 <span class="sd">          to ``I`` (6x6).</span>
 
 <span class="sd">        :SymPy: supported</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">r</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">I</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -645,16 +703,19 @@
             <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">((</span><span class="n">m</span><span class="p">,)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># sym friendly</span>
             <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[</span><span class="n">M</span><span class="p">,</span> <span class="n">m</span> <span class="o">*</span> <span class="n">C</span><span class="o">.</span><span class="n">T</span><span class="p">],</span> <span class="p">[</span><span class="n">m</span> <span class="o">*</span> <span class="n">C</span><span class="p">,</span> <span class="n">I</span> <span class="o">+</span> <span class="n">m</span> <span class="o">*</span> <span class="n">C</span> <span class="o">@</span> <span class="n">C</span><span class="o">.</span><span class="n">T</span><span class="p">]])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bad values&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"bad values"</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">I</span><span class="p">]</span></div>
+
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_identity</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-<div class="viewcode-block" id="SpatialInertia.isvalid"><a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia.isvalid">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">isvalid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">check</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpatialInertia.isvalid">
+<a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia.isvalid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">isvalid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">check</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if matrix is valid spatial inertia</span>
 
 <span class="sd">        :param x: matrix to test</span>
@@ -663,24 +724,25 @@
 <span class="sd">        :type check: bool</span>
 <span class="sd">        :return: True if the matrix has shape (6,6).</span>
 <span class="sd">        :rtype: bool</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Shape of the object&#39;s interal matrix representation</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Shape of the object's interal matrix representation</span>
 
 <span class="sd">        :return: (6,6)</span>
 <span class="sd">        :rtype: tuple</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">SpatialInertia</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Convert to string</span>
 
 <span class="sd">        s = SI.char() is a string showing spatial inertia parameters in a</span>
@@ -689,16 +751,18 @@
 <span class="sd">        inertia values in a vertical list.</span>
 
 <span class="sd">        See also SpatialInertia.display.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SpatialInertia.__add__"><a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia.__add__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span>
+<div class="viewcode-block" id="SpatialInertia.__add__">
+<a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia.__add__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span>
         <span class="n">left</span><span class="p">,</span> <span class="n">right</span>
     <span class="p">):</span>  <span class="c1"># lgtm[py/not-named-self] pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Spatial inertia addition</span>
 <span class="sd">        :param left:</span>
 <span class="sd">        :param right:</span>
@@ -707,15 +771,18 @@
 
 <span class="sd">        - ``SI1 + SI2`` is the SpatialInertia of a composite body when bodies with</span>
 <span class="sd">           SpatialInertia ``SI1`` and ``SI2`` are connected.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">SpatialInertia</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;can only add spatial inertia to spatial inertia&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"can only add spatial inertia to spatial inertia"</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">SpatialInertia</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">A</span> <span class="o">+</span> <span class="n">right</span><span class="o">.</span><span class="n">A</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SpatialInertia.__mul__"><a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia.__mul__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span>
+
+<div class="viewcode-block" id="SpatialInertia.__mul__">
+<a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia.__mul__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span>
         <span class="n">left</span><span class="p">,</span> <span class="n">right</span>
     <span class="p">):</span>  <span class="c1"># lgtm[py/not-named-self] pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Overloaded ``*`` operator (superclass method)</span>
 
 <span class="sd">        :param other: spatial acceleration vector</span>
@@ -727,7 +794,7 @@
 <span class="sd">        - ``I * a`` is the SpatialForce required for a body with SpatialInertia ``I`` to accelerate with</span>
 <span class="sd">          the SpatialAcceleration ``a``.</span>
 <span class="sd">        - ``I * v`` is the SpatialMomemtum of a body with SpatialInertia ``I`` and SpatialVelocity ``v``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">SpatialAcceleration</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">SpatialForce</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">A</span> <span class="o">@</span> <span class="n">right</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>  <span class="c1"># F = ma</span>
@@ -736,12 +803,15 @@
             <span class="c1"># v = Wrench( a.cross() * I.I * a.vw );</span>
             <span class="k">return</span> <span class="n">SpatialMomentum</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">A</span> <span class="o">@</span> <span class="n">right</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>  <span class="c1"># M = mv</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;bad postmultiply operands for Inertia *&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"bad postmultiply operands for Inertia *"</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SpatialInertia.__rmul__"><a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia.__rmul__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__rmul__</span><span class="p">(</span>
+
+<div class="viewcode-block" id="SpatialInertia.__rmul__">
+<a class="viewcode-back" href="../../6d_inertia.html#spatialmath.spatialvector.SpatialInertia.__rmul__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__rmul__</span><span class="p">(</span>
         <span class="n">right</span><span class="p">,</span> <span class="n">left</span>
     <span class="p">):</span>  <span class="c1"># lgtm[py/not-named-self] pylint: disable=no-self-argument</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Overloaded ``*`` operator (superclass method)</span>
 
 <span class="sd">        :param other: spatial acceleration vector</span>
@@ -753,11 +823,13 @@
 <span class="sd">        - ``a * I`` is the SpatialForce required for a body with SpatialInertia ``I`` to accelerate with</span>
 <span class="sd">          the SpatialAcceleration ``a``.</span>
 <span class="sd">        - ``v * I`` is the SpatialMomemtum of a body with SpatialInertia ``I`` and SpatialVelocity ``v``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">right</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">left</span><span class="p">)</span></div></div>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">right</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">left</span><span class="p">)</span></div>
+</div>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy.testing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nt</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
 
@@ -803,8 +875,8 @@
     <span class="n">exec</span><span class="p">(</span>
         <span class="nb">open</span><span class="p">(</span>
             <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
-            <span class="o">/</span> <span class="s2">&quot;tests&quot;</span>
-            <span class="o">/</span> <span class="s2">&quot;test_spatialvector.py&quot;</span>
+            <span class="o">/</span> <span class="s2">"tests"</span>
+            <span class="o">/</span> <span class="s2">"test_spatialvector.py"</span>
         <span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
     <span class="p">)</span>  <span class="c1"># pylint: disable=exec-used</span>
 </pre></div>
@@ -817,7 +889,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 30-Jan-2025.
+      <span class="lastupdated">Last updated on 27-Aug-2026.
       </span></p>
   </div>
 

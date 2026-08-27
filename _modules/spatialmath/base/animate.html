@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>spatialmath.base.animate &mdash; Spatial Maths package  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -98,8 +98,10 @@
 <span class="n">_ani</span> <span class="o">=</span> <span class="kc">None</span>
 
 
-<div class="viewcode-block" id="Animate"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Animate</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Animate">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Animate</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Animate objects for matplotlib 3d</span>
 
 <span class="sd">    An instance of this class behaves like an Axes3D and supports proxies for</span>
@@ -119,19 +121,21 @@
 <span class="sd">    Example::</span>
 
 <span class="sd">        anim = animate.Animate(dims=[0,2]) # set up the 3D axes</span>
-<span class="sd">        anim.trplot(T, frame=&#39;A&#39;, color=&#39;green&#39;)  # draw the frame</span>
+<span class="sd">        anim.trplot(T, frame='A', color='green')  # draw the frame</span>
 <span class="sd">        anim.run(repeat=True)  # animate it</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-<div class="viewcode-block" id="Animate.__init__"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="Animate.__init__">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">dim</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">projection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ortho&quot;</span><span class="p">,</span>
-        <span class="n">labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">),</span>
+        <span class="n">projection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"ortho"</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="s2">"Y"</span><span class="p">,</span> <span class="s2">"Z"</span><span class="p">),</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Construct an Animate object</span>
 
 <span class="sd">        :param ax: the axes to plot into, defaults to current axes</span>
@@ -147,7 +151,7 @@
 
 <span class="sd">        Will setup to plot into an existing or a new Axes3D instance.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trajectory</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -157,17 +161,17 @@
             <span class="c1">#     fig = plt.gcf()</span>
             <span class="c1">#     # check any current axes</span>
             <span class="c1">#     for a in fig.axes:</span>
-            <span class="c1">#         if a.name != &quot;3d&quot;:</span>
+            <span class="c1">#         if a.name != "3d":</span>
             <span class="c1">#             # if they are not 3D axes, remove them, otherwise will</span>
             <span class="c1">#             # get plot errors</span>
             <span class="c1">#             a.remove()</span>
             <span class="c1">#     if len(fig.axes) == 0:</span>
             <span class="c1">#         # no axes in the figure, create a 3D axes</span>
-            <span class="c1">#         axes = fig.add_subplot(111, projection=&quot;3d&quot;, proj_type=projection)</span>
+            <span class="c1">#         axes = fig.add_subplot(111, projection="3d", proj_type=projection)</span>
             <span class="c1">#         ax.set_xlabel(labels[0])</span>
             <span class="c1">#         ax.set_ylabel(labels[1])</span>
             <span class="c1">#         ax.set_zlabel(labels[2])</span>
-            <span class="c1">#         ax.autoscale(enable=True, axis=&quot;both&quot;)</span>
+            <span class="c1">#         ax.autoscale(enable=True, axis="both")</span>
             <span class="c1">#     else:</span>
             <span class="c1">#         # reuse an existing axis</span>
             <span class="c1">#         axes = plt.gca()</span>
@@ -178,7 +182,7 @@
             <span class="c1">#     ax.set_xlim(dims[0:2])</span>
             <span class="c1">#     ax.set_ylim(dims[2:4])</span>
             <span class="c1">#     ax.set_zlim(dims[4:6])</span>
-            <span class="c1">#     # ax.set_aspect(&#39;equal&#39;)</span>
+            <span class="c1">#     # ax.set_aspect('equal')</span>
             <span class="n">ax</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">plotvol3</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">dim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dim</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dim</span><span class="p">)))</span>
@@ -186,7 +190,7 @@
                 <span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span> <span class="o">*</span> <span class="mi">3</span>
             <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;dim must have 2 or 6 elements, got </span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">. See docstring for details.&quot;</span>
+                    <span class="sa">f</span><span class="s2">"dim must have 2 or 6 elements, got </span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">. See docstring for details."</span>
                 <span class="p">)</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">dim</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">dim</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
@@ -194,15 +198,18 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span></div>
 
+
         <span class="c1"># TODO set flag for 2d or 3d axes, flag errors on the methods called later</span>
 
-<div class="viewcode-block" id="Animate.trplot"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.trplot">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">trplot</span><span class="p">(</span>
+<div class="viewcode-block" id="Animate.trplot">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.trplot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">trplot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">end</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">SO3Array</span><span class="p">,</span> <span class="n">SE3Array</span><span class="p">],</span>
         <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">SO3Array</span><span class="p">,</span> <span class="n">SE3Array</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Define the transform to animate</span>
 
 <span class="sd">        :param end: the final pose SE(3) or SO(3) to display as a coordinate frame</span>
@@ -212,11 +219,11 @@
 <span class="sd">        :param start: an</span>
 
 <span class="sd">        Is polymorphic with ``base.trplot`` and accepts the same parameters.</span>
-<span class="sd">        This sets up the animation but doesn&#39;t execute it.</span>
+<span class="sd">        This sets up the animation but doesn't execute it.</span>
 
 <span class="sd">        :seealso: :func:`run`</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trajectory</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
@@ -245,10 +252,16 @@
         <span class="c1"># draw axes at the origin</span>
         <span class="n">smb</span><span class="o">.</span><span class="n">trplot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate.set_proj_type"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_proj_type">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_proj_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Animate.set_proj_type">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_proj_type">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_proj_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_proj_type</span><span class="p">(</span><span class="n">proj_type</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate.run"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.run">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Animate.run">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">movie</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">axes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -258,7 +271,7 @@
         <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Run the animation</span>
 
 <span class="sd">        :param axes: the axes to plot into, defaults to current axes</span>
@@ -284,11 +297,11 @@
 <span class="sd">            - if ``movie=True`` then return an HTML5 video which can be displayed in a notebook</span>
 <span class="sd">              using ``HTML()``</span>
 <span class="sd">            - invokes the draw() method of every object in the display list</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">animation</span><span class="p">):</span>
             <span class="c1"># frame is the result of calling next() on a iterator or generator</span>
-            <span class="c1"># seemingly the animation framework isn&#39;t checking StopException</span>
+            <span class="c1"># seemingly the animation framework isn't checking StopException</span>
             <span class="c1"># so there is no way to know when this is no longer called.</span>
             <span class="c1"># we implement a rather hacky heartbeat style timeout</span>
 
@@ -307,7 +320,7 @@
 
             <span class="c1"># update the scene</span>
             <span class="n">animation</span><span class="o">.</span><span class="n">_draw</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># say we&#39;re still running</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># say we're still running</span>
 
         <span class="k">if</span> <span class="n">movie</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">repeat</span> <span class="o">=</span> <span class="kc">False</span>
@@ -340,11 +353,11 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">movie</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="c1"># Set up formatting for the movie files</span>
             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">movie</span><span class="p">):</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;overwriting movie&quot;</span><span class="p">,</span> <span class="n">movie</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"overwriting movie"</span><span class="p">,</span> <span class="n">movie</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;creating movie&quot;</span><span class="p">,</span> <span class="n">movie</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"creating movie"</span><span class="p">,</span> <span class="n">movie</span><span class="p">)</span>
             <span class="n">FFwriter</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FFMpegWriter</span><span class="p">(</span>
-                <span class="n">fps</span><span class="o">=</span><span class="mi">1000</span> <span class="o">/</span> <span class="n">interval</span><span class="p">,</span> <span class="n">extra_args</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-vcodec&quot;</span><span class="p">,</span> <span class="s2">&quot;libx264&quot;</span><span class="p">]</span>
+                <span class="n">fps</span><span class="o">=</span><span class="mi">1000</span> <span class="o">/</span> <span class="n">interval</span><span class="p">,</span> <span class="n">extra_args</span><span class="o">=</span><span class="p">[</span><span class="s2">"-vcodec"</span><span class="p">,</span> <span class="s2">"libx264"</span><span class="p">]</span>
             <span class="p">)</span>
             <span class="n">_ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">movie</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">FFwriter</span><span class="p">)</span>
 
@@ -357,30 +370,40 @@
                     <span class="k">break</span>
         <span class="k">return</span> <span class="n">_ani</span></div>
 
-<div class="viewcode-block" id="Animate.__repr__"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.__repr__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Animate.__repr__">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.__repr__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Human readable version of the display list</span>
 
 <span class="sd">        :param self: the animation</span>
 <span class="sd">        :type self: Animate</span>
 <span class="sd">        :returns: readable version of the display list</span>
 <span class="sd">        :rtype: str</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="s2">&quot;Animate(&quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">type</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span></div>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="s2">"Animate("</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">type</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">])</span> <span class="o">+</span> <span class="s2">")"</span></div>
 
-<div class="viewcode-block" id="Animate.__str__"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.__str__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Animate(len=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
-<div class="viewcode-block" id="Animate.artists"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.artists">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">artists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Animate.__str__">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.__str__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Animate(len=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span></div>
+
+
+<div class="viewcode-block" id="Animate.artists">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.artists">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">artists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Artist</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        List of artists that need to be updated</span>
 
 <span class="sd">        :param self: the animation</span>
 <span class="sd">        :type self: Animate</span>
 <span class="sd">        :returns: list of artists</span>
 <span class="sd">        :rtype: list</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">h</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">]</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">:</span>
@@ -394,7 +417,7 @@
             <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],))])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;line&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">"line"</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">anim</span> <span class="o">=</span> <span class="n">anim</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
@@ -402,8 +425,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">set_3d_properties</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:])</span>
 
-<div class="viewcode-block" id="Animate.plot"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.plot">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Animate.plot">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.plot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot a polyline</span>
 
 <span class="sd">        :param x: list of x-coordinates</span>
@@ -418,17 +443,18 @@
 <span class="sd">        All arrays must have the same length.</span>
 
 <span class="sd">        :seealso: :func:`matplotlib.pyplot.plot`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="p">(</span><span class="n">h</span><span class="p">,)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Animate</span><span class="o">.</span><span class="n">_Line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">h</span></div>
 
+
     <span class="c1"># ------------------- quiver()</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">_Quiver</span><span class="p">:</span>
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">anim</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;quiver&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">"quiver"</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">anim</span> <span class="o">=</span> <span class="n">anim</span>
             <span class="c1"># for matplotlib 3.1.x</span>
             <span class="c1"># ._segments3d is 3x2x3</span>
@@ -451,7 +477,7 @@
                     <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">h</span><span class="o">.</span><span class="n">_segments3d</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">))]</span>
                 <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;arrow&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">"arrow"</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">anim</span> <span class="o">=</span> <span class="n">anim</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
@@ -462,7 +488,9 @@
             <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">set_segments</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Animate.quiver"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.quiver">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">quiver</span><span class="p">(</span>
+<div class="viewcode-block" id="Animate.quiver">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.quiver">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">quiver</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">x</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span>
         <span class="n">y</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span>
@@ -473,7 +501,7 @@
         <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot a quiver</span>
 
 <span class="sd">        :param x: list of base x-coordinates</span>
@@ -496,15 +524,16 @@
 <span class="sd">        Other arguments as accepted by the matplotlib method.</span>
 
 <span class="sd">        :seealso: :func:`matplotlib.pyplot.quiver`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Animate</span><span class="o">.</span><span class="n">_Quiver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span></div>
+
 
     <span class="c1"># ------------------- text()</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">_Text</span><span class="p">:</span>
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">anim</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;text&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">"text"</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">anim</span> <span class="o">=</span> <span class="n">anim</span>
@@ -515,10 +544,12 @@
             <span class="c1">#   p[0], p[1], p[2], self.anim.ax.get_proj())</span>
             <span class="c1"># self.h.set_position((x2, y2))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">set_3d_properties</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zdir</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">set_3d_properties</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zdir</span><span class="o">=</span><span class="s2">"x"</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Animate.text"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.text">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Animate.text">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.text">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot text</span>
 
 <span class="sd">        :param x: x-coordinate</span>
@@ -533,41 +564,66 @@
 <span class="sd">        (``x``, ``y``, ``z``).</span>
 
 <span class="sd">        :seealso: :func:`~matplotlib.pyplot.text`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">text3D</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Animate</span><span class="o">.</span><span class="n">_Text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span></div>
 
+
     <span class="c1"># ------------------- scatter()</span>
 
-<div class="viewcode-block" id="Animate.scatter"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.scatter">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">scatter</span><span class="p">(</span>
+<div class="viewcode-block" id="Animate.scatter">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.scatter">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scatter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">xs</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">ys</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">zs</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
-        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="s2">"."</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Animate</span><span class="o">.</span><span class="n">_Line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">))</span></div>
+
 
     <span class="c1"># ------------------- wrappers for Axes primitives</span>
 
-<div class="viewcode-block" id="Animate.set_xlim"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_xlim">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_xlim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Animate.set_xlim">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_xlim">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_xlim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate.set_ylim"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_ylim">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_ylim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Animate.set_ylim">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_ylim">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_ylim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate.set_zlim"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_zlim">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_zlim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Animate.set_zlim">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_zlim">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_zlim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_zlim</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate.set_xlabel"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_xlabel">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_xlabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Animate.set_xlabel">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_xlabel">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_xlabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate.set_ylabel"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_ylabel">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Animate.set_ylabel">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_ylabel">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate.set_zlabel"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_zlabel">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_zlabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="Animate.set_zlabel">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate.set_zlabel">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_zlabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</div>
 
 
-<div class="viewcode-block" id="Animate2"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Animate2</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Animate2">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Animate2</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Animate objects for matplotlib 2d</span>
 
 <span class="sd">    An instance of this class behaves like an Axes3D and supports proxies for</span>
@@ -586,18 +642,20 @@
 <span class="sd">    Example::</span>
 
 <span class="sd">        anim = animate.Animate(dims=[0,2]) # set up the 3D axes</span>
-<span class="sd">        anim.trplot(T, frame=&#39;A&#39;, color=&#39;green&#39;)  # draw the frame</span>
+<span class="sd">        anim.trplot(T, frame='A', color='green')  # draw the frame</span>
 <span class="sd">        anim.run(loop=True)  # animate it</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-<div class="viewcode-block" id="Animate2.__init__"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="Animate2.__init__">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">axes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">dims</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">labels</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">),</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="s2">"Y"</span><span class="p">),</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Construct an Animate object</span>
 
 <span class="sd">        :param axes: the axes to plot into, defaults to current axes</span>
@@ -612,7 +670,7 @@
 
 <span class="sd">        Will setup to plot into an existing or a new Axes3D instance.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trajectory</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -624,7 +682,7 @@
                 <span class="n">axes</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
                 <span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
                 <span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-                <span class="n">axes</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">)</span>
+                <span class="n">axes</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"both"</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># reuse an existing axis</span>
                 <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
@@ -634,19 +692,22 @@
                 <span class="n">dims</span> <span class="o">=</span> <span class="n">dims</span> <span class="o">*</span> <span class="mi">2</span>
             <span class="n">axes</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
             <span class="n">axes</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
-            <span class="c1"># ax.set_aspect(&#39;equal&#39;)</span>
+            <span class="c1"># ax.set_aspect('equal')</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span></div>
 
+
         <span class="c1"># set flag for 2d or 3d axes, flag errors on the methods called later</span>
 
-<div class="viewcode-block" id="Animate2.trplot2"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.trplot2">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">trplot2</span><span class="p">(</span>
+<div class="viewcode-block" id="Animate2.trplot2">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.trplot2">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">trplot2</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">end</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">SO2Array</span><span class="p">,</span> <span class="n">SE2Array</span><span class="p">],</span>
         <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">SO2Array</span><span class="p">,</span> <span class="n">SE2Array</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Define the transform to animate</span>
 
 <span class="sd">        :param end: the final pose SE(2) or SO(2) to display as a coordinate frame</span>
@@ -655,11 +716,11 @@
 <span class="sd">        :type start: ndarray(3,3) or ndarray(2,2)</span>
 
 <span class="sd">        Is polymorphic with ``base.trplot`` and accepts the same parameters.</span>
-<span class="sd">        This sets up the animation but doesn&#39;t execute it.</span>
+<span class="sd">        This sets up the animation but doesn't execute it.</span>
 
 <span class="sd">        :seealso: :func:`run`</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">end</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">end</span> <span class="o">=</span> <span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -683,7 +744,10 @@
         <span class="c1"># draw axes at the origin</span>
         <span class="n">smb</span><span class="o">.</span><span class="n">trplot2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate2.run"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.run">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Animate2.run">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">movie</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">axes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -693,7 +757,7 @@
         <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Run the animation</span>
 
 <span class="sd">        :param axes: the axes to plot into, defaults to current axes</span>
@@ -719,11 +783,11 @@
 <span class="sd">            - if ``movie=True`` then return an HTML5 video which can be displayed in a notebook</span>
 <span class="sd">              using ``HTML()``</span>
 <span class="sd">            - invokes the draw() method of every object in the display list</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">animation</span><span class="p">):</span>
             <span class="c1"># frame is the result of calling next() on a iterator or generator</span>
-            <span class="c1"># seemingly the animation framework isn&#39;t checking StopException</span>
+            <span class="c1"># seemingly the animation framework isn't checking StopException</span>
             <span class="c1"># so there is no way to know when this is no longer called.</span>
             <span class="c1"># we implement a rather hacky heartbeat style timeout</span>
 
@@ -739,7 +803,7 @@
 
             <span class="c1"># update the scene</span>
             <span class="n">animation</span><span class="o">.</span><span class="n">_draw</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># say we&#39;re still running</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># say we're still running</span>
 
         <span class="k">if</span> <span class="n">movie</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">repeat</span> <span class="o">=</span> <span class="kc">False</span>
@@ -772,11 +836,11 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">movie</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="c1"># Set up formatting for the movie files</span>
             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">movie</span><span class="p">):</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;overwriting movie&quot;</span><span class="p">,</span> <span class="n">movie</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"overwriting movie"</span><span class="p">,</span> <span class="n">movie</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;creating movie&quot;</span><span class="p">,</span> <span class="n">movie</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"creating movie"</span><span class="p">,</span> <span class="n">movie</span><span class="p">)</span>
             <span class="n">FFwriter</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FFMpegWriter</span><span class="p">(</span>
-                <span class="n">fps</span><span class="o">=</span><span class="mi">1000</span> <span class="o">/</span> <span class="n">interval</span><span class="p">,</span> <span class="n">extra_args</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-vcodec&quot;</span><span class="p">,</span> <span class="s2">&quot;libx264&quot;</span><span class="p">]</span>
+                <span class="n">fps</span><span class="o">=</span><span class="mi">1000</span> <span class="o">/</span> <span class="n">interval</span><span class="p">,</span> <span class="n">extra_args</span><span class="o">=</span><span class="p">[</span><span class="s2">"-vcodec"</span><span class="p">,</span> <span class="s2">"libx264"</span><span class="p">]</span>
             <span class="p">)</span>
             <span class="n">_ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">movie</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">FFwriter</span><span class="p">)</span>
 
@@ -790,30 +854,40 @@
 
         <span class="k">return</span> <span class="n">_ani</span></div>
 
-<div class="viewcode-block" id="Animate2.__repr__"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.__repr__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Animate2.__repr__">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.__repr__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Human readable version of the display list</span>
 
 <span class="sd">        :param self: the animation</span>
 <span class="sd">        :type self: Animate</span>
 <span class="sd">        :returns: readable version of the display list</span>
 <span class="sd">        :rtype: str</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="s2">&quot;Animate2(&quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">type</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span></div>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="s2">"Animate2("</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">type</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">])</span> <span class="o">+</span> <span class="s2">")"</span></div>
 
-<div class="viewcode-block" id="Animate2.__str__"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.__str__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Animate2(len=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
-<div class="viewcode-block" id="Animate2.artists"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.artists">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">artists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Animate2.__str__">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.__str__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Animate2(len=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span></div>
+
+
+<div class="viewcode-block" id="Animate2.artists">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.artists">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">artists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        List of artists that need to be updated</span>
 
 <span class="sd">        :param self: the animation</span>
 <span class="sd">        :type self: Animate</span>
 <span class="sd">        :returns: list of artists</span>
 <span class="sd">        :rtype: list</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">h</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">]</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="p">:</span>
@@ -821,12 +895,18 @@
 
     <span class="c1"># ------------------- plot()</span>
 
-<div class="viewcode-block" id="Animate2.set_aspect"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.set_aspect">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_aspect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Animate2.set_aspect">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.set_aspect">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_aspect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate2.autoscale"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.autoscale">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">autoscale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Animate2.autoscale">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.autoscale">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">autoscale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># self.ax.autoscale(*args, **kwargs)</span>
         <span class="k">pass</span></div>
+
 
     <span class="k">class</span><span class="w"> </span><span class="nc">_Line</span><span class="p">:</span>
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">anim</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">):</span>
@@ -834,15 +914,17 @@
             <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],))])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;line&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">"line"</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">anim</span> <span class="o">=</span> <span class="n">anim</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">T</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
 
-<div class="viewcode-block" id="Animate2.plot"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.plot">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Animate2.plot">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.plot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot a polyline</span>
 
 <span class="sd">        :param x: list of x-coordinates</span>
@@ -855,21 +937,22 @@
 <span class="sd">        All arrays must have the same length.</span>
 
 <span class="sd">        :seealso: :func:`matplotlib.pyplot.plot`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="p">(</span><span class="n">h</span><span class="p">,)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Animate2</span><span class="o">.</span><span class="n">_Line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">h</span></div>
 
+
     <span class="c1"># ------------------- quiver()</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">_Quiver</span><span class="p">:</span>
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">anim</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;quiver&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">"quiver"</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">anim</span> <span class="o">=</span> <span class="n">anim</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;arrow&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">"arrow"</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">anim</span> <span class="o">=</span> <span class="n">anim</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">u</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span> <span class="o">-</span> <span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
@@ -881,8 +964,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">set_offsets</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># shift the origin</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">set_UVC</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-<div class="viewcode-block" id="Animate2.quiver"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.quiver">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">quiver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Animate2.quiver">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.quiver">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">quiver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot a quiver</span>
 
 <span class="sd">        :param x: list of base x-coordinates</span>
@@ -902,15 +987,16 @@
 <span class="sd">        Other arguments as accepted by the matplotlib method.</span>
 
 <span class="sd">        :seealso: :func:`matplotlib.pyplot.quiver`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Animate2</span><span class="o">.</span><span class="n">_Quiver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span></div>
+
 
     <span class="c1"># ------------------- text()</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">_Text</span><span class="p">:</span>
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">anim</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;text&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">"text"</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">anim</span> <span class="o">=</span> <span class="n">anim</span>
@@ -922,8 +1008,10 @@
             <span class="c1"># self.h.set_position((x2, y2))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
-<div class="viewcode-block" id="Animate2.text"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.text">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Animate2.text">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.text">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot text</span>
 
 <span class="sd">        :param x: x-coordinate</span>
@@ -938,32 +1026,49 @@
 <span class="sd">        (``x``, ``y``).</span>
 
 <span class="sd">        :seealso: :func:`matplotlib.pyplot.text`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Animate2</span><span class="o">.</span><span class="n">_Text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span></div>
 
+
     <span class="c1"># ------------------- scatter()</span>
 
-<div class="viewcode-block" id="Animate2.scatter"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.scatter">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">scatter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="viewcode-block" id="Animate2.scatter">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.scatter">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scatter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">"."</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">displaylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Animate2</span><span class="o">.</span><span class="n">_Line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span></div>
+
 
     <span class="c1"># ------------------- wrappers for Axes primitives</span>
 
-<div class="viewcode-block" id="Animate2.set_xlim"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.set_xlim">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_xlim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Animate2.set_xlim">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.set_xlim">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_xlim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate2.set_ylim"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.set_ylim">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_ylim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Animate2.set_ylim">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.set_ylim">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_ylim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate2.set_xlabel"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.set_xlabel">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_xlabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Animate2.set_xlabel">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.set_xlabel">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_xlabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animate2.set_ylabel"><a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.set_ylabel">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="Animate2.set_ylabel">
+<a class="viewcode-back" href="../../../func_animation.html#spatialmath.base.animate.Animate2.set_ylabel">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</div>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="c1"># from spatialmath import UnitQuaternion</span>
     <span class="c1"># from spatialmath.base import tranimate, r2t</span>
 
@@ -984,14 +1089,14 @@
     <span class="c1"># T = smb.rpy2r(0.3, 0.4, 0.5)</span>
     <span class="c1"># # smb.tranimate(T, wait=True)</span>
     <span class="c1"># s = smb.tranimate(T, movie=True)</span>
-    <span class="c1"># with open(&quot;zz.html&quot;, &quot;w&quot;) as f:</span>
-    <span class="c1">#     print(f&quot;&lt;html&gt;{s}&lt;/html&gt;&quot;, file=f)</span>
+    <span class="c1"># with open("zz.html", "w") as f:</span>
+    <span class="c1">#     print(f"&lt;html&gt;{s}&lt;/html&gt;", file=f)</span>
 
     <span class="n">T</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">rot2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
     <span class="c1"># smb.tranimate2(T, wait=True)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">tranimate2</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">movie</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;zz.html&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;html&gt;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&lt;/html&gt;&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"zz.html"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;html&gt;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&lt;/html&gt;"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
 </pre></div>
 
            </div>
@@ -1002,7 +1107,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 30-Jan-2025.
+      <span class="lastupdated">Last updated on 27-Aug-2026.
       </span></p>
   </div>
 

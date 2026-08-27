@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>spatialmath.geom2d &mdash; Spatial Maths package  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -76,11 +76,11 @@
   <h1>Source code for spatialmath.geom2d</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="sd">Created on Sun Jul  5 09:42:30 2020</span>
 
 <span class="sd">@author: corkep</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">reduce</span>
@@ -116,8 +116,10 @@
 <span class="n">_eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span>
 
 
-<div class="viewcode-block" id="Line2"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Line2</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Line2">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Line2</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Class to represent 2D lines</span>
 
 <span class="sd">    The internal representation is in homogeneous format</span>
@@ -125,14 +127,16 @@
 <span class="sd">    .. math::</span>
 
 <span class="sd">            ax + by + c = 0</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-<div class="viewcode-block" id="Line2.__init__"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">line</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></div>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="n">ArrayLike3</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">line</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Line2.Join"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.Join">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Line2.Join">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.Join">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">Join</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p1</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create 2D line from two points</span>
 
 <span class="sd">        :param p1: point on the line</span>
@@ -141,7 +145,7 @@
 <span class="sd">        :type p2: array_like(2) or array_like(3)</span>
 
 <span class="sd">        The points can be given in Euclidean or homogeneous form.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="n">p1</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -152,14 +156,20 @@
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Line2.TwoPoints"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.TwoPoints">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="Line2.TwoPoints">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.TwoPoints">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">TwoPoints</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p1</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;use Join method instead&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"use Join method instead"</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">Join</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line2.General"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.General">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="Line2.General">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.General">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">General</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create line from general line</span>
 
 <span class="sd">        :param m: line gradient</span>
@@ -172,33 +182,42 @@
 <span class="sd">        Creates a line from the parameters of the general line :math:`y = mx + c`.</span>
 
 <span class="sd">        .. note:: A vertical line cannot be represented.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">([</span><span class="n">m</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="Line2.general"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.general">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">general</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Line2.general">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.general">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">general</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Parameters of general line</span>
 
 <span class="sd">        :return: parameters of general line (m, c)</span>
 <span class="sd">        :rtype: ndarray(2)</span>
 
 <span class="sd">        Return the parameters of a general line :math:`y = mx + c`.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Line2: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="si">}</span><span class="s2">&quot;</span>
 
-<div class="viewcode-block" id="Line2.plot"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.plot">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Line2: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="si">}</span><span class="s2">"</span>
+
+<div class="viewcode-block" id="Line2.plot">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.plot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot the line using matplotlib</span>
 
 <span class="sd">        :param kwargs: arguments passed to Matplotlib ``pyplot.plot``</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">smb</span><span class="o">.</span><span class="n">plot_homline</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Line2.intersect"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.intersect">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">intersect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Line2</span><span class="p">,</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R3</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Line2.intersect">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.intersect">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">intersect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Line2</span><span class="p">,</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R3</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Intersection with line</span>
 
 <span class="sd">        :param other: another 2D line</span>
@@ -210,14 +229,17 @@
 
 <span class="sd">        If the lines are parallel then the third element of the returned</span>
 <span class="sd">        homogeneous point will be zero (an ideal point).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># return intersection of 2 lines</span>
         <span class="c1"># return mindist and points if no intersect</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">line</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="o">*</span> <span class="n">_eps</span></div>
 
-<div class="viewcode-block" id="Line2.contains"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.contains">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Line2.contains">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.contains">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if point is in line</span>
 
 <span class="sd">        :param p1: point to test</span>
@@ -226,18 +248,21 @@
 <span class="sd">        :type tol: float</span>
 <span class="sd">        :return: True if point lies in the line</span>
 <span class="sd">        :rtype: bool</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">tol</span> <span class="o">*</span> <span class="n">_eps</span></div>
 
+
     <span class="c1"># variant that gives lambda</span>
 
-<div class="viewcode-block" id="Line2.intersect_segment"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.intersect_segment">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">intersect_segment</span><span class="p">(</span>
+<div class="viewcode-block" id="Line2.intersect_segment">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.intersect_segment">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">intersect_segment</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">p1</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test for line intersecting line segment</span>
 
 <span class="sd">        :param p1: start of line segment</span>
@@ -251,7 +276,7 @@
 
 <span class="sd">        Tests whether the line intersects the line segment defined by endpoints</span>
 <span class="sd">        ``p1`` and ``p2`` which are given in Euclidean or homogeneous form.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">p1</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
@@ -268,39 +293,63 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
+
     <span class="c1"># these should have same names as for 3d case</span>
-<div class="viewcode-block" id="Line2.distance_line_line"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.distance_line_line">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">distance_line_line</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Line2.distance_line_line">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.distance_line_line">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">distance_line_line</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Line2.distance_line_point"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.distance_line_point">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">distance_line_point</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Line2.distance_line_point">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.distance_line_point">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">distance_line_point</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Line2.points_join"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.points_join">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">points_join</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Line2.points_join">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.points_join">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">points_join</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Line2.intersect_polygon___line"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.intersect_polygon___line">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">intersect_polygon___line</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Line2.intersect_polygon___line">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.intersect_polygon___line">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">intersect_polygon___line</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Line2.contains_polygon_point"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Line2.contains_polygon_point">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">contains_polygon_point</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span></div></div>
+
+<div class="viewcode-block" id="Line2.contains_polygon_point">
+<a class="viewcode-back" href="../../2d_line.html#spatialmath.geom2d.Line2.contains_polygon_point">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">contains_polygon_point</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+</div>
 
 
-<div class="viewcode-block" id="LineSegment2"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.LineSegment2">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">LineSegment2</span><span class="p">(</span><span class="n">Line2</span><span class="p">):</span>
+
+<div class="viewcode-block" id="LineSegment2">
+<a class="viewcode-back" href="../../2d_linesegment.html#spatialmath.geom2d.LineSegment2">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">LineSegment2</span><span class="p">(</span><span class="n">Line2</span><span class="p">):</span>
     <span class="c1"># line segment class that subclass</span>
     <span class="c1"># has hom line + 2 values of lambda</span>
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="Polygon2"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Polygon2</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Polygon2</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Class to represent 2D (planar) polygons</span>
 
 <span class="sd">    .. note:: Uses Matplotlib primitives to perform transformations and</span>
 <span class="sd">        intersections.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-<div class="viewcode-block" id="Polygon2.__init__"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Points2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">close</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Polygon2.__init__">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Points2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">close</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create planar polygon from vertices</span>
 
 <span class="sd">        :param vertices: vertices of polygon, defaults to None</span>
@@ -324,17 +373,17 @@
 <span class="sd">            counter clockwise, otherwise moments will be negative.</span>
 
 <span class="sd">        .. note:: The polygon is represented by a Matplotlib ``Path``</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
             <span class="n">vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">vertices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;ndarray must be 2xN&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"ndarray must be 2xN"</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">vertices</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;expecting list of 2-tuples or ndarray(2,N)&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"expecting list of 2-tuples or ndarray(2,N)"</span><span class="p">)</span>
 
         <span class="c1"># replicate the first vertex to make it closed.</span>
         <span class="c1"># setting closed=False and codes=None leads to a different</span>
@@ -345,8 +394,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">vertices</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span></div>
 
-<div class="viewcode-block" id="Polygon2.__str__"><a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.__str__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.__str__">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.__str__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Polygon to string</span>
 
 <span class="sd">        :return: brief summary of polygon</span>
@@ -360,14 +412,17 @@
 <span class="sd">            &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">            &gt;&gt;&gt; p = Polygon2(np.array([[1, 3, 2], [2, 2, 4]]))</span>
 <span class="sd">            &gt;&gt;&gt; print(p)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Polygon2 with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="si">}</span><span class="s2"> vertices&quot;</span></div>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Polygon2 with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="si">}</span><span class="s2"> vertices"</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Polygon2.__len__"><a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.__len__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Polygon2.__len__">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.__len__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Number of vertices in polygon</span>
 
 <span class="sd">        :return: number of vertices</span>
@@ -381,11 +436,14 @@
 <span class="sd">            &gt;&gt;&gt; p = Polygon2([(1, 2), (3, 2), (2, 4)])</span>
 <span class="sd">            &gt;&gt;&gt; len(p)</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span></div>
 
-<div class="viewcode-block" id="Polygon2.moment"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.moment">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">moment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.moment">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.moment">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">moment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Moments of polygon</span>
 
 <span class="sd">        :param p: moment order x</span>
@@ -393,7 +451,7 @@
 <span class="sd">        :param q: moment order y</span>
 <span class="sd">        :type q: int</span>
 
-<span class="sd">        Returns the pq&#39;th moment of the polygon</span>
+<span class="sd">        Returns the pq'th moment of the polygon</span>
 
 <span class="sd">        .. math::</span>
 
@@ -409,7 +467,7 @@
 <span class="sd">            &gt;&gt;&gt; p.moment(3, 0)</span>
 
 <span class="sd">        Note is negative for clockwise perimeter.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">combin</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
             <span class="c1"># compute number of combinations of size r from set n</span>
@@ -450,8 +508,11 @@
 
         <span class="k">return</span> <span class="n">m</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Polygon2.area"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.area">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.area">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.area">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Area of polygon</span>
 
 <span class="sd">        :return: area</span>
@@ -466,11 +527,14 @@
 <span class="sd">            &gt;&gt;&gt; p.area()</span>
 
 <span class="sd">        :seealso: :meth:`moment`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">moment</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Polygon2.centroid"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.centroid">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">centroid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R2</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.centroid">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.centroid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">centroid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R2</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Centroid of polygon</span>
 
 <span class="sd">        :return: centroid</span>
@@ -485,11 +549,14 @@
 <span class="sd">            &gt;&gt;&gt; p.centroid()</span>
 
 <span class="sd">        :seealso: :meth:`moment`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">moment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">moment</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">moment</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Polygon2.plot"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.plot">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.plot">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.plot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot polygon</span>
 
 <span class="sd">        :param ax: axes in which to draw the polygon, defaults to None</span>
@@ -505,7 +572,7 @@
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
 <span class="sd">            &gt;&gt;&gt; p = Polygon2([(1, 2), (3, 2), (2, 4)])</span>
 <span class="sd">            &gt;&gt;&gt; p.plot(fill=False)</span>
-<span class="sd">            &gt;&gt;&gt; p.plot(facecolor=&quot;g&quot;, edgecolor=&quot;none&quot;)  # green filled triangle</span>
+<span class="sd">            &gt;&gt;&gt; p.plot(facecolor="g", edgecolor="none")  # green filled triangle</span>
 
 <span class="sd">        .. plot::</span>
 
@@ -521,11 +588,11 @@
 <span class="sd">            from spatialmath.base import plotvol2</span>
 <span class="sd">            p = Polygon2([(1, 2), (3, 2), (2, 4)])</span>
 <span class="sd">            plotvol2(5)</span>
-<span class="sd">            p.plot(facecolor=&quot;g&quot;, edgecolor=&quot;none&quot;)  # green filled triangle</span>
+<span class="sd">            p.plot(facecolor="g", edgecolor="none")  # green filled triangle</span>
 
 
 <span class="sd">        :seealso: :meth:`animate` :func:`matplotlib.PathPatch`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">patch</span> <span class="o">=</span> <span class="n">PathPatch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">axes_logic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">patch</span><span class="p">)</span>
@@ -533,8 +600,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span></div>
 
-<div class="viewcode-block" id="Polygon2.animate"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.animate">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">animate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.animate">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.animate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">animate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Animate a polygon</span>
 
 <span class="sd">        :param T: new pose of Polygon</span>
@@ -551,7 +621,7 @@
 <span class="sd">        given at construction time.</span>
 
 <span class="sd">        :seealso: :meth:`plot`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># get the path</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -562,8 +632,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">patch</span> <span class="o">=</span> <span class="n">PathPatch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">patch</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Polygon2.contains"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.contains">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.contains">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.contains">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">ArrayLike2</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if point is inside polygon</span>
 
 <span class="sd">        :param p: point</span>
@@ -592,7 +665,7 @@
 <span class="sd">            sign of ``radius`` is flipped.</span>
 
 <span class="sd">        :seealso: :func:`matplotlib.contains_point`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># note the sign of radius is negated if the polygon is drawn clockwise</span>
         <span class="c1"># https://stackoverflow.com/questions/45957229/matplotlib-path-contains-points-radius-parameter-defined-inconsistently</span>
         <span class="c1"># edges are included but the corners are not</span>
@@ -602,8 +675,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">contains_points</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Polygon2.bbox"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.bbox">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R4</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.bbox">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.bbox">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R4</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Bounding box of polygon</span>
 
 <span class="sd">        :return: bounding box as [xmin, xmax, ymin, ymax]</span>
@@ -616,11 +692,14 @@
 <span class="sd">            &gt;&gt;&gt; from spatialmath import Polygon2</span>
 <span class="sd">            &gt;&gt;&gt; p = Polygon2([(1, 2), (3, 2), (2, 4)])</span>
 <span class="sd">            &gt;&gt;&gt; p.bbox()</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_extents</span><span class="p">())</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">)</span></div>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_extents</span><span class="p">())</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">"C"</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Polygon2.radius"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.radius">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">radius</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.radius">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.radius">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">radius</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Radius of smallest enclosing circle</span>
 
 <span class="sd">        :return: radius</span>
@@ -637,7 +716,7 @@
 <span class="sd">            &gt;&gt;&gt; p = Polygon2([(1, 2), (3, 2), (2, 4)])</span>
 <span class="sd">            &gt;&gt;&gt; p.radius()</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">centroid</span><span class="p">()</span>
         <span class="n">dmax</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
         <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
@@ -645,10 +724,13 @@
             <span class="n">dmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dmax</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">dmax</span></div>
 
-<div class="viewcode-block" id="Polygon2.intersects"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.intersects">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">intersects</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Polygon2.intersects">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.intersects">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">intersects</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Polygon2</span><span class="p">,</span> <span class="n">Line2</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Polygon2</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Line2</span><span class="p">]]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test for intersection</span>
 
 <span class="sd">        :param other: object to test for intersection</span>
@@ -660,7 +742,7 @@
 <span class="sd">        Returns true if the polygon intersects the the given polygon or 2D</span>
 <span class="sd">        line. If ``other`` is a list, test against all in the list and return on the</span>
 <span class="sd">        first intersection.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Polygon2</span><span class="p">):</span>
             <span class="c1"># polygon-polygon intersection is done by matplotlib</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">intersects_path</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -684,10 +766,13 @@
                         <span class="k">return</span> <span class="kc">True</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bad type for other&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"bad type for other"</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Polygon2.transformed"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.transformed">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">transformed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">:</span> <span class="n">SE2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.transformed">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.transformed">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transformed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">:</span> <span class="n">SE2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        A transformed copy of polygon</span>
 
 <span class="sd">        :param T: planar transformation</span>
@@ -706,13 +791,16 @@
 <span class="sd">            &gt;&gt;&gt; p.vertices()</span>
 <span class="sd">            &gt;&gt;&gt; p.transformed(SE2(10, 0, 0)).vertices() # shift by x+10</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">new</span> <span class="o">=</span> <span class="n">Polygon2</span><span class="p">()</span>
         <span class="n">new</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">Affine2D</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">A</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">new</span></div>
 
-<div class="viewcode-block" id="Polygon2.vertices"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.vertices">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">vertices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unique</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Points2</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.vertices">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.vertices">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vertices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unique</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Points2</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Vertices of polygon</span>
 
 <span class="sd">        :param unique: return only the unique vertices , defaults to True</span>
@@ -729,39 +817,48 @@
 <span class="sd">        .. runblock:: pycon</span>
 
 <span class="sd">            &gt;&gt;&gt; from spatialmath import Polygon2</span>
-<span class="sd">            &gt;&gt;&gt; p = Polygon2([(1, 2), (3, 2), (2, 4)])</span>
+<span class="sd">            &gt;&gt;&gt; p = Polygon2([(1, 2), (3, 2), (2, 4), (1,2)])</span>
 <span class="sd">            &gt;&gt;&gt; p.vertices()</span>
-<span class="sd">            &gt;&gt;&gt; p.vertices(closed=True)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">            &gt;&gt;&gt; p.vertices(unique=True)</span>
+<span class="sd">        """</span>
         <span class="n">vertices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">vertices</span><span class="o">.</span><span class="n">T</span>
         <span class="k">if</span> <span class="n">unique</span><span class="p">:</span>
             <span class="n">vertices</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">vertices</span></div>
 
-<div class="viewcode-block" id="Polygon2.edges"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Polygon2.edges">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">edges</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Polygon2.edges">
+<a class="viewcode-back" href="../../2d_polygon.html#spatialmath.geom2d.Polygon2.edges">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">edges</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Iterate over polygon edge segments</span>
 
 <span class="sd">        Creates an iterator that returns pairs of points representing the</span>
 <span class="sd">        end points of each segment.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">vertices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="p">(</span><span class="n">vertices</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span><span class="p">])</span></div></div>
+            <span class="k">yield</span> <span class="p">(</span><span class="n">vertices</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span><span class="p">])</span></div>
+</div>
 
 
-<div class="viewcode-block" id="Ellipse"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Ellipse">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Ellipse</span><span class="p">:</span>
-<div class="viewcode-block" id="Ellipse.__init__"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Ellipse.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Ellipse">
+<a class="viewcode-back" href="../../2d_ellipse.html#spatialmath.geom2d.Ellipse">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Ellipse</span><span class="p">:</span>
+<div class="viewcode-block" id="Ellipse.__init__">
+<a class="viewcode-back" href="../../2d_ellipse.html#spatialmath.geom2d.Ellipse.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">radii</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">E</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NDArray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">centre</span><span class="p">:</span> <span class="n">ArrayLike2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">theta</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Create an ellipse</span>
 
 <span class="sd">        :param radii: radii of ellipse, defaults to None</span>
@@ -793,14 +890,14 @@
 <span class="sd">            &gt;&gt;&gt; Ellipse(radii=(1,2), theta=0)</span>
 <span class="sd">            &gt;&gt;&gt; Ellipse(E=np.array([[1, 1], [1, 2]]))</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">E</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">smb</span><span class="o">.</span><span class="n">ismatrix</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;matrix must be 2x2&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"matrix must be 2x2"</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">E</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;matrix must be symmetric&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"matrix must be symmetric"</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;determinant of E must be &gt; 0 for an ellipse&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"determinant of E must be &gt; 0 for an ellipse"</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_E</span> <span class="o">=</span> <span class="n">E</span>
         <span class="k">elif</span> <span class="n">radii</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
@@ -808,13 +905,16 @@
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_E</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="n">radii</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">radii</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)])</span> <span class="o">@</span> <span class="n">M</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;must specify radii or E&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"must specify radii or E"</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_centre</span> <span class="o">=</span> <span class="n">centre</span></div>
 
-<div class="viewcode-block" id="Ellipse.Polynomial"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Ellipse.Polynomial">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="Ellipse.Polynomial">
+<a class="viewcode-back" href="../../2d_ellipse.html#spatialmath.geom2d.Ellipse.Polynomial">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">Polynomial</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Create an ellipse from polynomial</span>
 
 <span class="sd">        :param e: polynomial coeffients :math:`e` or :math:`\eta`</span>
@@ -850,7 +950,7 @@
 <span class="sd">            &gt;&gt;&gt; Ellipse.Polynomial([0.625, 0.625, 0.75, -6.75, -7.25, 24.625])</span>
 
 <span class="sd">        :seealso: :meth:`polynomial`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
             <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -877,9 +977,12 @@
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">E</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">centre</span><span class="o">=</span><span class="n">centre</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Ellipse.FromPoints"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Ellipse.FromPoints">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="Ellipse.FromPoints">
+<a class="viewcode-back" href="../../2d_ellipse.html#spatialmath.geom2d.Ellipse.FromPoints">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">FromPoints</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create an equivalent ellipse from a set of interior points</span>
 
 <span class="sd">        :param p: a set of 2D interior points</span>
@@ -890,7 +993,7 @@
 <span class="sd">        Computes the ellipse that has the same inertia as the set of points.</span>
 
 <span class="sd">        :seealso: :meth:`FromPerimeter`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># compute the moments</span>
         <span class="n">m00</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">mpq_point</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="n">m10</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">mpq_point</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -910,9 +1013,12 @@
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">E</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">centre</span><span class="o">=</span><span class="n">centre</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Ellipse.FromPerimeter"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Ellipse.FromPerimeter">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="Ellipse.FromPerimeter">
+<a class="viewcode-back" href="../../2d_ellipse.html#spatialmath.geom2d.Ellipse.FromPerimeter">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">FromPerimeter</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">Points2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Create an ellipse that fits a set of perimeter points</span>
 
 <span class="sd">        :param p: a set of 2D perimeter points</span>
@@ -932,7 +1038,7 @@
 <span class="sd">            &gt;&gt;&gt; Ellipse.FromPerimeter(perim)</span>
 
 <span class="sd">        :seealso: :meth:`points`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">A</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">T</span><span class="p">:</span>
@@ -945,15 +1051,19 @@
         <span class="c1"># create ellipse from the polynomial, using one point to set scale</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">p</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="Ellipse.__str__"><a class="viewcode-back" href="../../2d_ellipse.html#spatialmath.geom2d.Ellipse.__str__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Ellipse(radii=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="si">}</span><span class="s2">, centre=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">centre</span><span class="si">}</span><span class="s2">, theta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+
+<div class="viewcode-block" id="Ellipse.__str__">
+<a class="viewcode-back" href="../../2d_ellipse.html#spatialmath.geom2d.Ellipse.__str__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Ellipse(radii=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="si">}</span><span class="s2">, centre=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">centre</span><span class="si">}</span><span class="s2">, theta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="si">}</span><span class="s2">)"</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Ellipse(radii=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="si">}</span><span class="s2">, centre=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">centre</span><span class="si">}</span><span class="s2">, theta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Ellipse(radii=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="si">}</span><span class="s2">, centre=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">centre</span><span class="si">}</span><span class="s2">, theta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="si">}</span><span class="s2">)"</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">E</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Return ellipse matrix</span>
 
 <span class="sd">        :return: ellipse matrix</span>
@@ -975,13 +1085,13 @@
 <span class="sd">            &gt;&gt;&gt; from spatialmath import Ellipse</span>
 <span class="sd">            &gt;&gt;&gt; e = Ellipse(radii=(1,2), centre=(3,4), theta=0.5)</span>
 <span class="sd">            &gt;&gt;&gt; e.E</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># return 2x2 ellipse matrix</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_E</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">centre</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R2</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return ellipse centre</span>
 
 <span class="sd">        :return: centre of the ellipse</span>
@@ -996,13 +1106,13 @@
 <span class="sd">            &gt;&gt;&gt; e.centre</span>
 
 <span class="sd">        :seealso: :meth:`radii` :meth:`theta` :meth:`E`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># return centre</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_centre</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">radii</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R2</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return radii of the ellipse</span>
 
 <span class="sd">        :return: radii of the ellipse</span>
@@ -1017,12 +1127,12 @@
 <span class="sd">            &gt;&gt;&gt; e.radii</span>
 
 <span class="sd">        :seealso: :meth:`centre` :meth:`theta` :meth:`E`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">theta</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return orientation of ellipse</span>
 
 <span class="sd">        :return: orientation in radians, in the interval [-pi, pi)</span>
@@ -1037,14 +1147,14 @@
 <span class="sd">            &gt;&gt;&gt; e.theta</span>
 
 <span class="sd">        :seealso: :meth:`centre` :meth:`radii` :meth:`E`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">e</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
         <span class="c1"># major axis is second column</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Area of ellipse</span>
 
 <span class="sd">        :return: area</span>
@@ -1057,12 +1167,12 @@
 <span class="sd">            &gt;&gt;&gt; from spatialmath import Ellipse</span>
 <span class="sd">            &gt;&gt;&gt; e = Ellipse(radii=(1,2), centre=(3,4), theta=0.5)</span>
 <span class="sd">            &gt;&gt;&gt; e.area</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">))</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">polynomial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Return ellipse as a polynomial</span>
 
 <span class="sd">        :return: polynomial</span>
@@ -1084,7 +1194,7 @@
 <span class="sd">            &gt;&gt;&gt; e.polynomial</span>
 
 <span class="sd">        :seealso: :meth:`Polynomial`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
@@ -1101,8 +1211,10 @@
             <span class="p">]</span>
         <span class="p">)</span>
 
-<div class="viewcode-block" id="Ellipse.plot"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Ellipse.plot">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Ellipse.plot">
+<a class="viewcode-back" href="../../2d_ellipse.html#spatialmath.geom2d.Ellipse.plot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Plot ellipse</span>
 
 <span class="sd">        :param kwargs: arguments passed to :func:`~spatialmath.base.graphics.plot_ellipse`</span>
@@ -1116,7 +1228,7 @@
 <span class="sd">            &gt;&gt;&gt; plotvol2(5)</span>
 <span class="sd">            &gt;&gt;&gt; e = Ellipse(E=np.array([[1, 1], [1, 2]]))</span>
 <span class="sd">            &gt;&gt;&gt; e.plot()</span>
-<span class="sd">            &gt;&gt;&gt; e.plot(filled=True, color=&#39;r&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; e.plot(filled=True, color='r')</span>
 
 
 <span class="sd">        .. plot::</span>
@@ -1134,15 +1246,18 @@
 <span class="sd">            from spatialmath.base import plotvol2</span>
 <span class="sd">            ax = plotvol2(5)</span>
 <span class="sd">            e = Ellipse(E=np.array([[1, 1], [1, 2]]))</span>
-<span class="sd">            e.plot(filled=True, color=&#39;r&#39;)</span>
+<span class="sd">            e.plot(filled=True, color='r')</span>
 <span class="sd">            ax.grid()</span>
 
 <span class="sd">        :seealso: :func:`~spatialmath.base.graphics.plot_ellipse`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">plot_ellipse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">,</span> <span class="n">centre</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_centre</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Ellipse.contains"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Ellipse.contains">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Ellipse.contains">
+<a class="viewcode-back" href="../../2d_ellipse.html#spatialmath.geom2d.Ellipse.contains">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Test if points are contained by ellipse</span>
 
 <span class="sd">        :param p: point or points to test</span>
@@ -1159,7 +1274,7 @@
 <span class="sd">            &gt;&gt;&gt; e.contains((3,4))</span>
 <span class="sd">            &gt;&gt;&gt; e.contains((0,0))</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">inside</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getmatrix</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">T</span><span class="p">:</span>
@@ -1171,8 +1286,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">inside</span></div>
 
-<div class="viewcode-block" id="Ellipse.points"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Ellipse.points">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Points2</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Ellipse.points">
+<a class="viewcode-back" href="../../2d_ellipse.html#spatialmath.geom2d.Ellipse.points">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Points2</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Generate perimeter points</span>
 
 <span class="sd">        :param resolution: number of points on circumferance, defaults to 20</span>
@@ -1193,11 +1311,14 @@
 <span class="sd">            &gt;&gt;&gt; e.points()[:,:5]  # first 5 points</span>
 
 <span class="sd">        :seealso: :meth:`polygon` :func:`~spatialmath.base.graphics.ellipse`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">smb</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">centre</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Ellipse.polygon"><a class="viewcode-back" href="../../classes-2d.html#spatialmath.geom2d.Ellipse.polygon">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">polygon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Polygon2</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Ellipse.polygon">
+<a class="viewcode-back" href="../../2d_ellipse.html#spatialmath.geom2d.Ellipse.polygon">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">polygon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Polygon2</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Approximate with a polygon</span>
 
 <span class="sd">        :param resolution: number of polygon vertices, defaults to 20</span>
@@ -1217,11 +1338,13 @@
 <span class="sd">            &gt;&gt;&gt; e.polygon()</span>
 
 <span class="sd">        :seealso: :meth:`points`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Polygon2</span><span class="p">(</span><span class="n">smb</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">centre</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span></div></div>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Polygon2</span><span class="p">(</span><span class="n">smb</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">centre</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span></div>
+</div>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="k">pass</span>
     <span class="c1"># print(Ellipse((500, 500), (100, 200)))</span>
     <span class="c1"># p = Polygon2([(1, 2), (3, 2), (2, 4)])</span>
@@ -1232,14 +1355,14 @@
 
     <span class="c1"># p = Polygon2(np.array([[4, 4, 6, 6], [2, 1, 1, 2]]))</span>
     <span class="c1"># base.plotvol2([8])</span>
-    <span class="c1"># p.plot(color=&quot;b&quot;, alpha=0.3)</span>
+    <span class="c1"># p.plot(color="b", alpha=0.3)</span>
     <span class="c1"># for theta in np.linspace(0, 2 * np.pi, 100):</span>
     <span class="c1">#     p.animate(SE2(0, 0, theta))</span>
     <span class="c1">#     plt.show()</span>
     <span class="c1">#     plt.pause(0.05)</span>
 
     <span class="c1"># print(p)</span>
-    <span class="c1"># p.plot(alpha=0.5, color=&#39;b&#39;)</span>
+    <span class="c1"># p.plot(alpha=0.5, color='b')</span>
     <span class="c1"># print(p.contains([5.,5.]))</span>
     <span class="c1"># print(p.contains([5,1.5]))</span>
     <span class="c1"># print(p.contains([4, 2.1]))</span>
@@ -1258,7 +1381,7 @@
     <span class="c1"># print(p2.vertices())</span>
     <span class="c1"># print(p2.area())</span>
 
-    <span class="c1"># p2.plot(alpha=0.5, facecolor=&#39;r&#39;)</span>
+    <span class="c1"># p2.plot(alpha=0.5, facecolor='r')</span>
 
     <span class="c1"># p.move(SE2(0, 0, 0.7))</span>
     <span class="c1"># plt.show(block=True)</span>
@@ -1272,7 +1395,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 30-Jan-2025.
+      <span class="lastupdated">Last updated on 27-Aug-2026.
       </span></p>
   </div>
 
