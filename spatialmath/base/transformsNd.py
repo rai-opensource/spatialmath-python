@@ -408,6 +408,11 @@ def isskew(S: NDArray, tol: float = 20) -> bool:  # -> TypeGuard[sonArray]:
 
     :seealso: isskewa
     """
+    # NB: unlike isR/isskewa, an explicit-arithmetic fast path here did not
+    # show a reliable win under careful (min-of-repeats) benchmarking - the
+    # only overhead being avoided is np.linalg.norm on an already-cheap
+    # `S + S.T`, not enough to reliably beat the scalar-indexing cost of
+    # unrolling it by hand. Left as the original implementation.
     return bool(np.linalg.norm(S + S.T) < tol * _eps)
 
 
@@ -436,9 +441,42 @@ def isskewa(S: NDArray, tol: float = 20) -> bool:  # -> TypeGuard[senArray]:
 
     :seealso: isskew
     """
-    return bool(np.linalg.norm(S[0:-1, 0:-1] + S[0:-1, 0:-1].T) < tol * _eps) and all(
-        S[-1, :] == 0
-    )
+    n = S.shape[0]
+    if n == 4:
+        # explicit sum-of-squares + scalar bottom-row check avoids the
+        # generic-dispatch overhead of np.linalg.norm and the array
+        # allocation + all() of the bottom-row comparison, same as isR/ishom
+        r00 = S[0, 0] + S[0, 0]
+        r01 = S[0, 1] + S[1, 0]
+        r02 = S[0, 2] + S[2, 0]
+        r11 = S[1, 1] + S[1, 1]
+        r12 = S[1, 2] + S[2, 1]
+        r22 = S[2, 2] + S[2, 2]
+        resid = r00 * r00 + r11 * r11 + r22 * r22 + 2.0 * (
+            r01 * r01 + r02 * r02 + r12 * r12
+        )
+        return bool(
+            resid < (tol * _eps) ** 2
+            and S[3, 0] == 0
+            and S[3, 1] == 0
+            and S[3, 2] == 0
+            and S[3, 3] == 0
+        )
+    elif n == 3:
+        r00 = S[0, 0] + S[0, 0]
+        r01 = S[0, 1] + S[1, 0]
+        r11 = S[1, 1] + S[1, 1]
+        resid = r00 * r00 + r11 * r11 + 2.0 * r01 * r01
+        return bool(
+            resid < (tol * _eps) ** 2
+            and S[2, 0] == 0
+            and S[2, 1] == 0
+            and S[2, 2] == 0
+        )
+    else:
+        return bool(
+            np.linalg.norm(S[0:-1, 0:-1] + S[0:-1, 0:-1].T) < tol * _eps
+        ) and all(S[-1, :] == 0)
 
 
 def iseye(S: NDArray, tol: float = 20) -> bool:

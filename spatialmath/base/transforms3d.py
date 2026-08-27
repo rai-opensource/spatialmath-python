@@ -52,6 +52,11 @@ from spatialmath.base.types import *
 
 _eps = np.finfo(np.float64).eps
 
+# read-only constant: safe to use directly as an operand in expressions that
+# produce a new array (e.g. `_EYE3 + ...`), never in a context that could
+# mutate it in place or return it directly to a caller
+_EYE3 = np.eye(3)
+
 # ---------------------------------------------------------------------------------------#
 
 
@@ -1355,7 +1360,7 @@ def trlog(
         else:
             # general case
             Ginv = (
-                np.eye(3)
+                _EYE3
                 - S / 2
                 + (1 / theta - 1 / math.tan(theta / 2) / 2) / theta * S @ S
             )
@@ -1374,8 +1379,7 @@ def trlog(
             diagonal = R.diagonal()
             k = diagonal.argmax()
             mx = diagonal[k]
-            I = np.eye(3)
-            col = R[:, k] + I[:, k]
+            col = R[:, k] + _EYE3[:, k]
             w = col / np.sqrt(2 * (1 + mx))
             theta = math.pi
             if twist:
@@ -1514,7 +1518,7 @@ def trexp(S, theta=None, check=True):
 
         skw = skew(w)
         V = (
-            np.eye(3) * theta
+            _EYE3 * theta
             + (1.0 - math.cos(theta)) * skw
             + (theta - math.sin(theta)) * skw @ skw
         )
@@ -2774,7 +2778,7 @@ def rodrigues(w: ArrayLike3, theta: Optional[float] = None) -> SO3Array:
 
     skw = skew(cast(ArrayLike3, w))
     return (
-        np.eye(skw.shape[0])
+        _EYE3
         + math.sin(theta) * skw
         + (1.0 - math.cos(theta)) * skw @ skw
     )
