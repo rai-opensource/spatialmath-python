@@ -23,7 +23,7 @@ _eps = np.finfo(np.float64).eps
 # colored printing of matrices to the terminal
 #   colored package has much finer control than colorama, but the latter is available by default with anaconda
 try:
-    from colored import fg, bg, attr
+    from colored import fore, back, style
 
     _colored = True
     # print('using colored output')
@@ -926,12 +926,12 @@ class BasePoseMatrix(BasePoseList):
                 else:
                     return f(c)
 
-            bgcol = color(self._bgcolor, bg)
-            trcol = color(self._transcolor, fg) + bgcol
-            rotcol = color(self._rotcolor, fg) + bgcol
-            constcol = color(self._constcolor, fg) + bgcol
-            indexcol = color(self._indexcolor[0], fg) + color(self._indexcolor[1], bg)
-            reset = attr(0)
+            bgcol = color(self._bgcolor, back)
+            trcol = color(self._transcolor, fore) + bgcol
+            rotcol = color(self._rotcolor, fore) + bgcol
+            constcol = color(self._constcolor, fore) + bgcol
+            indexcol = color(self._indexcolor[0], fore) + color(self._indexcolor[1], back)
+            reset = style(0)
         else:
             bgcol = ""
             trcol = ""
