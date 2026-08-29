@@ -16,6 +16,7 @@ To use::
 # pylint: disable=invalid-name
 from __future__ import annotations
 import math
+import warnings
 import numpy as np
 from typing import Any
 import spatialmath.base as smb
@@ -1981,7 +1982,7 @@ class UnitQuaternion(Quaternion):
         """
         Interpolate a unit quaternion
 
-        :param shortest: Take the shortest path along the great circle
+        :param shortest: deprecated, has no effect
         :param s: interpolation coefficient, range 0 to 1, or number of steps
         :type s: array_like or int
         :return: interpolated unit quaternion
@@ -2012,9 +2013,31 @@ class UnitQuaternion(Quaternion):
 
         .. note:: values of ``s`` are silently clipped to the range [0, 1]
 
+        .. note:: ``shortest`` can never change the result here. Every
+            ``UnitQuaternion`` has a non-negative scalar part by construction
+            (see :func:`~spatialmath.base.quaternions.qunit`), and this method
+            always interpolates *from* the identity quaternion ``[1,0,0,0]``
+            -- whose dot product with any unit quaternion is just that
+            quaternion's own (always non-negative) scalar part. A negative
+            dot product is what ``shortest`` checks for to detect "the long
+            way round", and that condition can never occur here, unlike
+            :meth:`interp`, where it can.
+
+        .. deprecated:: 1.1.17
+            ``shortest`` has no effect and will be removed in a future
+            release.
+
         :seealso: :func:`~spatialmath.base.quaternions.qslerp`
         """
         # TODO allow self to have len() > 1
+
+        if shortest:
+            warnings.warn(
+                "shortest has no effect on interp1 and will be removed in a "
+                "future release: interpolation from the identity quaternion "
+                "is always the shortest path",
+                DeprecationWarning,
+            )
 
         if isinstance(s, int) and s > 1:
             s = np.linspace(0, 1, s)
@@ -2024,14 +2047,6 @@ class UnitQuaternion(Quaternion):
 
         q = self.vec
         dot = q[0]  # s
-
-        # If the dot product is negative, the quaternions
-        # have opposite handed-ness and slerp won't take
-        # the shorter path. Fix by reversing one quaternion.
-        if shortest:
-            if dot < 0:
-                q = -q
-                dot = -dot
 
         # shouldn't be needed by handle numerical errors: -eps, 1+eps cases
         dot = np.clip(dot, -1, 1)  # Clip within domain of acos()
