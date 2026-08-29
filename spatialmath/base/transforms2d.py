@@ -1240,7 +1240,11 @@ def ICP2d(
 
         num_iter += 1
 
-    return T
+    # T accumulates roundoff error through repeated composition
+    # (T = T @ new_T) over the iterations above, and can drift just
+    # outside ishom2()'s orthonormality tolerance -- restore exact
+    # orthonormality before returning.
+    return trnorm2(T)
 
 
 if _matplotlib_exists:
