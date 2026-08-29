@@ -179,6 +179,32 @@ class Twist3dTest(unittest.TestCase):
         tw = Twist3.UnitRevolute([0, 0, 1], [0, 0, 0])
         array_compare(tw.exp(pi / 2), SE3.Rz(pi / 2))
 
+    def test_Ad(self):
+        # pure rotation: Ad is block-diagonal [[R,0],[0,R]], no translation
+        # coupling -- hand-verified ground truth, not derived from Ad() itself.
+        R = SE3.Rx(0.4).R
+        S = Twist3(SE3.Rx(0.4))
+        expected = np.zeros((6, 6))
+        expected[:3, :3] = R
+        expected[3:, 3:] = R
+        nt.assert_almost_equal(S.Ad(), expected)
+
+        # pure translation: Ad couples translation into the top-right block
+        # via skew(t), identity rotation blocks -- also hand-verified.
+        t = np.r_[1, 2, 3]
+        S = Twist3(SE3(t))
+        expected = np.eye(6)
+        expected[:3, 3:] = skew(t)
+        nt.assert_almost_equal(S.Ad(), expected)
+
+        # general case: cross-check against SE3.Ad(), computed from the same
+        # twist's own exponential, for several random transforms.
+        for _ in range(20):
+            T = SE3.Rand()
+            S = Twist3(T)
+            nt.assert_almost_equal(S.Ad(), S.SE3().Ad())
+            nt.assert_almost_equal(S.Ad(), T.Ad())
+
     def test_arith(self):
         # check overloaded *
 
