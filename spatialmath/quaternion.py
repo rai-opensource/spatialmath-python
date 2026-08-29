@@ -924,6 +924,24 @@ class Quaternion(BasePoseList):
             delim = ("<", ">")
         return "\n".join([smb.q2str(q, delim=delim) for q in self.data])
 
+    def printline(self):
+        """Print quaternion in compact single-line format (superclass method)
+
+        Example:
+
+        .. runblock:: pycon
+
+            >>> from spatialmath import Quaternion, UnitQuaternion
+            >>> q = Quaternion([1,2,3,4])
+            >>> q.printline()
+            >>> q = UnitQuaternion.Rx(0.3)
+            >>> q.printline()
+            >>> q = UnitQuaternion.Rx([0.1, 0.2, 0.3])
+            >>> q.printline()
+
+        """
+        print(self)
+
 
 # ========================================================================= #
 

@@ -778,8 +778,8 @@ class BasePoseMatrix(BasePoseList):
             >>> x.strline()
             >>> x = SE3.Rx([0.2, 0.3])
             >>> x.strline()
-            >>> x.strline('angvec')
-            >>> x.strline(orient='angvec', fmt="{:.6f}")
+            >>> x.strline(orient="angvec")
+            >>> x.strline(orient="angvec", fmt="{:.6f}")
             >>> x = SE2(1, 2, 0.3)
             >>> x.strline()
 
@@ -793,10 +793,10 @@ class BasePoseMatrix(BasePoseList):
         s = ""
         if self.N == 2:
             for x in self.data:
-                s += smb.trprint2(x, *args, file=False, **kwargs)
+                s += smb.tr2str2(x, *args, **kwargs)
         else:
             for x in self.data:
-                s += smb.trprint(x, *args, file=False, **kwargs)
+                s += smb.tr2str(x, *args, **kwargs)
         return s
 
     def __repr__(self) -> str:
