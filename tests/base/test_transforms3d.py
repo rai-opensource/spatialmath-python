@@ -319,6 +319,34 @@ class Test3D(unittest.TestCase):
         T = transl(1, 2, 3) @ rpy2tr(0.1, 0.2, 0.3)
         nt.assert_array_almost_equal(logm(T), trlog(T))
 
+    def test_trlog_near_identity(self):
+        # Regression test for #63: trlog's general-case branch divides by
+        # sin(theta), computed from trace(R) via acos. A near-identity R
+        # that isn't *exactly* np.eye(3) (as produced by real computation,
+        # not hand-constructed) must not raise or blow up.
+
+        # theta small enough that cos(theta) underflows to exactly 1.0 in
+        # float64, so trace(R) rounds to exactly 3 and acos(1.0) == 0.0
+        # exactly: this is the case that used to divide by sin(theta) == 0
+        # with no guard. R itself is not bitwise np.eye(3) (it still has
+        # sin(theta) noise off the diagonal), so this also exercises the
+        # "is this actually the identity" branch on a matrix that isn't one.
+        R = rotx(1e-9)
+        assert not np.array_equal(R, np.eye(3))
+        nt.assert_array_almost_equal(trlog(R, twist=True), [0, 0, 0])
+        nt.assert_array_almost_equal(trlog(R), skew([0, 0, 0]))
+
+        # theta small enough to be well within the near-identity regime, but
+        # not small enough to clamp: the general-case formula must stay
+        # accurate here rather than falling back to a coarse zero. This is
+        # the case a fuzzy identity-tolerance (checking R against I before
+        # computing theta, as originally proposed in #63) risks getting
+        # wrong in the other direction, by discarding a real small rotation.
+        theta = 1e-7
+        for R in (rotx(theta), roty(theta), rotz(theta)):
+            v = trlog(R, twist=True)
+            nt.assert_almost_equal(np.linalg.norm(v), theta, decimal=12)
+
     def test_trexp(self):
         R = trexp(skew([0.5, 0, 0]))
         nt.assert_array_almost_equal(R, rotx(0.5))
