@@ -382,7 +382,13 @@ def ishom(T: Any, check: bool = False, tol: float = 20) -> bool:
         and T.shape == (4, 4)
         and (
             not check
-            or (isR(T[:3, :3], tol=tol) and all(T[3, :] == np.array([0, 0, 0, 1])))
+            or (
+                isR(T[:3, :3], tol=tol)
+                and T[3, 0] == 0
+                and T[3, 1] == 0
+                and T[3, 2] == 0
+                and T[3, 3] == 1
+            )
         )
     )
 

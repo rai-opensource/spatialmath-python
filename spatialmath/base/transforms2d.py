@@ -361,7 +361,12 @@ def ishom2(T: Any, check: bool = False, tol: float = 20) -> bool:  # TypeGuard(S
         and T.shape == (3, 3)
         and (
             not check
-            or (smb.isR(T[:2, :2], tol=tol) and all(T[2, :] == np.array([0, 0, 1])))
+            or (
+                smb.isR(T[:2, :2], tol=tol)
+                and T[2, 0] == 0
+                and T[2, 1] == 0
+                and T[2, 2] == 1
+            )
         )
     )
 
