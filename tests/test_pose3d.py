@@ -726,6 +726,19 @@ class TestSO3(unittest.TestCase):
         Re = SO3.RotatedVector(v1, v1)
         np.testing.assert_almost_equal(Re, np.eye(3))
 
+        # Antipodal case: v1 and v2 point in exactly opposite directions.
+        # The cross product used to find the rotation axis is zero here
+        # too, same as the parallel case above, but the correct answer is
+        # a 180 degree flip, not identity -- regression test for a bug
+        # where this silently returned identity instead.
+        for v1 in ([1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 2, 3], [-3, 1, 2]):
+            v1 = unitvec(v1)
+            v2 = [-x for x in v1]
+            Re = SO3.RotatedVector(v1, v2)
+            np.testing.assert_almost_equal(np.asarray(Re * v1).flatten(), v2)
+            # must actually be a 180 degree rotation, not identity
+            assert not np.allclose(Re.A, np.eye(3))
+
         R = SO3()  # identity matrix case
 
         # Check log and exponential map
