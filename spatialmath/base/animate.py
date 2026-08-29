@@ -60,10 +60,11 @@ class Animate:
 
         :param ax: the axes to plot into, defaults to current axes
         :type ax: Axes3D reference
-        :param dim: dimension of plot volume as [xmin, xmax, ymin, ymax,
-            zmin, zmax]. If dims is [min, max] those limits are applied
-            to the x-, y- and z-axes.
-        :type dim: array_like(6) or array_like(2)
+        :param dim: dimension of plot volume, using the same shorthand as
+            ``plotvol3``: a scalar ``A`` gives ``[-A,A]`` on every axis, a
+            2-vector ``[A,B]`` gives ``[A,B]`` on every axis, and a 6-vector
+            gives ``[xmin, xmax, ymin, ymax, zmin, zmax]`` explicitly.
+        :type dim: scalar, array_like(2) or array_like(6)
         :param projection: 3D projection: ortho [default] or persp
         :type projection: str
         :param labels: labels for the axes, defaults to X, Y and Z
@@ -105,13 +106,9 @@ class Animate:
             #     # ax.set_aspect('equal')
             ax = smb.plotvol3(ax=ax, dim=dim)
         if dim is not None:
-            dim = list(np.ndarray.flatten(np.array(dim)))
-            if len(dim) == 2:
-                dim = dim * 3
-            elif len(dim) != 6:
-                raise ValueError(
-                    f"dim must have 2 or 6 elements, got {dim}. See docstring for details."
-                )
+            # same shorthand as plotvol3: scalar A -> [-A,A]*3, [A,B] -> [A,B]*3,
+            # or a full [xmin,xmax,ymin,ymax,zmin,zmax]
+            dim = smb.expand_dims(dim, nd=3)
             ax.set_xlim(dim[0:2])
             ax.set_ylim(dim[2:4])
             ax.set_zlim(dim[4:])

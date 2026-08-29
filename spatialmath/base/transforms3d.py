@@ -3404,8 +3404,8 @@ if _matplotlib_exists:
 
         Examples:
 
-                >>> tranimate(transl(1,2,3)@trotx(1), frame='A', arrow=False, dims=[0, 5])
-                >>> tranimate(transl(1,2,3)@trotx(1), frame='A', arrow=False, dims=[0, 5], movie='spin.mp4')
+                >>> tranimate(transl(1,2,3)@trotx(1), frame='A', arrow=False, dim=[0, 5])
+                >>> tranimate(transl(1,2,3)@trotx(1), frame='A', arrow=False, dim=[0, 5], movie='spin.mp4')
 
         .. note:: For Jupyter this works with the ``notebook`` and ``TkAgg``
             backends.
@@ -3421,7 +3421,9 @@ if _matplotlib_exists:
 
         :seealso: `trplot`, `plotvol3`
         """
-        dim = kwargs.pop("dims", None)
+        # accept dim (matches Animate/plotvol2/plotvol3), keep dims as an
+        # alias for backward compatibility with the previous docstring/API
+        dim = kwargs.pop("dim", kwargs.pop("dims", None))
         ax = kwargs.pop("ax", None)
         anim = Animate(dim=dim, ax=ax, **kwargs)
         anim.trplot(T, **kwargs)
