@@ -133,12 +133,12 @@ class InterpSplineSE3(SplineSE3):
         """
         return SE3.Rt(t=self.spline_xyz(t), R=self.spline_so3(t).as_matrix())
 
-    def derivative(self, t: float) -> Twist3:
-        linear_vel = self.spline_xyz.derivative()(t)
-        angular_vel = self.spline_so3(
-            t, 1
+    def derivative(self, t: float, order: int = 1) -> Twist3:
+        linear = self.spline_xyz.derivative(order)(t)
+        angular = self.spline_so3(
+            t, order
         )  # 1 is angular rate, 2 is angular acceleration
-        return Twist3(linear_vel, angular_vel)
+        return Twist3(linear, angular)
 
 
 class SplineFit:
