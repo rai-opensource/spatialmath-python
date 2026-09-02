@@ -466,6 +466,23 @@ class TestSE2(unittest.TestCase):
         array_compare(T1.interp(T2, s=0.5, shortest=False), SE2(0, 0, 0.05))
         array_compare(T1.interp(T2, s=0.5, shortest=True), SE2(0, 0, -math.pi + 0.05))
 
+    def test_interp1(self):
+        # interpolate from the identity pose
+        TT = SE2(2, -4, 0.6)
+        array_compare(TT.interp1(0), SE2())
+        array_compare(TT.interp1(1), TT)
+        array_compare(TT.interp1(0.5), SE2(1, -2, 0.3))
+
+        z = TT.interp1([0, 0.5, 1])
+        self.assertEqual(len(z), 3)
+        array_compare(z[2], TT)
+
+        R = SO2(0.6)
+        array_compare(R.interp1(0), SO2())
+        array_compare(R.interp1(1), R)
+        array_compare(R.interp1(0.5), SO2(0.3))
+        self.assertEqual(len(SE2([TT, TT]).interp1(0.5)), 2)
+
     def test_miscellany(self):
         TT = SE2(1, 2, 0.3)
 

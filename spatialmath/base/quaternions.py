@@ -771,6 +771,47 @@ def r2q(
 #         return np.r_[qs, (math.sqrt(1.0 - qs**2) / nm) * kv]
 
 
+def _qslerp_prepare(
+    q0: ArrayLike4,
+    q1: ArrayLike4,
+    shortest: Optional[bool] = False,
+) -> tuple[
+    UnitQuaternionArray,
+    UnitQuaternionArray,
+    UnitQuaternionArray,
+    float,
+    float,
+]:
+    """Compute the loop-invariant slerp terms for two unit quaternions.
+
+    The original ``q0`` endpoint is returned separately from the sign-adjusted
+    value used by shortest-path interpolation, preserving the exact value at
+    ``s=0``.
+    """
+    q0 = smb.getvector(q0, 4)
+    q1 = smb.getvector(q1, 4)
+    q0_endpoint = q0
+
+    dotprod = np.dot(q0, q1)
+
+    # If the dot product is negative, the quaternions
+    # have opposite handed-ness and slerp won't take
+    # the shorter path. Fix by reversing one quaternion.
+    if shortest:
+        if dotprod < 0:
+            q0 = -q0  # pylint: disable=invalid-unary-operand-type
+            dotprod = -dotprod  # pylint: disable=invalid-unary-operand-type
+
+    dotprod = np.clip(dotprod, -1, 1)
+
+    # sin(theta) is the length of the component of q1 orthogonal to q0.  Computing
+    # it this way keeps full relative precision as theta approaches 0 or pi, where
+    # sin(acos(dotprod)) does not: acos loses the small angle to rounding.
+    sin_theta = float(np.linalg.norm(q1 - dotprod * q0))
+    theta = math.atan2(sin_theta, dotprod)  # theta is the angle between q0 and q1
+    return q0_endpoint, q0, q1, sin_theta, theta
+
+
 def qslerp(
     q0: ArrayLike4,
     q1: ArrayLike4,
@@ -789,7 +830,7 @@ def qslerp(
     :type s: float
     :arg shortest: choose shortest distance [default False]
     :type shortest: bool
-    :param tol: Tolerance when checking for identical quaternions, in multiples of eps, defaults to 20
+    :param tol: Tolerance when checking for coincident quaternions, in multiples of eps, defaults to 20
     :type tol: float, optional
     :return: interpolated unit-quaternion
     :rtype: ndarray(4)
@@ -814,37 +855,27 @@ def qslerp(
         >>> qprint(qslerp(q0, q1, 1))           # this is q1
         >>> qprint(qslerp(q0, q1, 0.5))         # this is in "half way" between
 
+    .. note:: If ``q0`` and ``q1`` are the same rotation, ie. their dot product is
+        :math:`\\pm 1`, the interpolate is that rotation for all ``s``.
+
     .. warning:: There is no check that the passed values are unit-quaternions.
 
     """
     if not 0 <= s <= 1:
         raise ValueError("s must be in the interval [0,1]")
-    q0 = smb.getvector(q0, 4)
-    q1 = smb.getvector(q1, 4)
-
+    q0_endpoint, q0, q1, sin_theta, theta = _qslerp_prepare(q0, q1, shortest=shortest)
     if s == 0:
-        return q0
+        return q0_endpoint
     elif s == 1:
         return q1
 
-    dotprod = np.dot(q0, q1)
-
-    # If the dot product is negative, the quaternions
-    # have opposite handed-ness and slerp won't take
-    # the shorter path. Fix by reversing one quaternion.
-    if shortest:
-        if dotprod < 0:
-            q0 = -q0  # pylint: disable=invalid-unary-operand-type
-            dotprod = -dotprod  # pylint: disable=invalid-unary-operand-type
-
-    dotprod = np.clip(dotprod, -1, 1)  # Clip within domain of acos()
-    theta = math.acos(dotprod)  # theta is the angle between rotation vectors
-    if abs(theta) > tol * _eps:
+    if sin_theta > tol * _eps:
         s0 = math.sin((1 - s) * theta)
         s1 = math.sin(s * theta)
-        return ((q0 * s0) + (q1 * s1)) / math.sin(theta)
+        return ((q0 * s0) + (q1 * s1)) / sin_theta
     else:
-        # quaternions are identical
+        # theta is 0 or pi: q0 and q1 are the same rotation, so is every
+        # interpolate between them
         return q0
 
 

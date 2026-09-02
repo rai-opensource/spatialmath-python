@@ -522,10 +522,10 @@ class BasePoseMatrix(BasePoseList):
             # SO(2) or SE(2)
             if len(s) > 1:
                 assert len(self) == 1, "if len(s) > 1, len(X) must == 1"
-                return self.__class__([smb.trinterp2(start, self.A, s=_s) for _s in s])
+                return self.__class__([smb.trinterp2(None, self.A, s=_s) for _s in s])
             else:
                 return self.__class__(
-                    [smb.trinterp2(start, x, s=s[0]) for x in self.data]
+                    [smb.trinterp2(None, x, s=s[0]) for x in self.data]
                 )
         elif self.N == 3:
             # SO(3) or SE(3)

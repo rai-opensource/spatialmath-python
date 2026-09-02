@@ -19,6 +19,7 @@ import math
 import numpy as np
 from typing import Any
 import spatialmath.base as smb
+from spatialmath.base.quaternions import _qslerp_prepare
 from spatialmath.pose3d import SO3, SE3
 from spatialmath.baseposelist import BasePoseList
 from spatialmath.base.types import *
@@ -1949,32 +1950,23 @@ class UnitQuaternion(Quaternion):
         # 2 quaternion form
         if not isinstance(end, UnitQuaternion):
             raise TypeError("end argument must be a UnitQuaternion")
-        q1 = self.vec
-        q2 = end.vec
-        dot = smb.qinner(q1, q2)
 
-        # If the dot product is negative, the quaternions
-        # have opposite handed-ness and slerp won't take
-        # the shorter path. Fix by reversing one quaternion.
-        if shortest:
-            if dot < 0:
-                q1 = -q1
-                dot = -dot
-
-        # shouldn't be needed by handle numerical errors: -eps, 1+eps cases
-        dot = np.clip(dot, -1, 1)  # Clip within domain of acos()
-
-        theta_0 = math.acos(dot)  # theta_0 = angle between input vectors
-
+        q0_endpoint, q0, q1, sin_theta, theta = _qslerp_prepare(
+            self.vec, end.vec, shortest=shortest
+        )
         qi = []
         for sk in s:
-            theta = theta_0 * sk  # theta = angle between v0 and result
-
-            s1 = float(math.cos(theta) - dot * math.sin(theta) / math.sin(theta_0))
-            s2 = math.sin(theta) / math.sin(theta_0)
-            out = (q1 * s1) + (q2 * s2)
+            if sk == 0:
+                out = q0_endpoint
+            elif sk == 1:
+                out = q1
+            elif sin_theta > 20 * _eps:
+                s0 = math.sin((1 - sk) * theta)
+                s1 = math.sin(sk * theta)
+                out = ((q0 * s0) + (q1 * s1)) / sin_theta
+            else:
+                out = q0
             qi.append(out)
-
         return UnitQuaternion(qi)
 
     def interp1(self, s: float = 0, shortest: Optional[bool] = False) -> UnitQuaternion:
@@ -2022,31 +2014,22 @@ class UnitQuaternion(Quaternion):
             s = smb.getvector(s)
             s = np.clip(s, 0, 1)  # enforce valid values
 
-        q = self.vec
-        dot = q[0]  # s
-
-        # If the dot product is negative, the quaternions
-        # have opposite handed-ness and slerp won't take
-        # the shorter path. Fix by reversing one quaternion.
-        if shortest:
-            if dot < 0:
-                q = -q
-                dot = -dot
-
-        # shouldn't be needed by handle numerical errors: -eps, 1+eps cases
-        dot = np.clip(dot, -1, 1)  # Clip within domain of acos()
-
-        theta_0 = math.acos(dot)  # theta_0 = angle between input vectors
-
+        q0_endpoint, q0, q1, sin_theta, theta = _qslerp_prepare(
+            smb.qeye(), self.vec, shortest=shortest
+        )
         qi = []
         for sk in s:
-            theta = theta_0 * sk  # theta = angle between v0 and result
-
-            s1 = float(math.cos(theta) - dot * math.sin(theta) / math.sin(theta_0))
-            s2 = math.sin(theta) / math.sin(theta_0)
-            out = np.r_[s1, 0, 0, 0] + (q * s2)
+            if sk == 0:
+                out = q0_endpoint
+            elif sk == 1:
+                out = q1
+            elif sin_theta > 20 * _eps:
+                s0 = math.sin((1 - sk) * theta)
+                s1 = math.sin(sk * theta)
+                out = ((q0 * s0) + (q1 * s1)) / sin_theta
+            else:
+                out = q0
             qi.append(out)
-
         return UnitQuaternion(qi)
 
     def increment(self, w: ArrayLike3, normalize: Optional[bool] = False) -> None:

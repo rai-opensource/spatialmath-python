@@ -178,6 +178,34 @@ class TestQuaternion(unittest.TestCase):
             qslerp(r2q(tr.roty(0.3)), r2q(tr.roty(0.5)), 0.5), r2q(tr.roty(0.4))
         )
 
+    def test_slerp_same_rotation(self):
+        # coincident (dot = +1) and antipodal (dot = -1) endpoints are the same
+        # rotation, so every interpolate is that rotation
+        q = r2q(tr.rotx(0.3))
+        for s in (0, 0.25, 0.5, 1):
+            for shortest in (False, True):
+                nt.assert_array_almost_equal(qslerp(q, q, s, shortest=shortest), q)
+                qi = qslerp(q, -q, s, shortest=shortest)
+                self.assertAlmostEqual(np.linalg.norm(qi), 1)
+                nt.assert_array_almost_equal(q2r(qi), tr.rotx(0.3))
+
+    def test_slerp_near_pi(self):
+        # the slerp weights are sin(...)/sin(theta), singular at theta = 0 and pi.
+        # Check against the closed form cos(s.theta) q0 + sin(s.theta) v, where v is
+        # the unit quaternion orthogonal to q0 in the plane of the great circle.
+        q0 = r2q(tr.rpy2r(0.2, 0.3, 0.4))
+        v = np.r_[0, 0, 1, 0] - np.dot(np.r_[0, 0, 1, 0], q0) * q0
+        v = v / np.linalg.norm(v)
+
+        for theta in (1e-6, 1e-3, 0.5, 1.5, math.pi - 1e-3, math.pi - 1e-6):
+            q1 = math.cos(theta) * q0 + math.sin(theta) * v
+            for s in (0.25, 0.5, 0.75):
+                qi = qslerp(q0, q1, s)
+                nt.assert_array_almost_equal(
+                    qi, math.cos(s * theta) * q0 + math.sin(s * theta) * v
+                )
+                self.assertAlmostEqual(np.linalg.norm(qi), 1)
+
     def test_rotx(self):
         pass
 
