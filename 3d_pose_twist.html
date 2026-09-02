@@ -281,8 +281,8 @@ poses.</p></li>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">Twist3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Twist3</span><span class="o">.</span><span class="n">Rand</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="go">Twist3([</span>
-<span class="go">  [-0.64339, -1.2473, 0.83326, -1.5119, -0.42886, -1.9223],</span>
-<span class="go">  [-0.14893, -0.31956, 0.80841, 0.88413, 0.21947, 0.28925]</span>
+<span class="go">  [-0.27507, -0.013496, 0.020166, 0.01744, -2.3779, -0.012344],</span>
+<span class="go">  [-0.33914, -0.70804, 1.3975, 1.0344, 1.0834, 2.1009]</span>
 <span class="go">])</span>
 </pre></div>
 </div>
@@ -1131,14 +1131,11 @@ The inverse is the negative of the twist vector.</p>
 </dl>
 <p><code class="docutils literal notranslate"><span class="pre">X.line()</span></code> is a Plucker object representing the line of the twist axis.</p>
 <p>Example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">"&lt;input&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-  File <span class="nb">"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/spatialmath/twist.py"</span>, line <span class="m">967</span>, in <span class="n">line</span>
-<span class="w">    </span><span class="k">return</span> <span class="n">Line3</span><span class="p">([</span><span class="n">Line3</span><span class="p">(</span><span class="o">-</span><span class="n">tw</span><span class="o">.</span><span class="n">v</span> <span class="o">+</span> <span class="n">tw</span><span class="o">.</span><span class="n">pitch</span> <span class="o">*</span> <span class="n">tw</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">tw</span><span class="o">.</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">tw</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">])</span>
-<span class="w">                  </span><span class="pm">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-  File <span class="nb">"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/spatialmath/geom3d.py"</span>, line <span class="m">314</span>, in <span class="n">__init__</span>
-<span class="w">    </span><span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"invalid Plucker coordinates"</span><span class="p">)</span>
-<span class="gr">ValueError</span>: <span class="n">invalid Plucker coordinates</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">SE3</span><span class="p">,</span> <span class="n">Twist3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">SE3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Twist3</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">line</span><span class="p">()</span>
+<span class="go">Line3([0, -2.435, -2.6775, 0.3, 0, 0])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1437,7 +1434,7 @@ screw axis.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">SE3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Twist3</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">pitch</span>
-<span class="go">np.float64(0.3)</span>
+<span class="go">np.float64(3.3333333333333335)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1554,7 +1551,7 @@ this point is at infinity.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 31-Aug-2026.
+      <span class="lastupdated">Last updated on 02-Sep-2026.
       </span></p>
   </div>
 
