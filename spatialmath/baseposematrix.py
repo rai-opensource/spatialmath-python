@@ -1360,6 +1360,20 @@ class BasePoseMatrix(BasePoseList):
         """
         return left.__mul__(right)
 
+    def __imatmul__(left, right):  # noqa
+        """
+        Overloaded ``@=`` operator (superclass method)
+
+        :return: Product of two operands with normalization
+        :rtype: Pose instance or NumPy array
+        :raises ValueError: for incompatible arguments
+
+        - ``X @= Y`` compounds the poses ``X`` and ``Y`` and places the normalized result in ``X``
+
+        :seealso: ``__imul__`` :meth:`__matmul__`
+        """
+        return left.__matmul__(right)
+
     def __truediv__(left, right):  # pylint: disable=no-self-argument
         """
         Overloaded ``/`` operator (superclass method)

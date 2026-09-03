@@ -507,6 +507,11 @@ class TestUnitQuaternion(unittest.TestCase):
             UnitQuaternion([ry * rx, rz * ry, rx * rz]),
         )
 
+        # @= is @ as an augmented assignment, not *=
+        q = rx
+        q @= ry
+        qcompare(q, rx @ ry)
+
     # def multiply_test_normalized(self):
 
     #     vx = [1, 0, 0]; vy = [0, 1, 0]; vz = [0, 0, 1]
@@ -948,6 +953,14 @@ class TestQuaternion(unittest.TestCase):
         q = q1
         q *= q2
         qcompare(q, [-12, 6, 24, 12])
+
+        # plain Quaternion has no @ (only UnitQuaternion normalizes via @),
+        # so @= must fail the same way @ does, not silently fall back to *=
+        with self.assertRaises(TypeError):
+            q1 @ q2
+        with self.assertRaises(TypeError):
+            q = q1
+            q @= q2
 
         # vector x vector
         qcompare(

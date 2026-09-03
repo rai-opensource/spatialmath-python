@@ -420,6 +420,11 @@ class TestSO3(unittest.TestCase):
         array_compare(R, rotx(pi / 2))
 
         R = SO3()
+        R @= SO3.Rx(pi / 2)
+        self.assertIsInstance(R, SO3)
+        array_compare(R, rotx(pi / 2))
+
+        R = SO3()
         R *= 2
         self.assertNotIsInstance(R, SO3)
         array_compare(R, 2 * np.eye(3))
@@ -1073,6 +1078,13 @@ class TestSE3(unittest.TestCase):
 
         T = SE3(1, 2, 3)
         T *= SE3.Ry(pi / 2)
+        self.assertIsInstance(T, SE3)
+        array_compare(
+            T, np.array([[0, 0, 1, 1], [0, 1, 0, 2], [-1, 0, 0, 3], [0, 0, 0, 1]])
+        )
+
+        T = SE3(1, 2, 3)
+        T @= SE3.Ry(pi / 2)
         self.assertIsInstance(T, SE3)
         array_compare(
             T, np.array([[0, 0, 1, 1], [0, 1, 0, 2], [-1, 0, 0, 3], [0, 0, 0, 1]])

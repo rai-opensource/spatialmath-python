@@ -668,6 +668,40 @@ class Quaternion(BasePoseList):
         """
         return left.__mul__(right)
 
+    def __imatmul__(
+        left, right: Quaternion
+    ) -> Quaternion:  # lgtm[py/not-named-self] pylint: disable=no-self-argument
+        """
+        Overloaded ``@=`` operator
+
+        :return: product
+        :rtype: Quaternion
+        :raises: ValueError
+
+        ``q1 @= q2`` sets ``q1 := qnorm(q1 * q2)``. Only meaningful for
+        ``UnitQuaternion``, which is the only subclass defining ``__matmul__``
+        (with normalization) that this delegates to; on a plain ``Quaternion``
+        this raises the same ``TypeError`` that ``q1 @ q2`` would.
+
+        Example:
+
+        .. runblock:: pycon
+
+            >>> from spatialmath import UnitQuaternion
+            >>> q = UnitQuaternion.Eul([0.1, 0.2, 0.3])
+            >>> q @= UnitQuaternion.Eul([0.3, 0.4, 0.5])
+            >>> print(q)
+
+
+        :seealso: :func:`__matmul__`
+        """
+        # NOT left.__matmul__(right): Quaternion itself has no __matmul__
+        # (only UnitQuaternion defines one), and calling the dunder
+        # directly as a plain attribute skips Python's normal operator
+        # fallback, raising a confusing AttributeError instead of the
+        # TypeError that `left @ right` raises consistently.
+        return left @ right
+
     def __pow__(self, n: int) -> Quaternion:
         """
         Overloaded ``**`` operator
@@ -1885,8 +1919,6 @@ class UnitQuaternion(Quaternion):
 
         - ``q1 @ q2`` is the Hamilton product of ``q1`` and ``q2``, both unit
           quaternions, followed by explicit normalization.
-
-        - `` q1 @= q2`` as above.
 
         .. note:: This operator is functionally equivalent to ``*`` but is more
             costly.  It is useful for cases where a pose is incrementally update
