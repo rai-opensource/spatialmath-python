@@ -74,9 +74,12 @@ class Test3D(unittest.TestCase):
         plt.close("all")
 
     @pytest.mark.skipif(
-        os.environ.get("CI") == "true"
+        plt.get_backend().lower() == "agg"
+        or os.environ.get("CI") == "true"
         or (sys.platform.startswith("darwin") and sys.version_info < (3, 11)),
-        reason="no display in CI / tkinter bug on mac",
+        reason="animation wait=True busy-loop never terminates under the "
+        "non-interactive Agg backend (no event loop to deregister the "
+        "timer callback); needs a real display",
     )
     def test_animate(self):
         tranimate(transl(1, 2, 3), repeat=False, wait=True)
