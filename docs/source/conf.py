@@ -193,6 +193,24 @@ import numpy as np
 np.set_printoptions(precision=4, suppress=True)
 """
 
+# -------- sphinx-codeautolink options --------------------------------------------#
+
+codeautolink_custom_blocks = {
+    "pycon": clean_pycon,
+    "ipython": clean_ipython,
+    "ipython3": clean_ipython,
+}
+# Ensure pycon (Python console) blocks are included in the autolink search.
+codeautolink_search_css_classes = ["highlight-python", "highlight-pycon"]
+
+# -------- sphinx-copybutton options ----------------------------------------------#
+# Strip interactive prompts (Python and shell) when users copy code snippets.
+
+copybutton_prompt_text = r">>> |\.\.\. |\$ "
+copybutton_prompt_is_regexp = True
+copybutton_only_copy_prompt_lines = False
+copybutton_remove_prompts = True
+
 intersphinx_mapping = {
     "numpy": ("http://docs.scipy.org/doc/numpy/", None),
     "scipy": ("http://docs.scipy.org/doc/scipy/reference/", None),
