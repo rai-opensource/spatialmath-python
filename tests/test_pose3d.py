@@ -420,6 +420,11 @@ class TestSO3(unittest.TestCase):
         array_compare(R, rotx(pi / 2))
 
         R = SO3()
+        R @= SO3.Rx(pi / 2)
+        self.assertIsInstance(R, SO3)
+        array_compare(R, rotx(pi / 2))
+
+        R = SO3()
         R *= 2
         self.assertNotIsInstance(R, SO3)
         array_compare(R, 2 * np.eye(3))
@@ -725,6 +730,19 @@ class TestSO3(unittest.TestCase):
 
         Re = SO3.RotatedVector(v1, v1)
         np.testing.assert_almost_equal(Re, np.eye(3))
+
+        # Antipodal case: v1 and v2 point in exactly opposite directions.
+        # The cross product used to find the rotation axis is zero here
+        # too, same as the parallel case above, but the correct answer is
+        # a 180 degree flip, not identity -- regression test for a bug
+        # where this silently returned identity instead.
+        for v1 in ([1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 2, 3], [-3, 1, 2]):
+            v1 = unitvec(v1)
+            v2 = [-x for x in v1]
+            Re = SO3.RotatedVector(v1, v2)
+            np.testing.assert_almost_equal(np.asarray(Re * v1).flatten(), v2)
+            # must actually be a 180 degree rotation, not identity
+            assert not np.allclose(Re.A, np.eye(3))
 
         R = SO3()  # identity matrix case
 
@@ -1078,6 +1096,13 @@ class TestSE3(unittest.TestCase):
             T, np.array([[0, 0, 1, 1], [0, 1, 0, 2], [-1, 0, 0, 3], [0, 0, 0, 1]])
         )
 
+        T = SE3(1, 2, 3)
+        T @= SE3.Ry(pi / 2)
+        self.assertIsInstance(T, SE3)
+        array_compare(
+            T, np.array([[0, 0, 1, 1], [0, 1, 0, 2], [-1, 0, 0, 3], [0, 0, 0, 1]])
+        )
+
         T = SE3()
         T *= 2
         self.assertNotIsInstance(T, SE3)
@@ -1390,7 +1415,7 @@ class TestSE3(unittest.TestCase):
         nt.assert_equal(tvec, [2, 3, 4])
 
     def test_interp(self):
-        # This data is taken from https://github.com/bdaiinstitute/spatialmath-python/issues/165
+        # This data is taken from https://github.com/rai-opensource/spatialmath-python/issues/165
         se3_1 = SE3()
         se3_1.t = np.array(
             [0.5705748101710814, 0.29623210833184527, 0.10764106509086407]
@@ -1428,6 +1453,32 @@ class TestSE3(unittest.TestCase):
             else:
                 test_angle = path_se3[i].angdist(path_se3[i + 1])
                 assert abs(test_angle - angle) < 1e-6
+
+    def test_mean(self):
+        rpy = np.ones((100, 1)) @ np.c_[0.1, 0.2, 0.3]
+        T = SE3.RPY(rpy)
+        self.assertEqual(len(T), 100)
+        m = T.mean()
+        self.assertIsInstance(m, SE3)
+        array_compare(m, T[0])
+
+        # range of angles, mean should be the middle one, index=25
+        T = SE3.Rz(np.linspace(start=0.3, stop=0.7, num=51))
+        m = T.mean()
+        self.assertIsInstance(m, SE3)
+        array_compare(m, T[25])
+
+        # now add noise
+        rng = np.random.default_rng(0)  # reproducible random numbers
+        rpy += rng.normal(scale=0.00001, size=(100, 3))
+        T = SE3.RPY(rpy)
+        m = T.mean()
+        array_compare(m, SE3.RPY(0.1, 0.2, 0.3))
+
+        T = SE3.Tz(np.linspace(start=-2, stop=1, num=51))
+        m = T.mean()
+        self.assertIsInstance(m, SE3)
+        array_compare(m, T[25])
 
 
 # ---------------------------------------------------------------------------------------#

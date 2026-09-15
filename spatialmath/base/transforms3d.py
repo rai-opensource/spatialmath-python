@@ -18,6 +18,8 @@ import sys
 from collections.abc import Iterable
 import math
 import numpy as np
+import warnings
+
 
 from spatialmath.base.argcheck import getunit, getvector, isvector, isscalar, ismatrix
 from spatialmath.base.vectors import (
@@ -326,6 +328,7 @@ def transl(x, y=None, z=None):
     .. note:: This function is compatible with the MATLAB version of the
         Toolbox.  It is unusual/weird in doing two completely different things
         inside the one function.
+
     :seealso: :func:`~spatialmath.base.transforms2d.transl2`
     :SymPy: supported
     """
@@ -752,7 +755,7 @@ def angvec2r(theta: float, v: ArrayLike3, unit="rad", tol: float = 20) -> SO3Arr
     if np.linalg.norm(v) < tol * _eps:
         return np.eye(3)
 
-    θ = getunit(theta, unit)
+    θ = getunit(theta, unit, vector=False)
 
     # Rodrigue's equation
 
@@ -2779,49 +2782,42 @@ def rodrigues(w: ArrayLike3, theta: Optional[float] = None) -> SO3Array:
     )
 
 
-def trprint(
+def tr2str(
     T: Union[SO3Array, SE3Array],
     orient: str = "rpy/zyx",
     label: str = "",
-    file: TextIO = sys.stdout,
     fmt: str = "{:.3g}",
     degsym: bool = True,
     unit: str = "deg",
 ) -> str:
     """
-     Compact display of SO(3) or SE(3) matrices
+    Convert SO(3) or SE(3) matrices to compact single-line string
 
-     :param T: SE(3) or SO(3) matrix
-     :type T: ndarray(4,4) or ndarray(3,3)
-     :param label: text label to put at start of line
-     :type label: str
-     :param orient: 3-angle convention to use
-     :type orient: str
-     :param file: file to write formatted string to. [default, stdout]
-     :type file: file object
-     :param fmt: conversion format for each number in the format used with ``format``
-     :type fmt: str
-     :param unit: angular units: 'rad' [default], or 'deg'
-     :type unit: str
-     :return: formatted string
-     :rtype: str
-     :raises ValueError: bad argument
+    :param T: SE(3) or SO(3) matrix
+    :type T: ndarray(4,4) or ndarray(3,3)
+    :param label: text label to put at start of line
+    :type label: str
+    :param orient: 3-angle convention to use
+    :type orient: str
+    :param fmt: conversion format for each number in the format used with ``format``
+    :type fmt: str
+    :param unit: angular units: 'rad' [default], or 'deg'
+    :type unit: str
+    :return: formatted string
+    :rtype: str
+    :raises ValueError: bad argument
 
-     The matrix is formatted and written to ``file`` and the
-     string is returned.  To suppress writing to a file, set ``file=None``.
+    The matrix is formatted and returned as a string.
 
-    - ``trprint(R)`` prints the SO(3) rotation matrix to stdout in a compact
-       single-line format:
+    - ``tr2str(R)`` converts the SO(3) rotation matrix to a compact
+      single-line string:
 
          [LABEL:] ORIENTATION UNIT
 
-     - ``trprint(T)`` prints the SE(3) homogoneous transform to stdout in a
-       compact single-line format:
+     - ``tr2str(T)`` prints the SE(3) homogoneous transform to a compact
+       single-line string:
 
          [LABEL:] [t=X, Y, Z;] ORIENTATION UNIT
-
-     - ``trprint(X, file=None)`` as above but returns the string rather than
-       printing to a file
 
      Orientation is expressed in one of several formats:
 
@@ -2834,11 +2830,11 @@ def trprint(
 
      .. runblock:: pycon
 
-         >>> from spatialmath.base import transl, rpy2tr, trprint
+         >>> from spatialmath.base import *
          >>> T = transl(1,2,3) @ rpy2tr(10, 20, 30, 'deg')
-         >>> trprint(T, file=None)
-         >>> trprint(T, file=None, label='T', orient='angvec')
-         >>> trprint(T, file=None, label='T', orient='angvec', fmt='{:8.4g}')
+         >>> tr2str(T)
+         >>> tr2str(T, label='T', orient='angvec')
+         >>> tr2str(T, label='T', orient='angvec', fmt='{:8.4g}')
 
      .. note::
 
@@ -2849,7 +2845,9 @@ def trprint(
          - For tabular data set ``fmt`` to a fixed width format such as
            ``fmt='{:.3g}'``
 
-     :seealso: :func:`~spatialmath.base.transforms2d.trprint2` :func:`~tr2eul` :func:`~tr2rpy` :func:`~tr2angvec`
+    .. versionadded:: 1.1.15
+
+     :seealso: :func:`~trprint` :func:`~spatialmath.base.transforms2d.trprint2` :func:`~tr2eul` :func:`~tr2rpy` :func:`~tr2angvec`
      :SymPy: not supported
     """
 
@@ -2898,16 +2896,102 @@ def trprint(
             s += " angvec = ({} | {})".format(theta, _vec2s(fmt, v))
     else:
         raise ValueError("bad orientation format")
-
-    if file:
-        print(s, file=file)
-
     return s
 
 
 def _vec2s(fmt, v):
     v = [x if np.abs(x) > 1e-6 else 0.0 for x in v]
     return ", ".join([fmt.format(x) for x in v])
+
+
+def trprint(
+    T: Union[SO3Array, SE3Array],
+    orient: str = "rpy/zyx",
+    label: str = "",
+    file: TextIO = False,
+    fmt: str = "{:.3g}",
+    degsym: bool = True,
+    unit: str = "deg",
+) -> str:
+    """
+     Compact single-line display of SO(3) or SE(3) matrices
+
+     :param T: SE(3) or SO(3) matrix
+     :type T: ndarray(4,4) or ndarray(3,3)
+     :param label: text label to put at start of line
+     :type label: str
+     :param orient: 3-angle convention to use
+     :type orient: str
+     :param file: file to write formatted string to. [default, stdout]
+     :type file: file object
+     :param fmt: conversion format for each number in the format used with ``format``
+     :type fmt: str
+     :param unit: angular units: 'rad' [default], or 'deg'
+     :type unit: str
+     :return: formatted string
+     :rtype: str
+     :raises ValueError: bad argument
+
+     The matrix is formatted and written to ``file``.
+
+    - ``trprint(R)`` prints the SO(3) rotation matrix to stdout in a compact
+      single-line format:
+
+         [LABEL:] ORIENTATION UNIT
+
+     - ``trprint(T)`` prints the SE(3) homogoneous transform to stdout in a
+       compact single-line format:
+
+         [LABEL:] [t=X, Y, Z;] ORIENTATION UNIT
+
+     Orientation is expressed in one of several formats:
+
+     - 'rpy/zyx' roll-pitch-yaw angles in ZYX axis order [default]
+     - 'rpy/yxz' roll-pitch-yaw angles in YXZ axis order
+     - 'rpy/zyx' roll-pitch-yaw angles in ZYX axis order
+     - 'eul' Euler angles in ZYZ axis order
+     - 'angvec' angle and axis
+
+
+     .. runblock:: pycon
+
+         >>> from spatialmath.base import *
+         >>> T = transl(1,2,3) @ rpy2tr(10, 20, 30, 'deg')
+         >>> trprint(T)
+         >>> trprint(T, label='T', orient='angvec')
+         >>> trprint(T, label='T', orient='angvec', fmt='{:8.4g}')
+
+     .. note::
+
+         - If the 'rpy' option is selected, then the particular angle sequence can be
+           specified with the options 'xyz' or 'yxz' which are passed through to ``tr2rpy``.
+           'zyx' is the default.
+         - Default formatting is for compact display of data
+         - For tabular data set ``fmt`` to a fixed width format such as
+           ``fmt='{:.3g}'``
+
+    .. deprecated:: 1.1.15
+        ``file=None`` to get the string back without printing is
+        deprecated - call :func:`~tr2str` directly instead.
+
+     :seealso: :func:`~tr2str` :func:`~spatialmath.base.transforms2d.trprint2` :func:`~tr2eul` :func:`~tr2rpy` :func:`~tr2angvec`
+     :SymPy: not supported
+    """
+    s = tr2str(T, orient=orient, label=label, fmt=fmt, degsym=degsym, unit=unit)
+    if file is None:
+        # deprecated: return the string without printing, matching the
+        # original `if file: print(...)` falsy-skip behaviour
+        warnings.warn(
+            "Usage: trprint(..., file=None) -> str is deprecated, use tr2str() instead",
+            DeprecationWarning,
+        )
+    else:
+        # file=False (the default) resolves to None here so print() looks
+        # up the *current* sys.stdout at call time, not whatever it was
+        # when this function was defined - that's what makes
+        # contextlib.redirect_stdout() work.
+        print(s, file=None if file is False else file)
+    return s
 
 
 try:
@@ -3390,7 +3474,8 @@ if _matplotlib_exists:
         :type wait: bool
         :param movie: name of file to write MP4 movie into
         :type movie: str
-        :param **kwargs: arguments passed to ``trplot``
+        :param kwargs: arguments passed to ``trplot``
+        :type kwargs: dict
 
         - ``tranimate(T)`` where ``T`` is an SO(3) or SE(3) matrix, animates a 3D
           coordinate frame moving from the world frame to the frame ``T`` in
@@ -3402,8 +3487,8 @@ if _matplotlib_exists:
 
         Examples:
 
-                >>> tranimate(transl(1,2,3)@trotx(1), frame='A', arrow=False, dims=[0, 5])
-                >>> tranimate(transl(1,2,3)@trotx(1), frame='A', arrow=False, dims=[0, 5], movie='spin.mp4')
+                >>> tranimate(transl(1,2,3)@trotx(1), frame='A', arrow=False, dim=[0, 5])
+                >>> tranimate(transl(1,2,3)@trotx(1), frame='A', arrow=False, dim=[0, 5], movie='spin.mp4')
 
         .. note:: For Jupyter this works with the ``notebook`` and ``TkAgg``
             backends.
@@ -3419,7 +3504,9 @@ if _matplotlib_exists:
 
         :seealso: `trplot`, `plotvol3`
         """
-        dim = kwargs.pop("dims", None)
+        # accept dim (matches Animate/plotvol2/plotvol3), keep dims as an
+        # alias for backward compatibility with the previous docstring/API
+        dim = kwargs.pop("dim", kwargs.pop("dims", None))
         ax = kwargs.pop("ax", None)
         anim = Animate(dim=dim, ax=ax, **kwargs)
         anim.trplot(T, **kwargs)

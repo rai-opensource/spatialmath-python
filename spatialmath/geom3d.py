@@ -512,8 +512,8 @@ class Line3(BasePoseList):
         :rtype: ndarray(4,4)
 
         ``line.skew()`` is the Plucker matrix, a 4x4 skew-symmetric matrix
-        representation of the line whose six unique elements are the
-        Plucker coordinates of the line.
+        representation of the line whose six unique elements are the Plucker coordinates
+        of the line.
 
         .. math::
 
@@ -524,11 +524,11 @@ class Line3(BasePoseList):
 
         .. note::
 
-            - For two homogeneous points P and Q on the line, :math:`PQ^T-QP^T` is
-            also skew symmetric.
-            - The projection of Plucker line by a perspective camera is a
-            homogeneous line (3x1) given by :math:`\vee C M C^T` where :math:`C
-            \in \mathbf{R}^{3 \times 4}` is the camera matrix.
+            - For two homogeneous points P and Q on the line, :math:`PQ^T-QP^T` is also
+              skew symmetric.
+            - The projection of Plucker line by a perspective camera is a homogeneous
+              line (3x1) given by :math:`\vee C M C^T` where :math:`C \in \mathbf{R}^{3
+              \times 4}` is the camera matrix.
         """
 
         v = self.v
@@ -838,7 +838,7 @@ class Line3(BasePoseList):
         :return: Closest distance between lines
         :rtype: float
 
-        ``l1.distance(l2) is the minimum distance between two lines.
+        ``l1.distance(l2)`` is the minimum distance between two lines.
 
         .. note:: Works for parallel, skew and intersecting lines.
 
@@ -1215,7 +1215,8 @@ class Line3(BasePoseList):
 
         :param bounds: Bounds of an axis-aligned rectangular cuboid as [xmin xmax ymin ymax zmin zmax], optional
         :type plane: 6-element array_like
-        :param **kwargs: Extra arguents passed to `Line2D <https://matplotlib.org/3.2.2/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D>`_
+        :param kwargs: Extra arguments passed to `Line2D <https://matplotlib.org/3.2.2/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D>`_
+        :type kwargs: dict
         :return: Plotted line
         :rtype: Matplotlib artists
 
@@ -1227,7 +1228,7 @@ class Line3(BasePoseList):
 
         The line color or style is specified by:
 
-            - a  MATLAB-style linestyle like 'k--'
+            - a  MATLAB-style linestyle like ``"k--"``
             - additional arguments passed to `Line2D <https://matplotlib.org/3.2.2/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D>`_
 
         :seealso: :meth:`intersect_volume`

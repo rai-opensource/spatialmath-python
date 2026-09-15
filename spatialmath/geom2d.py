@@ -653,9 +653,9 @@ class Polygon2:
         .. runblock:: pycon
 
             >>> from spatialmath import Polygon2
-            >>> p = Polygon2([(1, 2), (3, 2), (2, 4)])
+            >>> p = Polygon2([(1, 2), (3, 2), (2, 4), (1,2)])
             >>> p.vertices()
-            >>> p.vertices(closed=True)
+            >>> p.vertices(unique=True)
         """
         vertices = self.path.vertices.T
         if unique:

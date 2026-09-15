@@ -1,20 +1,17 @@
 [project]
 name = "spatialmath-python"
-version = "1.1.14"
+version = "1.1.17"
 authors = [
   { name="Peter Corke", email="rvc@petercorke.com" },
 ]
 description = "Provides spatial maths capability for Python."
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     # Indicate who your project is intended for
     "Intended Audience :: Developers",
     # Specify the Python versions you support here.
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -45,10 +42,10 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/bdaiinstitute/spatialmath-python"
-"Bug Tracker" = "https://github.com/bdaiinstitute/spatialmath-python/issues"
-"Documentation" = "https://bdaiinstitute.github.io/spatialmath-python/"
-"Source" = "https://github.com/bdaiinstitute/spatialmath-python"
+"Homepage" = "https://github.com/rai-opensource/spatialmath-python"
+"Bug Tracker" = "https://github.com/rai-opensource/spatialmath-python/issues"
+"Documentation" = "https://rai-opensource.github.io/spatialmath-python/"
+"Source" = "https://github.com/rai-opensource/spatialmath-python"
 
 [project.optional-dependencies]
 

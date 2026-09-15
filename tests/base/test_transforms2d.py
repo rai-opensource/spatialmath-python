@@ -144,10 +144,17 @@ class Test2D(unittest.TestCase):
         T = rt2tr(rot2(0.2), [1, 2])
         nt.assert_array_almost_equal(trinv2(T) @ T, np.eye(3))
 
-    def test_tradjoint2(self):
+    def test_tr2adjoint2(self):
         T = xyt2tr([1, 2, 0.2])
         X = [1, 2, 3]
-        nt.assert_almost_equal(tradjoint2(T) @ X, vexa(T @ skewa(X) @ trinv2(T)))
+        nt.assert_almost_equal(tr2adjoint2(T) @ X, vexa(T @ skewa(X) @ trinv2(T)))
+
+    def test_tradjoint2_deprecated(self):
+        T = xyt2tr([1, 2, 0.2])
+        X = [1, 2, 3]
+        with self.assertWarns(DeprecationWarning):
+            result = tradjoint2(T)
+        nt.assert_almost_equal(result @ X, vexa(T @ skewa(X) @ trinv2(T)))
 
     def test_points2tr2(self):
         p1 = np.random.uniform(size=(2, 5))

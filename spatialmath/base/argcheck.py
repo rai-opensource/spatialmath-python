@@ -62,7 +62,7 @@ def isinteger(x: Any) -> bool:
 
     .. runblock:: pycon
 
-        >>> from spatialmath.base import isscalar
+        >>> from spatialmath.base import isinteger
         >>> isinteger(1)
         >>> isinteger(1.2)
 

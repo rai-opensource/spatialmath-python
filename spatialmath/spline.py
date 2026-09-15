@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Boston Dynamics AI Institute LLC.
+# Copyright (c) 2024 Robotics and AI Institute LLC dba RAI Institute.
 # MIT Licence, see details in top-level file: LICENCE
 
 """

@@ -19,6 +19,7 @@ import math
 import numpy as np
 from typing import Any
 import spatialmath.base as smb
+from spatialmath.base.quaternions import _qslerp_prepare
 from spatialmath.pose3d import SO3, SE3
 from spatialmath.baseposelist import BasePoseList
 from spatialmath.base.types import *
@@ -482,8 +483,9 @@ class Quaternion(BasePoseList):
         .. runblock:: pycon
 
             >>> from spatialmath import Quaternion
+            >>> import numpy as np
             >>> Quaternion([1,2,3,4]).inner(Quaternion([5,6,7,8]))
-            >>> numpy.dot([1,2,3,4], [5,6,7,8])
+            >>> np.dot([1,2,3,4], [5,6,7,8])
 
         :seealso: :func:`~spatialmath.base.quaternions.qinner`
         """
@@ -503,7 +505,8 @@ class Quaternion(BasePoseList):
 
         :return: Equality of two operands
         :rtype: bool or list of bool
-        ``q1 == q2`` is True if ``q1` is elementwise equal to ``q2``.
+
+        ``q1 == q2`` is True if ``q1` is elementwise-equal to ``q2``.
 
         Example:
 
@@ -666,6 +669,40 @@ class Quaternion(BasePoseList):
         """
         return left.__mul__(right)
 
+    def __imatmul__(
+        left, right: Quaternion
+    ) -> Quaternion:  # lgtm[py/not-named-self] pylint: disable=no-self-argument
+        """
+        Overloaded ``@=`` operator
+
+        :return: product
+        :rtype: Quaternion
+        :raises: ValueError
+
+        ``q1 @= q2`` sets ``q1 := qnorm(q1 * q2)``. Only meaningful for
+        ``UnitQuaternion``, which is the only subclass defining ``__matmul__``
+        (with normalization) that this delegates to; on a plain ``Quaternion``
+        this raises the same ``TypeError`` that ``q1 @ q2`` would.
+
+        Example:
+
+        .. runblock:: pycon
+
+            >>> from spatialmath import UnitQuaternion
+            >>> q = UnitQuaternion.Eul([0.1, 0.2, 0.3])
+            >>> q @= UnitQuaternion.Eul([0.3, 0.4, 0.5])
+            >>> print(q)
+
+
+        :seealso: :func:`__matmul__`
+        """
+        # NOT left.__matmul__(right): Quaternion itself has no __matmul__
+        # (only UnitQuaternion defines one), and calling the dunder
+        # directly as a plain attribute skips Python's normal operator
+        # fallback, raising a confusing AttributeError instead of the
+        # TypeError that `left @ right` raises consistently.
+        return left @ right
+
     def __pow__(self, n: int) -> Quaternion:
         """
         Overloaded ``**`` operator
@@ -673,7 +710,7 @@ class Quaternion(BasePoseList):
         :rtype: Quaternion instance
 
         ``q ** N`` computes the product of ``q`` with itself ``N-1`` times, where ``N`` must be
-        an integer.  If ``N``<0 the result is conjugated.
+        an integer.  If ``N`` < 0 the result is conjugated.
 
         Example:
 
@@ -921,6 +958,24 @@ class Quaternion(BasePoseList):
         else:
             delim = ("<", ">")
         return "\n".join([smb.q2str(q, delim=delim) for q in self.data])
+
+    def printline(self):
+        """Print quaternion in compact single-line format (superclass method)
+
+        Example:
+
+        .. runblock:: pycon
+
+            >>> from spatialmath import Quaternion, UnitQuaternion
+            >>> q = Quaternion([1,2,3,4])
+            >>> q.printline()
+            >>> q = UnitQuaternion.Rx(0.3)
+            >>> q.printline()
+            >>> q = UnitQuaternion.Rx([0.1, 0.2, 0.3])
+            >>> q.printline()
+
+        """
+        print(self)
 
 
 # ========================================================================= #
@@ -1392,10 +1447,11 @@ class UnitQuaternion(Quaternion):
         :return: unit-quaternion
         :rtype: UnitQuaternion instance
 
-        ``UnitQuaternion.OA(O, A)`` is a unit quaternion that describes the 3D rotation defined in terms of
-        vectors parallel to the Y- and Z-axes of its reference frame.  In robotics these axes are
-        respectively called the orientation and approach vectors defined such that
-        R = [N O A] and N = O x A.
+        ``UnitQuaternion.OA(O, A)`` is a unit quaternion that describes the 3D rotation
+        defined in terms of vectors parallel to the Y- and Z-axes of its reference
+        frame, respectively :math:`\vec{o}` and :math:`\vec{a}`.  In robotics these axes
+        are respectively called the orientation and approach vectors defined such that
+        :math:`\mat{R}=[\vec{n}, \vec{o}, \vec{a}]` and :math:`\vec{n} = \vec{o} \times \vec{a}`.
 
         Example:
 
@@ -1407,7 +1463,7 @@ class UnitQuaternion(Quaternion):
         .. note::
 
             - Only the ``A`` vector is guaranteed to have the same direction in the resulting
-            rotation matrix
+              rotation matrix
             - ``O`` and ``A`` do not have to be unit-length, they are normalized
             - ``O`` and ``A` do not have to be orthogonal, so long as they are not parallel
 
@@ -1531,7 +1587,7 @@ class UnitQuaternion(Quaternion):
 
         .. runblock:: pycon
 
-            >>> from spatialmath import UnitQuaternion
+            >>> from spatialmath import UnitQuaternion as UQ
             >>> print(UQ.Rx(0.3).inv())
             >>> print(UQ.Rx(0.3).inv() * UQ.Rx(0.3))
             >>> print(UQ.Rx([0.3, 0.6]).inv())
@@ -1680,7 +1736,7 @@ class UnitQuaternion(Quaternion):
             >>> from spatialmath import UnitQuaternion as UQ
             >>> print(UQ.Rx(0.3) * UQ.Rx(0.4))
             >>> q = UQ.Rx(0.3)
-            >>> q *= UQ.Rx(0.4))
+            >>> q *= UQ.Rx(0.4)
             >>> print(q)
             >>> print(UQ.Rx(0.3) * UQ.Rx([0.4, 0.6]))
             >>> print(UQ.Rx([0.3, 0.6]) * UQ.Rx(0.3))
@@ -1883,8 +1939,6 @@ class UnitQuaternion(Quaternion):
         - ``q1 @ q2`` is the Hamilton product of ``q1`` and ``q2``, both unit
           quaternions, followed by explicit normalization.
 
-        - `` q1 @= q2`` as above.
-
         .. note:: This operator is functionally equivalent to ``*`` but is more
             costly.  It is useful for cases where a pose is incrementally update
             over many cycles.
@@ -1946,32 +2000,23 @@ class UnitQuaternion(Quaternion):
         # 2 quaternion form
         if not isinstance(end, UnitQuaternion):
             raise TypeError("end argument must be a UnitQuaternion")
-        q1 = self.vec
-        q2 = end.vec
-        dot = smb.qinner(q1, q2)
 
-        # If the dot product is negative, the quaternions
-        # have opposite handed-ness and slerp won't take
-        # the shorter path. Fix by reversing one quaternion.
-        if shortest:
-            if dot < 0:
-                q1 = -q1
-                dot = -dot
-
-        # shouldn't be needed by handle numerical errors: -eps, 1+eps cases
-        dot = np.clip(dot, -1, 1)  # Clip within domain of acos()
-
-        theta_0 = math.acos(dot)  # theta_0 = angle between input vectors
-
+        q0_endpoint, q0, q1, sin_theta, theta = _qslerp_prepare(
+            self.vec, end.vec, shortest=shortest
+        )
         qi = []
         for sk in s:
-            theta = theta_0 * sk  # theta = angle between v0 and result
-
-            s1 = float(math.cos(theta) - dot * math.sin(theta) / math.sin(theta_0))
-            s2 = math.sin(theta) / math.sin(theta_0)
-            out = (q1 * s1) + (q2 * s2)
+            if sk == 0:
+                out = q0_endpoint
+            elif sk == 1:
+                out = q1
+            elif sin_theta > 20 * _eps:
+                s0 = math.sin((1 - sk) * theta)
+                s1 = math.sin(sk * theta)
+                out = ((q0 * s0) + (q1 * s1)) / sin_theta
+            else:
+                out = q0
             qi.append(out)
-
         return UnitQuaternion(qi)
 
     def interp1(self, s: float = 0, shortest: Optional[bool] = False) -> UnitQuaternion:
@@ -2019,31 +2064,22 @@ class UnitQuaternion(Quaternion):
             s = smb.getvector(s)
             s = np.clip(s, 0, 1)  # enforce valid values
 
-        q = self.vec
-        dot = q[0]  # s
-
-        # If the dot product is negative, the quaternions
-        # have opposite handed-ness and slerp won't take
-        # the shorter path. Fix by reversing one quaternion.
-        if shortest:
-            if dot < 0:
-                q = -q
-                dot = -dot
-
-        # shouldn't be needed by handle numerical errors: -eps, 1+eps cases
-        dot = np.clip(dot, -1, 1)  # Clip within domain of acos()
-
-        theta_0 = math.acos(dot)  # theta_0 = angle between input vectors
-
+        q0_endpoint, q0, q1, sin_theta, theta = _qslerp_prepare(
+            smb.qeye(), self.vec, shortest=shortest
+        )
         qi = []
         for sk in s:
-            theta = theta_0 * sk  # theta = angle between v0 and result
-
-            s1 = float(math.cos(theta) - dot * math.sin(theta) / math.sin(theta_0))
-            s2 = math.sin(theta) / math.sin(theta_0)
-            out = np.r_[s1, 0, 0, 0] + (q * s2)
+            if sk == 0:
+                out = q0_endpoint
+            elif sk == 1:
+                out = q1
+            elif sin_theta > 20 * _eps:
+                s0 = math.sin((1 - sk) * theta)
+                s1 = math.sin(sk * theta)
+                out = ((q0 * s0) + (q1 * s1)) / sin_theta
+            else:
+                out = q0
             qi.append(out)
-
         return UnitQuaternion(qi)
 
     def increment(self, w: ArrayLike3, normalize: Optional[bool] = False) -> None:

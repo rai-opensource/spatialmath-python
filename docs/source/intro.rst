@@ -262,6 +262,7 @@ The classes ``SE3``, ``SO3``, ``SE2`` and ``SO2`` can provide colorized text out
 
 .. image:: ../figs/colored_output.png
    :width: 300
+
 with rotational elements in red, translational elements in blue and constants in grey.
 
 The foreground and background colors can be controlled using the following
@@ -538,8 +539,10 @@ A numpy column vector has shape ``(N,1)`` and a row vector
 has shape ``(1,N)`` but functions also accept row ``(1,N)``  and column ``(N,1)``
 where a vector argument is required.
 
-.. warning:: For a user transitioning from MATLAB the most significant
-  differences are:
+.. warning::
+
+  For a user transitioning from MATLAB the most significant differences are:
+
     - the use of 1D arrays -- all MATLAB arrays have two dimensions,
       even if one of them is equal to one.
     - Iterating over a 1D NumPy array (N,) returns consecutive elements

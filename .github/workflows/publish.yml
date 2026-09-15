@@ -16,10 +16,10 @@ jobs:
       max-parallel: 2
       matrix:
         os: [ubuntu-22.04]
-        python-version: [3.8]
+        python-version: [3.12]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -35,5 +35,5 @@ jobs:
       run: |
         python -m build
         ls ./dist/*.whl
-        twine upload dist/*.gz
-        twine upload dist/*.whl
+        twine upload dist/*.gz --verbose
+        twine upload dist/*.whl --verbose

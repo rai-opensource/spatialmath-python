@@ -338,7 +338,7 @@ class UnitDualQuaternion(DualQuaternion):
 
         .. runblock:: pycon
 
-            >>> from spatialmath import DualQuaternion, SE3
+            >>> from spatialmath import UnitDualQuaternion, SE3
             >>> T = SE3.Rand()
             >>> print(T)
             >>> d = UnitDualQuaternion(T)

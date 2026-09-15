@@ -149,10 +149,9 @@ class BaseTwist(BasePoseList):
 
             >>> from spatialmath import Twist3
             >>> S = Twist3([1,2,3,4,5,6])
-            >>> S.isunit()
+            >>> S.isunit
             >>> S = Twist3.UnitRevolute([1,2,3], [4,5,6])
-            >>> S.isunit()
-
+            >>> S.isunit
         """
         if len(self) == 1:
             return smb.isunitvec(self.S)
@@ -239,7 +238,7 @@ class BaseTwist(BasePoseList):
 
         .. runblock:: pycon
 
-            >>> from spatialmath import Twist2
+            >>> from spatialmath import Twist3
             >>> S1 = Twist3([1,2,3,4,5,6])
             >>> S2 = Twist3([1,2,3,4,5,6])
             >>> S1 == S2
@@ -258,7 +257,7 @@ class BaseTwist(BasePoseList):
 
         :rtype: bool
 
-        ``S1 == S2`` is True if ``S1` is not elementwise equal to ``S2``.
+        ``S1 == S2`` is True if ``S1`` is not elementwise equal to ``S2``.
 
         Example:
 
@@ -495,7 +494,7 @@ class Twist3(BaseTwist):
         .. runblock:: pycon
 
             >>> from spatialmath import Twist3
-            >>> Twist3.Revolute([0, 0, 1], [1, 2, 0])
+            >>> Twist3.UnitRevolute([0, 0, 1], [1, 2, 0])
 
         """
         w = smb.unitvec(smb.getvector(a, 3))
@@ -519,7 +518,7 @@ class Twist3(BaseTwist):
         .. runblock:: pycon
 
             >>> from spatialmath import Twist3
-            >>> Twist3.Prismatic([0, 0, 1])
+            >>> Twist3.UnitPrismatic([0, 0, 1])
 
         """
         w = np.r_[0, 0, 0]
@@ -822,7 +821,7 @@ class Twist3(BaseTwist):
         .. runblock:: pycon
 
             >>> from spatialmath import SE3, Twist3
-            >>> T = SE3(1, 2, 0.3)
+            >>> T = SE3(1, 2, 3) * SE3.Rx(0.3)
             >>> S = Twist3(T)
             >>> S.unit()
         """
@@ -913,7 +912,7 @@ class Twist3(BaseTwist):
             >>> S = Twist3.Rx(0.3)
             >>> se = S.skewa()
             >>> se
-            >>> smb.trexp(se)
+            >>> base.trexp(se)
         """
         if len(self) == 1:
             return smb.skewa(self.S)
@@ -945,7 +944,7 @@ class Twist3(BaseTwist):
             >>> S.pitch
 
         """
-        return np.dot(self.w, self.v)
+        return np.dot(self.w, self.v) / np.dot(self.w, self.w)
 
     def line(self):
         """
@@ -1112,7 +1111,7 @@ class Twist3(BaseTwist):
 
             #. scalar x Twist is handled by ``__rmul__``
             #. scalar multiplication is commutative but the result is not a group
-            operation so the result will be a matrix
+               operation so the result will be a matrix
             #. Any other input combinations result in a ValueError.
 
         For pose composition the ``left`` and ``right`` operands may be a sequence
@@ -1342,7 +1341,7 @@ class Twist2(BaseTwist):
             >>> from spatialmath import Twist2, base
             >>> import numpy as np
             >>> Twist2.isvalid([1, 2, 3])
-            >>> a = smb.skewa([1, 2, 3])
+            >>> a = base.skewa([1, 2, 3])
             >>> a
             >>> Twist2.isvalid(a)
             >>> Twist2.isvalid(np.random.rand(3,3))
@@ -1373,14 +1372,16 @@ class Twist2(BaseTwist):
         :return: 2D prismatic twist
         :rtype: Twist2 instance
 
-        - ``Twist2.Revolute(q)`` is a 2D Twist object representing rotation about the 2D point ``q``.
+        - ``Twist2.UnitRevolute(q)`` is a 2D Twist object representing rotation about the 2D point ``q``.
 
         Example:
 
         .. runblock:: pycon
 
             >>> from spatialmath import Twist2
-            >>> Twist2.Revolute([0, 1])
+            >>> Twist2.UnitRevolute([0, 1])
+
+        :seealso: :meth:`Twist2.UnitPrismatic`
         """
 
         q = smb.getvector(q, 2)
@@ -1397,14 +1398,16 @@ class Twist2(BaseTwist):
         :return: 2D prismatic twist
         :rtype: Twist2 instance
 
-        - ``Twist2.Prismatic(a)`` is a 2D Twist object representing 2D-translation in the direction ``a``.
+        - ``Twist2.UnitPrismatic(a)`` is a 2D Twist object representing 2D-translation in the direction ``a``.
 
         Example:
 
         .. runblock:: pycon
 
             >>> from spatialmath import Twist2
-            >>> Twist2.Prismatic([1, 2])
+            >>> Twist2.UnitPrismatic([1, 2])
+
+        :seealso: :meth:`Twist2.UnitRevolute`
         """
         w = 0
         v = smb.unitvec(smb.getvector(a, 2))
@@ -1491,10 +1494,11 @@ class Twist2(BaseTwist):
 
         .. runblock:: pycon
 
-            >>> from spatialmath import SE3, Twist3
+            >>> from spatialmath import SE2, Twist2
             >>> T = SE2(1, 2, 0.3)
             >>> S = Twist2(T)
             >>> S.pole()
+
         """
         p = np.cross(np.r_[0, 0, self.w], np.r_[self.v, 0]) / self.theta
         return p[:2]
@@ -1519,7 +1523,7 @@ class Twist2(BaseTwist):
         .. runblock:: pycon
 
             >>> from spatialmath import Twist2
-            >>> S = Twist2.Prismatic([1,2])
+            >>> S = Twist2.UnitPrismatic([1,2])
             >>> S.SE2()
 
         :seealso: :func:`Twist3.exp`
@@ -1555,7 +1559,7 @@ class Twist2(BaseTwist):
             >>> S = Twist2([1,2,3])
             >>> se = S.skewa()
             >>> se
-            >>> smb.trexp2(se)
+            >>> base.trexp2(se)
         """
         if len(self) == 1:
             return smb.skewa(self.S)
@@ -1617,7 +1621,7 @@ class Twist2(BaseTwist):
 
         .. runblock:: pycon
 
-            >>> from spatialmath import SE3, Twist3
+            >>> from spatialmath import SE2, Twist2
             >>> T = SE2(1, 2, 0.3)
             >>> S = Twist2(T)
             >>> S.unit()
@@ -1641,7 +1645,7 @@ class Twist2(BaseTwist):
 
         .. runblock:: pycon
 
-            >>> from spatialmath import SE3, Twist3
+            >>> from spatialmath import SE2, Twist2
             >>> T = SE2(1, 2, 0.3)
             >>> S = Twist2(T)
             >>> S.unit()
@@ -1737,7 +1741,7 @@ class Twist2(BaseTwist):
 
             #. scalar x Twist is handled by ``__rmul__``
             #. scalar multiplication is commutative but the result is not a group
-            operation so the result will be a matrix
+               operation so the result will be a matrix
             #. Any other input combinations result in a ValueError.
 
         For pose composition the ``left`` and ``right`` operands may be a sequence
@@ -1819,7 +1823,7 @@ class Twist2(BaseTwist):
             return (
                 "Twist2([\n"
                 + ",\n".join(
-                    ["  [{:.5g}, {:.5g}, {:.5g}}]".format(*list(tw.S)) for tw in self]
+                    ["  [{:.5g}, {:.5g}, {:.5g}]".format(*list(tw.S)) for tw in self]
                 )
                 + "\n])"
             )

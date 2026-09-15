@@ -8,29 +8,28 @@
 ![Python Version](https://img.shields.io/pypi/pyversions/spatialmath-python.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Build Status](https://github.com/bdaiinstitute/spatialmath-python/actions/workflows/master.yml/badge.svg?branch=master)](https://github.com/bdaiinstitute/spatialmath-python/actions/workflows/master.yml?query=workflow%3Abuild+branch%3Amaster)
-[![Coverage](https://codecov.io/github/bdaiinstitute/spatialmath-python/graph/badge.svg?token=W15FGBA059)](https://codecov.io/github/bdaiinstitute/spatialmath-python)
+[![Build Status](https://github.com/rai-opensource/spatialmath-python/actions/workflows/master.yml/badge.svg?branch=master)](https://github.com/rai-opensource/spatialmath-python/actions/workflows/master.yml?query=workflow%3Abuild+branch%3Amaster)
+[![Coverage](https://codecov.io/github/rai-opensource/spatialmath-python/graph/badge.svg?token=W15FGBA059)](https://codecov.io/github/rai-opensource/spatialmath-python)
 [![PyPI - Downloads](https://img.shields.io/pypi/dw/spatialmath-python)](https://pypistats.org/packages/spatialmath-python)
-[![GitHub stars](https://img.shields.io/github/stars/bdaiinstitute/spatialmath-python.svg?style=social&label=Star)](https://GitHub.com/bdaiinstitute/spatialmath-python/stargazers/)
-
-
+[![GitHub stars](https://img.shields.io/github/stars/rai-opensource/spatialmath-python.svg?style=social&label=Star)](https://GitHub.com/rai-opensource/spatialmath-python/stargazers/)
 
 <table style="border:0px">
 <tr style="border:0px">
 <td style="border:0px">
-<img src="https://github.com/bdaiinstitute/spatialmath-python/raw/master/docs/figs/CartesianSnakes_LogoW.png" width="200"></td>
+<img src="https://github.com/rai-opensource/spatialmath-python/raw/master/docs/figs/CartesianSnakes_LogoW.png" width="200"></td>
 <td style="border:0px">
 A Python implementation of the <a href="https://github.com/petercorke/spatial-math">Spatial Math Toolbox for MATLAB<sup>&reg;</sup></a>
 <ul>
-<li><a href="https://github.com/bdaiinstitute/spatialmath-python">GitHub repository </a></li>
-<li><a href="https://bdaiinstitute.github.io/spatialmath-python">Documentation</a></li>
-<li><a href=https://github.com/bdaiinstitute/spatialmath-python/discussions/categories/changes>Recent changes</a>
-<li><a href="https://github.com/bdaiinstitute/spatialmath-python/wiki">Wiki (examples and details)</a></li>
+<li><a href="https://github.com/rai-opensource/spatialmath-python">GitHub repository </a></li>
+<li><a href="https://spatialmath-python.rai-inst.com">Documentation</a></li>
+<li><a href=https://github.com/rai-opensource/spatialmath-python/discussions/categories/changes>Recent changes</a>
+<li><a href="https://github.com/rai-opensource/spatialmath-python/wiki">Wiki (examples and details)</a></li>
 <li><a href="installation#">Installation</a></li>
 </ul>
 </td>
 </tr>
 </table>
+
 
 Spatial mathematics capability underpins all of robotics and robotic vision where we need to describe the position, orientation or pose of objects in 2D or 3D spaces.
 
@@ -74,7 +73,7 @@ These are layered over a set of base functions that perform many of the same ope
 
 The class, method and functions names largely mirror those of the MATLAB toolboxes, and the semantics are quite similar.
 
-![trplot](https://github.com/bdaiinstitute/spatialmath-python/raw/master/docs/figs/fig1.png)
+![trplot](https://github.com/rai-opensource/spatialmath-python/raw/master/docs/figs/fig1.png)
 
 ![animation video](./docs/figs/animate.gif)
 
@@ -103,12 +102,12 @@ If the toolbox helped you in your research, please cite
 
 If you are using the Toolbox in your open source code, feel free to add our badge to your readme!
 
-[![Powered by the Spatial Math Toolbox](https://github.com/bdaiinstitute/spatialmath-python/raw/master/.github/svg/sm_powered.min.svg)](https://github.com/bdaiinstitute/spatialmath-python)
+[![Powered by the Spatial Math Toolbox](https://github.com/rai-opensource/spatialmath-python/raw/master/.github/svg/sm_powered.min.svg)](https://github.com/rai-opensource/spatialmath-python)
 
 Simply copy the following
 
 ```
-[![Powered by the Spatial Math Toolbox](https://github.com/bdaiinstitute/spatialmath-python/raw/master/.github/svg/sm_powered.min.svg)](https://github.com/bdaiinstitute/spatialmath-python)
+[![Powered by the Spatial Math Toolbox](https://github.com/rai-opensource/spatialmath-python/raw/master/.github/svg/sm_powered.min.svg)](https://github.com/rai-opensource/spatialmath-python)
 ```
 
 
@@ -134,7 +133,7 @@ pip install spatialmath-python[ros-humble]
 Install the current code base from GitHub and pip install a link to that cloned copy
 
 ```
-git clone https://github.com/bdaiinstitute/spatialmath-python.git
+git clone https://github.com/rai-opensource/spatialmath-python.git
 cd spatialmath-python
 pip install -e .
 # Optional: if you would like to contribute and commit code changes to the repository,
@@ -278,14 +277,14 @@ t =        1,        2,        3; rpy/zyx =       30,        0,        0 deg
 >>> T.plot()
 ```
 
-![trplot](https://github.com/bdaiinstitute/spatialmath-python/raw/master/docs/figs/fig1.png)
+![trplot](https://github.com/rai-opensource/spatialmath-python/raw/master/docs/figs/fig1.png)
 
 `printline` is a compact single line format for tabular listing, whereas `print` shows the underlying matrix and for consoles that support it, it is colorised, with rotational elements in red and translational elements in blue.
 
 For more detail checkout the shipped Python notebooks:
 
-* [gentle introduction](https://github.com/bdaiinstitute/spatialmath-python/blob/master/notebooks/gentle-introduction.ipynb)
-* [deeper introduction](https://github.com/bdaiinstitute/spatialmath-python/blob/master/notebooks/introduction.ipynb)
+* [gentle introduction](https://github.com/rai-opensource/spatialmath-python/blob/master/notebooks/gentle-introduction.ipynb)
+* [deeper introduction](https://github.com/rai-opensource/spatialmath-python/blob/master/notebooks/introduction.ipynb)
 
 
 You can browse it statically through the links above, or clone the toolbox and run them interactively using [Jupyter](https://jupyter.org) or [JupyterLab](https://jupyter.org).
@@ -371,7 +370,7 @@ array([-60,  12,  30,  24])
 
 ## Graphics
 
-![trplot](https://github.com/bdaiinstitute/spatialmath-python/raw/master/docs/figs/transforms3d.png)
+![trplot](https://github.com/rai-opensource/spatialmath-python/raw/master/docs/figs/transforms3d.png)
 
 The functions support various plotting styles
 
@@ -445,8 +444,24 @@ We see that the symbolic constants are converted back to Python numeric types on
 
 Similarly when we assign an element or slice of the symbolic matrix to a numeric value, they are converted to symbolic constants on the way in.
 
+## Making a New Release
+- Make a pull request that bumps the version number in `pyproject.toml`, which follows the major.minor.patch semantic versioning convention. 
+- Then, go to the URL https://github.com/rai-opensource/spatialmath-python/releases, click draft new release. Click the tag selection dialouge, then click create new tag, and make a tag that matches the semantic version numbers in the pull request you just made. Click "generate release notes", then click publish release. This will automatically kick off the workflow in `.github/workflows/publish.yml` and the new version of the code on PyPi (https://pypi.org/project/spatialmath-python).
+
+## Migration Notice
+
+On April 28, 2026 this repository moved to the **RAI-Opensource** GitHub organization.  If you are still pulling from the previous bdaiinstitute GitHub organization, please update your git remote:
+   ```bash
+   git remote set-url origin https://github.com/RAI-Opensource/spatialmath-python.git
+   ```
+
+Also update any links of `https://bdaiinstitute.github.io/spatialmath-python` to  <https://spatialmath-python.rai-inst.com/>.
+
+If you maintain downstream docs/scripts, update links from this repository to the new org.
+
+
 ## History & Contributors
 
 This package was originally created by [Peter Corke](https://github.com/petercorke) and [Jesse Haviland](https://github.com/jhavl) and was inspired by the [Spatial Math Toolbox for MATLAB](https://github.com/petercorke/spatialmath-matlab).  It supports the textbook [Robotics, Vision & Control in Python 3e](https://github.com/petercorke/RVC3-python).
 
-The package is now a collaboration with [Boston Dynamics AI Institute](https://theaiinstitute.com/).
+The package is now a collaboration with the [Robotics and AI Institute](https://rai-inst.com/).

@@ -432,6 +432,7 @@ class SE2(SO2):
 
         .. runblock:: pycon
 
+            >>> from spatialmath import SE2
             >>> SE2.Rot(0.3)
             >>> SE2.Rot([0.2, 0.3])
 
@@ -460,6 +461,7 @@ class SE2(SO2):
 
         .. runblock:: pycon
 
+            >>> from spatialmath import SE2
             >>> SE2.Tx(2)
             >>> SE2.Tx([2,3])
 
@@ -485,6 +487,7 @@ class SE2(SO2):
 
         .. runblock:: pycon
 
+            >>> from spatialmath import SE2
             >>> SE2.Ty(2)
             >>> SE2.Ty([2,3])
 

@@ -61,7 +61,7 @@ if _symbolics:
 
             - symbols named after greek letters will appear as greek letters
             - underscore means subscript as it does in LaTex, so the symbols ``q``
-            above will be subscripted.
+              above will be subscripted.
 
         :seealso: :func:`sympy.symbols`
         """
@@ -347,7 +347,7 @@ def det(x):
         >>> R = rot2(theta)
         >>> print(R)
         >>> print(det(R))
-        >>> simplify(print(det(R)))
+        >>> print(simplify(det(R)))
 
     .. note:: Converts to a SymPy ``Matrix`` and then back again.
     """

@@ -16,7 +16,9 @@ tuple, numpy array, numpy row vector or numpy column vector.
 
 import sys
 import math
+import warnings
 import numpy as np
+import warnings
 
 try:
     import matplotlib.pyplot as plt
@@ -715,13 +717,13 @@ def trnorm2(T: SE2Array) -> SE2Array:
     The steps in normalization are:
 
     #. If :math:`\mathbf{R} = [a, b]`
-    #. Form unit vectors :math:`\hat{b}
+    #. Form unit vectors :math:`\hat{b}`
     #. Form the orthogonal planar vector :math:`\hat{a} = [\hat{b}_y  -\hat{b}_x]`
     #. Form the normalized SO(2) matrix :math:`\mathbf{R} = [\hat{a}, \hat{b}]`
 
     .. runblock:: pycon
 
-        >>> from spatialmath.base import trnorm, troty
+        >>> from spatialmath.base import trnorm2, trot2
         >>> from numpy import linalg
         >>> T = trot2(45, 'deg', t=[3, 4])
         >>> linalg.det(T[:2,:2]) - 1 # is a valid SO(3)
@@ -758,16 +760,16 @@ def trnorm2(T: SE2Array) -> SE2Array:
 
 
 @overload  # pragma: no cover
-def tradjoint2(T: SO2Array) -> R1x1:
+def tr2adjoint2(T: SO2Array) -> R1x1:
     ...
 
 
 @overload  # pragma: no cover
-def tradjoint2(T: SE2Array) -> R3x3:
+def tr2adjoint2(T: SE2Array) -> R3x3:
     ...
 
 
-def tradjoint2(T):
+def tr2adjoint2(T):
     r"""
     Adjoint matrix in 2D
 
@@ -796,8 +798,8 @@ def tradjoint2(T):
         >>> tr2adjoint2(T)
 
     :Reference:
-        - Robotics, Vision & Control for Python, Section 3.1, P. Corke, Springer 2023.
-        - `Lie groups for 2D and 3D Transformations <http://ethaneade.com/lie.pdf>_
+        - *Robotics, Vision & Control for Python*, Section 3.1, P. Corke, Springer 2023.
+        - `*Lie groups for 2D and 3D Transformations* <http://ethaneade.com/lie.pdf>`_
 
     :SymPy: supported
     """
@@ -816,6 +818,22 @@ def tradjoint2(T):
         # fmt: on
     else:
         raise ValueError("bad argument")
+
+
+def tradjoint2(T):
+    """
+    Adjoint matrix in 2D (deprecated)
+
+    .. deprecated:: 1.1.16
+        Renamed to :func:`tr2adjoint2` for naming consistency.  This alias
+        will be removed in a future release.
+    """
+    warnings.warn(
+        "tradjoint2 is deprecated since 1.1.16, use tr2adjoint2 instead",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return tr2adjoint2(T)
 
 
 def tr2jac2(T: SE2Array) -> R3x3:
@@ -882,14 +900,14 @@ def trinterp2(start, end, s, shortest: bool = True):
     :rtype: ndarray(3,3) or ndarray(2,2)
     :raises ValueError: bad arguments
 
-    - ``trinterp2(None, T, S)`` is an SE(2) matrix interpolated
-      between identity when `S`=0 and `T`  when `S`=1.
-    - ``trinterp2(T0, T1, S)`` as above but interpolated
-      between `T0` when `S`=0 and `T1` when `S`=1.
-    - ``trinterp2(None, R, S)`` is an SO(2) matrix interpolated
-      between identity when `S`=0 and `R` when `S`=1.
-    - ``trinterp2(R0, R1, S)`` as above but interpolated
-      between `R0` when `S`=0 and `R1` when `S`=1.
+    - ``trinterp2(None, T, s)`` is an sE(2) matrix interpolated
+      between identity when `s=0` and `T`  when `s=1`.
+    - ``trinterp2(T0, T1, s)`` as above but interpolated
+      between `T0` when `s=0` and `T1` when `s=1`.
+    - ``trinterp2(None, R, s)`` is an sO(2) matrix interpolated
+      between identity when `s=0` and `R` when `s=1`.
+    - ``trinterp2(R0, R1, s)`` as above but interpolated
+      between `R0` when `s=0` and `R1` when `s=1`.
 
     .. note:: Rotation angle is linearly interpolated.
 
@@ -959,21 +977,109 @@ def trinterp2(start, end, s, shortest: bool = True):
         raise ValueError("Argument must be SO(2) or SE(2)")
 
 
-def trprint2(
+def tr2str2(
     T: Union[SO2Array, SE2Array],
     label: str = "",
-    file: TextIO = sys.stdout,
     fmt: str = "{:.3g}",
     unit: str = "deg",
 ) -> str:
     """
-    Compact display of SE(2) or SO(2) matrices
+    Convert SO(2) or SE(3) matrices to compact single-line string
 
     :param T: matrix to format
     :type T: ndarray(3,3) or ndarray(2,2)
     :param label: text label to put at start of line
     :type label: str
-    :param file: file to write formatted string to
+    :param fmt: conversion format for each number
+    :type fmt: str
+    :param unit: angular units: 'rad' [default], or 'deg'
+    :type unit: str
+    :return: formatted string
+    :rtype: str
+
+    The matrix is formatted and written to ``file`` and the
+    string is returned.  To suppress writing to a file, set ``file=None``.
+
+    - ``tr2str2(R)`` displays the SO(2) rotation matrix in a compact
+      single-line format and returns the string::
+
+        [LABEL:] θ UNIT
+
+    - ``tr2str2(T)`` displays the SE(2) homogoneous transform in a compact
+      single-line format and returns the string::
+
+        [LABEL:] [t=X, Y;] θ UNIT
+
+    .. runblock:: pycon
+
+        >>> from spatialmath.base import *
+        >>> T = transl2(1,2) @ trot2(0.3)
+        >>> tr2str2(T, label='T')
+        >>> tr2str2(T, label='T', fmt='{:8.4g}')
+
+    .. note::
+
+        - Default formatting is for compact display of data
+        - For tabular data set ``fmt`` to a fixed width format such as
+          ``fmt='{:.3g}'``
+
+    .. versionadded:: 1.1.15
+
+    :seealso: :func:`~tr2str`
+    """
+
+    s = ""
+
+    if label != "":
+        s += "{:s}: ".format(label)
+
+    # print the translational part if it exists
+    if ishom2(T):
+        s += "t = {};".format(_vec2s(fmt, transl2(cast(SE2Array, T))))
+
+    angle = math.atan2(T[1, 0], T[0, 0])
+    if unit == "deg":
+        angle *= 180.0 / math.pi
+        s += " {}°".format(_vec2s(fmt, [angle]))
+    else:
+        s += " {} rad".format(_vec2s(fmt, [angle]))
+
+    return s
+
+
+def _vec2s(fmt: str, v: ArrayLikePure, tol: float = 20) -> str:
+    """
+    Return a string representation for vector using the provided fmt.
+
+    :param fmt: format string for each value in v
+    :type fmt: str
+    :param tol: Tolerance when checking for near-zero values, in multiples of eps, defaults to 20
+    :type tol: float, optional
+    :return: string representation for the vector
+    :rtype: str
+
+    Return a string representation for vector using the provided fmt, where
+    near-zero values are rounded to 0.
+    """
+
+    v = [x if np.abs(x) > tol * _eps else 0.0 for x in v]
+    return ", ".join([fmt.format(x) for x in v])
+
+
+def trprint2(
+    T: Union[SO2Array, SE2Array],
+    label: str = "",
+    file: TextIO = False,
+    **kwargs,
+) -> str:
+    """
+    Compact single-line display of SE(2) or SO(2) matrices
+
+    :param T: matrix to format
+    :type T: ndarray(3,3) or ndarray(2,2)
+    :param label: text label to put at start of line
+    :type label: str
+    :param file: file to write formatted string to [default is stdout]
     :type file: file object
     :param fmt: conversion format for each number
     :type fmt: str
@@ -999,8 +1105,8 @@ def trprint2(
 
         >>> from spatialmath.base import *
         >>> T = transl2(1,2) @ trot2(0.3)
-        >>> trprint2(T, file=None, label='T')
-        >>> trprint2(T, file=None, label='T', fmt='{:8.4g}')
+        >>> trprint2(T, label='T')
+        >>> trprint2(T, label='T', fmt='{:8.4g}')
 
 
     .. note::
@@ -1009,47 +1115,25 @@ def trprint2(
         - For tabular data set ``fmt`` to a fixed width format such as
           ``fmt='{:.3g}'``
 
-    :seealso: trprint
+    .. deprecated:: 1.1.15
+        ``file=None`` to get the string back without printing is
+        deprecated - call :func:`~tr2str2` directly instead.
+
+    :seealso: :func:`~tr2str2` :func:`~trprint`
     """
-
-    s = ""
-
-    if label != "":
-        s += "{:s}: ".format(label)
-
-    # print the translational part if it exists
-    if ishom2(T):
-        s += "t = {};".format(_vec2s(fmt, transl2(cast(SE2Array, T))))
-
-    angle = math.atan2(T[1, 0], T[0, 0])
-    if unit == "deg":
-        angle *= 180.0 / math.pi
-        s += " {}°".format(_vec2s(fmt, [angle]))
+    s = tr2str2(T, label=label, **kwargs)
+    if file is None:
+        warnings.warn(
+            "Usage: trprint2(..., file=None) -> str is deprecated, use tr2str2() instead",
+            DeprecationWarning,
+        )
     else:
-        s += " {} rad".format(_vec2s(fmt, [angle]))
-
-    if file:
-        print(s, file=file)
+        # file=False (the default) resolves to None here so print() looks
+        # up the *current* sys.stdout at call time, not whatever it was
+        # when this function was defined - that's what makes
+        # contextlib.redirect_stdout() work.
+        print(s, file=None if file is False else file)
     return s
-
-
-def _vec2s(fmt: str, v: ArrayLikePure, tol: float = 20) -> str:
-    """
-    Return a string representation for vector using the provided fmt.
-
-    :param fmt: format string for each value in v
-    :type fmt: str
-    :param tol: Tolerance when checking for near-zero values, in multiples of eps, defaults to 20
-    :type tol: float, optional
-    :return: string representation for the vector
-    :rtype: str
-
-    Return a string representation for vector using the provided fmt, where
-    near-zero values are rounded to 0.
-    """
-
-    v = [x if np.abs(x) > tol * _eps else 0.0 for x in v]
-    return ", ".join([fmt.format(x) for x in v])
 
 
 def points2tr2(p1: NDArray, p2: NDArray) -> SE2Array:

@@ -458,7 +458,7 @@ def unittwist2(S: ArrayLike3, tol: float = 20) -> Union[R3, None]:
     .. runblock:: pycon
 
         >>> from spatialmath.base import *
-        >>> unittwist2([2, 4, 2)
+        >>> unittwist2([2, 4, 2])
         >>> unittwist2([2, 0, 0])
 
     .. note:: Returns None if the twist has zero magnitude
@@ -501,7 +501,7 @@ def unittwist2_norm(
     .. runblock:: pycon
 
         >>> from spatialmath.base import *
-        >>> unittwist2([2, 4, 2)
+        >>> unittwist2([2, 4, 2])
         >>> unittwist2([2, 0, 0])
 
     .. note:: Returns (None, None) if the twist has zero magnitude
