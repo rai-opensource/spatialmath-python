@@ -15,6 +15,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 # sys.path.insert(0, os.path.abspath('..'))
 
+from sphinx_codeautolink import clean_ipython, clean_pycon
 
 # -- Project information -----------------------------------------------------
 
@@ -50,6 +51,14 @@ extensions = [
     "sphinx_autorun",
     "sphinx.ext.intersphinx",
     "sphinx_favicon",
+    "sphinx_copybutton",
+    "sphinx_codeautolink",
+]
+
+suppress_warnings = [
+    "codeautolink.match_block",
+    "codeautolink.match_name",
+    "config.cache",  # codeautolink_custom_blocks holds function refs, not picklable
 ]
 #'sphinx.ext.autosummary',
 # typehints_use_signature_return = True
