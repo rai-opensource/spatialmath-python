@@ -179,6 +179,17 @@ class Twist3dTest(unittest.TestCase):
         tw = Twist3.UnitRevolute([0, 0, 1], [0, 0, 0])
         array_compare(tw.exp(pi / 2), SE3.Rz(pi / 2))
 
+    def test_pitch(self):
+        # pitch = (w . v) / (w . w), regression test for missing denominator
+
+        # non-unit w: exercises the normalization, would fail without it
+        tw = Twist3([0, 0, 4], [0, 0, 2])
+        self.assertAlmostEqual(tw.pitch, 2.0)
+
+        # unit w: denominator is 1, sanity check against UnitRevolute's pitch arg
+        tw = Twist3.UnitRevolute([0, 0, 1], [0, 0, 0], pitch=3)
+        self.assertAlmostEqual(tw.pitch, 3.0)
+
     def test_arith(self):
         # check overloaded *
 
