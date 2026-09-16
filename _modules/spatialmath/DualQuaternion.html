@@ -10,8 +10,6 @@
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-codeautolink.css?v=b2176991" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -19,8 +17,6 @@
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
-      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="../../_static/copybutton.js?v=3a14cefc"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -207,7 +203,11 @@
 <span class="sd">        """</span>
         <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
         <span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dual</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dual</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">s</span><span class="p">),</span> <span class="n">base</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">s</span><span class="p">))</span></div>
+        <span class="c1"># a.s/b.s are mathematically guaranteed non-negative (they're the</span>
+        <span class="c1"># scalar part of q*conj(q)-like products), but floating-point</span>
+        <span class="c1"># rounding can leave a value like -1e-17 instead of exactly 0,</span>
+        <span class="c1"># which sqrt() rejects outright. Clamp away that noise.</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">s</span><span class="p">)),</span> <span class="n">base</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">s</span><span class="p">)))</span></div>
 
 
 <div class="viewcode-block" id="DualQuaternion.conj">
@@ -310,8 +310,18 @@
                 <span class="k">return</span> <span class="n">DualQuaternion</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">dual</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">UnitDualQuaternion</span><span class="p">)</span> <span class="ow">and</span> <span class="n">base</span><span class="o">.</span><span class="n">isvector</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
             <span class="n">v</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="n">vp</span> <span class="o">=</span> <span class="n">left</span> <span class="o">*</span> <span class="n">DualQuaternion</span><span class="o">.</span><span class="n">Pure</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">left</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">vp</span><span class="o">.</span><span class="n">dual</span><span class="o">.</span><span class="n">v</span></div>
+            <span class="c1"># NB: not the textbook q*P*conj(q) sandwich product. With this</span>
+            <span class="c1"># class's own dual-part embedding convention (__init__ builds</span>
+            <span class="c1"># dual = 0.5*Pure(t)*real, translation quaternion on the left),</span>
+            <span class="c1"># that sandwich's translation terms cancel exactly to zero:</span>
+            <span class="c1"># qr*conj(qd) + qd*conj(qr) == 0 for this embedding, leaving</span>
+            <span class="c1"># only the rotated point with no translation applied at all.</span>
+            <span class="c1"># SE3() already correctly extracts (R, t) from this same</span>
+            <span class="c1"># embedding (see its own derivation), so reuse it here rather</span>
+            <span class="c1"># than hand-deriving a second, convention-specific formula.</span>
+            <span class="c1"># Flatten to match this method's original flat-vector return</span>
+            <span class="c1"># convention (SE3.__mul__ returns a (3,1) column instead).</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">SE3</span><span class="p">()</span> <span class="o">*</span> <span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="DualQuaternion.matrix">
@@ -457,7 +467,7 @@
 <span class="sd">            &gt;&gt;&gt; print(T)</span>
 <span class="sd">            &gt;&gt;&gt; d = UnitDualQuaternion(T)</span>
 <span class="sd">            &gt;&gt;&gt; print(d)</span>
-<span class="sd">            &gt;&gt;&gt; print(d.T)</span>
+<span class="sd">            &gt;&gt;&gt; print(d.SE3())</span>
 <span class="sd">        """</span>
         <span class="n">R</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
         <span class="n">t</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dual</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>

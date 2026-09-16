@@ -1,55 +1,57 @@
 
-<!DOCTYPE html>
 
-<html class="writer-html5" data-content_root="./" lang="en">
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
-<link href="_static/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
-<link href="_static/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
-<link href="_static/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" type="image/png"/>
-<link href="_static/android-chrome-192x192.png" rel="android-chrome" sizes="192x192" type="image/png"/>
-<link href="_static/android-chrome-512x512.png" rel="android-chrome" sizes="512x512" type="image/png"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Transforms in 2D — Spatial Maths package  documentation</title>
-<link href="_static/pygments.css?v=b86133f3" rel="stylesheet" type="text/css"/>
-<link href="_static/css/theme.css?v=9edc463e" rel="stylesheet" type="text/css"/>
-<link href="_static/graphviz.css?v=4ae1632d" rel="stylesheet" type="text/css"/>
-<link href="_static/plot_directive.css" rel="stylesheet" type="text/css"/>
-<link href="_static/copybutton.css?v=76b2166b" rel="stylesheet" type="text/css"/>
-<link href="_static/sphinx-codeautolink.css?v=b2176991" rel="stylesheet" type="text/css"/>
-<script src="_static/jquery.js?v=5d32c60e"></script>
-<script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-<script src="_static/documentation_options.js?v=5929fcd5"></script>
-<script src="_static/doctools.js?v=fd6eb6e6"></script>
-<script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-<script src="_static/clipboard.min.js?v=a7894cd8"></script>
-<script src="_static/copybutton.js?v=3a14cefc"></script>
-<script>window.MathJax = {"tex": {"macros": {"presup": ["\\,{}^{\\scriptscriptstyle #1}\\!", 1], "SE": ["\\mathbf{SE}(#1)", 1], "SO": ["\\mathbf{SO}(#1)", 1], "se": ["\\mathbf{se}(#1)", 1], "so": ["\\mathbf{so}(#1)", 1], "vec": ["\\boldsymbol{#1}", 1], "dvec": ["\\dot{\\boldsymbol{#1}}", 1], "ddvec": ["\\ddot{\\boldsymbol{#1}}", 1], "fvec": ["\\presup{#1}\\boldsymbol{#2}", 2], "fdvec": ["\\presup{#1}\\dot{\\boldsymbol{#2}}", 2], "fddvec": ["\\presup{#1}\\ddot{\\boldsymbol{#2}}", 2], "norm": ["\\Vert #1 \\Vert", 1], "mat": ["\\mathbf{#1}", 1], "dmat": ["\\dot{\\mathbf{#1}}", 1], "fmat": ["\\presup{#1}\\mathbf{#2}", 2], "sk": ["\\left[#1\\right]", 1], "skx": ["\\left[#1\\right]_{\\times}", 1], "vex": ["\\vee\\left( #1\\right)", 1], "vexx": ["\\vee_{\\times}\\left( #1\\right)", 1], "q": "\\mathring{q}", "fq": ["\\presup{#1}\\mathring{q}", 1]}}}</script>
-<script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-<script src="_static/js/theme.js"></script>
-<link href="genindex.html" rel="index" title="Index"/>
-<link href="search.html" rel="search" title="Search"/>
-<link href="func_3d.html" rel="next" title="Transforms in 3D"/>
-<link href="functions.html" rel="prev" title="Function reference"/>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="16x16" href="_static/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="_static/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="_static/apple-touch-icon.png" type="image/png">
+    <link rel="android-chrome" sizes="192x192" href="_static/android-chrome-192x192.png" type="image/png">
+    <link rel="android-chrome" sizes="512x512" href="_static/android-chrome-512x512.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transforms in 2D &mdash; Spatial Maths package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script>window.MathJax = {"tex": {"macros": {"presup": ["\\,{}^{\\scriptscriptstyle #1}\\!", 1], "SE": ["\\mathbf{SE}(#1)", 1], "SO": ["\\mathbf{SO}(#1)", 1], "se": ["\\mathbf{se}(#1)", 1], "so": ["\\mathbf{so}(#1)", 1], "vec": ["\\boldsymbol{#1}", 1], "dvec": ["\\dot{\\boldsymbol{#1}}", 1], "ddvec": ["\\ddot{\\boldsymbol{#1}}", 1], "fvec": ["\\presup{#1}\\boldsymbol{#2}", 2], "fdvec": ["\\presup{#1}\\dot{\\boldsymbol{#2}}", 2], "fddvec": ["\\presup{#1}\\ddot{\\boldsymbol{#2}}", 2], "norm": ["\\Vert #1 \\Vert", 1], "mat": ["\\mathbf{#1}", 1], "dmat": ["\\dot{\\mathbf{#1}}", 1], "fmat": ["\\presup{#1}\\mathbf{#2}", 2], "sk": ["\\left[#1\\right]", 1], "skx": ["\\left[#1\\right]_{\\times}", 1], "vex": ["\\vee\\left( #1\\right)", 1], "vexx": ["\\vee_{\\times}\\left( #1\\right)", 1], "q": "\\mathring{q}", "fq": ["\\presup{#1}\\mathring{q}", 1]}}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Transforms in 3D" href="func_3d.html" />
+    <link rel="prev" title="Function reference" href="functions.html" /> 
 </head>
-<body class="wy-body-for-nav">
-<div class="wy-grid-for-nav">
-<nav class="wy-nav-side" data-toggle="wy-nav-shift">
-<div class="wy-side-scroll">
-<div class="wy-side-nav-search">
-<a class="icon icon-home" href="index.html">
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
             Spatial Maths package
-              <img alt="Logo" class="logo" src="_static/CartesianSnakes_LogoW.png"/>
-</a>
+              <img src="_static/CartesianSnakes_LogoW.png" class="logo" alt="Logo"/>
+          </a>
 <div role="search">
-<form action="search.html" class="wy-form" id="rtd-search-form" method="get">
-<input aria-label="Search docs" name="q" placeholder="Search docs" type="text"/>
-<input name="check_keywords" type="hidden" value="yes"/>
-<input name="area" type="hidden" value="default"/>
-</form>
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-</div><div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
-<ul class="current">
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spatialmath.html">Class reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="functions.html">Function reference</a><ul class="current">
@@ -91,32 +93,36 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="indices.html">Indices</a></li>
 </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Spatial Maths package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="functions.html">Function reference</a></li>
+      <li class="breadcrumb-item active">Transforms in 2D</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/func_2d.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="functions.html" class="btn btn-neutral float-left" title="Function reference" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="func_3d.html" class="btn btn-neutral float-right" title="Transforms in 3D" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
 </div>
-</div>
-</nav>
-<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift"><nav aria-label="Mobile navigation menu" class="wy-nav-top">
-<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
-<a href="index.html">Spatial Maths package</a>
-</nav>
-<div class="wy-nav-content">
-<div class="rst-content">
-<div aria-label="Page navigation" role="navigation">
-<ul class="wy-breadcrumbs">
-<li><a aria-label="Home" class="icon icon-home" href="index.html"></a></li>
-<li class="breadcrumb-item"><a href="functions.html">Function reference</a></li>
-<li class="breadcrumb-item active">Transforms in 2D</li>
-<li class="wy-breadcrumbs-aside">
-<a href="_sources/func_2d.rst.txt" rel="nofollow"> View page source</a>
-</li>
-</ul><div aria-label="Sequential page navigation" class="rst-breadcrumbs-buttons" role="navigation">
-<a accesskey="p" class="btn btn-neutral float-left" href="functions.html" title="Function reference"><span aria-hidden="true" class="fa fa-arrow-circle-left"></span> Previous</a>
-<a accesskey="n" class="btn btn-neutral float-right" href="func_3d.html" title="Transforms in 3D">Next <span aria-hidden="true" class="fa fa-arrow-circle-right"></span></a>
-</div>
-<hr/>
-</div>
-<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
-<div itemprop="articleBody">
-<section id="module-spatialmath.base.transforms2d">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spatialmath.base.transforms2d">
 <span id="transforms-in-2d"></span><h1>Transforms in 2D<a class="headerlink" href="#module-spatialmath.base.transforms2d" title="Link to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.ICP2d">
@@ -158,6 +164,7 @@ to have the same number of points.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.ishom2">
 <span class="sig-name descname"><span class="pre">ishom2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#ishom2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.ishom2" title="Link to this definition"></a></dt>
@@ -186,17 +193,17 @@ to have the same number of points.</p>
 rotation sub-matrix and validitity of the bottom row.</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/index.html#module-numpy"><span class="nn">numpy</span></a><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.ishom2" title="spatialmath.base.transforms2d.ishom2"><span class="n">ishom2</span></a><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ishom2</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span> <span class="c1"># invalid SE(2)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.ishom2" title="spatialmath.base.transforms2d.ishom2"><span class="n">ishom2</span></a><span class="p">(</span><span class="n">T</span><span class="p">)</span>  <span class="c1"># a quick check says it is an SE(2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span> <span class="c1"># invalid SE(2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ishom2</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>  <span class="c1"># a quick check says it is an SE(2)</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.ishom2" title="spatialmath.base.transforms2d.ishom2"><span class="n">ishom2</span></a><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># but if we check more carefully...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ishom2</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># but if we check more carefully...</span>
 <span class="go">False</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.ishom2" title="spatialmath.base.transforms2d.ishom2"><span class="n">ishom2</span></a><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ishom2</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
 <span class="go">False</span>
 </pre></div>
 </div>
@@ -206,6 +213,7 @@ rotation sub-matrix and validitity of the bottom row.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.isrot2">
 <span class="sig-name descname"><span class="pre">isrot2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#isrot2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.isrot2" title="Link to this definition"></a></dt>
@@ -233,17 +241,17 @@ rotation sub-matrix and validitity of the bottom row.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">isrot2(R,</span> <span class="pre">check=True)</span></code> as above, but also checks orthogonality of the rotation matrix.</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/index.html#module-numpy"><span class="nn">numpy</span></a><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.isrot2" title="spatialmath.base.transforms2d.isrot2"><span class="n">isrot2</span></a><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">isrot2</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="go">False</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.isrot2" title="spatialmath.base.transforms2d.isrot2"><span class="n">isrot2</span></a><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">isrot2</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>  <span class="c1"># invalid SO(2)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.isrot2" title="spatialmath.base.transforms2d.isrot2"><span class="n">isrot2</span></a><span class="p">(</span><span class="n">R</span><span class="p">)</span>  <span class="c1"># a quick check says it is an SO(2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>  <span class="c1"># invalid SO(2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">isrot2</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>  <span class="c1"># a quick check says it is an SO(2)</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.isrot2" title="spatialmath.base.transforms2d.isrot2"><span class="n">isrot2</span></a><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># but if we check more carefully...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">isrot2</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># but if we check more carefully...</span>
 <span class="go">False</span>
 </pre></div>
 </div>
@@ -253,6 +261,7 @@ rotation sub-matrix and validitity of the bottom row.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.points2tr2">
 <span class="sig-name descname"><span class="pre">points2tr2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#points2tr2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.points2tr2" title="Link to this definition"></a></dt>
@@ -280,6 +289,7 @@ to the same point.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.pos2tr2">
 <span class="sig-name descname"><span class="pre">pos2tr2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#pos2tr2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.pos2tr2" title="Link to this definition"></a></dt>
@@ -305,16 +315,16 @@ representing a pure translation.</p></li>
 list, dict, or a numpy array, row or column vector.</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/index.html#module-numpy"><span class="nn">numpy</span></a><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.pos2tr2" title="spatialmath.base.transforms2d.pos2tr2"><span class="n">pos2tr2</span></a><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pos2tr2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="go">array([[1., 0., 3.],</span>
 <span class="go">       [0., 1., 4.],</span>
 <span class="go">       [0., 0., 1.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.pos2tr2" title="spatialmath.base.transforms2d.pos2tr2"><span class="n">pos2tr2</span></a><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pos2tr2</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 <span class="go">array([[1., 0., 3.],</span>
 <span class="go">       [0., 1., 4.],</span>
 <span class="go">       [0., 0., 1.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.pos2tr2" title="spatialmath.base.transforms2d.pos2tr2"><span class="n">pos2tr2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pos2tr2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
 <span class="go">array([[1., 0., 3.],</span>
 <span class="go">       [0., 1., 4.],</span>
 <span class="go">       [0., 0., 1.]])</span>
@@ -326,6 +336,7 @@ list, dict, or a numpy array, row or column vector.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.rot2">
 <span class="sig-name descname"><span class="pre">rot2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#rot2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.rot2" title="Link to this definition"></a></dt>
@@ -349,15 +360,16 @@ list, dict, or a numpy array, row or column vector.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rot2(θ,</span> <span class="pre">'deg')</span></code> as above but θ is in degrees.</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.rot2" title="spatialmath.base.transforms2d.rot2"><span class="n">rot2</span></a><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rot2</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
 <span class="go">array([[ 0.95533649, -0.29552021],</span>
 <span class="go">       [ 0.29552021,  0.95533649]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.rot2" title="spatialmath.base.transforms2d.rot2"><span class="n">rot2</span></a><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="s1">'deg'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rot2</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="s1">'deg'</span><span class="p">)</span>
 <span class="go">array([[ 0.70710678, -0.70710678],</span>
 <span class="go">       [ 0.70710678,  0.70710678]])</span>
 </pre></div>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.tr2adjoint2">
 <span class="sig-name descname"><span class="pre">tr2adjoint2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#tr2adjoint2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.tr2adjoint2" title="Link to this definition"></a></dt>
@@ -379,9 +391,9 @@ list, dict, or a numpy array, row or column vector.</p></li>
 differential motion between frame {B} to frame {A} which are attached to the
 same moving body.  The pose of {B} relative to {A} is represented by the
 homogeneous transform T = <span class="math notranslate nohighlight">\({}^A {\bf T}_B\)</span>.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.tr2adjoint2" title="spatialmath.base.transforms2d.tr2adjoint2"><span class="n">tr2adjoint2</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.tr2adjoint2" title="spatialmath.base.transforms2d.tr2adjoint2"><span class="n">tr2adjoint2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">tr2adjoint2</span><span class="p">,</span> <span class="n">trot2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">trot2</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr2adjoint2</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="go">array([[ 0.95533649, -0.29552021,  2.        ],</span>
 <span class="go">       [ 0.29552021,  0.95533649, -1.        ],</span>
 <span class="go">       [ 0.        ,  0.        ,  1.        ]])</span>
@@ -399,6 +411,7 @@ homogeneous transform T = <span class="math notranslate nohighlight">\({}^A {\bf
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.tr2jac2">
 <span class="sig-name descname"><span class="pre">tr2jac2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#tr2jac2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.tr2jac2" title="Link to this definition"></a></dt>
@@ -420,8 +433,8 @@ an SE(2) matrix.</p>
 differential motion from frame {B} to frame {A} where the pose of {B}
 elative to {A} is represented by the homogeneous transform T = <span class="math notranslate nohighlight">\({}^A {\bf T}_B\)</span>.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.tr2jac2" title="spatialmath.base.transforms2d.tr2jac2"><span class="n">tr2jac2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">trot2</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr2jac2</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="go">array([[ 0.95533649, -0.29552021,  0.        ],</span>
 <span class="go">       [ 0.29552021,  0.95533649,  0.        ],</span>
 <span class="go">       [ 0.        ,  0.        ,  1.        ]])</span>
@@ -436,6 +449,7 @@ elative to {A} is represented by the homogeneous transform T = <span class="math
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.tr2pos2">
 <span class="sig-name descname"><span class="pre">tr2pos2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#tr2pos2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.tr2pos2" title="Link to this definition"></a></dt>
@@ -456,9 +470,9 @@ elative to {A} is represented by the homogeneous transform T = <span class="math
 2-element NumPy array.</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/index.html#module-numpy"><span class="nn">numpy</span></a><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.tr2pos2" title="spatialmath.base.transforms2d.tr2pos2"><span class="n">tr2pos2</span></a><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr2pos2</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="go">array([3, 4])</span>
 </pre></div>
 </div>
@@ -468,6 +482,7 @@ elative to {A} is represented by the homogeneous transform T = <span class="math
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.tr2str2">
 <span class="sig-name descname"><span class="pre">tr2str2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'{:.3g}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'deg'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#tr2str2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.tr2str2" title="Link to this definition"></a></dt>
@@ -505,10 +520,10 @@ single-line format and returns the string:</p>
 </li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.transl2" title="spatialmath.base.transforms2d.transl2"><span class="n">transl2</span></a><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.tr2str2" title="spatialmath.base.transforms2d.tr2str2"><span class="n">tr2str2</span></a><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'T'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">transl2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">@</span> <span class="n">trot2</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr2str2</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'T'</span><span class="p">)</span>
 <span class="go">'T: t = 1, 2; 17.2°'</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.tr2str2" title="spatialmath.base.transforms2d.tr2str2"><span class="n">tr2str2</span></a><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'T'</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'</span><span class="si">{:8.4g}</span><span class="s1">'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr2str2</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'T'</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'</span><span class="si">{:8.4g}</span><span class="s1">'</span><span class="p">)</span>
 <span class="go">'T: t =        1,        2;    17.19°'</span>
 </pre></div>
 </div>
@@ -529,6 +544,7 @@ single-line format and returns the string:</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.tr2xyt">
 <span class="sig-name descname"><span class="pre">tr2xyt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#tr2xyt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.tr2xyt" title="Link to this definition"></a></dt>
@@ -552,12 +568,12 @@ single-line format and returns the string:</p>
 rotation for this SO(2) matrix.</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.xyt2tr" title="spatialmath.base.transforms2d.xyt2tr"><span class="n">xyt2tr</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">xyt2tr</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span>
 <span class="go">array([[ 0.95533649, -0.29552021,  1.        ],</span>
 <span class="go">       [ 0.29552021,  0.95533649,  2.        ],</span>
 <span class="go">       [ 0.        ,  0.        ,  1.        ]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.tr2xyt" title="spatialmath.base.transforms2d.tr2xyt"><span class="n">tr2xyt</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr2xyt</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="go">array([1. , 2. , 0.3])</span>
 </pre></div>
 </div>
@@ -567,6 +583,7 @@ rotation for this SO(2) matrix.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.tradjoint2">
 <span class="sig-name descname"><span class="pre">tradjoint2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#tradjoint2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.tradjoint2" title="Link to this definition"></a></dt>
@@ -576,6 +593,7 @@ rotation for this SO(2) matrix.</p></li>
 will be removed in a future release.</p>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.tranimate2">
 <span class="sig-name descname"><span class="pre">tranimate2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#tranimate2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.tranimate2" title="Link to this definition"></a></dt>
@@ -601,10 +619,11 @@ will be removed in a future release.</p>
 </ul>
 <p>Examples:</p>
 <blockquote>
-<div><p>tranimate2(transl(1,2)@trot2(1), frame=’A’, arrow=False, dims=[0, 5])
-tranimate2(transl(1,2)@trot2(1), frame=’A’, arrow=False, dims=[0, 5], movie=’spin.mp4’)</p>
+<div><p>tranimate2(transl(1,2)&#64;trot2(1), frame=’A’, arrow=False, dims=[0, 5])
+tranimate2(transl(1,2)&#64;trot2(1), frame=’A’, arrow=False, dims=[0, 5], movie=’spin.mp4’)</p>
 </div></blockquote>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.transl2">
 <span class="sig-name descname"><span class="pre">transl2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#transl2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.transl2" title="Link to this definition"></a></dt>
@@ -631,16 +650,16 @@ representing a pure translation.</p></li>
 list, dict, or a numpy array, row or column vector.</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/index.html#module-numpy"><span class="nn">numpy</span></a><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.transl2" title="spatialmath.base.transforms2d.transl2"><span class="n">transl2</span></a><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transl2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="go">array([[1., 0., 3.],</span>
 <span class="go">       [0., 1., 4.],</span>
 <span class="go">       [0., 0., 1.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.transl2" title="spatialmath.base.transforms2d.transl2"><span class="n">transl2</span></a><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transl2</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 <span class="go">array([[1., 0., 3.],</span>
 <span class="go">       [0., 1., 4.],</span>
 <span class="go">       [0., 0., 1.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.transl2" title="spatialmath.base.transforms2d.transl2"><span class="n">transl2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transl2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
 <span class="go">array([[1., 0., 3.],</span>
 <span class="go">       [0., 1., 4.],</span>
 <span class="go">       [0., 0., 1.]])</span>
@@ -663,9 +682,9 @@ list, dict, or a numpy array, row or column vector.</p></li>
 2-element NumPy array.</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/index.html#module-numpy"><span class="nn">numpy</span></a><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.transl2" title="spatialmath.base.transforms2d.transl2"><span class="n">transl2</span></a><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transl2</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="go">array([3, 4])</span>
 </pre></div>
 </div>
@@ -681,6 +700,7 @@ function.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.trexp2">
 <span class="sig-name descname"><span class="pre">trexp2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#trexp2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.trexp2" title="Link to this definition"></a></dt>
@@ -718,16 +738,16 @@ must represent a unit-twist, ie. the rotational component is a unit-norm skew-sy
 matrix.</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trexp2" title="spatialmath.base.transforms2d.trexp2"><span class="n">trexp2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_nd.html#spatialmath.base.transformsNd.skew" title="spatialmath.base.transformsNd.skew"><span class="n">skew</span></a><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trexp2</span><span class="p">(</span><span class="n">skew</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="go">array([[ 0.54030231, -0.84147098],</span>
 <span class="go">       [ 0.84147098,  0.54030231]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trexp2" title="spatialmath.base.transforms2d.trexp2"><span class="n">trexp2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_nd.html#spatialmath.base.transformsNd.skew" title="spatialmath.base.transformsNd.skew"><span class="n">skew</span></a><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># revolute unit twist</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trexp2</span><span class="p">(</span><span class="n">skew</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># revolute unit twist</span>
 <span class="go">array([[-0.41614684, -0.90929743],</span>
 <span class="go">       [ 0.90929743, -0.41614684]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trexp2" title="spatialmath.base.transforms2d.trexp2"><span class="n">trexp2</span></a><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trexp2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">array([[ 0.54030231, -0.84147098],</span>
 <span class="go">       [ 0.84147098,  0.54030231]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trexp2" title="spatialmath.base.transforms2d.trexp2"><span class="n">trexp2</span></a><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># revolute unit twist</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trexp2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># revolute unit twist</span>
 <span class="go">array([[-0.41614684, -0.90929743],</span>
 <span class="go">       [ 0.90929743, -0.41614684]])</span>
 </pre></div>
@@ -746,19 +766,19 @@ unit-norm vector representing a rotation axis and a rotation magnitude
 given by <code class="docutils literal notranslate"><span class="pre">θ</span></code>. <code class="docutils literal notranslate"><span class="pre">ω</span></code> is expressed as a 1-vector.</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trexp2" title="spatialmath.base.transforms2d.trexp2"><span class="n">trexp2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_nd.html#spatialmath.base.transformsNd.skewa" title="spatialmath.base.transformsNd.skewa"><span class="n">skewa</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trexp2</span><span class="p">(</span><span class="n">skewa</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
 <span class="go">array([[-0.9899925 , -0.14112001, -1.27962166],</span>
 <span class="go">       [ 0.14112001, -0.9899925 ,  0.75741084],</span>
 <span class="go">       [ 0.        ,  0.        ,  1.        ]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trexp2" title="spatialmath.base.transforms2d.trexp2"><span class="n">trexp2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_nd.html#spatialmath.base.transformsNd.skewa" title="spatialmath.base.transformsNd.skewa"><span class="n">skewa</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># prismatic unit twist</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trexp2</span><span class="p">(</span><span class="n">skewa</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># prismatic unit twist</span>
 <span class="go">array([[ 1., -0.,  2.],</span>
 <span class="go">       [ 0.,  1.,  0.],</span>
 <span class="go">       [ 0.,  0.,  1.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trexp2" title="spatialmath.base.transforms2d.trexp2"><span class="n">trexp2</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trexp2</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="go">array([[-0.9899925 , -0.14112001, -1.27962166],</span>
 <span class="go">       [ 0.14112001, -0.9899925 ,  0.75741084],</span>
 <span class="go">       [ 0.        ,  0.        ,  1.        ]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trexp2" title="spatialmath.base.transforms2d.trexp2"><span class="n">trexp2</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trexp2</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
 <span class="go">array([[ 1., -0.,  2.],</span>
 <span class="go">       [ 0.,  1.,  0.],</span>
 <span class="go">       [ 0.,  0.,  1.]])</span>
@@ -770,6 +790,7 @@ given by <code class="docutils literal notranslate"><span class="pre">θ</span><
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.trinterp2">
 <span class="sig-name descname"><span class="pre">trinterp2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shortest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#trinterp2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.trinterp2" title="Link to this definition"></a></dt>
@@ -808,29 +829,29 @@ between <cite>R0</cite> when <cite>s=0</cite> and <cite>R1</cite> when <cite>s=1
 <p>Rotation angle is linearly interpolated.</p>
 </div>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">T1</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.transl2" title="spatialmath.base.transforms2d.transl2"><span class="n">transl2</span></a><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">T2</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.transl2" title="spatialmath.base.transforms2d.transl2"><span class="n">transl2</span></a><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trinterp2" title="spatialmath.base.transforms2d.trinterp2"><span class="n">trinterp2</span></a><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T1</span> <span class="o">=</span> <span class="n">transl2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T2</span> <span class="o">=</span> <span class="n">transl2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trinterp2</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="go">array([[ 1., -0.,  1.],</span>
 <span class="go">       [ 0.,  1.,  2.],</span>
 <span class="go">       [ 0.,  0.,  1.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trinterp2" title="spatialmath.base.transforms2d.trinterp2"><span class="n">trinterp2</span></a><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trinterp2</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="go">array([[ 1., -0.,  3.],</span>
 <span class="go">       [ 0.,  1.,  4.],</span>
 <span class="go">       [ 0.,  0.,  1.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trinterp2" title="spatialmath.base.transforms2d.trinterp2"><span class="n">trinterp2</span></a><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trinterp2</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 <span class="go">array([[ 1., -0.,  2.],</span>
 <span class="go">       [ 0.,  1.,  3.],</span>
 <span class="go">       [ 0.,  0.,  1.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trinterp2" title="spatialmath.base.transforms2d.trinterp2"><span class="n">trinterp2</span></a><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trinterp2</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="go">array([[ 1., -0.,  0.],</span>
 <span class="go">       [ 0.,  1.,  0.],</span>
 <span class="go">       [ 0.,  0.,  1.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trinterp2" title="spatialmath.base.transforms2d.trinterp2"><span class="n">trinterp2</span></a><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trinterp2</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="go">array([[ 1., -0.,  3.],</span>
 <span class="go">       [ 0.,  1.,  4.],</span>
 <span class="go">       [ 0.,  0.,  1.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trinterp2" title="spatialmath.base.transforms2d.trinterp2"><span class="n">trinterp2</span></a><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trinterp2</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 <span class="go">array([[ 1. , -0. ,  1.5],</span>
 <span class="go">       [ 0. ,  1. ,  2. ],</span>
 <span class="go">       [ 0. ,  0. ,  1. ]])</span>
@@ -842,6 +863,7 @@ between <cite>R0</cite> when <cite>s=0</cite> and <cite>R1</cite> when <cite>s=1
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.trinv2">
 <span class="sig-name descname"><span class="pre">trinv2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#trinv2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.trinv2" title="Link to this definition"></a></dt>
@@ -863,14 +885,14 @@ between <cite>R0</cite> when <cite>s=0</cite> and <cite>R1</cite> when <cite>s=1
 <p>Computes an efficient inverse of an SE(2) matrix:</p>
 <p><span class="math notranslate nohighlight">\(\begin{pmatrix} {\bf R} &amp; t \\ 0\,0 &amp; 1 \end{pmatrix}^{-1} =  \begin{pmatrix} {\bf R}^T &amp; -{\bf R}^T t \\ 0\, 0 &amp; 1 \end{pmatrix}\)</span></p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trinv2" title="spatialmath.base.transforms2d.trinv2"><span class="n">trinv2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">trot2</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trinv2</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="go">array([[ 0.95533649,  0.29552021, -5.29894699],</span>
 <span class="go">       [-0.29552021,  0.95533649, -3.59460162],</span>
 <span class="go">       [ 0.        ,  0.        ,  1.        ]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trinv2" title="spatialmath.base.transforms2d.trinv2"><span class="n">trinv2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a><span class="p">)</span>
-<span class="go">array([[ 1.00000000e+00, -9.37082533e-18,  8.88178420e-16],</span>
-<span class="go">       [-9.37082533e-18,  1.00000000e+00,  0.00000000e+00],</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">@</span> <span class="n">trinv2</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="go">array([[ 1.00000000e+00, -9.37082533e-18,  4.44089210e-16],</span>
+<span class="go">       [-9.37082533e-18,  1.00000000e+00,  8.88178420e-16],</span>
 <span class="go">       [ 0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])</span>
 </pre></div>
 </div>
@@ -880,6 +902,7 @@ between <cite>R0</cite> when <cite>s=0</cite> and <cite>R1</cite> when <cite>s=1
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.trlog2">
 <span class="sig-name descname"><span class="pre">trlog2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#trlog2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.trlog2" title="Link to this definition"></a></dt>
@@ -919,16 +942,16 @@ equivalent vector from <code class="docutils literal notranslate"><span class="p
 w].</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trlog2" title="spatialmath.base.transforms2d.trlog2"><span class="n">trlog2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a><span class="p">(</span><span class="mf">0.3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trlog2</span><span class="p">(</span><span class="n">trot2</span><span class="p">(</span><span class="mf">0.3</span><span class="p">))</span>
 <span class="go">array([[ 0. , -0.3,  0. ],</span>
 <span class="go">       [ 0.3,  0. ,  0. ],</span>
 <span class="go">       [ 0. ,  0. ,  0. ]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trlog2" title="spatialmath.base.transforms2d.trlog2"><span class="n">trlog2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">twist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trlog2</span><span class="p">(</span><span class="n">trot2</span><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">twist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">array([0. , 0. , 0.3])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trlog2" title="spatialmath.base.transforms2d.trlog2"><span class="n">trlog2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.rot2" title="spatialmath.base.transforms2d.rot2"><span class="n">rot2</span></a><span class="p">(</span><span class="mf">0.3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trlog2</span><span class="p">(</span><span class="n">rot2</span><span class="p">(</span><span class="mf">0.3</span><span class="p">))</span>
 <span class="go">array([[ 0. , -0.3],</span>
 <span class="go">       [ 0.3,  0. ]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trlog2" title="spatialmath.base.transforms2d.trlog2"><span class="n">trlog2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.rot2" title="spatialmath.base.transforms2d.rot2"><span class="n">rot2</span></a><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">twist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trlog2</span><span class="p">(</span><span class="n">rot2</span><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">twist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">0.3</span>
 </pre></div>
 </div>
@@ -939,6 +962,7 @@ w].</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.trnorm2">
 <span class="sig-name descname"><span class="pre">trnorm2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#trnorm2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.trnorm2" title="Link to this definition"></a></dt>
@@ -971,16 +995,16 @@ unchanged.</p></li>
 <li><p>Form the orthogonal planar vector <span class="math notranslate nohighlight">\(\hat{a} = [\hat{b}_y  -\hat{b}_x]\)</span></p></li>
 <li><p>Form the normalized SO(2) matrix <span class="math notranslate nohighlight">\(\mathbf{R} = [\hat{a}, \hat{b}]\)</span></p></li>
 </ol>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trnorm2" title="spatialmath.base.transforms2d.trnorm2"><span class="n">trnorm2</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/index.html#module-numpy"><span class="nn">numpy</span></a><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/routines.linalg.html#module-numpy.linalg" title="numpy.linalg"><span class="n">linalg</span></a>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="s1">'deg'</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.det.html#numpy.linalg.det" title="numpy.linalg.det"><span class="n">linalg</span><span class="o">.</span><span class="n">det</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a><span class="p">[:</span><span class="mi">2</span><span class="p">,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># is a valid SO(3)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">trnorm2</span><span class="p">,</span> <span class="n">trot2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">linalg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">trot2</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="s1">'deg'</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">T</span><span class="p">[:</span><span class="mi">2</span><span class="p">,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># is a valid SO(3)</span>
 <span class="go">np.float64(0.0)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.det.html#numpy.linalg.det" title="numpy.linalg.det"><span class="n">linalg</span><span class="o">.</span><span class="n">det</span></a><span class="p">(</span><span class="n">T</span><span class="p">[:</span><span class="mi">2</span><span class="p">,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># not quite a valid SE(2) anymore</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span> <span class="o">@</span> <span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">T</span><span class="p">[:</span><span class="mi">2</span><span class="p">,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># not quite a valid SE(2) anymore</span>
 <span class="go">np.float64(-3.3306690738754696e-16)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trnorm2" title="spatialmath.base.transforms2d.trnorm2"><span class="n">trnorm2</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.det.html#numpy.linalg.det" title="numpy.linalg.det"><span class="n">linalg</span><span class="o">.</span><span class="n">det</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">T</span></a><span class="p">[:</span><span class="mi">2</span><span class="p">,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># once more a valid SE(2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">trnorm2</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">T</span><span class="p">[:</span><span class="mi">2</span><span class="p">,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># once more a valid SE(2)</span>
 <span class="go">np.float64(0.0)</span>
 </pre></div>
 </div>
@@ -993,6 +1017,7 @@ become ‘unnormalized’, ie. determinant <span class="math notranslate nohighl
 </ul>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.trot2">
 <span class="sig-name descname"><span class="pre">trot2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#trot2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.trot2" title="Link to this definition"></a></dt>
@@ -1018,11 +1043,11 @@ become ‘unnormalized’, ie. determinant <span class="math notranslate nohighl
 <li><p><code class="docutils literal notranslate"><span class="pre">trot2(θ,</span> <span class="pre">'deg')</span></code> as above but θ is in degrees.</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trot2</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
 <span class="go">array([[ 0.95533649, -0.29552021,  0.        ],</span>
 <span class="go">       [ 0.29552021,  0.95533649,  0.        ],</span>
 <span class="go">       [ 0.        ,  0.        ,  1.        ]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="s1">'deg'</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trot2</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="s1">'deg'</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 <span class="go">array([[ 0.70710678, -0.70710678,  1.        ],</span>
 <span class="go">       [ 0.70710678,  0.70710678,  2.        ],</span>
 <span class="go">       [ 0.        ,  0.        ,  1.        ]])</span>
@@ -1039,6 +1064,7 @@ set to a non-zero value.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.trplot2">
 <span class="sig-name descname"><span class="pre">trplot2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'blue'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axislabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axissubscript</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">textcolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('X',</span> <span class="pre">'Y')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">originsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rviz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wtl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.15</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#trplot2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.trplot2" title="Link to this definition"></a></dt>
@@ -1128,7 +1154,7 @@ set to a non-zero value.</p>
 </div>
 <p>(<a class="reference download internal" download="" href="_downloads/91ea7570822d7b21dcd95061cb335bc3/func_2d-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="_downloads/fce1b0cb11c27ada71a46adbb551bc4a/func_2d-1.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="_downloads/517c6d21cc8e4737115dd0d119031db5/func_2d-1.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="_downloads/8095ce4508b762efc6585831cbaa535d/func_2d-1.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-default">
-<img alt="_images/func_2d-1.png" class="plot-directive" src="_images/func_2d-1.png"/>
+<img alt="_images/func_2d-1.png" class="plot-directive" src="_images/func_2d-1.png" />
 </figure>
 <dl class="field-list simple">
 <dt class="field-odd">SymPy<span class="colon">:</span></dt>
@@ -1139,6 +1165,7 @@ set to a non-zero value.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.trprint2">
 <span class="sig-name descname"><span class="pre">trprint2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#trprint2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.trprint2" title="Link to this definition"></a></dt>
@@ -1177,11 +1204,11 @@ single-line format and returns the string:</p>
 </li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.transl2" title="spatialmath.base.transforms2d.transl2"><span class="n">transl2</span></a><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">@</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trot2" title="spatialmath.base.transforms2d.trot2"><span class="n">trot2</span></a><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trprint2" title="spatialmath.base.transforms2d.trprint2"><span class="n">trprint2</span></a><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'T'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">transl2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">@</span> <span class="n">trot2</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trprint2</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'T'</span><span class="p">)</span>
 <span class="go">T: t = 1, 2; 17.2°</span>
 <span class="go">'T: t = 1, 2; 17.2°'</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.trprint2" title="spatialmath.base.transforms2d.trprint2"><span class="n">trprint2</span></a><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'T'</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'</span><span class="si">{:8.4g}</span><span class="s1">'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trprint2</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'T'</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'</span><span class="si">{:8.4g}</span><span class="s1">'</span><span class="p">)</span>
 <span class="go">T: t =        1,        2;    17.19°</span>
 <span class="go">'T: t =        1,        2;    17.19°'</span>
 </pre></div>
@@ -1204,6 +1231,7 @@ deprecated - call <a class="reference internal" href="#spatialmath.base.transfor
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.transforms2d.xyt2tr">
 <span class="sig-name descname"><span class="pre">xyt2tr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/transforms2d.html#xyt2tr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.transforms2d.xyt2tr" title="Link to this definition"></a></dt>
@@ -1227,11 +1255,11 @@ deprecated - call <a class="reference internal" href="#spatialmath.base.transfor
 θ radians and a translation of (x,y).</p></li>
 </ul>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.xyt2tr" title="spatialmath.base.transforms2d.xyt2tr"><span class="n">xyt2tr</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xyt2tr</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">])</span>
 <span class="go">array([[ 0.95533649, -0.29552021,  1.        ],</span>
 <span class="go">       [ 0.29552021,  0.95533649,  2.        ],</span>
 <span class="go">       [ 0.        ,  0.        ,  1.        ]])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.xyt2tr" title="spatialmath.base.transforms2d.xyt2tr"><span class="n">xyt2tr</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">45</span><span class="p">],</span> <span class="s1">'deg'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xyt2tr</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">45</span><span class="p">],</span> <span class="s1">'deg'</span><span class="p">)</span>
 <span class="go">array([[ 0.70710678, -0.70710678,  1.        ],</span>
 <span class="go">       [ 0.70710678,  0.70710678,  2.        ],</span>
 <span class="go">       [ 0.        ,  0.        ,  1.        ]])</span>
@@ -1243,19 +1271,24 @@ deprecated - call <a class="reference internal" href="#spatialmath.base.transfor
 </dd>
 </dl>
 </dd></dl>
+
 </section>
-</div>
-</div>
-<footer><div aria-label="Footer" class="rst-footer-buttons" role="navigation">
-<a accesskey="p" class="btn btn-neutral float-left" href="functions.html" rel="prev" title="Function reference"><span aria-hidden="true" class="fa fa-arrow-circle-left"></span> Previous</a>
-<a accesskey="n" class="btn btn-neutral float-right" href="func_3d.html" rel="next" title="Transforms in 3D">Next <span aria-hidden="true" class="fa fa-arrow-circle-right"></span></a>
-</div>
-<hr/>
-<div role="contentinfo">
-<p>© Copyright 2020-, Peter Corke..
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="functions.html" class="btn btn-neutral float-left" title="Function reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="func_3d.html" class="btn btn-neutral float-right" title="Transforms in 3D" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-, Peter Corke..
       <span class="lastupdated">Last updated on 16-Sep-2026.
       </span></p>
-</div>
+  </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
@@ -1263,18 +1296,18 @@ deprecated - call <a class="reference internal" href="#spatialmath.base.transfor
    
 
 </footer>
-</div>
-</div>
-</section>
-</div>
-<script>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-<!-- Theme Analytics -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-11Q6WJM565"></script>
-<script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-11Q6WJM565"></script>
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -1282,6 +1315,7 @@ deprecated - call <a class="reference internal" href="#spatialmath.base.transfor
       gtag('config', 'G-11Q6WJM565', {
           'anonymize_ip': false,
       });
-    </script>
+    </script> 
+
 </body>
 </html>

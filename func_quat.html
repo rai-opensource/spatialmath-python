@@ -1,55 +1,57 @@
 
-<!DOCTYPE html>
 
-<html class="writer-html5" data-content_root="./" lang="en">
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
-<link href="_static/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
-<link href="_static/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
-<link href="_static/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" type="image/png"/>
-<link href="_static/android-chrome-192x192.png" rel="android-chrome" sizes="192x192" type="image/png"/>
-<link href="_static/android-chrome-512x512.png" rel="android-chrome" sizes="512x512" type="image/png"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Quaternions — Spatial Maths package  documentation</title>
-<link href="_static/pygments.css?v=b86133f3" rel="stylesheet" type="text/css"/>
-<link href="_static/css/theme.css?v=9edc463e" rel="stylesheet" type="text/css"/>
-<link href="_static/graphviz.css?v=4ae1632d" rel="stylesheet" type="text/css"/>
-<link href="_static/plot_directive.css" rel="stylesheet" type="text/css"/>
-<link href="_static/copybutton.css?v=76b2166b" rel="stylesheet" type="text/css"/>
-<link href="_static/sphinx-codeautolink.css?v=b2176991" rel="stylesheet" type="text/css"/>
-<script src="_static/jquery.js?v=5d32c60e"></script>
-<script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-<script src="_static/documentation_options.js?v=5929fcd5"></script>
-<script src="_static/doctools.js?v=fd6eb6e6"></script>
-<script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-<script src="_static/clipboard.min.js?v=a7894cd8"></script>
-<script src="_static/copybutton.js?v=3a14cefc"></script>
-<script>window.MathJax = {"tex": {"macros": {"presup": ["\\,{}^{\\scriptscriptstyle #1}\\!", 1], "SE": ["\\mathbf{SE}(#1)", 1], "SO": ["\\mathbf{SO}(#1)", 1], "se": ["\\mathbf{se}(#1)", 1], "so": ["\\mathbf{so}(#1)", 1], "vec": ["\\boldsymbol{#1}", 1], "dvec": ["\\dot{\\boldsymbol{#1}}", 1], "ddvec": ["\\ddot{\\boldsymbol{#1}}", 1], "fvec": ["\\presup{#1}\\boldsymbol{#2}", 2], "fdvec": ["\\presup{#1}\\dot{\\boldsymbol{#2}}", 2], "fddvec": ["\\presup{#1}\\ddot{\\boldsymbol{#2}}", 2], "norm": ["\\Vert #1 \\Vert", 1], "mat": ["\\mathbf{#1}", 1], "dmat": ["\\dot{\\mathbf{#1}}", 1], "fmat": ["\\presup{#1}\\mathbf{#2}", 2], "sk": ["\\left[#1\\right]", 1], "skx": ["\\left[#1\\right]_{\\times}", 1], "vex": ["\\vee\\left( #1\\right)", 1], "vexx": ["\\vee_{\\times}\\left( #1\\right)", 1], "q": "\\mathring{q}", "fq": ["\\presup{#1}\\mathring{q}", 1]}}}</script>
-<script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-<script src="_static/js/theme.js"></script>
-<link href="genindex.html" rel="index" title="Index"/>
-<link href="search.html" rel="search" title="Search"/>
-<link href="func_symbolic.html" rel="next" title="Symbolic computation"/>
-<link href="func_nd.html" rel="prev" title="Transforms in ND"/>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="16x16" href="_static/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="_static/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="_static/apple-touch-icon.png" type="image/png">
+    <link rel="android-chrome" sizes="192x192" href="_static/android-chrome-192x192.png" type="image/png">
+    <link rel="android-chrome" sizes="512x512" href="_static/android-chrome-512x512.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quaternions &mdash; Spatial Maths package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script>window.MathJax = {"tex": {"macros": {"presup": ["\\,{}^{\\scriptscriptstyle #1}\\!", 1], "SE": ["\\mathbf{SE}(#1)", 1], "SO": ["\\mathbf{SO}(#1)", 1], "se": ["\\mathbf{se}(#1)", 1], "so": ["\\mathbf{so}(#1)", 1], "vec": ["\\boldsymbol{#1}", 1], "dvec": ["\\dot{\\boldsymbol{#1}}", 1], "ddvec": ["\\ddot{\\boldsymbol{#1}}", 1], "fvec": ["\\presup{#1}\\boldsymbol{#2}", 2], "fdvec": ["\\presup{#1}\\dot{\\boldsymbol{#2}}", 2], "fddvec": ["\\presup{#1}\\ddot{\\boldsymbol{#2}}", 2], "norm": ["\\Vert #1 \\Vert", 1], "mat": ["\\mathbf{#1}", 1], "dmat": ["\\dot{\\mathbf{#1}}", 1], "fmat": ["\\presup{#1}\\mathbf{#2}", 2], "sk": ["\\left[#1\\right]", 1], "skx": ["\\left[#1\\right]_{\\times}", 1], "vex": ["\\vee\\left( #1\\right)", 1], "vexx": ["\\vee_{\\times}\\left( #1\\right)", 1], "q": "\\mathring{q}", "fq": ["\\presup{#1}\\mathring{q}", 1]}}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Symbolic computation" href="func_symbolic.html" />
+    <link rel="prev" title="Transforms in ND" href="func_nd.html" /> 
 </head>
-<body class="wy-body-for-nav">
-<div class="wy-grid-for-nav">
-<nav class="wy-nav-side" data-toggle="wy-nav-shift">
-<div class="wy-side-scroll">
-<div class="wy-side-nav-search">
-<a class="icon icon-home" href="index.html">
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
             Spatial Maths package
-              <img alt="Logo" class="logo" src="_static/CartesianSnakes_LogoW.png"/>
-</a>
+              <img src="_static/CartesianSnakes_LogoW.png" class="logo" alt="Logo"/>
+          </a>
 <div role="search">
-<form action="search.html" class="wy-form" id="rtd-search-form" method="get">
-<input aria-label="Search docs" name="q" placeholder="Search docs" type="text"/>
-<input name="check_keywords" type="hidden" value="yes"/>
-<input name="area" type="hidden" value="default"/>
-</form>
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-</div><div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
-<ul class="current">
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spatialmath.html">Class reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="functions.html">Function reference</a><ul class="current">
@@ -93,32 +95,36 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="indices.html">Indices</a></li>
 </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Spatial Maths package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="functions.html">Function reference</a></li>
+      <li class="breadcrumb-item active">Quaternions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/func_quat.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="func_nd.html" class="btn btn-neutral float-left" title="Transforms in ND" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="func_symbolic.html" class="btn btn-neutral float-right" title="Symbolic computation" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
 </div>
-</div>
-</nav>
-<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift"><nav aria-label="Mobile navigation menu" class="wy-nav-top">
-<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
-<a href="index.html">Spatial Maths package</a>
-</nav>
-<div class="wy-nav-content">
-<div class="rst-content">
-<div aria-label="Page navigation" role="navigation">
-<ul class="wy-breadcrumbs">
-<li><a aria-label="Home" class="icon icon-home" href="index.html"></a></li>
-<li class="breadcrumb-item"><a href="functions.html">Function reference</a></li>
-<li class="breadcrumb-item active">Quaternions</li>
-<li class="wy-breadcrumbs-aside">
-<a href="_sources/func_quat.rst.txt" rel="nofollow"> View page source</a>
-</li>
-</ul><div aria-label="Sequential page navigation" class="rst-breadcrumbs-buttons" role="navigation">
-<a accesskey="p" class="btn btn-neutral float-left" href="func_nd.html" title="Transforms in ND"><span aria-hidden="true" class="fa fa-arrow-circle-left"></span> Previous</a>
-<a accesskey="n" class="btn btn-neutral float-right" href="func_symbolic.html" title="Symbolic computation">Next <span aria-hidden="true" class="fa fa-arrow-circle-right"></span></a>
-</div>
-<hr/>
-</div>
-<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
-<div itemprop="articleBody">
-<section id="module-spatialmath.base.quaternions">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spatialmath.base.quaternions">
 <span id="quaternions"></span><h1>Quaternions<a class="headerlink" href="#module-spatialmath.base.quaternions" title="Link to this heading"></a></h1>
 <p>These functions create and manipulate quaternions or unit quaternions.
 The quaternion is represented
@@ -143,9 +149,9 @@ by a 1D NumPy array with 4 elements: s, x, y, z.</p>
 </dd>
 </dl>
 <p>Returns an SO(3) rotation matrix corresponding to this unit-quaternion.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.q2r" title="spatialmath.base.quaternions.q2r"><span class="n">q2r</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">q2r</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># rotation of 180deg about y-axis</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.q2r" title="spatialmath.base.quaternions.q2r"><span class="n">q2r</span></a><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">q2r</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
 <span class="go">[[-1.  0.  0.]</span>
 <span class="go"> [ 0.  1.  0.]</span>
 <span class="go"> [ 0.  0. -1.]]</span>
@@ -161,6 +167,7 @@ by a 1D NumPy array with 4 elements: s, x, y, z.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.q2str">
 <span class="sig-name descname"><span class="pre">q2str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('&lt;',</span> <span class="pre">'&gt;')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'{:</span> <span class="pre">.4f}'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#q2str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.q2str" title="Link to this definition"></a></dt>
@@ -186,13 +193,13 @@ by a 1D NumPy array with 4 elements: s, x, y, z.</p>
 </div>
 <p>where S, VX, VY, VZ are the quaternion elements, and D1 and D2 are a pair
 of delimeters given by <cite>delim</cite>.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.q2str" title="spatialmath.base.quaternions.q2str"><span class="n">q2str</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qrand" title="spatialmath.base.quaternions.qrand"><span class="n">qrand</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">q2str</span><span class="p">,</span> <span class="n">qrand</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.q2str" title="spatialmath.base.quaternions.q2str"><span class="n">q2str</span></a><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q2str</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 <span class="go">' 1.0000 &lt;  2.0000,  3.0000,  4.0000 &gt;'</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qrand" title="spatialmath.base.quaternions.qrand"><span class="n">qrand</span></a><span class="p">()</span>   <span class="c1"># a unit quaternion</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.q2str" title="spatialmath.base.quaternions.q2str"><span class="n">q2str</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a><span class="p">,</span> <span class="n">delim</span><span class="o">=</span><span class="p">(</span><span class="s1">'&lt;&lt;'</span><span class="p">,</span> <span class="s1">'&gt;&gt;'</span><span class="p">))</span>
-<span class="go">'-0.3833 &lt;&lt; -0.4026,  0.5014,  0.6630 &gt;&gt;'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">qrand</span><span class="p">()</span>   <span class="c1"># a unit quaternion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q2str</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">delim</span><span class="o">=</span><span class="p">(</span><span class="s1">'&lt;&lt;'</span><span class="p">,</span> <span class="s1">'&gt;&gt;'</span><span class="p">))</span>
+<span class="go">'-0.5144 &lt;&lt; -0.4733,  0.6986,  0.1527 &gt;&gt;'</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -201,6 +208,7 @@ of delimeters given by <cite>delim</cite>.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.q2v">
 <span class="sig-name descname"><span class="pre">q2v</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#q2v"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.q2v" title="Link to this definition"></a></dt>
@@ -219,13 +227,13 @@ of delimeters given by <cite>delim</cite>.</p>
 <p>Returns a unique 3-vector representing the input unit-quaternion. The sign
 of the scalar part is made positive, if necessary by multiplying the
 entire quaternion by -1, then the vector part is taken.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.q2v" title="spatialmath.base.quaternions.q2v"><span class="n">q2v</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">q2v</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.q2v" title="spatialmath.base.quaternions.q2v"><span class="n">q2v</span></a><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">q2v</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
 <span class="go">[0.         0.70710678 0.        ]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.q2v" title="spatialmath.base.quaternions.q2v"><span class="n">q2v</span></a><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">q2v</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
 <span class="go">[-0.         -0.70710678 -0.        ]</span>
 </pre></div>
 </div>
@@ -239,6 +247,7 @@ entire quaternion by -1, then the vector part is taken.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qangle">
 <span class="sig-name descname"><span class="pre">qangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qangle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qangle" title="Link to this definition"></a></dt>
@@ -260,11 +269,11 @@ entire quaternion by -1, then the vector part is taken.</p>
 <p>If each of the input quaternions is considered a rotated coordinate
 frame, then the angle is the smallest rotation required about a fixed
 axis, to rotate the first frame into the second.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qangle" title="spatialmath.base.quaternions.qangle"><span class="n">qangle</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qangle</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>    <span class="c1"># 90deg rotation about x-axis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span>    <span class="c1"># 90deg rotation about y-axis</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qangle" title="spatialmath.base.quaternions.qangle"><span class="n">qangle</span></a><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qangle</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">)</span>
 <span class="go">2.0943951023931953</span>
 </pre></div>
 </div>
@@ -281,6 +290,7 @@ Du Q. Huynh, % J.Math Imaging Vis. DOFI 10.1007/s10851-009-0161-2.</p></li>
 <p>There is no check that the passed values are unit-quaternions.</p>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qconj">
 <span class="sig-name descname"><span class="pre">qconj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qconj"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qconj" title="Link to this definition"></a></dt>
@@ -297,9 +307,9 @@ Du Q. Huynh, % J.Math Imaging Vis. DOFI 10.1007/s10851-009-0161-2.</p></li>
 </dd>
 </dl>
 <p>Conjugate of quaternion, the vector part is negated.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qconj" title="spatialmath.base.quaternions.qconj"><span class="n">qconj</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qconj</span><span class="p">,</span> <span class="n">qprint</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qconj" title="spatialmath.base.quaternions.qconj"><span class="n">qconj</span></a><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">qconj</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
 <span class="go"> 1.0000 &lt; -2.0000, -3.0000, -4.0000 &gt;</span>
 <span class="go">' 1.0000 &lt; -2.0000, -3.0000, -4.0000 &gt;'</span>
 </pre></div>
@@ -310,6 +320,7 @@ Du Q. Huynh, % J.Math Imaging Vis. DOFI 10.1007/s10851-009-0161-2.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qdot">
 <span class="sig-name descname"><span class="pre">qdot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qdot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qdot" title="Link to this definition"></a></dt>
@@ -331,10 +342,10 @@ Du Q. Huynh, % J.Math Imaging Vis. DOFI 10.1007/s10851-009-0161-2.</p></li>
 <p><code class="docutils literal notranslate"><span class="pre">dot(q,</span> <span class="pre">w)</span></code> is the rate of change of the elements of the unit quaternion <code class="docutils literal notranslate"><span class="pre">q</span></code>
 which represents the orientation of a body frame with angular velocity <code class="docutils literal notranslate"><span class="pre">w</span></code> in
 the world frame.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qdot" title="spatialmath.base.quaternions.qdot"><span class="n">qdot</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qdot</span><span class="p">,</span> <span class="n">qprint</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>   <span class="c1"># 90deg rotation about x-axis</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qdot" title="spatialmath.base.quaternions.qdot"><span class="n">qdot</span></a><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qdot</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="go">array([-0.35355339,  0.35355339,  1.76776695,  0.35355339])</span>
 </pre></div>
 </div>
@@ -343,6 +354,7 @@ the world frame.</p>
 <p>There is no check that the passed values are unit-quaternions.</p>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qdotb">
 <span class="sig-name descname"><span class="pre">qdotb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qdotb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qdotb" title="Link to this definition"></a></dt>
@@ -364,10 +376,10 @@ the world frame.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dotb(q,</span> <span class="pre">w)</span></code> is the rate of change of the elements of the unit quaternion <code class="docutils literal notranslate"><span class="pre">q</span></code>
 which represents the orientation of a body frame with angular velocity <code class="docutils literal notranslate"><span class="pre">w</span></code> in
 the body frame.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qdotb" title="spatialmath.base.quaternions.qdotb"><span class="n">qdotb</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qdotb</span><span class="p">,</span> <span class="n">qprint</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>   <span class="c1"># 90deg rotation about x-axis</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qdotb" title="spatialmath.base.quaternions.qdotb"><span class="n">qdotb</span></a><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qdotb</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="go">array([-0.35355339,  0.35355339, -0.35355339,  1.76776695])</span>
 </pre></div>
 </div>
@@ -376,6 +388,7 @@ the body frame.</p>
 <p>There is no check that the passed values are unit-quaternions.</p>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qeye">
 <span class="sig-name descname"><span class="pre">qeye</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qeye"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qeye" title="Link to this definition"></a></dt>
@@ -390,14 +403,15 @@ the body frame.</p>
 </dl>
 <p>Creates an identity quaternion, with the scalar part equal to one, and
 a zero vector value.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qeye" title="spatialmath.base.quaternions.qeye"><span class="n">qeye</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qeye" title="spatialmath.base.quaternions.qeye"><span class="n">qeye</span></a><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qeye</span><span class="p">,</span> <span class="n">qprint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">qeye</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 <span class="go"> 1.0000 &lt;  0.0000,  0.0000,  0.0000 &gt;</span>
 <span class="go">' 1.0000 &lt;  0.0000,  0.0000,  0.0000 &gt;'</span>
 </pre></div>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qinner">
 <span class="sig-name descname"><span class="pre">qinner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qinner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qinner" title="Link to this definition"></a></dt>
@@ -423,14 +437,14 @@ product.</p>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">q0</span></code> and <code class="docutils literal notranslate"><span class="pre">q1</span></code> are unit quaternions then the inner product is the
 cosine of the angle between the two orientations.</p></li>
 </ul>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qinner" title="spatialmath.base.quaternions.qinner"><span class="n">qinner</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qinner</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">acos</span><span class="p">,</span> <span class="n">pi</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qinner" title="spatialmath.base.quaternions.qinner"><span class="n">qinner</span></a><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q1</span><span class="p">)</span>                     <span class="c1"># square of the norm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qinner</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q1</span><span class="p">)</span>                     <span class="c1"># square of the norm</span>
 <span class="go">np.float64(30.0)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 90deg rotation about x-axis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 90deg rotation about y-axis</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">acos</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qinner" title="spatialmath.base.quaternions.qinner"><span class="n">qinner</span></a><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">))</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <span class="n">pi</span>    <span class="c1"># angle between q1 and q2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">acos</span><span class="p">(</span><span class="n">qinner</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">))</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <span class="n">pi</span>    <span class="c1"># angle between q1 and q2</span>
 <span class="go">60.00000000000001</span>
 </pre></div>
 </div>
@@ -440,6 +454,7 @@ cosine of the angle between the two orientations.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qisequal">
 <span class="sig-name descname"><span class="pre">qisequal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unitq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qisequal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qisequal" title="Link to this definition"></a></dt>
@@ -464,16 +479,17 @@ cosine of the angle between the two orientations.</p></li>
 <p>For unit-quaternions <code class="docutils literal notranslate"><span class="pre">unitq=True</span></code> the double mapping is taken into account,
 that is <code class="docutils literal notranslate"><span class="pre">q</span></code> and <code class="docutils literal notranslate"><span class="pre">-q</span></code> represent the same orientation and <code class="docutils literal notranslate"><span class="pre">isequal(q,</span> <span class="pre">-q,</span> <span class="pre">unitq=True)</span></code> will
 return <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qisequal" title="spatialmath.base.quaternions.qisequal"><span class="n">qisequal</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qisequal</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qisequal" title="spatialmath.base.quaternions.qisequal"><span class="n">qisequal</span></a><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qisequal</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">)</span>
 <span class="go">np.False_</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qisequal" title="spatialmath.base.quaternions.qisequal"><span class="n">qisequal</span></a><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">unitq</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qisequal</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">unitq</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">np.True_</span>
 </pre></div>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qisunit">
 <span class="sig-name descname"><span class="pre">qisunit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qisunit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qisunit" title="Link to this definition"></a></dt>
@@ -492,12 +508,12 @@ return <code class="docutils literal notranslate"><span class="pre">True</span><
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qeye" title="spatialmath.base.quaternions.qeye"><span class="n">qeye</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qpure" title="spatialmath.base.quaternions.qpure"><span class="n">qpure</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qisunit" title="spatialmath.base.quaternions.qisunit"><span class="n">qisunit</span></a>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qeye" title="spatialmath.base.quaternions.qeye"><span class="n">qeye</span></a><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qisunit" title="spatialmath.base.quaternions.qisunit"><span class="n">qisunit</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qeye</span><span class="p">,</span> <span class="n">qpure</span><span class="p">,</span> <span class="n">qisunit</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">qeye</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qisunit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 <span class="go">False</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qpure" title="spatialmath.base.quaternions.qpure"><span class="n">qpure</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qisunit" title="spatialmath.base.quaternions.qisunit"><span class="n">qisunit</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">qpure</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qisunit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 <span class="go">False</span>
 </pre></div>
 </div>
@@ -507,6 +523,7 @@ return <code class="docutils literal notranslate"><span class="pre">True</span><
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qmatrix">
 <span class="sig-name descname"><span class="pre">qmatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qmatrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qmatrix" title="Link to this definition"></a></dt>
@@ -539,6 +556,7 @@ equivalent 4x4 matrix and the right-hand quaternion as 4x1 column vector.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qnorm">
 <span class="sig-name descname"><span class="pre">qnorm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qnorm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qnorm" title="Link to this definition"></a></dt>
@@ -557,8 +575,8 @@ equivalent 4x4 matrix and the right-hand quaternion as 4x1 column vector.</p>
 <p>Returns the norm (length or magnitude) of the input quaternion which is</p>
 <div class="math notranslate nohighlight">
 \[(s^2 + v_x^2 + v_y^2 + v_z^2)^{1/2}\]</div>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qnorm" title="spatialmath.base.quaternions.qnorm"><span class="n">qnorm</span></a>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qnorm" title="spatialmath.base.quaternions.qnorm"><span class="n">qnorm</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qnorm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">qnorm</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 <span class="go">5.477225575051661</span>
 </pre></div>
@@ -569,6 +587,7 @@ equivalent 4x4 matrix and the right-hand quaternion as 4x1 column vector.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qpositive">
 <span class="sig-name descname"><span class="pre">qpositive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qpositive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qpositive" title="Link to this definition"></a></dt>
@@ -586,6 +605,7 @@ equivalent 4x4 matrix and the right-hand quaternion as 4x1 column vector.</p>
 </dl>
 <p>If the scalar part is negative return -q.</p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qpow">
 <span class="sig-name descname"><span class="pre">qpow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qpow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qpow" title="Link to this definition"></a></dt>
@@ -608,15 +628,15 @@ equivalent 4x4 matrix and the right-hand quaternion as 4x1 column vector.</p>
 </dd>
 </dl>
 <p>Raises a quaternion to the specified power using repeated multiplication.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qpow" title="spatialmath.base.quaternions.qpow"><span class="n">qpow</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qqmul" title="spatialmath.base.quaternions.qqmul"><span class="n">qqmul</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qpow</span><span class="p">,</span> <span class="n">qqmul</span><span class="p">,</span> <span class="n">qprint</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qqmul" title="spatialmath.base.quaternions.qqmul"><span class="n">qqmul</span></a><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">qqmul</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
 <span class="go">-28.0000 &lt;  4.0000,  6.0000,  8.0000 &gt;</span>
 <span class="go">'-28.0000 &lt;  4.0000,  6.0000,  8.0000 &gt;'</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qpow" title="spatialmath.base.quaternions.qpow"><span class="n">qpow</span></a><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">qpow</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="go">-28.0000 &lt;  4.0000,  6.0000,  8.0000 &gt;</span>
 <span class="go">'-28.0000 &lt;  4.0000,  6.0000,  8.0000 &gt;'</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qpow" title="spatialmath.base.quaternions.qpow"><span class="n">qpow</span></a><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># conjugate of above</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">qpow</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># conjugate of above</span>
 <span class="go">-28.0000 &lt; -4.0000, -6.0000, -8.0000 &gt;</span>
 <span class="go">'-28.0000 &lt; -4.0000, -6.0000, -8.0000 &gt;'</span>
 </pre></div>
@@ -630,6 +650,7 @@ equivalent 4x4 matrix and the right-hand quaternion as 4x1 column vector.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qprint">
 <span class="sig-name descname"><span class="pre">qprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('&lt;',</span> <span class="pre">'&gt;')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'{:</span> <span class="pre">.4f}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qprint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qprint" title="Link to this definition"></a></dt>
@@ -654,15 +675,15 @@ equivalent 4x4 matrix and the right-hand quaternion as 4x1 column vector.</p>
 <p>where S, VX, VY, VZ are the quaternion elements, and D1 and D2 are a pair
 of delimeters given by <cite>delim</cite>.</p>
 <p>By default the string is written to <cite>sys.stdout</cite>.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qrand" title="spatialmath.base.quaternions.qrand"><span class="n">qrand</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qprint</span><span class="p">,</span> <span class="n">qrand</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 <span class="go"> 1.0000 &lt;  2.0000,  3.0000,  4.0000 &gt;</span>
 <span class="go">' 1.0000 &lt;  2.0000,  3.0000,  4.0000 &gt;'</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qrand" title="spatialmath.base.quaternions.qrand"><span class="n">qrand</span></a><span class="p">()</span>   <span class="c1"># a unit quaternion</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a><span class="p">,</span> <span class="n">delim</span><span class="o">=</span><span class="p">(</span><span class="s1">'&lt;&lt;'</span><span class="p">,</span> <span class="s1">'&gt;&gt;'</span><span class="p">))</span>
-<span class="go"> 0.3729 &lt;&lt; -0.6272, -0.6619, -0.1716 &gt;&gt;</span>
-<span class="go">' 0.3729 &lt;&lt; -0.6272, -0.6619, -0.1716 &gt;&gt;'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">qrand</span><span class="p">()</span>   <span class="c1"># a unit quaternion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">delim</span><span class="o">=</span><span class="p">(</span><span class="s1">'&lt;&lt;'</span><span class="p">,</span> <span class="s1">'&gt;&gt;'</span><span class="p">))</span>
+<span class="go">-0.1029 &lt;&lt; -0.6668, -0.4050,  0.6171 &gt;&gt;</span>
+<span class="go">'-0.1029 &lt;&lt; -0.6668, -0.4050,  0.6171 &gt;&gt;'</span>
 </pre></div>
 </div>
 <div class="deprecated">
@@ -675,6 +696,7 @@ deprecated - call <a class="reference internal" href="#spatialmath.base.quaterni
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qpure">
 <span class="sig-name descname"><span class="pre">qpure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qpure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qpure" title="Link to this definition"></a></dt>
@@ -692,14 +714,15 @@ deprecated - call <a class="reference internal" href="#spatialmath.base.quaterni
 </dl>
 <p>Creates a pure quaternion, with a zero scalar value and the vector part
 equal to the passed vector value.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qpure" title="spatialmath.base.quaternions.qpure"><span class="n">qpure</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qpure" title="spatialmath.base.quaternions.qpure"><span class="n">qpure</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qpure</span><span class="p">,</span> <span class="n">qprint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">qpure</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 <span class="go"> 0.0000 &lt;  1.0000,  2.0000,  3.0000 &gt;</span>
 <span class="go">' 0.0000 &lt;  1.0000,  2.0000,  3.0000 &gt;'</span>
 </pre></div>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qqmul">
 <span class="sig-name descname"><span class="pre">qqmul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qqmul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qqmul" title="Link to this definition"></a></dt>
@@ -720,10 +743,10 @@ equal to the passed vector value.</p>
 </dl>
 <p>This is the quaternion or Hamilton product.  If both operands are unit-quaternions then
 the product will be a unit-quaternion.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qqmul" title="spatialmath.base.quaternions.qqmul"><span class="n">qqmul</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qqmul</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qqmul" title="spatialmath.base.quaternions.qqmul"><span class="n">qqmul</span></a><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">)</span>    <span class="c1"># conventional Hamilton product</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qqmul</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">)</span>    <span class="c1"># conventional Hamilton product</span>
 <span class="go">array([-60.,  12.,  30.,  24.])</span>
 </pre></div>
 </div>
@@ -733,6 +756,7 @@ the product will be a unit-quaternion.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qrand">
 <span class="sig-name descname"><span class="pre">qrand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_interpolation_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qrand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qrand" title="Link to this definition"></a></dt>
@@ -761,13 +785,14 @@ the product will be a unit-quaternion.</p>
 </dl>
 <p>Computes a uniformly distributed random unit-quaternion, with in a maximum
 angular magnitude, which can be considered equivalent to a random SO(3) rotation.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qrand" title="spatialmath.base.quaternions.qrand"><span class="n">qrand</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qrand" title="spatialmath.base.quaternions.qrand"><span class="n">qrand</span></a><span class="p">())</span>
-<span class="go"> 0.0991 &lt; -0.4765, -0.8051,  0.3389 &gt;</span>
-<span class="go">' 0.0991 &lt; -0.4765, -0.8051,  0.3389 &gt;'</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qrand</span><span class="p">,</span> <span class="n">qprint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">qrand</span><span class="p">())</span>
+<span class="go">-0.6889 &lt; -0.2980,  0.5996, -0.2776 &gt;</span>
+<span class="go">'-0.6889 &lt; -0.2980,  0.5996, -0.2776 &gt;'</span>
 </pre></div>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qslerp">
 <span class="sig-name descname"><span class="pre">qslerp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shortest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qslerp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qslerp" title="Link to this definition"></a></dt>
@@ -798,17 +823,17 @@ a rotation about a single fixed axis in space which yields the straightest
 and shortest path between two points.</p>
 <p>For large rotations the path may be the <em>long way around</em> the circle,
 the option <code class="docutils literal notranslate"><span class="pre">'shortest'</span></code> ensures always the shortest path.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qslerp" title="spatialmath.base.quaternions.qslerp"><span class="n">qslerp</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qslerp</span><span class="p">,</span> <span class="n">qprint</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 90deg rotation about x-axis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 90deg rotation about y-axis</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qslerp" title="spatialmath.base.quaternions.qslerp"><span class="n">qslerp</span></a><span class="p">(</span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>           <span class="c1"># this is q0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">qslerp</span><span class="p">(</span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>           <span class="c1"># this is q0</span>
 <span class="go"> 0.7071 &lt;  0.7071,  0.0000,  0.0000 &gt;</span>
 <span class="go">' 0.7071 &lt;  0.7071,  0.0000,  0.0000 &gt;'</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qslerp" title="spatialmath.base.quaternions.qslerp"><span class="n">qslerp</span></a><span class="p">(</span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>           <span class="c1"># this is q1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">qslerp</span><span class="p">(</span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>           <span class="c1"># this is q1</span>
 <span class="go"> 0.7071 &lt;  0.0000,  0.7071,  0.0000 &gt;</span>
 <span class="go">' 0.7071 &lt;  0.0000,  0.7071,  0.0000 &gt;'</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qslerp" title="spatialmath.base.quaternions.qslerp"><span class="n">qslerp</span></a><span class="p">(</span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>         <span class="c1"># this is in "half way" between</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">qslerp</span><span class="p">(</span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>         <span class="c1"># this is in "half way" between</span>
 <span class="go"> 0.8165 &lt;  0.4082,  0.4082,  0.0000 &gt;</span>
 <span class="go">' 0.8165 &lt;  0.4082,  0.4082,  0.0000 &gt;'</span>
 </pre></div>
@@ -823,6 +848,7 @@ the option <code class="docutils literal notranslate"><span class="pre">'shortes
 <p>There is no check that the passed values are unit-quaternions.</p>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qunit">
 <span class="sig-name descname"><span class="pre">qunit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qunit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qunit" title="Link to this definition"></a></dt>
@@ -845,9 +871,9 @@ the option <code class="docutils literal notranslate"><span class="pre">'shortes
 </dd>
 </dl>
 <p>Creates a unit quaternion, with unit norm, by scaling the input quaternion.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qunit" title="spatialmath.base.quaternions.qunit"><span class="n">qunit</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qunit" title="spatialmath.base.quaternions.qunit"><span class="n">qunit</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">q</span></a><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qunit</span><span class="p">,</span> <span class="n">qprint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">qunit</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 <span class="go"> 0.1826 &lt;  0.3651,  0.5477,  0.7303 &gt;</span>
 <span class="go">' 0.1826 &lt;  0.3651,  0.5477,  0.7303 &gt;'</span>
 </pre></div>
@@ -867,6 +893,7 @@ raised.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.qvmul">
 <span class="sig-name descname"><span class="pre">qvmul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#qvmul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.qvmul" title="Link to this definition"></a></dt>
@@ -887,10 +914,10 @@ raised.</p>
 </dl>
 <p>The vector <cite>v</cite> is rotated about the origin by the SO(3) equivalent of the unit
 quaternion.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qvmul" title="spatialmath.base.quaternions.qvmul"><span class="n">qvmul</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">qvmul</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 90deg rotation about x-axis</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qvmul" title="spatialmath.base.quaternions.qvmul"><span class="n">qvmul</span></a><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>              <span class="c1"># rotated vector</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qvmul</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>              <span class="c1"># rotated vector</span>
 <span class="go">array([ 1., -3.,  2.])</span>
 </pre></div>
 </div>
@@ -904,6 +931,7 @@ quaternion.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.r2q">
 <span class="sig-name descname"><span class="pre">r2q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sxyz'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shortest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#r2q"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.r2q" title="Link to this definition"></a></dt>
@@ -930,13 +958,13 @@ quaternion.</p>
 </dd>
 </dl>
 <p>Returns a unit-quaternion corresponding to the input SO(3) rotation matrix.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.r2q" title="spatialmath.base.quaternions.r2q"><span class="n">r2q</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_3d.html#spatialmath.base.transforms3d.rotx" title="spatialmath.base.transforms3d.rotx"><span class="n">rotx</span></a>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_3d.html#spatialmath.base.transforms3d.rotx" title="spatialmath.base.transforms3d.rotx"><span class="n">rotx</span></a><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="s1">'deg'</span><span class="p">)</span> <span class="c1"># rotation of 90deg about x-axis</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">R</span></a><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">r2q</span><span class="p">,</span> <span class="n">qprint</span><span class="p">,</span> <span class="n">rotx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <span class="n">rotx</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="s1">'deg'</span><span class="p">)</span> <span class="c1"># rotation of 90deg about x-axis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
 <span class="go">[[ 1.000000e+00  0.000000e+00  0.000000e+00]</span>
 <span class="go"> [ 0.000000e+00  6.123234e-17 -1.000000e+00]</span>
 <span class="go"> [ 0.000000e+00  1.000000e+00  6.123234e-17]]</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.r2q" title="spatialmath.base.quaternions.r2q"><span class="n">r2q</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">R</span></a><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">r2q</span><span class="p">(</span><span class="n">R</span><span class="p">))</span>
 <span class="go"> 0.7071 &lt;  0.7071,  0.0000,  0.0000 &gt;</span>
 <span class="go">' 0.7071 &lt;  0.7071,  0.0000,  0.0000 &gt;'</span>
 </pre></div>
@@ -966,6 +994,7 @@ ASME. J. Mechanisms Robotics. April 2019; 11(2): 021006.
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.v2q">
 <span class="sig-name descname"><span class="pre">v2q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#v2q"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.v2q" title="Link to this definition"></a></dt>
@@ -983,14 +1012,14 @@ ASME. J. Mechanisms Robotics. April 2019; 11(2): 021006.
 </dl>
 <p>Returns a unit-quaternion reconsituted from just its vector part.  Assumes
 that the scalar part was positive, so <span class="math notranslate nohighlight">\(s = \sqrt{1-||v||}\)</span>.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.v2q" title="spatialmath.base.quaternions.v2q"><span class="n">v2q</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">v2q</span><span class="p">,</span> <span class="n">qprint</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.v2q" title="spatialmath.base.quaternions.v2q"><span class="n">v2q</span></a><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">v2q</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
 <span class="go"> 0.7071 &lt;  0.0000,  0.7071,  0.0000 &gt;</span>
 <span class="go">' 0.7071 &lt;  0.0000,  0.7071,  0.0000 &gt;'</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.v2q" title="spatialmath.base.quaternions.v2q"><span class="n">v2q</span></a><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">v2q</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
 <span class="go"> 0.7071 &lt;  0.0000, -0.7071,  0.0000 &gt;</span>
 <span class="go">' 0.7071 &lt;  0.0000, -0.7071,  0.0000 &gt;'</span>
 </pre></div>
@@ -1006,6 +1035,7 @@ a unit-quaternion, and this can lead to a math domain error.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.quaternions.vvmul">
 <span class="sig-name descname"><span class="pre">vvmul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/quaternions.html#vvmul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.quaternions.vvmul" title="Link to this definition"></a></dt>
@@ -1027,16 +1057,16 @@ a unit-quaternion, and this can lead to a math domain error.</p>
 <p>This is the quaternion or Hamilton product of unit-quaternions defined only
 by their vector components.  The product will be a unit-quaternion, defined only
 by its vector component.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.vvmul" title="spatialmath.base.quaternions.vvmul"><span class="n">vvmul</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.v2q" title="spatialmath.base.quaternions.v2q"><span class="n">v2q</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.q2v" title="spatialmath.base.quaternions.q2v"><span class="n">q2v</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qqmul" title="spatialmath.base.quaternions.qqmul"><span class="n">qqmul</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">vvmul</span><span class="p">,</span> <span class="n">v2q</span><span class="p">,</span> <span class="n">q2v</span><span class="p">,</span> <span class="n">qqmul</span><span class="p">,</span> <span class="n">qprint</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 90deg rotation about x-axis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 90deg rotation about y-axis</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qqmul" title="spatialmath.base.quaternions.qqmul"><span class="n">qqmul</span></a><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">))</span>              <span class="c1"># normal Hamilton product</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">qqmul</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">))</span>              <span class="c1"># normal Hamilton product</span>
 <span class="go"> 0.5000 &lt;  0.5000,  0.5000,  0.5000 &gt;</span>
 <span class="go">' 0.5000 &lt;  0.5000,  0.5000,  0.5000 &gt;'</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">v1</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.q2v" title="spatialmath.base.quaternions.q2v"><span class="n">q2v</span></a><span class="p">(</span><span class="n">q1</span><span class="p">);</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">v2</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.q2v" title="spatialmath.base.quaternions.q2v"><span class="n">q2v</span></a><span class="p">(</span><span class="n">q2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">vp</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.vvmul" title="spatialmath.base.quaternions.vvmul"><span class="n">vvmul</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">v1</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">v2</span></a><span class="p">)</span>                 <span class="c1"># product using 3-vectors</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.qprint" title="spatialmath.base.quaternions.qprint"><span class="n">qprint</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_quat.html#spatialmath.base.quaternions.v2q" title="spatialmath.base.quaternions.v2q"><span class="n">v2q</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">vp</span></a><span class="p">))</span>                    <span class="c1"># same answer as Hamilton product</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">q2v</span><span class="p">(</span><span class="n">q1</span><span class="p">);</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">q2v</span><span class="p">(</span><span class="n">q2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vp</span> <span class="o">=</span> <span class="n">vvmul</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span>                 <span class="c1"># product using 3-vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qprint</span><span class="p">(</span><span class="n">v2q</span><span class="p">(</span><span class="n">vp</span><span class="p">))</span>                    <span class="c1"># same answer as Hamilton product</span>
 <span class="go"> 0.5000 &lt;  0.5000,  0.5000,  0.5000 &gt;</span>
 <span class="go">' 0.5000 &lt;  0.5000,  0.5000,  0.5000 &gt;'</span>
 </pre></div>
@@ -1047,19 +1077,24 @@ by its vector component.</p>
 </dd>
 </dl>
 </dd></dl>
+
 </section>
-</div>
-</div>
-<footer><div aria-label="Footer" class="rst-footer-buttons" role="navigation">
-<a accesskey="p" class="btn btn-neutral float-left" href="func_nd.html" rel="prev" title="Transforms in ND"><span aria-hidden="true" class="fa fa-arrow-circle-left"></span> Previous</a>
-<a accesskey="n" class="btn btn-neutral float-right" href="func_symbolic.html" rel="next" title="Symbolic computation">Next <span aria-hidden="true" class="fa fa-arrow-circle-right"></span></a>
-</div>
-<hr/>
-<div role="contentinfo">
-<p>© Copyright 2020-, Peter Corke..
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="func_nd.html" class="btn btn-neutral float-left" title="Transforms in ND" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="func_symbolic.html" class="btn btn-neutral float-right" title="Symbolic computation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-, Peter Corke..
       <span class="lastupdated">Last updated on 16-Sep-2026.
       </span></p>
-</div>
+  </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
@@ -1067,18 +1102,18 @@ by its vector component.</p>
    
 
 </footer>
-</div>
-</div>
-</section>
-</div>
-<script>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-<!-- Theme Analytics -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-11Q6WJM565"></script>
-<script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-11Q6WJM565"></script>
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -1086,6 +1121,7 @@ by its vector component.</p>
       gtag('config', 'G-11Q6WJM565', {
           'anonymize_ip': false,
       });
-    </script>
+    </script> 
+
 </body>
 </html>

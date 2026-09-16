@@ -1,53 +1,55 @@
 
-<!DOCTYPE html>
 
-<html class="writer-html5" data-content_root="./" lang="en">
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
-<link href="_static/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
-<link href="_static/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
-<link href="_static/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" type="image/png"/>
-<link href="_static/android-chrome-192x192.png" rel="android-chrome" sizes="192x192" type="image/png"/>
-<link href="_static/android-chrome-512x512.png" rel="android-chrome" sizes="512x512" type="image/png"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Symbolic computation — Spatial Maths package  documentation</title>
-<link href="_static/pygments.css?v=b86133f3" rel="stylesheet" type="text/css"/>
-<link href="_static/css/theme.css?v=9edc463e" rel="stylesheet" type="text/css"/>
-<link href="_static/graphviz.css?v=4ae1632d" rel="stylesheet" type="text/css"/>
-<link href="_static/plot_directive.css" rel="stylesheet" type="text/css"/>
-<link href="_static/copybutton.css?v=76b2166b" rel="stylesheet" type="text/css"/>
-<link href="_static/sphinx-codeautolink.css?v=b2176991" rel="stylesheet" type="text/css"/>
-<script src="_static/jquery.js?v=5d32c60e"></script>
-<script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-<script src="_static/documentation_options.js?v=5929fcd5"></script>
-<script src="_static/doctools.js?v=fd6eb6e6"></script>
-<script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-<script src="_static/clipboard.min.js?v=a7894cd8"></script>
-<script src="_static/copybutton.js?v=3a14cefc"></script>
-<script src="_static/js/theme.js"></script>
-<link href="genindex.html" rel="index" title="Index"/>
-<link href="search.html" rel="search" title="Search"/>
-<link href="func_vector.html" rel="next" title="Vectors"/>
-<link href="func_quat.html" rel="prev" title="Quaternions"/>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="16x16" href="_static/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="_static/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="_static/apple-touch-icon.png" type="image/png">
+    <link rel="android-chrome" sizes="192x192" href="_static/android-chrome-192x192.png" type="image/png">
+    <link rel="android-chrome" sizes="512x512" href="_static/android-chrome-512x512.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Symbolic computation &mdash; Spatial Maths package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vectors" href="func_vector.html" />
+    <link rel="prev" title="Quaternions" href="func_quat.html" /> 
 </head>
-<body class="wy-body-for-nav">
-<div class="wy-grid-for-nav">
-<nav class="wy-nav-side" data-toggle="wy-nav-shift">
-<div class="wy-side-scroll">
-<div class="wy-side-nav-search">
-<a class="icon icon-home" href="index.html">
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
             Spatial Maths package
-              <img alt="Logo" class="logo" src="_static/CartesianSnakes_LogoW.png"/>
-</a>
+              <img src="_static/CartesianSnakes_LogoW.png" class="logo" alt="Logo"/>
+          </a>
 <div role="search">
-<form action="search.html" class="wy-form" id="rtd-search-form" method="get">
-<input aria-label="Search docs" name="q" placeholder="Search docs" type="text"/>
-<input name="check_keywords" type="hidden" value="yes"/>
-<input name="area" type="hidden" value="default"/>
-</form>
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-</div><div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
-<ul class="current">
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spatialmath.html">Class reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="functions.html">Function reference</a><ul class="current">
@@ -78,32 +80,36 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="indices.html">Indices</a></li>
 </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Spatial Maths package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="functions.html">Function reference</a></li>
+      <li class="breadcrumb-item active">Symbolic computation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/func_symbolic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="func_quat.html" class="btn btn-neutral float-left" title="Quaternions" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="func_vector.html" class="btn btn-neutral float-right" title="Vectors" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
 </div>
-</div>
-</nav>
-<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift"><nav aria-label="Mobile navigation menu" class="wy-nav-top">
-<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
-<a href="index.html">Spatial Maths package</a>
-</nav>
-<div class="wy-nav-content">
-<div class="rst-content">
-<div aria-label="Page navigation" role="navigation">
-<ul class="wy-breadcrumbs">
-<li><a aria-label="Home" class="icon icon-home" href="index.html"></a></li>
-<li class="breadcrumb-item"><a href="functions.html">Function reference</a></li>
-<li class="breadcrumb-item active">Symbolic computation</li>
-<li class="wy-breadcrumbs-aside">
-<a href="_sources/func_symbolic.rst.txt" rel="nofollow"> View page source</a>
-</li>
-</ul><div aria-label="Sequential page navigation" class="rst-breadcrumbs-buttons" role="navigation">
-<a accesskey="p" class="btn btn-neutral float-left" href="func_quat.html" title="Quaternions"><span aria-hidden="true" class="fa fa-arrow-circle-left"></span> Previous</a>
-<a accesskey="n" class="btn btn-neutral float-right" href="func_vector.html" title="Vectors">Next <span aria-hidden="true" class="fa fa-arrow-circle-right"></span></a>
-</div>
-<hr/>
-</div>
-<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
-<div itemprop="articleBody">
-<section id="module-spatialmath.base.symbolic">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spatialmath.base.symbolic">
 <span id="symbolic-computation"></span><h1>Symbolic computation<a class="headerlink" href="#module-spatialmath.base.symbolic" title="Link to this heading"></a></h1>
 <p>This package provides a light-weight wrapper to support use of SymPy.  It
 generalizes some common functions so that they can accept numerical or
@@ -125,11 +131,11 @@ supported.</p>
 <dd class="field-odd"><p>float or symbolic</p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.cos" title="spatialmath.base.symbolic.cos"><span class="n">cos</span></a><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 <span class="go">cos(theta)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.cos" title="spatialmath.base.symbolic.cos"><span class="n">cos</span></a><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="go">0.8775825618903728</span>
 </pre></div>
 </div>
@@ -139,6 +145,7 @@ supported.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.det">
 <span class="sig-name descname"><span class="pre">det</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#det"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.det" title="Link to this definition"></a></dt>
@@ -154,16 +161,16 @@ supported.</p>
 <dd class="field-odd"><p>ndarray with symbolic elements</p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.rot2" title="spatialmath.base.transforms2d.rot2"><span class="n">rot2</span></a>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_2d.html#spatialmath.base.transforms2d.rot2" title="spatialmath.base.transforms2d.rot2"><span class="n">rot2</span></a><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">R</span></a><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">rot2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <span class="n">rot2</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
 <span class="go">[[cos(theta) -sin(theta)]</span>
 <span class="go"> [sin(theta) cos(theta)]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.det" title="spatialmath.base.symbolic.det"><span class="n">det</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">R</span></a><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">det</span><span class="p">(</span><span class="n">R</span><span class="p">))</span>
 <span class="go">sin(theta)**2 + cos(theta)**2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.simplify" title="spatialmath.base.symbolic.simplify"><span class="n">simplify</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.det" title="spatialmath.base.symbolic.det"><span class="n">det</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray"><span class="n">R</span></a><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">simplify</span><span class="p">(</span><span class="n">det</span><span class="p">(</span><span class="n">R</span><span class="p">)))</span>
 <span class="go">1</span>
 </pre></div>
 </div>
@@ -172,6 +179,7 @@ supported.</p>
 <p>Converts to a SymPy <code class="docutils literal notranslate"><span class="pre">Matrix</span></code> and then back again.</p>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.issymbol">
 <span class="sig-name descname"><span class="pre">issymbol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#issymbol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.issymbol" title="Link to this definition"></a></dt>
@@ -187,15 +195,16 @@ supported.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.issymbol" title="spatialmath.base.symbolic.issymbol"><span class="n">issymbol</span></a><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">issymbol</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.issymbol" title="spatialmath.base.symbolic.issymbol"><span class="n">issymbol</span></a><span class="p">(</span><span class="mf">3.4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">issymbol</span><span class="p">(</span><span class="mf">3.4</span><span class="p">)</span>
 <span class="go">False</span>
 </pre></div>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.negative_one">
 <span class="sig-name descname"><span class="pre">negative_one</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#negative_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.negative_one" title="Link to this definition"></a></dt>
@@ -208,11 +217,11 @@ supported.</p>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Symbol</span></code></span></p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'x'</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.negative_one" title="spatialmath.base.symbolic.negative_one"><span class="n">negative_one</span></a><span class="p">()</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'x'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">negative_one</span><span class="p">()</span>
 <span class="go">-1</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.negative_one" title="spatialmath.base.symbolic.negative_one"><span class="n">negative_one</span></a><span class="p">()</span> <span class="o">*</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">negative_one</span><span class="p">()</span> <span class="o">*</span> <span class="n">x</span>
 <span class="go">-x</span>
 </pre></div>
 </div>
@@ -222,6 +231,7 @@ supported.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.one">
 <span class="sig-name descname"><span class="pre">one</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.one" title="Link to this definition"></a></dt>
@@ -234,11 +244,11 @@ supported.</p>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Symbol</span></code></span></p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'x'</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.one" title="spatialmath.base.symbolic.one"><span class="n">one</span></a><span class="p">()</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'x'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">one</span><span class="p">()</span>
 <span class="go">1</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.one" title="spatialmath.base.symbolic.one"><span class="n">one</span></a><span class="p">()</span> <span class="o">*</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">one</span><span class="p">()</span> <span class="o">*</span> <span class="n">x</span>
 <span class="go">x</span>
 </pre></div>
 </div>
@@ -248,6 +258,7 @@ supported.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.pi">
 <span class="sig-name descname"><span class="pre">pi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#pi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.pi" title="Link to this definition"></a></dt>
@@ -260,11 +271,11 @@ supported.</p>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Symbol</span></code></span></p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.sin" title="spatialmath.base.symbolic.sin"><span class="n">sin</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.pi" title="spatialmath.base.symbolic.pi"><span class="n">pi</span></a><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="p">())</span>
 <span class="go">0</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.sin" title="spatialmath.base.symbolic.sin"><span class="n">sin</span></a><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 <span class="go">1.2246467991473532e-16</span>
 </pre></div>
 </div>
@@ -274,6 +285,7 @@ supported.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.simplify">
 <span class="sig-name descname"><span class="pre">simplify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#simplify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.simplify" title="Link to this definition"></a></dt>
@@ -289,12 +301,12 @@ supported.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Symbol</span></code></span></p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'x'</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'x'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
 <span class="go">-x**2 + (x - 1)*(x + 1)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.simplify" title="spatialmath.base.symbolic.simplify"><span class="n">simplify</span></a><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">simplify</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">-1</span>
 </pre></div>
 </div>
@@ -304,6 +316,7 @@ supported.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.sin">
 <span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#sin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.sin" title="Link to this definition"></a></dt>
@@ -319,11 +332,11 @@ supported.</p>
 <dd class="field-odd"><p>float or symbolic</p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.sin" title="spatialmath.base.symbolic.sin"><span class="n">sin</span></a><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 <span class="go">sin(theta)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.sin" title="spatialmath.base.symbolic.sin"><span class="n">sin</span></a><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="go">0.479425538604203</span>
 </pre></div>
 </div>
@@ -333,6 +346,7 @@ supported.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.sqrt">
 <span class="sig-name descname"><span class="pre">sqrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#sqrt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.sqrt" title="Link to this definition"></a></dt>
@@ -348,11 +362,11 @@ supported.</p>
 <dd class="field-odd"><p>float or symbolic</p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'x'</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.sqrt" title="spatialmath.base.symbolic.sqrt"><span class="n">sqrt</span></a><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'x'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 <span class="go">Abs(x)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.sqrt" title="spatialmath.base.symbolic.sqrt"><span class="n">sqrt</span></a><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="go">2.0</span>
 </pre></div>
 </div>
@@ -362,6 +376,7 @@ supported.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.symbol">
 <span class="sig-name descname"><span class="pre">symbol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">real</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#symbol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.symbol" title="Link to this definition"></a></dt>
@@ -380,16 +395,16 @@ supported.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Symbol</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Symbol</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code>]]</span></p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span>
 <span class="go">theta</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span><span class="p">,</span> <span class="n">psi</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'theta psi'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span><span class="p">,</span> <span class="n">psi</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'theta psi'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span>
 <span class="go">theta</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">psi</span>
 <span class="go">psi</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'q_:6'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'q_:6'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span>
 <span class="go">(q_0, q_1, q_2, q_3, q_4, q_5)</span>
 </pre></div>
@@ -409,6 +424,7 @@ above will be subscripted.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.tan">
 <span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#tan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.tan" title="Link to this definition"></a></dt>
@@ -424,11 +440,11 @@ above will be subscripted.</p></li>
 <dd class="field-odd"><p>float or symbolic</p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.tan" title="spatialmath.base.symbolic.tan"><span class="n">tan</span></a><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'theta'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 <span class="go">tan(theta)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.tan" title="spatialmath.base.symbolic.tan"><span class="n">tan</span></a><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tan</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="go">0.5463024898437905</span>
 </pre></div>
 </div>
@@ -438,6 +454,7 @@ above will be subscripted.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.zero">
 <span class="sig-name descname"><span class="pre">zero</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.zero" title="Link to this definition"></a></dt>
@@ -450,11 +467,11 @@ above will be subscripted.</p></li>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Symbol</span></code></span></p>
 </dd>
 </dl>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#module-spatialmath.base.symbolic"><span class="nn">spatialmath.base.symbolic</span></a><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.symbol" title="spatialmath.base.symbolic.symbol"><span class="n">symbol</span></a><span class="p">(</span><span class="s1">'x'</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.zero" title="spatialmath.base.symbolic.zero"><span class="n">zero</span></a><span class="p">()</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.symbolic</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="s1">'x'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zero</span><span class="p">()</span>
 <span class="go">0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">+</span> <a class="sphinx-codeautolink-a" href="func_symbolic.html#spatialmath.base.symbolic.zero" title="spatialmath.base.symbolic.zero"><span class="n">zero</span></a><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">+</span> <span class="n">zero</span><span class="p">()</span>
 <span class="go">x</span>
 </pre></div>
 </div>
@@ -464,19 +481,24 @@ above will be subscripted.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 </section>
-</div>
-</div>
-<footer><div aria-label="Footer" class="rst-footer-buttons" role="navigation">
-<a accesskey="p" class="btn btn-neutral float-left" href="func_quat.html" rel="prev" title="Quaternions"><span aria-hidden="true" class="fa fa-arrow-circle-left"></span> Previous</a>
-<a accesskey="n" class="btn btn-neutral float-right" href="func_vector.html" rel="next" title="Vectors">Next <span aria-hidden="true" class="fa fa-arrow-circle-right"></span></a>
-</div>
-<hr/>
-<div role="contentinfo">
-<p>© Copyright 2020-, Peter Corke..
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="func_quat.html" class="btn btn-neutral float-left" title="Quaternions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="func_vector.html" class="btn btn-neutral float-right" title="Vectors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-, Peter Corke..
       <span class="lastupdated">Last updated on 16-Sep-2026.
       </span></p>
-</div>
+  </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
@@ -484,18 +506,18 @@ above will be subscripted.</p></li>
    
 
 </footer>
-</div>
-</div>
-</section>
-</div>
-<script>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-<!-- Theme Analytics -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-11Q6WJM565"></script>
-<script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-11Q6WJM565"></script>
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -503,6 +525,7 @@ above will be subscripted.</p></li>
       gtag('config', 'G-11Q6WJM565', {
           'anonymize_ip': false,
       });
-    </script>
+    </script> 
+
 </body>
 </html>

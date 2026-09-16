@@ -10,8 +10,6 @@
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-codeautolink.css?v=b2176991" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -19,8 +17,6 @@
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
-      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="../../_static/copybutton.js?v=3a14cefc"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -399,17 +395,53 @@
 <span class="sd">        ``q.conj()`` is the quaternion ``q`` with the vector part negated, ie.</span>
 <span class="sd">        :math:`q = s \langle -v_x, -v_y, -v_z \rangle`</span>
 
+<span class="sd">        .. note:: For a ``UnitQuaternion`` this deliberately does **not**</span>
+<span class="sd">            canonicalize the result's scalar part to be non-negative, unlike</span>
+<span class="sd">            normal ``UnitQuaternion`` construction. ``UnitQuaternion``</span>
+<span class="sd">            construction canonicalizes because :math:`q` and :math:`-q`</span>
+<span class="sd">            represent the same rotation, which is the right behaviour when</span>
+<span class="sd">            building a unit quaternion from arbitrary data. But conjugation</span>
+<span class="sd">            is an algebraic operation, not a re-representation of a</span>
+<span class="sd">            rotation: it must satisfy :math:`q \cdot \bar{q} = 1` for any</span>
+<span class="sd">            downstream algebra to be correct (e.g. dual-quaternion</span>
+<span class="sd">            translation extraction, which relies on exactly this identity).</span>
+<span class="sd">            Re-canonicalizing the conjugate would silently return</span>
+<span class="sd">            :math:`-\bar{q}` whenever ``q`` has negative scalar part,</span>
+<span class="sd">            breaking that identity. See the example below: the scalar part</span>
+<span class="sd">            of the result matches the input's sign, it is not forced</span>
+<span class="sd">            positive.</span>
+
 <span class="sd">        Example:</span>
 
 <span class="sd">        .. runblock:: pycon</span>
 
-<span class="sd">            &gt;&gt;&gt; from spatialmath import Quaternion</span>
+<span class="sd">            &gt;&gt;&gt; from spatialmath import Quaternion, UnitQuaternion</span>
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">            &gt;&gt;&gt; print(Quaternion.Pure([1,2,3]).conj())</span>
+<span class="sd">            &gt;&gt;&gt; q = UnitQuaternion(np.array([[-0.5, 0.5, 0.5, 0.5]]), norm=False)</span>
+<span class="sd">            &gt;&gt;&gt; print(q)</span>
+<span class="sd">            &gt;&gt;&gt; print(q.conj())</span>
 
 <span class="sd">        :seealso: :func:`~spatialmath.base.quaternions.qconj`</span>
 <span class="sd">        """</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">([</span><span class="n">smb</span><span class="o">.</span><span class="n">qconj</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">_A</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">])</span></div>
+        <span class="c1"># NB: iterate self.data directly, not `for q in self` -- indexing</span>
+        <span class="c1"># a UnitQuaternion (which iteration uses under the hood) goes</span>
+        <span class="c1"># through BasePoseList.__getitem__, which reconstructs each</span>
+        <span class="c1"># element via self.__class__(self.data[i], check=False) with no</span>
+        <span class="c1"># norm=False override, silently re-canonicalizing sign on every</span>
+        <span class="c1"># single access. Working from self.data sidesteps that entirely.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">UnitQuaternion</span><span class="p">):</span>
+            <span class="c1"># Pass a 2D (N,4) array with norm=False so construction stores</span>
+            <span class="c1"># the conjugated array as-is, bypassing qunit()'s scalar-sign</span>
+            <span class="c1"># canonicalization -- see the note above for why that</span>
+            <span class="c1"># canonicalization must not apply here. A 1D (4,) array would</span>
+            <span class="c1"># instead be caught by the generic arghandler() path first,</span>
+            <span class="c1"># which normalizes/canonicalizes unconditionally regardless of</span>
+            <span class="c1"># norm -- the 2D-array path is what actually honours norm=False.</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">smb</span><span class="o">.</span><span class="n">qconj</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">]),</span> <span class="n">norm</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">([</span><span class="n">smb</span><span class="o">.</span><span class="n">qconj</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="Quaternion.norm">

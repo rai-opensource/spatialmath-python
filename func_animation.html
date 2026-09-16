@@ -1,53 +1,55 @@
 
-<!DOCTYPE html>
 
-<html class="writer-html5" data-content_root="./" lang="en">
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
-<link href="_static/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
-<link href="_static/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
-<link href="_static/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" type="image/png"/>
-<link href="_static/android-chrome-192x192.png" rel="android-chrome" sizes="192x192" type="image/png"/>
-<link href="_static/android-chrome-512x512.png" rel="android-chrome" sizes="512x512" type="image/png"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Animation support — Spatial Maths package  documentation</title>
-<link href="_static/pygments.css?v=b86133f3" rel="stylesheet" type="text/css"/>
-<link href="_static/css/theme.css?v=9edc463e" rel="stylesheet" type="text/css"/>
-<link href="_static/graphviz.css?v=4ae1632d" rel="stylesheet" type="text/css"/>
-<link href="_static/plot_directive.css" rel="stylesheet" type="text/css"/>
-<link href="_static/copybutton.css?v=76b2166b" rel="stylesheet" type="text/css"/>
-<link href="_static/sphinx-codeautolink.css?v=b2176991" rel="stylesheet" type="text/css"/>
-<script src="_static/jquery.js?v=5d32c60e"></script>
-<script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-<script src="_static/documentation_options.js?v=5929fcd5"></script>
-<script src="_static/doctools.js?v=fd6eb6e6"></script>
-<script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-<script src="_static/clipboard.min.js?v=a7894cd8"></script>
-<script src="_static/copybutton.js?v=3a14cefc"></script>
-<script src="_static/js/theme.js"></script>
-<link href="genindex.html" rel="index" title="Index"/>
-<link href="search.html" rel="search" title="Search"/>
-<link href="func_args.html" rel="next" title="Argument checking"/>
-<link href="func_3d_graphics.html" rel="prev" title="3D graphics"/>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="16x16" href="_static/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="_static/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="_static/apple-touch-icon.png" type="image/png">
+    <link rel="android-chrome" sizes="192x192" href="_static/android-chrome-192x192.png" type="image/png">
+    <link rel="android-chrome" sizes="512x512" href="_static/android-chrome-512x512.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animation support &mdash; Spatial Maths package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Argument checking" href="func_args.html" />
+    <link rel="prev" title="3D graphics" href="func_3d_graphics.html" /> 
 </head>
-<body class="wy-body-for-nav">
-<div class="wy-grid-for-nav">
-<nav class="wy-nav-side" data-toggle="wy-nav-shift">
-<div class="wy-side-scroll">
-<div class="wy-side-nav-search">
-<a class="icon icon-home" href="index.html">
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
             Spatial Maths package
-              <img alt="Logo" class="logo" src="_static/CartesianSnakes_LogoW.png"/>
-</a>
+              <img src="_static/CartesianSnakes_LogoW.png" class="logo" alt="Logo"/>
+          </a>
 <div role="search">
-<form action="search.html" class="wy-form" id="rtd-search-form" method="get">
-<input aria-label="Search docs" name="q" placeholder="Search docs" type="text"/>
-<input name="check_keywords" type="hidden" value="yes"/>
-<input name="area" type="hidden" value="default"/>
-</form>
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-</div><div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
-<ul class="current">
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spatialmath.html">Class reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="functions.html">Function reference</a><ul class="current">
@@ -73,33 +75,37 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="indices.html">Indices</a></li>
 </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Spatial Maths package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="functions.html">Function reference</a></li>
+          <li class="breadcrumb-item"><a href="func_graphics.html">Graphics and animation</a></li>
+      <li class="breadcrumb-item active">Animation support</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/func_animation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="func_3d_graphics.html" class="btn btn-neutral float-left" title="3D graphics" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="func_args.html" class="btn btn-neutral float-right" title="Argument checking" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
 </div>
-</div>
-</nav>
-<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift"><nav aria-label="Mobile navigation menu" class="wy-nav-top">
-<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
-<a href="index.html">Spatial Maths package</a>
-</nav>
-<div class="wy-nav-content">
-<div class="rst-content">
-<div aria-label="Page navigation" role="navigation">
-<ul class="wy-breadcrumbs">
-<li><a aria-label="Home" class="icon icon-home" href="index.html"></a></li>
-<li class="breadcrumb-item"><a href="functions.html">Function reference</a></li>
-<li class="breadcrumb-item"><a href="func_graphics.html">Graphics and animation</a></li>
-<li class="breadcrumb-item active">Animation support</li>
-<li class="wy-breadcrumbs-aside">
-<a href="_sources/func_animation.rst.txt" rel="nofollow"> View page source</a>
-</li>
-</ul><div aria-label="Sequential page navigation" class="rst-breadcrumbs-buttons" role="navigation">
-<a accesskey="p" class="btn btn-neutral float-left" href="func_3d_graphics.html" title="3D graphics"><span aria-hidden="true" class="fa fa-arrow-circle-left"></span> Previous</a>
-<a accesskey="n" class="btn btn-neutral float-right" href="func_args.html" title="Argument checking">Next <span aria-hidden="true" class="fa fa-arrow-circle-right"></span></a>
-</div>
-<hr/>
-</div>
-<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
-<div itemprop="articleBody">
-<section id="module-spatialmath.base.animate">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spatialmath.base.animate">
 <span id="animation-support"></span><h1>Animation support<a class="headerlink" href="#module-spatialmath.base.animate" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate">
@@ -143,6 +149,7 @@ gives <code class="docutils literal notranslate"><span class="pre">[xmin,</span>
 </dl>
 <p>Will setup to plot into an existing or a new Axes3D instance.</p>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.__repr__">
 <span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.__repr__" title="Link to this definition"></a></dt>
@@ -159,6 +166,7 @@ gives <code class="docutils literal notranslate"><span class="pre">[xmin,</span>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.__str__">
 <span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.__str__" title="Link to this definition"></a></dt>
@@ -169,6 +177,7 @@ gives <code class="docutils literal notranslate"><span class="pre">[xmin,</span>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.artists">
 <span class="sig-name descname"><span class="pre">artists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.artists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.artists" title="Link to this definition"></a></dt>
@@ -185,6 +194,7 @@ gives <code class="docutils literal notranslate"><span class="pre">[xmin,</span>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.plot" title="Link to this definition"></a></dt>
@@ -206,6 +216,7 @@ gives <code class="docutils literal notranslate"><span class="pre">[xmin,</span>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.quiver">
 <span class="sig-name descname"><span class="pre">quiver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.quiver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.quiver" title="Link to this definition"></a></dt>
@@ -232,6 +243,7 @@ elements of (u,v,w).</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">movie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nframes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.run" title="Link to this definition"></a></dt>
@@ -261,38 +273,47 @@ using <code class="docutils literal notranslate"><span class="pre">HTML()</span>
 </ul>
 </div>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.scatter">
 <span class="sig-name descname"><span class="pre">scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.scatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.scatter" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.set_proj_type">
 <span class="sig-name descname"><span class="pre">set_proj_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.set_proj_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.set_proj_type" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.set_xlabel">
 <span class="sig-name descname"><span class="pre">set_xlabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.set_xlabel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.set_xlabel" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.set_xlim">
 <span class="sig-name descname"><span class="pre">set_xlim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.set_xlim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.set_xlim" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.set_ylabel">
 <span class="sig-name descname"><span class="pre">set_ylabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.set_ylabel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.set_ylabel" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.set_ylim">
 <span class="sig-name descname"><span class="pre">set_ylim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.set_ylim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.set_ylim" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.set_zlabel">
 <span class="sig-name descname"><span class="pre">set_zlabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.set_zlabel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.set_zlabel" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.set_zlim">
 <span class="sig-name descname"><span class="pre">set_zlim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.set_zlim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.set_zlim" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.text">
 <span class="sig-name descname"><span class="pre">text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.text" title="Link to this definition"></a></dt>
@@ -315,6 +336,7 @@ using <code class="docutils literal notranslate"><span class="pre">HTML()</span>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.trplot">
 <span class="sig-name descname"><span class="pre">trplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate.trplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate.trplot" title="Link to this definition"></a></dt>
@@ -336,20 +358,25 @@ This sets up the animation but doesn’t execute it.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.__dict__">
-<span class="sig-name descname"><span class="pre">__dict__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'spatialmath.base.animate',</span> <span class="pre">'__doc__':</span> <span class="pre">"\n</span>    <span class="pre">Animate</span> <span class="pre">objects</span> <span class="pre">for</span> <span class="pre">matplotlib</span> <span class="pre">3d\n\n</span>    <span class="pre">An</span> <span class="pre">instance</span> <span class="pre">of</span> <span class="pre">this</span> <span class="pre">class</span> <span class="pre">behaves</span> <span class="pre">like</span> <span class="pre">an</span> <span class="pre">Axes3D</span> <span class="pre">and</span> <span class="pre">supports</span> <span class="pre">proxies</span> <span class="pre">for\n\n</span>    <span class="pre">-</span> <span class="pre">``plot``\n</span>    <span class="pre">-</span> <span class="pre">``quiver``\n</span>    <span class="pre">-</span> <span class="pre">``text``\n</span>    <span class="pre">-</span> <span class="pre">``scatter``\n\n</span>    <span class="pre">which</span> <span class="pre">renders</span> <span class="pre">them</span> <span class="pre">and</span> <span class="pre">also</span> <span class="pre">places</span> <span class="pre">corresponding</span> <span class="pre">objects</span> <span class="pre">into</span> <span class="pre">a</span> <span class="pre">display\n</span>    <span class="pre">list.</span> <span class="pre">These</span> <span class="pre">objects</span> <span class="pre">are</span> <span class="pre">``Line``,</span> <span class="pre">``Quiver``</span> <span class="pre">and</span> <span class="pre">``Text``.</span>  <span class="pre">Only</span> <span class="pre">these\n</span>    <span class="pre">primitives</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">animated.\n\n</span>    <span class="pre">The</span> <span class="pre">objects</span> <span class="pre">are</span> <span class="pre">all</span> <span class="pre">drawn</span> <span class="pre">relative</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">origin,</span> <span class="pre">and</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">transformed\n</span>    <span class="pre">according</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">transform</span> <span class="pre">that</span> <span class="pre">is</span> <span class="pre">being</span> <span class="pre">animated.\n\n</span>    <span class="pre">Example::\n\n</span>        <span class="pre">anim</span> <span class="pre">=</span> <span class="pre">animate.Animate(dims=[0,2])</span> <span class="pre">#</span> <span class="pre">set</span> <span class="pre">up</span> <span class="pre">the</span> <span class="pre">3D</span> <span class="pre">axes\n</span>        <span class="pre">anim.trplot(T,</span> <span class="pre">frame='A',</span> <span class="pre">color='green')</span>  <span class="pre">#</span> <span class="pre">draw</span> <span class="pre">the</span> <span class="pre">frame\n</span>        <span class="pre">anim.run(repeat=True)</span>  <span class="pre">#</span> <span class="pre">animate</span> <span class="pre">it\n</span>    <span class="pre">",</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.__init__&gt;,</span> <span class="pre">'trplot':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.trplot&gt;,</span> <span class="pre">'set_proj_type':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_proj_type&gt;,</span> <span class="pre">'run':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.run&gt;,</span> <span class="pre">'__repr__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.__repr__&gt;,</span> <span class="pre">'__str__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.__str__&gt;,</span> <span class="pre">'artists':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.artists&gt;,</span> <span class="pre">'_draw':</span> <span class="pre">&lt;function</span> <span class="pre">Animate._draw&gt;,</span> <span class="pre">'_Line':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate._Line'&gt;,</span> <span class="pre">'plot':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.plot&gt;,</span> <span class="pre">'_Quiver':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate._Quiver'&gt;,</span> <span class="pre">'quiver':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.quiver&gt;,</span> <span class="pre">'_Text':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate._Text'&gt;,</span> <span class="pre">'text':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.text&gt;,</span> <span class="pre">'scatter':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.scatter&gt;,</span> <span class="pre">'set_xlim':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_xlim&gt;,</span> <span class="pre">'set_ylim':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_ylim&gt;,</span> <span class="pre">'set_zlim':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_zlim&gt;,</span> <span class="pre">'set_xlabel':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_xlabel&gt;,</span> <span class="pre">'set_ylabel':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_ylabel&gt;,</span> <span class="pre">'set_zlabel':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_zlabel&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Animate'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Animate'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></span><a class="headerlink" href="#spatialmath.base.animate.Animate.__dict__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__dict__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'spatialmath.base.animate',</span> <span class="pre">'__doc__':</span> <span class="pre">&quot;\n</span>&#160;&#160;&#160; <span class="pre">Animate</span> <span class="pre">objects</span> <span class="pre">for</span> <span class="pre">matplotlib</span> <span class="pre">3d\n\n</span>&#160;&#160;&#160; <span class="pre">An</span> <span class="pre">instance</span> <span class="pre">of</span> <span class="pre">this</span> <span class="pre">class</span> <span class="pre">behaves</span> <span class="pre">like</span> <span class="pre">an</span> <span class="pre">Axes3D</span> <span class="pre">and</span> <span class="pre">supports</span> <span class="pre">proxies</span> <span class="pre">for\n\n</span>&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">``plot``\n</span>&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">``quiver``\n</span>&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">``text``\n</span>&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">``scatter``\n\n</span>&#160;&#160;&#160; <span class="pre">which</span> <span class="pre">renders</span> <span class="pre">them</span> <span class="pre">and</span> <span class="pre">also</span> <span class="pre">places</span> <span class="pre">corresponding</span> <span class="pre">objects</span> <span class="pre">into</span> <span class="pre">a</span> <span class="pre">display\n</span>&#160;&#160;&#160; <span class="pre">list.</span> <span class="pre">These</span> <span class="pre">objects</span> <span class="pre">are</span> <span class="pre">``Line``,</span> <span class="pre">``Quiver``</span> <span class="pre">and</span> <span class="pre">``Text``.</span>&#160; <span class="pre">Only</span> <span class="pre">these\n</span>&#160;&#160;&#160; <span class="pre">primitives</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">animated.\n\n</span>&#160;&#160;&#160; <span class="pre">The</span> <span class="pre">objects</span> <span class="pre">are</span> <span class="pre">all</span> <span class="pre">drawn</span> <span class="pre">relative</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">origin,</span> <span class="pre">and</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">transformed\n</span>&#160;&#160;&#160; <span class="pre">according</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">transform</span> <span class="pre">that</span> <span class="pre">is</span> <span class="pre">being</span> <span class="pre">animated.\n\n</span>&#160;&#160;&#160; <span class="pre">Example::\n\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">anim</span> <span class="pre">=</span> <span class="pre">animate.Animate(dims=[0,2])</span> <span class="pre">#</span> <span class="pre">set</span> <span class="pre">up</span> <span class="pre">the</span> <span class="pre">3D</span> <span class="pre">axes\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">anim.trplot(T,</span> <span class="pre">frame='A',</span> <span class="pre">color='green')</span>&#160; <span class="pre">#</span> <span class="pre">draw</span> <span class="pre">the</span> <span class="pre">frame\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">anim.run(repeat=True)</span>&#160; <span class="pre">#</span> <span class="pre">animate</span> <span class="pre">it\n</span>&#160;&#160;&#160; <span class="pre">&quot;,</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.__init__&gt;,</span> <span class="pre">'trplot':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.trplot&gt;,</span> <span class="pre">'set_proj_type':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_proj_type&gt;,</span> <span class="pre">'run':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.run&gt;,</span> <span class="pre">'__repr__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.__repr__&gt;,</span> <span class="pre">'__str__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.__str__&gt;,</span> <span class="pre">'artists':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.artists&gt;,</span> <span class="pre">'_draw':</span> <span class="pre">&lt;function</span> <span class="pre">Animate._draw&gt;,</span> <span class="pre">'_Line':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate._Line'&gt;,</span> <span class="pre">'plot':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.plot&gt;,</span> <span class="pre">'_Quiver':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate._Quiver'&gt;,</span> <span class="pre">'quiver':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.quiver&gt;,</span> <span class="pre">'_Text':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate._Text'&gt;,</span> <span class="pre">'text':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.text&gt;,</span> <span class="pre">'scatter':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.scatter&gt;,</span> <span class="pre">'set_xlim':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_xlim&gt;,</span> <span class="pre">'set_ylim':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_ylim&gt;,</span> <span class="pre">'set_zlim':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_zlim&gt;,</span> <span class="pre">'set_xlabel':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_xlabel&gt;,</span> <span class="pre">'set_ylabel':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_ylabel&gt;,</span> <span class="pre">'set_zlabel':</span> <span class="pre">&lt;function</span> <span class="pre">Animate.set_zlabel&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Animate'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Animate'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></span><a class="headerlink" href="#spatialmath.base.animate.Animate.__dict__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.__module__">
 <span class="sig-name descname"><span class="pre">__module__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'spatialmath.base.animate'</span></span><a class="headerlink" href="#spatialmath.base.animate.Animate.__module__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate.__weakref__">
 <span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#spatialmath.base.animate.Animate.__weakref__" title="Link to this definition"></a></dt>
 <dd><p>list of weak references to the object</p>
 </dd></dl>
+
 </dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Animate2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('X',</span> <span class="pre">'Y')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2" title="Link to this definition"></a></dt>
@@ -389,6 +416,7 @@ dims is [min, max] those limits are applied to the x- and y-axes.</p></li>
 </dl>
 <p>Will setup to plot into an existing or a new Axes3D instance.</p>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.__repr__">
 <span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.__repr__" title="Link to this definition"></a></dt>
@@ -405,11 +433,13 @@ dims is [min, max] those limits are applied to the x- and y-axes.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.__str__">
 <span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.__str__" title="Link to this definition"></a></dt>
 <dd><p>Return str(self).</p>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.artists">
 <span class="sig-name descname"><span class="pre">artists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.artists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.artists" title="Link to this definition"></a></dt>
@@ -426,10 +456,12 @@ dims is [min, max] those limits are applied to the x- and y-axes.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.autoscale">
 <span class="sig-name descname"><span class="pre">autoscale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.autoscale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.autoscale" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.plot" title="Link to this definition"></a></dt>
@@ -450,6 +482,7 @@ dims is [min, max] those limits are applied to the x- and y-axes.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.quiver">
 <span class="sig-name descname"><span class="pre">quiver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.quiver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.quiver" title="Link to this definition"></a></dt>
@@ -474,6 +507,7 @@ elements of (u,v,w).</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">movie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nframes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.run" title="Link to this definition"></a></dt>
@@ -508,30 +542,37 @@ using <code class="docutils literal notranslate"><span class="pre">HTML()</span>
 </ul>
 </div>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.scatter">
 <span class="sig-name descname"><span class="pre">scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.scatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.scatter" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.set_aspect">
 <span class="sig-name descname"><span class="pre">set_aspect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.set_aspect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.set_aspect" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.set_xlabel">
 <span class="sig-name descname"><span class="pre">set_xlabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.set_xlabel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.set_xlabel" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.set_xlim">
 <span class="sig-name descname"><span class="pre">set_xlim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.set_xlim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.set_xlim" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.set_ylabel">
 <span class="sig-name descname"><span class="pre">set_ylabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.set_ylabel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.set_ylabel" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.set_ylim">
 <span class="sig-name descname"><span class="pre">set_ylim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.set_ylim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.set_ylim" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.text">
 <span class="sig-name descname"><span class="pre">text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.text" title="Link to this definition"></a></dt>
@@ -554,6 +595,7 @@ using <code class="docutils literal notranslate"><span class="pre">HTML()</span>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.trplot2">
 <span class="sig-name descname"><span class="pre">trplot2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/animate.html#Animate2.trplot2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.animate.Animate2.trplot2" title="Link to this definition"></a></dt>
@@ -574,33 +616,42 @@ This sets up the animation but doesn’t execute it.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.__dict__">
-<span class="sig-name descname"><span class="pre">__dict__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'spatialmath.base.animate',</span> <span class="pre">'__doc__':</span> <span class="pre">"\n</span>    <span class="pre">Animate</span> <span class="pre">objects</span> <span class="pre">for</span> <span class="pre">matplotlib</span> <span class="pre">2d\n\n</span>    <span class="pre">An</span> <span class="pre">instance</span> <span class="pre">of</span> <span class="pre">this</span> <span class="pre">class</span> <span class="pre">behaves</span> <span class="pre">like</span> <span class="pre">an</span> <span class="pre">Axes3D</span> <span class="pre">and</span> <span class="pre">supports</span> <span class="pre">proxies</span> <span class="pre">for\n\n</span>    <span class="pre">-</span> <span class="pre">``plot``\n</span>    <span class="pre">-</span> <span class="pre">``quiver``\n</span>    <span class="pre">-</span> <span class="pre">``text``\n\n</span>    <span class="pre">which</span> <span class="pre">renders</span> <span class="pre">them</span> <span class="pre">and</span> <span class="pre">also</span> <span class="pre">places</span> <span class="pre">corresponding</span> <span class="pre">objects</span> <span class="pre">into</span> <span class="pre">a</span> <span class="pre">display\n</span>    <span class="pre">list.</span> <span class="pre">These</span> <span class="pre">objects</span> <span class="pre">are</span> <span class="pre">``Line``,</span> <span class="pre">``Quiver``</span> <span class="pre">and</span> <span class="pre">``Text``.</span>  <span class="pre">Only</span> <span class="pre">these\n</span>    <span class="pre">primitives</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">animated.\n\n</span>    <span class="pre">The</span> <span class="pre">objects</span> <span class="pre">are</span> <span class="pre">all</span> <span class="pre">drawn</span> <span class="pre">relative</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">origin,</span> <span class="pre">and</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">transformed\n</span>    <span class="pre">according</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">transform</span> <span class="pre">that</span> <span class="pre">is</span> <span class="pre">being</span> <span class="pre">animated.\n\n</span>    <span class="pre">Example::\n\n</span>        <span class="pre">anim</span> <span class="pre">=</span> <span class="pre">animate.Animate(dims=[0,2])</span> <span class="pre">#</span> <span class="pre">set</span> <span class="pre">up</span> <span class="pre">the</span> <span class="pre">3D</span> <span class="pre">axes\n</span>        <span class="pre">anim.trplot(T,</span> <span class="pre">frame='A',</span> <span class="pre">color='green')</span>  <span class="pre">#</span> <span class="pre">draw</span> <span class="pre">the</span> <span class="pre">frame\n</span>        <span class="pre">anim.run(loop=True)</span>  <span class="pre">#</span> <span class="pre">animate</span> <span class="pre">it\n</span>    <span class="pre">",</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.__init__&gt;,</span> <span class="pre">'trplot2':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.trplot2&gt;,</span> <span class="pre">'run':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.run&gt;,</span> <span class="pre">'__repr__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.__repr__&gt;,</span> <span class="pre">'__str__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.__str__&gt;,</span> <span class="pre">'artists':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.artists&gt;,</span> <span class="pre">'_draw':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2._draw&gt;,</span> <span class="pre">'set_aspect':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.set_aspect&gt;,</span> <span class="pre">'autoscale':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.autoscale&gt;,</span> <span class="pre">'_Line':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate2._Line'&gt;,</span> <span class="pre">'plot':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.plot&gt;,</span> <span class="pre">'_Quiver':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate2._Quiver'&gt;,</span> <span class="pre">'quiver':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.quiver&gt;,</span> <span class="pre">'_Text':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate2._Text'&gt;,</span> <span class="pre">'text':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.text&gt;,</span> <span class="pre">'scatter':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.scatter&gt;,</span> <span class="pre">'set_xlim':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.set_xlim&gt;,</span> <span class="pre">'set_ylim':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.set_ylim&gt;,</span> <span class="pre">'set_xlabel':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.set_xlabel&gt;,</span> <span class="pre">'set_ylabel':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.set_ylabel&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Animate2'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Animate2'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></span><a class="headerlink" href="#spatialmath.base.animate.Animate2.__dict__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__dict__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'spatialmath.base.animate',</span> <span class="pre">'__doc__':</span> <span class="pre">&quot;\n</span>&#160;&#160;&#160; <span class="pre">Animate</span> <span class="pre">objects</span> <span class="pre">for</span> <span class="pre">matplotlib</span> <span class="pre">2d\n\n</span>&#160;&#160;&#160; <span class="pre">An</span> <span class="pre">instance</span> <span class="pre">of</span> <span class="pre">this</span> <span class="pre">class</span> <span class="pre">behaves</span> <span class="pre">like</span> <span class="pre">an</span> <span class="pre">Axes3D</span> <span class="pre">and</span> <span class="pre">supports</span> <span class="pre">proxies</span> <span class="pre">for\n\n</span>&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">``plot``\n</span>&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">``quiver``\n</span>&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">``text``\n\n</span>&#160;&#160;&#160; <span class="pre">which</span> <span class="pre">renders</span> <span class="pre">them</span> <span class="pre">and</span> <span class="pre">also</span> <span class="pre">places</span> <span class="pre">corresponding</span> <span class="pre">objects</span> <span class="pre">into</span> <span class="pre">a</span> <span class="pre">display\n</span>&#160;&#160;&#160; <span class="pre">list.</span> <span class="pre">These</span> <span class="pre">objects</span> <span class="pre">are</span> <span class="pre">``Line``,</span> <span class="pre">``Quiver``</span> <span class="pre">and</span> <span class="pre">``Text``.</span>&#160; <span class="pre">Only</span> <span class="pre">these\n</span>&#160;&#160;&#160; <span class="pre">primitives</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">animated.\n\n</span>&#160;&#160;&#160; <span class="pre">The</span> <span class="pre">objects</span> <span class="pre">are</span> <span class="pre">all</span> <span class="pre">drawn</span> <span class="pre">relative</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">origin,</span> <span class="pre">and</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">transformed\n</span>&#160;&#160;&#160; <span class="pre">according</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">transform</span> <span class="pre">that</span> <span class="pre">is</span> <span class="pre">being</span> <span class="pre">animated.\n\n</span>&#160;&#160;&#160; <span class="pre">Example::\n\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">anim</span> <span class="pre">=</span> <span class="pre">animate.Animate(dims=[0,2])</span> <span class="pre">#</span> <span class="pre">set</span> <span class="pre">up</span> <span class="pre">the</span> <span class="pre">3D</span> <span class="pre">axes\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">anim.trplot(T,</span> <span class="pre">frame='A',</span> <span class="pre">color='green')</span>&#160; <span class="pre">#</span> <span class="pre">draw</span> <span class="pre">the</span> <span class="pre">frame\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">anim.run(loop=True)</span>&#160; <span class="pre">#</span> <span class="pre">animate</span> <span class="pre">it\n</span>&#160;&#160;&#160; <span class="pre">&quot;,</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.__init__&gt;,</span> <span class="pre">'trplot2':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.trplot2&gt;,</span> <span class="pre">'run':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.run&gt;,</span> <span class="pre">'__repr__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.__repr__&gt;,</span> <span class="pre">'__str__':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.__str__&gt;,</span> <span class="pre">'artists':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.artists&gt;,</span> <span class="pre">'_draw':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2._draw&gt;,</span> <span class="pre">'set_aspect':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.set_aspect&gt;,</span> <span class="pre">'autoscale':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.autoscale&gt;,</span> <span class="pre">'_Line':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate2._Line'&gt;,</span> <span class="pre">'plot':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.plot&gt;,</span> <span class="pre">'_Quiver':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate2._Quiver'&gt;,</span> <span class="pre">'quiver':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.quiver&gt;,</span> <span class="pre">'_Text':</span> <span class="pre">&lt;class</span> <span class="pre">'spatialmath.base.animate.Animate2._Text'&gt;,</span> <span class="pre">'text':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.text&gt;,</span> <span class="pre">'scatter':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.scatter&gt;,</span> <span class="pre">'set_xlim':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.set_xlim&gt;,</span> <span class="pre">'set_ylim':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.set_ylim&gt;,</span> <span class="pre">'set_xlabel':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.set_xlabel&gt;,</span> <span class="pre">'set_ylabel':</span> <span class="pre">&lt;function</span> <span class="pre">Animate2.set_ylabel&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Animate2'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Animate2'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></span><a class="headerlink" href="#spatialmath.base.animate.Animate2.__dict__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.__module__">
 <span class="sig-name descname"><span class="pre">__module__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'spatialmath.base.animate'</span></span><a class="headerlink" href="#spatialmath.base.animate.Animate2.__module__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spatialmath.base.animate.Animate2.__weakref__">
 <span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#spatialmath.base.animate.Animate2.__weakref__" title="Link to this definition"></a></dt>
 <dd><p>list of weak references to the object</p>
 </dd></dl>
+
 </dd></dl>
+
 </section>
-</div>
-</div>
-<footer><div aria-label="Footer" class="rst-footer-buttons" role="navigation">
-<a accesskey="p" class="btn btn-neutral float-left" href="func_3d_graphics.html" rel="prev" title="3D graphics"><span aria-hidden="true" class="fa fa-arrow-circle-left"></span> Previous</a>
-<a accesskey="n" class="btn btn-neutral float-right" href="func_args.html" rel="next" title="Argument checking">Next <span aria-hidden="true" class="fa fa-arrow-circle-right"></span></a>
-</div>
-<hr/>
-<div role="contentinfo">
-<p>© Copyright 2020-, Peter Corke..
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="func_3d_graphics.html" class="btn btn-neutral float-left" title="3D graphics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="func_args.html" class="btn btn-neutral float-right" title="Argument checking" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-, Peter Corke..
       <span class="lastupdated">Last updated on 16-Sep-2026.
       </span></p>
-</div>
+  </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
@@ -608,18 +659,18 @@ This sets up the animation but doesn’t execute it.</p>
    
 
 </footer>
-</div>
-</div>
-</section>
-</div>
-<script>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-<!-- Theme Analytics -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-11Q6WJM565"></script>
-<script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-11Q6WJM565"></script>
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -627,6 +678,7 @@ This sets up the animation but doesn’t execute it.</p>
       gtag('config', 'G-11Q6WJM565', {
           'anonymize_ip': false,
       });
-    </script>
+    </script> 
+
 </body>
 </html>
