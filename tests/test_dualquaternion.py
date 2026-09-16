@@ -84,9 +84,34 @@ class TestUnitDualQuaternion(unittest.TestCase):
         dq = UnitDualQuaternion(T)
         nt.assert_array_almost_equal(dq.SE3().A, T.A)
 
+    def test_init_negative_scalar(self):
+        # Rx(pi/4) above has no translation and a positive quaternion
+        # scalar part, so it can't exercise either bug that used to live
+        # here: SE3() used self.real.conj(), which silently returned
+        # -conj(real) whenever real had negative scalar part (flipping
+        # the sign of the recovered translation). This seed's first draw
+        # is confirmed to produce a UnitQuaternion with negative scalar
+        # part, so it's kept as a fixed regression case rather than
+        # relying on randomness at test time.
+        np.random.seed(0)
+        T = SE3.Rand()
+        dq = UnitDualQuaternion(T)
+        self.assertLess(dq.real.A[0], 0)
+        nt.assert_array_almost_equal(dq.SE3().A, T.A)
+
     def test_norm(self):
         T = SE3.Rx(pi / 4)
         dq = UnitDualQuaternion(T)
+        nt.assert_array_almost_equal(dq.norm(), (1, 0))
+
+    def test_norm_negative_scalar(self):
+        # see test_init_negative_scalar: norm() used the same broken
+        # conj() and would crash with "math domain error" (sqrt of a
+        # small negative float) for this case before the fix.
+        np.random.seed(0)
+        T = SE3.Rand()
+        dq = UnitDualQuaternion(T)
+        self.assertLess(dq.real.A[0], 0)
         nt.assert_array_almost_equal(dq.norm(), (1, 0))
 
     def test_multiply(self):
@@ -100,6 +125,28 @@ class TestUnitDualQuaternion(unittest.TestCase):
 
         d = d1 * d2
         nt.assert_array_almost_equal(d.SE3().A, T.A)
+
+    def test_vector_transform(self):
+        # previously untested and broken: the q*P*conj(q) sandwich
+        # product's translation terms cancel exactly to zero under this
+        # class's own dual-part embedding convention (dual =
+        # 0.5*Pure(t)*real), so the old code silently applied only the
+        # rotation and dropped the translation entirely.
+        T = SE3(1, 2, 3) * SE3.Rx(0.3)
+        dq = UnitDualQuaternion(T)
+        v = np.array([4.0, 5.0, 6.0])
+        vp = dq * v
+        expected = (T * v).flatten()
+        nt.assert_array_almost_equal(vp, expected)
+
+        # also check a second, independent transform for good measure
+        np.random.seed(2)
+        SE3.Rand()
+        T = SE3.Rand()
+        dq = UnitDualQuaternion(T)
+        vp = dq * v
+        expected = (T * v).flatten()
+        nt.assert_array_almost_equal(vp, expected)
 
 
 # ---------------------------------------------------------------------------------------#

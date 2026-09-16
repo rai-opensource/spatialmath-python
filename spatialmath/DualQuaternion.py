@@ -117,7 +117,11 @@ class DualQuaternion:
         """
         a = self.real * self.real.conj()
         b = self.real * self.dual.conj() + self.dual * self.real.conj()
-        return (base.sqrt(a.s), base.sqrt(b.s))
+        # a.s/b.s are mathematically guaranteed non-negative (they're the
+        # scalar part of q*conj(q)-like products), but floating-point
+        # rounding can leave a value like -1e-17 instead of exactly 0,
+        # which sqrt() rejects outright. Clamp away that noise.
+        return (base.sqrt(max(0.0, a.s)), base.sqrt(max(0.0, b.s)))
 
     def conj(self) -> Self:
         r"""
@@ -208,8 +212,18 @@ class DualQuaternion:
                 return DualQuaternion(real, dual)
         elif isinstance(left, UnitDualQuaternion) and base.isvector(right, 3):
             v = base.getvector(right, 3)
-            vp = left * DualQuaternion.Pure(v) * left.conj()
-            return vp.dual.v
+            # NB: not the textbook q*P*conj(q) sandwich product. With this
+            # class's own dual-part embedding convention (__init__ builds
+            # dual = 0.5*Pure(t)*real, translation quaternion on the left),
+            # that sandwich's translation terms cancel exactly to zero:
+            # qr*conj(qd) + qd*conj(qr) == 0 for this embedding, leaving
+            # only the rotated point with no translation applied at all.
+            # SE3() already correctly extracts (R, t) from this same
+            # embedding (see its own derivation), so reuse it here rather
+            # than hand-deriving a second, convention-specific formula.
+            # Flatten to match this method's original flat-vector return
+            # convention (SE3.__mul__ returns a (3,1) column instead).
+            return (left.SE3() * v).flatten()
 
     def matrix(self) -> R8x8:
         """
@@ -343,7 +357,7 @@ class UnitDualQuaternion(DualQuaternion):
             >>> print(T)
             >>> d = UnitDualQuaternion(T)
             >>> print(d)
-            >>> print(d.T)
+            >>> print(d.SE3())
         """
         R = base.q2r(self.real.A)
         t = 2 * self.dual * self.real.conj()

@@ -213,6 +213,28 @@ class Twist3dTest(unittest.TestCase):
         x = Twist3([x1, x2])
         array_compare(x.prod().SE3(), T1 * T2)
 
+    def test_unit(self):
+        # general (rotational) twist: normalized so |w| == 1
+        T = SE3(1, 2, 3) * SE3.Rx(0.3)
+        S = Twist3(T)
+        u = S.unit()
+        self.assertAlmostEqual(np.linalg.norm(u.w), 1.0)
+        nt.assert_array_almost_equal(u.S, S.S / np.linalg.norm(S.w))
+
+        # prismatic twist (zero rotation): normalized direction vector,
+        # previously untested -- this branch raised ValueError before the
+        # fix (wrong-shape zero argument, S.w typo)
+        S = Twist3(np.r_[3, 4, 0, 0, 0, 0])
+        u = S.unit()
+        self.assertAlmostEqual(np.linalg.norm(u.v), 1.0)
+        nt.assert_array_almost_equal(u.w, [0, 0, 0])
+
+    def test_pole(self):
+        T = SE3(1, 2, 3) * SE3.Rx(0.3)
+        S = Twist3(T)
+        p = S.pole
+        self.assertEqual(len(p), 3)
+
 
 class Twist2dTest(unittest.TestCase):
     def test_constructor(self):
@@ -374,6 +396,32 @@ class Twist2dTest(unittest.TestCase):
 
         x = Twist2([x1, x2])
         array_compare(x.prod().SE2(), T1 * T2)
+
+    def test_unit(self):
+        # general (rotational) twist: normalized so |w| == 1. Previously
+        # broken: branches were swapped (this case fell into the "zero
+        # rotation" branch and tried to construct Twist2 with a 3-element
+        # zero argument instead of scalar 0, raising ValueError).
+        T = SE2(1, 2, 0.3)
+        S = Twist2(T)
+        u = S.unit()
+        self.assertAlmostEqual(abs(u.w), 1.0)
+        nt.assert_array_almost_equal(u.S, S.S / abs(S.w))
+
+        # prismatic twist (zero rotation): normalized direction vector
+        S = Twist2([3, 4], 0)
+        u = S.unit()
+        self.assertAlmostEqual(np.linalg.norm(u.v), 1.0)
+        self.assertEqual(u.w, 0)
+
+    def test_pole(self):
+        # previously broken: docstring example called S.pole() but pole
+        # is a @property, not a method -- TypeError: 'numpy.ndarray'
+        # object is not callable
+        T = SE2(1, 2, 0.3)
+        S = Twist2(T)
+        p = S.pole
+        self.assertEqual(len(p), 2)
 
 
 # ---------------------------------------------------------------------------------------#

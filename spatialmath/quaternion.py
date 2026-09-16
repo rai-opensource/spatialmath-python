@@ -306,17 +306,53 @@ class Quaternion(BasePoseList):
         ``q.conj()`` is the quaternion ``q`` with the vector part negated, ie.
         :math:`q = s \langle -v_x, -v_y, -v_z \rangle`
 
+        .. note:: For a ``UnitQuaternion`` this deliberately does **not**
+            canonicalize the result's scalar part to be non-negative, unlike
+            normal ``UnitQuaternion`` construction. ``UnitQuaternion``
+            construction canonicalizes because :math:`q` and :math:`-q`
+            represent the same rotation, which is the right behaviour when
+            building a unit quaternion from arbitrary data. But conjugation
+            is an algebraic operation, not a re-representation of a
+            rotation: it must satisfy :math:`q \cdot \bar{q} = 1` for any
+            downstream algebra to be correct (e.g. dual-quaternion
+            translation extraction, which relies on exactly this identity).
+            Re-canonicalizing the conjugate would silently return
+            :math:`-\bar{q}` whenever ``q`` has negative scalar part,
+            breaking that identity. See the example below: the scalar part
+            of the result matches the input's sign, it is not forced
+            positive.
+
         Example:
 
         .. runblock:: pycon
 
-            >>> from spatialmath import Quaternion
+            >>> from spatialmath import Quaternion, UnitQuaternion
+            >>> import numpy as np
             >>> print(Quaternion.Pure([1,2,3]).conj())
+            >>> q = UnitQuaternion(np.array([[-0.5, 0.5, 0.5, 0.5]]), norm=False)
+            >>> print(q)
+            >>> print(q.conj())
 
         :seealso: :func:`~spatialmath.base.quaternions.qconj`
         """
-
-        return self.__class__([smb.qconj(q._A) for q in self])
+        # NB: iterate self.data directly, not `for q in self` -- indexing
+        # a UnitQuaternion (which iteration uses under the hood) goes
+        # through BasePoseList.__getitem__, which reconstructs each
+        # element via self.__class__(self.data[i], check=False) with no
+        # norm=False override, silently re-canonicalizing sign on every
+        # single access. Working from self.data sidesteps that entirely.
+        if isinstance(self, UnitQuaternion):
+            # Pass a 2D (N,4) array with norm=False so construction stores
+            # the conjugated array as-is, bypassing qunit()'s scalar-sign
+            # canonicalization -- see the note above for why that
+            # canonicalization must not apply here. A 1D (4,) array would
+            # instead be caught by the generic arghandler() path first,
+            # which normalizes/canonicalizes unconditionally regardless of
+            # norm -- the 2D-array path is what actually honours norm=False.
+            return self.__class__(
+                np.array([smb.qconj(d) for d in self.data]), norm=False
+            )
+        return self.__class__([smb.qconj(d) for d in self.data])
 
     def norm(self) -> float:
         r"""
