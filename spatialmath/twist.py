@@ -813,7 +813,7 @@ class Twist3(BaseTwist):
         """
         Unit twist
 
-        - ``S.unit()`` is a Twist2 objec3 representing a unit twist aligned with the
+        - ``S.unit()`` is a Twist3 object representing a unit twist aligned with the
           Twist ``S``.
 
         Example:
@@ -825,12 +825,12 @@ class Twist3(BaseTwist):
             >>> S = Twist3(T)
             >>> S.unit()
         """
-        if smb.iszerovec(self.w):
-            # rotational twist
-            return Twist3(self.S / smb.norm(S.w))
-        else:
-            # prismatic twist
+        if self.isprismatic:
+            # prismatic twist (zero rotation): normalize the direction vector
             return Twist3(smb.unitvec(self.v), [0, 0, 0])
+        else:
+            # general twist: normalize so |w| == 1
+            return Twist3(self.S / smb.norm(self.w))
 
     def ad(self):
         """
@@ -974,7 +974,7 @@ class Twist3(BaseTwist):
         :return: the pole of the twist
         :rtype: ndarray(3)
 
-        ``X.pole()`` is a point on the twist axis. For a pure translation
+        ``X.pole`` is a point on the twist axis. For a pure translation
         this point is at infinity.
 
         Example:
@@ -1487,7 +1487,7 @@ class Twist2(BaseTwist):
         :return: the pole of the twist
         :rtype: ndarray(2)
 
-        ``X.pole()`` is a point on the twist axis. For a pure translation
+        ``X.pole`` is a point on the twist axis. For a pure translation
         this point is at infinity.
 
         Example:
@@ -1497,7 +1497,7 @@ class Twist2(BaseTwist):
             >>> from spatialmath import SE2, Twist2
             >>> T = SE2(1, 2, 0.3)
             >>> S = Twist2(T)
-            >>> S.pole()
+            >>> S.pole
 
         """
         p = np.cross(np.r_[0, 0, self.w], np.r_[self.v, 0]) / self.theta
@@ -1626,12 +1626,12 @@ class Twist2(BaseTwist):
             >>> S = Twist2(T)
             >>> S.unit()
         """
-        if smb.iszerovec(self.w):
-            # rotational twist
-            return Twist2(self.S / smb.norm(S.w))
+        if self.isprismatic:
+            # prismatic twist (zero rotation): normalize the direction vector
+            return Twist2(smb.unitvec(self.v), 0)
         else:
-            # prismatic twist
-            return Twist2(smb.unitvec(self.v), [0, 0, 0])
+            # general twist: normalize so |w| == 1 (w is a scalar for Twist2)
+            return Twist2(self.S / abs(self.w))
 
     @property
     def ad(self):
