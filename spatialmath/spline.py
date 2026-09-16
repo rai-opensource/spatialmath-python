@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 # Copyright (c) 2024 Robotics and AI Institute LLC dba RAI Institute.
 # MIT Licence, see details in top-level file: LICENCE
 
@@ -6,15 +8,17 @@ Classes for parameterizing a trajectory in SE3 with splines.
 """
 
 from abc import ABC, abstractmethod
-from typing import List, Optional, Tuple
+from typing import TYPE_CHECKING, List, Optional, Tuple
 
-import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import BSpline, CubicSpline
 from scipy.spatial.transform import Rotation, RotationSpline
 
 from spatialmath import SE3, SO3, Twist3
 from spatialmath.base.transforms3d import tranimate
+
+if TYPE_CHECKING:
+    import matplotlib.pyplot as plt
 
 
 class SplineSE3(ABC):
@@ -39,6 +43,8 @@ class SplineSE3(ABC):
         Args:
             sample_times: which times to sample the spline at and plot
         """
+        import matplotlib.pyplot as plt
+
         if ax is None:
             fig = plt.figure(figsize=(10, 10))
             ax = fig.add_subplot(projection="3d")

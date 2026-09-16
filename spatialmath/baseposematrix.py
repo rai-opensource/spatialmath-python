@@ -23,7 +23,7 @@ _eps = np.finfo(np.float64).eps
 # colored printing of matrices to the terminal
 #   colored package has much finer control than colorama, but the latter is available by default with anaconda
 try:
-    from colored import fg, bg, attr
+    from colored import fore, back, style
 
     _colored = True
     # print('using colored output')
@@ -522,10 +522,10 @@ class BasePoseMatrix(BasePoseList):
             # SO(2) or SE(2)
             if len(s) > 1:
                 assert len(self) == 1, "if len(s) > 1, len(X) must == 1"
-                return self.__class__([smb.trinterp2(start, self.A, s=_s) for _s in s])
+                return self.__class__([smb.trinterp2(None, self.A, s=_s) for _s in s])
             else:
                 return self.__class__(
-                    [smb.trinterp2(start, x, s=s[0]) for x in self.data]
+                    [smb.trinterp2(None, x, s=s[0]) for x in self.data]
                 )
         elif self.N == 3:
             # SO(3) or SE(3)
@@ -778,8 +778,8 @@ class BasePoseMatrix(BasePoseList):
             >>> x.strline()
             >>> x = SE3.Rx([0.2, 0.3])
             >>> x.strline()
-            >>> x.strline('angvec')
-            >>> x.strline(orient='angvec', fmt="{:.6f}")
+            >>> x.strline(orient="angvec")
+            >>> x.strline(orient="angvec", fmt="{:.6f}")
             >>> x = SE2(1, 2, 0.3)
             >>> x.strline()
 
@@ -793,10 +793,10 @@ class BasePoseMatrix(BasePoseList):
         s = ""
         if self.N == 2:
             for x in self.data:
-                s += smb.trprint2(x, *args, file=False, **kwargs)
+                s += smb.tr2str2(x, *args, **kwargs)
         else:
             for x in self.data:
-                s += smb.trprint(x, *args, file=False, **kwargs)
+                s += smb.tr2str(x, *args, **kwargs)
         return s
 
     def __repr__(self) -> str:
@@ -926,12 +926,12 @@ class BasePoseMatrix(BasePoseList):
                 else:
                     return f(c)
 
-            bgcol = color(self._bgcolor, bg)
-            trcol = color(self._transcolor, fg) + bgcol
-            rotcol = color(self._rotcolor, fg) + bgcol
-            constcol = color(self._constcolor, fg) + bgcol
-            indexcol = color(self._indexcolor[0], fg) + color(self._indexcolor[1], bg)
-            reset = attr(0)
+            bgcol = color(self._bgcolor, back)
+            trcol = color(self._transcolor, fore) + bgcol
+            rotcol = color(self._rotcolor, fore) + bgcol
+            constcol = color(self._constcolor, fore) + bgcol
+            indexcol = color(self._indexcolor[0], fore) + color(self._indexcolor[1], back)
+            reset = style(0)
         else:
             bgcol = ""
             trcol = ""
@@ -1359,6 +1359,20 @@ class BasePoseMatrix(BasePoseList):
         :seealso: ``__mul__``
         """
         return left.__mul__(right)
+
+    def __imatmul__(left, right):  # noqa
+        """
+        Overloaded ``@=`` operator (superclass method)
+
+        :return: Product of two operands with normalization
+        :rtype: Pose instance or NumPy array
+        :raises ValueError: for incompatible arguments
+
+        - ``X @= Y`` compounds the poses ``X`` and ``Y`` and places the normalized result in ``X``
+
+        :seealso: ``__imul__`` :meth:`__matmul__`
+        """
+        return left.__matmul__(right)
 
     def __truediv__(left, right):  # pylint: disable=no-self-argument
         """

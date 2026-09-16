@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from functools import reduce
 import warnings
-import matplotlib.pyplot as plt
+from typing import TYPE_CHECKING
 from matplotlib.path import Path
 from matplotlib.patches import PathPatch
 from matplotlib.transforms import Affine2D
@@ -17,7 +17,6 @@ import numpy as np
 
 from spatialmath import SE2
 import spatialmath.base as smb
-from spatialmath.base import plot_ellipse
 from spatialmath.base.types import (
     Points2,
     Optional,
@@ -36,6 +35,9 @@ from spatialmath.base.types import (
     Self,
     cast,
 )
+
+if TYPE_CHECKING:
+    import matplotlib.pyplot as plt
 
 _eps = np.finfo(np.float64).eps
 
@@ -450,6 +452,8 @@ class Polygon2:
 
         :seealso: :meth:`animate` :func:`matplotlib.PathPatch`
         """
+        import matplotlib.pyplot as plt
+
         self.patch = PathPatch(self.path, **kwargs)
         ax = smb.axes_logic(ax, 2)
         ax.add_patch(self.patch)
@@ -1063,6 +1067,8 @@ class Ellipse:
 
         :seealso: :func:`~spatialmath.base.graphics.plot_ellipse`
         """
+        from spatialmath.base import plot_ellipse
+
         return plot_ellipse(self._E, centre=self._centre, **kwargs)
 
     def contains(self, p):

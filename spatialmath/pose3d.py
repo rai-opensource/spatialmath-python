@@ -769,7 +769,24 @@ class SO3(BasePoseMatrix):
         v = smb.cross(v1, v2)
         s = smb.norm(v)
         if abs(s) < tol * np.finfo(float).eps:
-            return cls(np.eye(3), check=False)
+            c = np.dot(v1, v2)
+            if c > 0:
+                # v1 and v2 already (anti)parallel in the same direction
+                return cls(np.eye(3), check=False)
+            # v1 and v2 point in opposite directions -- the formula below
+            # is singular here too (it divides by s**2), but unlike the
+            # c > 0 case the answer isn't identity: any 180 degree
+            # rotation about an axis perpendicular to v1 takes v1 to v2.
+            # Closed form for a 180 degree rotation about unit axis u:
+            # R = 2*u*u^T - I (Rodrigues at theta=pi, sin=0, cos=-1).
+            # Pick u by crossing v1 with whichever world axis it's least
+            # aligned with, so the cross product is never itself
+            # degenerate.
+            axis = np.zeros(3)
+            axis[np.argmin(np.abs(v1))] = 1.0
+            u = smb.unitvec(smb.cross(v1, axis))
+            R = 2 * np.outer(u, u) - np.eye(3)
+            return cls(R, check=False)
         else:
             c = np.dot(v1, v2)
             V = smb.skew(v)

@@ -6,7 +6,7 @@ on:
 jobs:
   sphinx:
     runs-on: ubuntu-22.04
-    if: ${{ github.event_name != 'pull_request' }}
+    # if: ${{ github.event_name != 'pull_request' }}
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.12

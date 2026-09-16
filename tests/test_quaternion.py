@@ -2,6 +2,7 @@ import math
 from math import pi
 import numpy.testing as nt
 import unittest
+from unittest.mock import patch
 
 from spatialmath import *
 from spatialmath.base import *
@@ -507,6 +508,11 @@ class TestUnitQuaternion(unittest.TestCase):
             UnitQuaternion([ry * rx, rz * ry, rx * rz]),
         )
 
+        # @= is @ as an augmented assignment, not *=
+        q = rx
+        q @= ry
+        qcompare(q, rx @ ry)
+
     # def multiply_test_normalized(self):
 
     #     vx = [1, 0, 0]; vy = [0, 1, 0]; vz = [0, 0, 1]
@@ -700,6 +706,46 @@ class TestUnitQuaternion(unittest.TestCase):
         # qq = q1.interp(q2, 11, 'shortest')
         # qcompare( qq(6), UnitQuaternion.Rx(pi) )
         # TODO interp
+
+    def test_interp_same_rotation(self):
+        # endpoints that are the same rotation make the slerp weights singular
+        q = UnitQuaternion.Rx(0.3)
+        for s in (0, 0.4, 1):
+            for shortest in (False, True):
+                qcompare(q.interp(q, s, shortest=shortest), q)
+                qcompare(
+                    q.interp(UnitQuaternion.Rx(0.3 + 1e-9), s, shortest=shortest), q
+                )
+        qq = q.interp(q, 5)
+        self.assertEqual(len(qq), 5)
+        qcompare(qq[3], q)
+
+        u = UnitQuaternion()
+        for s in (0, 0.4, 1):
+            qcompare(u.interp1(s), u)
+            qcompare(UnitQuaternion.Rx(1e-9).interp1(s), u)
+        self.assertEqual(len(u.interp1(5)), 5)
+
+        # Rx(pi) and Rx(-pi) are the same rotation, with a dot product of -1
+        p = UnitQuaternion.Rx(pi)
+        m = UnitQuaternion.Rx(-pi)
+        self.assertAlmostEqual(np.dot(p.vec, m.vec), -1)
+        for shortest in (False, True):
+            for s in (0, 0.4, 1):
+                qi = p.interp(m, s, shortest=shortest)
+                self.assertAlmostEqual(np.linalg.norm(qi.vec), 1)
+                nt.assert_array_almost_equal(qi.R, p.R)
+        for qi in p.interp(m, 5):
+            nt.assert_array_almost_equal(qi.R, p.R)
+
+    def test_interp_prepares_slerp_once(self):
+        q0 = UnitQuaternion.RPY([0.2, 0.3, 0.4])
+        q1 = UnitQuaternion.RPY([-0.3, 0.1, 0.2])
+
+        for interpolate in (lambda: q0.interp1(5), lambda: q0.interp(q1, 5)):
+            with patch("spatialmath.base.quaternions.np.dot", wraps=np.dot) as dot:
+                self.assertEqual(len(interpolate()), 5)
+            self.assertEqual(dot.call_count, 1)
 
     def test_increment(self):
         q = UnitQuaternion()
@@ -948,6 +994,14 @@ class TestQuaternion(unittest.TestCase):
         q = q1
         q *= q2
         qcompare(q, [-12, 6, 24, 12])
+
+        # plain Quaternion has no @ (only UnitQuaternion normalizes via @),
+        # so @= must fail the same way @ does, not silently fall back to *=
+        with self.assertRaises(TypeError):
+            q1 @ q2
+        with self.assertRaises(TypeError):
+            q = q1
+            q @= q2
 
         # vector x vector
         qcompare(
