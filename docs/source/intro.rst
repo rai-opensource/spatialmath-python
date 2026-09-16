@@ -629,7 +629,7 @@ Graphics
 If ``matplotlib`` is installed then we can add 2D coordinate frames to a figure in a variety of styles:
 
 .. code-block:: python
-   :linenos:
+    :linenos:
 
     >>> trplot2( transl2(1,2), frame='A', rviz=True, width=1)
     >>> trplot2( transl2(3,1), color='red', arrow=True, width=3, frame='B')
@@ -646,7 +646,7 @@ If a figure does not yet exist one is added.  If a figure exists but there is no
 Similarly, we can plot 3D coordinate frames in a variety of styles:
 
 .. code-block:: python
-   :linenos:
+    :linenos:
 
     >>> trplot( transl(1,2,3), frame='A', rviz=True, width=1, dims=[0, 10, 0, 10, 0, 10])
     >>> trplot( transl(3,1, 2), color='red', width=3, frame='B')

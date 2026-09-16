@@ -15,6 +15,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 # sys.path.insert(0, os.path.abspath('..'))
 
+from sphinx_codeautolink import clean_ipython, clean_pycon
 
 # -- Project information -----------------------------------------------------
 
@@ -50,6 +51,14 @@ extensions = [
     "sphinx_autorun",
     "sphinx.ext.intersphinx",
     "sphinx_favicon",
+    "sphinx_copybutton",
+    "sphinx_codeautolink",
+]
+
+suppress_warnings = [
+    "codeautolink.match_block",
+    "codeautolink.match_name",
+    "config.cache",  # codeautolink_custom_blocks holds function refs, not picklable
 ]
 #'sphinx.ext.autosummary',
 # typehints_use_signature_return = True
@@ -183,6 +192,24 @@ SE3._color = False
 import numpy as np
 np.set_printoptions(precision=4, suppress=True)
 """
+
+# -------- sphinx-codeautolink options --------------------------------------------#
+
+codeautolink_custom_blocks = {
+    "pycon": clean_pycon,
+    "ipython": clean_ipython,
+    "ipython3": clean_ipython,
+}
+# Ensure pycon (Python console) blocks are included in the autolink search.
+codeautolink_search_css_classes = ["highlight-python", "highlight-pycon"]
+
+# -------- sphinx-copybutton options ----------------------------------------------#
+# Strip interactive prompts (Python and shell) when users copy code snippets.
+
+copybutton_prompt_text = r">>> |\.\.\. |\$ "
+copybutton_prompt_is_regexp = True
+copybutton_only_copy_prompt_lines = False
+copybutton_remove_prompts = True
 
 intersphinx_mapping = {
     "numpy": ("http://docs.scipy.org/doc/numpy/", None),

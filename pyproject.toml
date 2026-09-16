@@ -65,6 +65,8 @@ docs = [
     "sphinxcontrib-jsmath",
     "sphinx-favicon",
     "sphinx-autodoc-typehints",
+    "sphinx-copybutton",
+    "sphinx-codeautolink",
 ]
 
 ros-humble = [
