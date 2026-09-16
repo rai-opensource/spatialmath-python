@@ -322,6 +322,16 @@ class Quaternion(BasePoseList):
             of the result matches the input's sign, it is not forced
             positive.
 
+        .. versionchanged:: 1.1.18
+            Fixes a bug present in 1.1.17 and earlier: ``UnitQuaternion.conj()``
+            re-canonicalized its result's sign, silently returning
+            :math:`-\bar{q}` instead of the true conjugate whenever ``q`` had
+            negative scalar part. This broke any algebra relying on
+            :math:`q \cdot \bar{q} = 1`, including :class:`DualQuaternion`
+            translation extraction (``SE3()``), ``norm()`` (which could raise
+            ``ValueError`` from taking the square root of a small negative
+            float), and point transformation via ``dq * v``.
+
         Example:
 
         .. runblock:: pycon
