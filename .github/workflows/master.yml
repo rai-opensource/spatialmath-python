@@ -77,6 +77,12 @@ jobs:
         file: ./coverage.xml
   sphinx:
     # If the above worked:
-    # Build docs and upload to GH Pages
+    # Build docs and upload to GH Pages -- only on push (merge to master/future),
+    # never on pull_request: a PR whose branch lives in a fork (including the
+    # author's own fork) gets a read-only GITHUB_TOKEN by GitHub's own design,
+    # so the gh-pages push step always fails there regardless of repo settings.
+    # Publishing unreviewed PR content to the live docs site isn't desired
+    # either way.
     needs: unittest
+    if: ${{ github.event_name != 'pull_request' }}
     uses: ./.github/workflows/sphinx.yml
