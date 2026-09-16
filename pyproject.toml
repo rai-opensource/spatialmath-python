@@ -61,7 +61,7 @@ dev = [
 docs = [
     "sphinx",
     "sphinx-rtd-theme",
-    "sphinx-autorun",
+    "sphinx-pyrunblock",
     "sphinxcontrib-jsmath",
     "sphinx-favicon",
     "sphinx-autodoc-typehints",

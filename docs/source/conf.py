@@ -47,7 +47,7 @@ extensions = [
     "sphinx.ext.inheritance_diagram",
     "matplotlib.sphinxext.plot_directive",
     "sphinx_autodoc_typehints",
-    "sphinx_autorun",
+    "sphinx_pyrunblock",
     "sphinx.ext.intersphinx",
     "sphinx_favicon",
 ]
