@@ -932,7 +932,7 @@
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Unit twist</span>
 
-<span class="sd">        - ``S.unit()`` is a Twist3 object representing a unit twist aligned with the</span>
+<span class="sd">        - ``S.unit()`` is a Twist2 objec3 representing a unit twist aligned with the</span>
 <span class="sd">          Twist ``S``.</span>
 
 <span class="sd">        Example:</span>
@@ -944,12 +944,12 @@
 <span class="sd">            &gt;&gt;&gt; S = Twist3(T)</span>
 <span class="sd">            &gt;&gt;&gt; S.unit()</span>
 <span class="sd">        """</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isprismatic</span><span class="p">:</span>
-            <span class="c1"># prismatic twist (zero rotation): normalize the direction vector</span>
-            <span class="k">return</span> <span class="n">Twist3</span><span class="p">(</span><span class="n">smb</span><span class="o">.</span><span class="n">unitvec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">smb</span><span class="o">.</span><span class="n">iszerovec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">):</span>
+            <span class="c1"># rotational twist</span>
+            <span class="k">return</span> <span class="n">Twist3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">/</span> <span class="n">smb</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">w</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># general twist: normalize so |w| == 1</span>
-            <span class="k">return</span> <span class="n">Twist3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">/</span> <span class="n">smb</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">))</span></div>
+            <span class="c1"># prismatic twist</span>
+            <span class="k">return</span> <span class="n">Twist3</span><span class="p">(</span><span class="n">smb</span><span class="o">.</span><span class="n">unitvec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="Twist3.ad">
@@ -1106,7 +1106,7 @@
 <span class="sd">        :return: the pole of the twist</span>
 <span class="sd">        :rtype: ndarray(3)</span>
 
-<span class="sd">        ``X.pole`` is a point on the twist axis. For a pure translation</span>
+<span class="sd">        ``X.pole()`` is a point on the twist axis. For a pure translation</span>
 <span class="sd">        this point is at infinity.</span>
 
 <span class="sd">        Example:</span>
@@ -1643,7 +1643,7 @@
 <span class="sd">        :return: the pole of the twist</span>
 <span class="sd">        :rtype: ndarray(2)</span>
 
-<span class="sd">        ``X.pole`` is a point on the twist axis. For a pure translation</span>
+<span class="sd">        ``X.pole()`` is a point on the twist axis. For a pure translation</span>
 <span class="sd">        this point is at infinity.</span>
 
 <span class="sd">        Example:</span>
@@ -1653,7 +1653,7 @@
 <span class="sd">            &gt;&gt;&gt; from spatialmath import SE2, Twist2</span>
 <span class="sd">            &gt;&gt;&gt; T = SE2(1, 2, 0.3)</span>
 <span class="sd">            &gt;&gt;&gt; S = Twist2(T)</span>
-<span class="sd">            &gt;&gt;&gt; S.pole</span>
+<span class="sd">            &gt;&gt;&gt; S.pole()</span>
 
 <span class="sd">        """</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span>
@@ -1796,12 +1796,12 @@
 <span class="sd">            &gt;&gt;&gt; S = Twist2(T)</span>
 <span class="sd">            &gt;&gt;&gt; S.unit()</span>
 <span class="sd">        """</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isprismatic</span><span class="p">:</span>
-            <span class="c1"># prismatic twist (zero rotation): normalize the direction vector</span>
-            <span class="k">return</span> <span class="n">Twist2</span><span class="p">(</span><span class="n">smb</span><span class="o">.</span><span class="n">unitvec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">smb</span><span class="o">.</span><span class="n">iszerovec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">):</span>
+            <span class="c1"># rotational twist</span>
+            <span class="k">return</span> <span class="n">Twist2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">/</span> <span class="n">smb</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">w</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># general twist: normalize so |w| == 1 (w is a scalar for Twist2)</span>
-            <span class="k">return</span> <span class="n">Twist2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">))</span></div>
+            <span class="c1"># prismatic twist</span>
+            <span class="k">return</span> <span class="n">Twist2</span><span class="p">(</span><span class="n">smb</span><span class="o">.</span><span class="n">unitvec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span></div>
 
 
     <span class="nd">@property</span>

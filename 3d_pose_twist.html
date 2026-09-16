@@ -281,8 +281,8 @@ poses.</p></li>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">Twist3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Twist3</span><span class="o">.</span><span class="n">Rand</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="go">Twist3([</span>
-<span class="go">  [-0.53188, -0.72532, 0.2037, 2.4141, 1.5592, 0.88453],</span>
-<span class="go">  [-0.035879, 0.67178, -0.79444, -2.3817, 0.8754, 0.63817]</span>
+<span class="go">  [-1.1817, -0.40435, 0.61333, 1.9942, -0.46561, 0.52218],</span>
+<span class="go">  [0.21368, -1.2878, -0.84451, -0.84414, 1.7707, -2.0791]</span>
 <span class="go">])</span>
 </pre></div>
 </div>
@@ -1251,7 +1251,7 @@ corresponding SE(3) element.</p>
 <span class="sig-name descname"><span class="pre">unit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/twist.html#Twist3.unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.twist.Twist3.unit" title="Link to this definition"></a></dt>
 <dd><p>Unit twist</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">S.unit()</span></code> is a Twist3 object representing a unit twist aligned with the
+<li><p><code class="docutils literal notranslate"><span class="pre">S.unit()</span></code> is a Twist2 objec3 representing a unit twist aligned with the
 Twist <code class="docutils literal notranslate"><span class="pre">S</span></code>.</p></li>
 </ul>
 <p>Example:</p>
@@ -1259,7 +1259,7 @@ Twist <code class="docutils literal notranslate"><span class="pre">S</span></cod
 <span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">SE3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Twist3</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span>
-<span class="go">Twist3([3.3333, 8.1166, 8.9249, 1, 0, 0])</span>
+<span class="go">Twist3([0.26633, 0.64851, 0.71309, 0, 0, 0])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1451,7 +1451,7 @@ screw axis.</p>
 <dd class="field-even"><p>ndarray(3)</p>
 </dd>
 </dl>
-<p><code class="docutils literal notranslate"><span class="pre">X.pole</span></code> is a point on the twist axis. For a pure translation
+<p><code class="docutils literal notranslate"><span class="pre">X.pole()</span></code> is a point on the twist axis. For a pure translation
 this point is at infinity.</p>
 <p>Example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">SE3</span><span class="p">,</span> <span class="n">Twist3</span>

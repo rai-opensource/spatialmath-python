@@ -467,11 +467,11 @@ values.</p></li>
 <p>Example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnitQuaternion</span> <span class="k">as</span> <span class="n">UQ</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">UQ</span><span class="o">.</span><span class="n">Rand</span><span class="p">())</span>
-<span class="go"> 0.5187 &lt;&lt;  0.7907,  0.2955, -0.1357 &gt;&gt;</span>
+<span class="go"> 0.7312 &lt;&lt;  0.0748, -0.5543, -0.3905 &gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">UQ</span><span class="o">.</span><span class="n">Rand</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-<span class="go"> 0.3798 &lt;&lt;  0.1501,  0.6617, -0.6288 &gt;&gt;</span>
-<span class="go"> 0.4844 &lt;&lt; -0.4088, -0.1961, -0.7482 &gt;&gt;</span>
-<span class="go"> 0.6645 &lt;&lt; -0.3094,  0.6709, -0.1122 &gt;&gt;</span>
+<span class="go"> 0.1084 &lt;&lt; -0.6115,  0.7367,  0.2678 &gt;&gt;</span>
+<span class="go"> 0.5411 &lt;&lt;  0.5484,  0.4907,  0.4071 &gt;&gt;</span>
+<span class="go"> 0.0913 &lt;&lt; -0.2950,  0.7966, -0.5197 &gt;&gt;</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -1530,44 +1530,10 @@ many options, see the links below.</p></li>
 </dl>
 <p><code class="docutils literal notranslate"><span class="pre">q.conj()</span></code> is the quaternion <code class="docutils literal notranslate"><span class="pre">q</span></code> with the vector part negated, ie.
 <span class="math notranslate nohighlight">\(q = s \langle -v_x, -v_y, -v_z \rangle\)</span></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For a <code class="docutils literal notranslate"><span class="pre">UnitQuaternion</span></code> this deliberately does <strong>not</strong>
-canonicalize the result’s scalar part to be non-negative, unlike
-normal <code class="docutils literal notranslate"><span class="pre">UnitQuaternion</span></code> construction. <code class="docutils literal notranslate"><span class="pre">UnitQuaternion</span></code>
-construction canonicalizes because <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(-q\)</span>
-represent the same rotation, which is the right behaviour when
-building a unit quaternion from arbitrary data. But conjugation
-is an algebraic operation, not a re-representation of a
-rotation: it must satisfy <span class="math notranslate nohighlight">\(q \cdot \bar{q} = 1\)</span> for any
-downstream algebra to be correct (e.g. dual-quaternion
-translation extraction, which relies on exactly this identity).
-Re-canonicalizing the conjugate would silently return
-<span class="math notranslate nohighlight">\(-\bar{q}\)</span> whenever <code class="docutils literal notranslate"><span class="pre">q</span></code> has negative scalar part,
-breaking that identity. See the example below: the scalar part
-of the result matches the input’s sign, it is not forced
-positive.</p>
-</div>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.1.18: </span>Fixes a bug present in 1.1.17 and earlier: <code class="docutils literal notranslate"><span class="pre">UnitQuaternion.conj()</span></code>
-re-canonicalized its result’s sign, silently returning
-<span class="math notranslate nohighlight">\(-\bar{q}\)</span> instead of the true conjugate whenever <code class="docutils literal notranslate"><span class="pre">q</span></code> had
-negative scalar part. This broke any algebra relying on
-<span class="math notranslate nohighlight">\(q \cdot \bar{q} = 1\)</span>, including <code class="xref py py-class docutils literal notranslate"><span class="pre">DualQuaternion</span></code>
-translation extraction (<code class="docutils literal notranslate"><span class="pre">SE3()</span></code>), <code class="docutils literal notranslate"><span class="pre">norm()</span></code> (which could raise
-<code class="docutils literal notranslate"><span class="pre">ValueError</span></code> from taking the square root of a small negative
-float), and point transformation via <code class="docutils literal notranslate"><span class="pre">dq</span> <span class="pre">*</span> <span class="pre">v</span></code>.</p>
-</div>
 <p>Example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">Quaternion</span><span class="p">,</span> <span class="n">UnitQuaternion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">Quaternion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">Quaternion</span><span class="o">.</span><span class="n">Pure</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
 <span class="go"> 0.0000 &lt; -1.0000, -2.0000, -3.0000 &gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">UnitQuaternion</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]]),</span> <span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-<span class="go">-0.5000 &lt;&lt;  0.5000,  0.5000,  0.5000 &gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
-<span class="go">-0.5000 &lt;&lt; -0.5000, -0.5000, -0.5000 &gt;&gt;</span>
 </pre></div>
 </div>
 <dl class="field-list simple">

@@ -132,8 +132,8 @@
 <span class="sd">    ===================   ====================  ===================  =========================</span>
 <span class="sd">    SE3, Twist3           SpatialVelocity       SpatialVelocity      adjoint product</span>
 <span class="sd">    SE3, Twist3           SpatialAcceleration   SpatialAcceleration  adjoint product</span>
-<span class="sd">    SE3, Twist3           SpatialMomentum       SpatialMomentum      adjoint transpose product</span>
-<span class="sd">    SE3, Twist3           SpatialForce          SpatialForce         adjoint transpose product</span>
+<span class="sd">    SE3, Twist3           SpatialMomentum       SpatialMomentum      coadjoint product</span>
+<span class="sd">    SE3, Twist3           SpatialForce          SpatialForce         coadjoint product</span>
 <span class="sd">    SpatialAcceleration   SpatialInertia        SpatialForce         matrix-vector product**</span>
 <span class="sd">    SpatialVelocity       SpatialInertia        SpatialMomentum      matrix-vector product**</span>
 <span class="sd">    ===================   ====================  ===================  =========================</span>
@@ -361,8 +361,9 @@
 
 <span class="sd">        ``X * S`` transforms the spatial vector ``S`` by the relative pose ``X``</span>
 <span class="sd">        which may be either an ``SE3`` or ``Twist3`` instance.  The spatial</span>
-<span class="sd">        vector is premultiplied by the adjoint of ``X`` or adjoint transpose</span>
-<span class="sd">        of ``X`` depending on the SpatialVector subclass of ``S``.</span>
+<span class="sd">        vector is premultiplied by the adjoint of ``X``, or by the coadjoint</span>
+<span class="sd">        (the inverse-transpose of the adjoint) of ``X``, depending on the</span>
+<span class="sd">        SpatialVector subclass of ``S``.</span>
 
 <span class="sd">        ===========  ====================  ===================  =========================</span>
 <span class="sd">                   Multiplicands                   Product</span>
@@ -371,16 +372,20 @@
 <span class="sd">        ===========  ====================  ===================  =========================</span>
 <span class="sd">        SE3, Twist3  SpatialVelocity       SpatialVelocity      adjoint product</span>
 <span class="sd">        SE3, Twist3  SpatialAcceleration   SpatialAcceleration  adjoint product</span>
-<span class="sd">        SE3, Twist3  SpatialMomentum       SpatialMomentum      adjoint transpose product</span>
-<span class="sd">        SE3, Twist3  SpatialForce          SpatialForce         adjoint transpose product</span>
+<span class="sd">        SE3, Twist3  SpatialMomentum       SpatialMomentum      coadjoint product</span>
+<span class="sd">        SE3, Twist3  SpatialForce          SpatialForce         coadjoint product</span>
 <span class="sd">        ===========  ====================  ===================  =========================</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="p">(</span><span class="n">SE3</span><span class="p">,</span> <span class="n">Twist3</span><span class="p">)):</span>
-            <span class="n">X</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">Ad</span><span class="p">()</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">SpatialM6</span><span class="p">):</span>
-                <span class="k">return</span> <span class="n">right</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">right</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">right</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">Ad</span><span class="p">()</span> <span class="o">@</span> <span class="n">right</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">right</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">right</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+                <span class="c1"># Force/momentum are dual to motion and transform by the</span>
+                <span class="c1"># coadjoint (inverse-transpose of the adjoint), not the</span>
+                <span class="c1"># adjoint transpose. These are only equal for a pure rotation.</span>
+                <span class="c1"># Ad(X)^-1 == Ad(X^-1), so take the adjoint of the inverse pose</span>
+                <span class="c1"># rather than inverting the 6x6 adjoint.</span>
+                <span class="k">return</span> <span class="n">right</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span><span class="o">.</span><span class="n">Ad</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">right</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"left operand of * must be SE3 or Twist3"</span><span class="p">)</span></div>
 
@@ -610,7 +615,11 @@
         <span class="n">right</span><span class="p">,</span> <span class="n">left</span>
     <span class="p">):</span>  <span class="c1"># lgtm[py/not-named-self] pylint: disable=no-self-argument</span>
         <span class="c1"># Twist * SpatialForce -&gt; SpatialForce</span>
-        <span class="k">return</span> <span class="n">SpatialForce</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">Ad</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">right</span><span class="o">.</span><span class="n">A</span><span class="p">)</span></div>
+        <span class="c1"># A force is dual to motion, so it transforms by the coadjoint</span>
+        <span class="c1"># (inverse-transpose of the adjoint), not the adjoint transpose.</span>
+        <span class="c1"># Ad(X)^-1 == Ad(X^-1), so take the adjoint of the inverse pose</span>
+        <span class="c1"># rather than inverting the 6x6 adjoint.</span>
+        <span class="k">return</span> <span class="n">SpatialForce</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span><span class="o">.</span><span class="n">Ad</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">right</span><span class="o">.</span><span class="n">A</span><span class="p">)</span></div>
 
 
 
