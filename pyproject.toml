@@ -1,6 +1,6 @@
 [project]
 name = "spatialmath-python"
-version = "1.1.17"
+version = "1.1.18"
 authors = [
   { name="Peter Corke", email="rvc@petercorke.com" },
 ]
