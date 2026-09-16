@@ -150,18 +150,18 @@
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnitDualQuaternion</span><span class="p">,</span> <span class="n">SE3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rand</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-<span class="go">   0.4662   -0.7297   -0.5002    0.5944    </span>
-<span class="go">  -0.8767   -0.3055   -0.3715   -0.07905   </span>
-<span class="go">   0.1183    0.6117   -0.7822    0.7367    </span>
+<span class="go">   0.9605    0.06313   0.2711   -0.7334    </span>
+<span class="go">  -0.07012   0.9974    0.01618   0.271     </span>
+<span class="go">  -0.2694   -0.03455   0.9624    0.2536    </span>
 <span class="go">   0         0         0         1         </span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">UnitDualQuaternion</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="go"> 0.3076 &lt;&lt;  0.7991, -0.5026, -0.1195 &gt;&gt; + ε -0.2133 &lt;  0.2813,  0.3177, -0.0045 &gt;</span>
+<span class="go"> 0.9900 &lt;&lt; -0.0128,  0.1365, -0.0336 &gt;&gt; + ε -0.0189 &lt; -0.3849,  0.1202,  0.0772 &gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">SE3</span><span class="p">())</span>
-<span class="go">   0.4662   -0.7297   -0.5002    0.5944    </span>
-<span class="go">  -0.8767   -0.3055   -0.3715   -0.07905   </span>
-<span class="go">   0.1183    0.6117   -0.7822    0.7367    </span>
+<span class="go">   0.9605    0.06313   0.2711   -0.7334    </span>
+<span class="go">  -0.07012   0.9974    0.01618   0.271     </span>
+<span class="go">  -0.2694   -0.03455   0.9624    0.2536    </span>
 <span class="go">   0         0         0         1         </span>
 
 </pre></div>
@@ -211,14 +211,14 @@ the rigid-body motion described by the SE3 value <code class="docutils literal n
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnitDualQuaternion</span><span class="p">,</span> <span class="n">SE3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">SE3</span><span class="o">.</span><span class="n">Rand</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-<span class="go">  -0.5051    0.7634    0.4026    0.6804    </span>
-<span class="go">  -0.5502   -0.6442    0.5313   -0.4937    </span>
-<span class="go">   0.6649    0.04681   0.7454   -0.2911    </span>
+<span class="go">   0.4876    0.3117   -0.8156   -0.73      </span>
+<span class="go">   0.8644   -0.04053   0.5012   -0.1204    </span>
+<span class="go">   0.1232   -0.9493   -0.2891   -0.8508    </span>
 <span class="go">   0         0         0         1         </span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">UnitDualQuaternion</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="go">-0.3860 &lt;&lt;  0.3137,  0.1699,  0.8507 &gt;&gt; + ε  0.0590 &lt; -0.3166, -0.2398,  0.1914 &gt;</span>
+<span class="go">-0.5380 &lt;&lt;  0.6740,  0.4362, -0.2568 &gt;&gt; + ε  0.1630 &lt;  0.3974, -0.3481,  0.1102 &gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">&lt;class 'spatialmath.DualQuaternion.UnitDualQuaternion'&gt;</span>
 </pre></div>

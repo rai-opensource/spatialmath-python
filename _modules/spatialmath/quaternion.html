@@ -411,6 +411,16 @@
 <span class="sd">            of the result matches the input's sign, it is not forced</span>
 <span class="sd">            positive.</span>
 
+<span class="sd">        .. versionchanged:: 1.1.18</span>
+<span class="sd">            Fixes a bug present in 1.1.17 and earlier: ``UnitQuaternion.conj()``</span>
+<span class="sd">            re-canonicalized its result's sign, silently returning</span>
+<span class="sd">            :math:`-\bar{q}` instead of the true conjugate whenever ``q`` had</span>
+<span class="sd">            negative scalar part. This broke any algebra relying on</span>
+<span class="sd">            :math:`q \cdot \bar{q} = 1`, including :class:`DualQuaternion`</span>
+<span class="sd">            translation extraction (``SE3()``), ``norm()`` (which could raise</span>
+<span class="sd">            ``ValueError`` from taking the square root of a small negative</span>
+<span class="sd">            float), and point transformation via ``dq * v``.</span>
+
 <span class="sd">        Example:</span>
 
 <span class="sd">        .. runblock:: pycon</span>
