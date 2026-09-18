@@ -378,10 +378,34 @@ def isR(R: NDArray, tol: float = 20) -> bool:  # -> TypeGuard[SOnArray]:
 
     :seealso: isrot2, isrot
     """
-    return bool(
-        np.linalg.norm(R @ R.T - np.eye(R.shape[0])) < tol * _eps
-        and np.linalg.det(R) > 0
-    )
+    n = R.shape[0]
+    if n == 3:
+        # explicit cofactor expansion avoids the dispatch overhead of
+        # np.linalg.det/norm, which dominates cost for such a small matrix
+        det = (
+            R[0, 0] * (R[1, 1] * R[2, 2] - R[1, 2] * R[2, 1])
+            - R[0, 1] * (R[1, 0] * R[2, 2] - R[1, 2] * R[2, 0])
+            + R[0, 2] * (R[1, 0] * R[2, 1] - R[1, 1] * R[2, 0])
+        )
+        if det <= 0:
+            return False
+        D = R @ R.T
+        D[0, 0] -= 1.0
+        D[1, 1] -= 1.0
+        D[2, 2] -= 1.0
+        return bool(np.sum(D * D) < (tol * _eps) ** 2)
+    elif n == 2:
+        det = R[0, 0] * R[1, 1] - R[0, 1] * R[1, 0]
+        if det <= 0:
+            return False
+        D = R @ R.T
+        D[0, 0] -= 1.0
+        D[1, 1] -= 1.0
+        return bool(np.sum(D * D) < (tol * _eps) ** 2)
+    else:
+        return bool(
+            np.linalg.norm(R @ R.T - np.eye(n)) < tol * _eps and np.linalg.det(R) > 0
+        )
 
 
 def isskew(S: NDArray, tol: float = 20) -> bool:  # -> TypeGuard[sonArray]:
