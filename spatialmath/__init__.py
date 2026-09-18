@@ -51,5 +51,8 @@ try:
     import importlib.metadata
 
     __version__ = importlib.metadata.version("spatialmath-python")
-except:
-    pass
+except importlib.metadata.PackageNotFoundError:
+    # running from a source checkout without an installed/editable
+    # spatialmath-python distribution -- e.g. importing straight from
+    # the repo root
+    __version__ = "unknown"
