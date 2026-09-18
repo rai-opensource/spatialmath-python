@@ -836,7 +836,7 @@ class Line3(BasePoseList):
 
         :param l2: Second line
         :type l2: ``Line3``
-        :param tol: Tolerance in multiples of eps, defaults to 20
+        :param tol: Parallel-direction tolerance in multiples of eps, defaults to 20
         :type tol: float, optional
         :return: Closest distance between lines
         :rtype: float
@@ -847,20 +847,16 @@ class Line3(BasePoseList):
 
         :seealso: :meth:`closest_to_line`
         """
-        if l1 | l2:
-            # lines are parallel
-            l = np.cross(
-                l1.w, l1.v - l2.v * np.dot(l1.w, l2.w) / dot(l2.w, l2.w)
-            ) / np.linalg.norm(l1.w)
-        else:
-            # lines are not parallel
-            if abs(l1 * l2) < tol * _eps:
-                # lines intersect at a point
-                l = 0
-            else:
-                # lines don't intersect, find closest distance
-                l = abs(l1 * l2) / np.linalg.norm(np.cross(l1.w, l2.w)) ** 2
-        return l
+        w1, w2 = l1.uw, l2.uw
+        normal = np.cross(w1, w2)
+        normal_length = np.linalg.norm(normal)
+        delta = l2.pp - l1.pp
+        if normal_length <= tol * _eps:
+            # Parallel lines: remove the component along the common direction.
+            return float(np.linalg.norm(np.cross(delta, w1)))
+        # The displacement along the common normal is the shortest distance.
+        # Unit directions make the result independent of Plucker scaling.
+        return float(abs(np.dot(delta, normal)) / normal_length)
 
     def closest_to_line(
         l1, l2: Line3  # type:ignore
