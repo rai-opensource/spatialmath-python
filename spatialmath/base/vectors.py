@@ -832,7 +832,14 @@ def project(v1: ArrayLike3, v2: ArrayLike3) -> ArrayLike3:
     :return: vector projection of v1 onto v2 (parrallel to v2)
     :rtype: ndarray(n)
     """
-    return np.dot(v1, v2) * v2
+    v1 = getvector(v1)
+    v2 = getvector(v2)
+    scale = np.max(np.abs(v2))
+    if scale == 0:
+        return np.zeros_like(v2)
+    # Normalize the scale before dot products to avoid over/underflow.
+    v2 = v2 / scale
+    return (np.dot(v1, v2) / np.dot(v2, v2)) * v2
 
 
 def orthogonalize(v1: ArrayLike3, v2: ArrayLike3, normalize: bool = True) -> ArrayLike3:

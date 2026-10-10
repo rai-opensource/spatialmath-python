@@ -33,6 +33,23 @@ class TestVector(unittest.TestCase):
     def tearDownClass(cls):
         plt.close("all")
 
+    def test_project_nonunit_direction(self):
+        for scale in (1, 2, -3, 1e-200, 1e200):
+            direction = np.array([scale, scale, 0])
+            nt.assert_allclose(project([3, 1, 4], direction), [2, 2, 0])
+        nt.assert_allclose(project((3, 1, 4), (2, 2, 0)), [2, 2, 0])
+
+    def test_orthogonalize_nonunit_direction(self):
+        result = orthogonalize([3, 1, 4], [2, 2, 0], normalize=False)
+        nt.assert_allclose(result, [1, -1, 4])
+        self.assertAlmostEqual(np.dot(result, [2, 2, 0]), 0)
+        normalized = orthogonalize([3, 1, 4], [2, 2, 0])
+        self.assertAlmostEqual(np.linalg.norm(normalized), 1)
+        self.assertAlmostEqual(np.dot(normalized, [2, 2, 0]), 0)
+
+    def test_project_zero_direction(self):
+        nt.assert_array_equal(project([1, 2, 3], [0, 0, 0]), [0, 0, 0])
+
     def test_unit(self):
         nt.assert_array_almost_equal(unitvec([1, 0, 0]), np.r_[1, 0, 0])
         nt.assert_array_almost_equal(unitvec([0, 1, 0]), np.r_[0, 1, 0])
