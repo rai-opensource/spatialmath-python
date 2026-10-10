@@ -567,13 +567,10 @@ def wrap_mpi2_pi2(theta: ArrayLike) -> Union[float, NDArray]:
 
     """
     theta = getvector(theta)
-    n = theta / np.pi * 2
-    if isinstance(n, np.ndarray):
-        n = n.astype(int)
-    else:
-        n = np.fix(n).astype(int)
-
-    y = np.where(np.bitwise_and(n, 1) == 0, theta - n * np.pi, n * np.pi - theta)
+    theta = np.fmod(theta, 2 * np.pi)
+    theta = np.where(theta > np.pi, theta - 2 * np.pi, theta)
+    theta = np.where(theta < -np.pi, theta + 2 * np.pi, theta)
+    y = np.where(np.abs(theta) <= np.pi / 2, theta, np.copysign(np.pi, theta) - theta)
     if isinstance(y, np.ndarray) and len(y) == 1:
         return float(y[0])
     else:

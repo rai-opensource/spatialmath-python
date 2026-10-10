@@ -278,6 +278,30 @@ class TestVector(unittest.TestCase):
         nt.assert_array_almost_equal(x, [0, 0, 0])
         self.assertIsInstance(x, np.ndarray)
 
+    def test_latitude_wrap_multiple_turns(self):
+        angles = pi * np.arange(-4, 4.5, 0.5)
+        expected = pi * np.array(
+            [0, 0.5, 0, -0.5, 0, 0.5, 0, -0.5, 0, 0.5, 0, -0.5, 0, 0.5, 0, -0.5, 0]
+        )
+        nt.assert_allclose(wrap_mpi2_pi2(angles), expected, atol=1e-14)
+        nt.assert_allclose(angle_wrap(angles, mode="-pi/2:pi/2"), expected, atol=1e-14)
+        for angle, folded in zip(angles, expected):
+            self.assertAlmostEqual(wrap_mpi2_pi2(angle), folded)
+
+    def test_latitude_wrap_boundaries_and_small_angles(self):
+        epsilon = 1e-12
+        angles = np.array(
+            [-pi / 2 - epsilon, -pi / 2 + epsilon, pi / 2 - epsilon, pi / 2 + epsilon]
+        )
+        expected = np.array(
+            [-pi / 2 + epsilon, -pi / 2 + epsilon, pi / 2 - epsilon, pi / 2 - epsilon]
+        )
+        nt.assert_allclose(wrap_mpi2_pi2(angles), expected, rtol=0, atol=1e-15)
+        nt.assert_allclose(
+            wrap_mpi2_pi2([1e-16, -1e-16]), [1e-16, -1e-16], rtol=0, atol=0
+        )
+        self.assertEqual(wrap_mpi2_pi2([]).size, 0)
+
     def test_wrap(self):
         self.assertAlmostEqual(wrap_0_2pi(0), 0)
         self.assertAlmostEqual(wrap_0_2pi(2 * pi), 0)
