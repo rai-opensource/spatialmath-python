@@ -381,6 +381,9 @@ class Quaternion(BasePoseList):
 
              \ln \| q \|,  \langle \frac{\vec{v}}{\| \vec{v} \|} \cos^{-1} \frac{s}{\| q \|} \rangle
 
+        The implementation uses the equivalent :math:`\operatorname{atan2}(\|\vec{v}\|, s)`
+        to avoid the loss of precision in ``acos`` for small rotation angles.
+
         For a ``UnitQuaternion`` the logarithm is a pure quaternion whose vector
         part :math:`\vec{v}` and :math:`\vec{v}/2` is a Euler vector: parallel
         to the axis of rotation and whose norm is the magnitude of rotation.
@@ -403,20 +406,17 @@ class Quaternion(BasePoseList):
         norm = self.norm()
         s = np.log(norm)
         if len(self) == 1:
-            if smb.iszerovec(self._A[1:4]):
+            n = math.hypot(*self._A[1:4])
+            if n == 0:
                 v = np.zeros((3,))
             else:
-                v = math.acos(np.clip(self._A[0] / norm, -1, 1)) * smb.unitvec(
-                    self._A[1:4]
-                )
+                v = math.atan2(n, self._A[0]) * self._A[1:4] / n
             return Quaternion(s=s, v=v)
         else:
-            v = [
-                np.zeros((3,))
-                if smb.iszerovec(A[1:4])
-                else math.acos(np.clip(A[0] / n, -1, 1)) * smb.unitvec(A[1:4])
-                for A, n in zip(self._A, norm)
-            ]
+            v = []
+            for A in self._A:
+                n = math.hypot(*A[1:4])
+                v.append(np.zeros((3,)) if n == 0 else math.atan2(n, A[0]) * A[1:4] / n)
             return Quaternion(s=s, v=np.array(v))
 
     def exp(self, tol: float = 20) -> Quaternion:

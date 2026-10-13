@@ -33,6 +33,23 @@ class TestVector(unittest.TestCase):
     def tearDownClass(cls):
         plt.close("all")
 
+    def test_project_nonunit_direction(self):
+        for scale in (1, 2, -3, 1e-200, 1e200):
+            direction = np.array([scale, scale, 0])
+            nt.assert_allclose(project([3, 1, 4], direction), [2, 2, 0])
+        nt.assert_allclose(project((3, 1, 4), (2, 2, 0)), [2, 2, 0])
+
+    def test_orthogonalize_nonunit_direction(self):
+        result = orthogonalize([3, 1, 4], [2, 2, 0], normalize=False)
+        nt.assert_allclose(result, [1, -1, 4])
+        self.assertAlmostEqual(np.dot(result, [2, 2, 0]), 0)
+        normalized = orthogonalize([3, 1, 4], [2, 2, 0])
+        self.assertAlmostEqual(np.linalg.norm(normalized), 1)
+        self.assertAlmostEqual(np.dot(normalized, [2, 2, 0]), 0)
+
+    def test_project_zero_direction(self):
+        nt.assert_array_equal(project([1, 2, 3], [0, 0, 0]), [0, 0, 0])
+
     def test_unit(self):
         nt.assert_array_almost_equal(unitvec([1, 0, 0]), np.r_[1, 0, 0])
         nt.assert_array_almost_equal(unitvec([0, 1, 0]), np.r_[0, 1, 0])
@@ -277,6 +294,30 @@ class TestVector(unittest.TestCase):
         x = angdiff([1, 2, 3], [1, 2, 3])
         nt.assert_array_almost_equal(x, [0, 0, 0])
         self.assertIsInstance(x, np.ndarray)
+
+    def test_latitude_wrap_multiple_turns(self):
+        angles = pi * np.arange(-4, 4.5, 0.5)
+        expected = pi * np.array(
+            [0, 0.5, 0, -0.5, 0, 0.5, 0, -0.5, 0, 0.5, 0, -0.5, 0, 0.5, 0, -0.5, 0]
+        )
+        nt.assert_allclose(wrap_mpi2_pi2(angles), expected, atol=1e-14)
+        nt.assert_allclose(angle_wrap(angles, mode="-pi/2:pi/2"), expected, atol=1e-14)
+        for angle, folded in zip(angles, expected):
+            self.assertAlmostEqual(wrap_mpi2_pi2(angle), folded)
+
+    def test_latitude_wrap_boundaries_and_small_angles(self):
+        epsilon = 1e-12
+        angles = np.array(
+            [-pi / 2 - epsilon, -pi / 2 + epsilon, pi / 2 - epsilon, pi / 2 + epsilon]
+        )
+        expected = np.array(
+            [-pi / 2 + epsilon, -pi / 2 + epsilon, pi / 2 - epsilon, pi / 2 - epsilon]
+        )
+        nt.assert_allclose(wrap_mpi2_pi2(angles), expected, rtol=0, atol=1e-15)
+        nt.assert_allclose(
+            wrap_mpi2_pi2([1e-16, -1e-16]), [1e-16, -1e-16], rtol=0, atol=0
+        )
+        self.assertEqual(wrap_mpi2_pi2([]).size, 0)
 
     def test_wrap(self):
         self.assertAlmostEqual(wrap_0_2pi(0), 0)

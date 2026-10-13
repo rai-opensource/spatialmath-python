@@ -37,7 +37,7 @@ dependencies = [
     "scipy",
     "matplotlib",
     "ansitable",
-    "typing_extensions",
+    "typing_extensions>=4.0.0",
     "pre-commit",
 ]
 
