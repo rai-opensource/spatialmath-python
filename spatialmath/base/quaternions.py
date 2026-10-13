@@ -16,10 +16,12 @@ import numpy as np
 import spatialmath.base as smb
 from spatialmath.base.argcheck import getunit
 from spatialmath.base.types import *
-import scipy.interpolate as interpolate
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from functools import lru_cache
 import warnings
+
+if TYPE_CHECKING:
+    import scipy.interpolate as interpolate
 
 _eps = np.finfo(np.float64).eps
 
@@ -326,12 +328,19 @@ def qqmul(q1: ArrayLike4, q2: ArrayLike4) -> QuaternionArray:
     """
     q1 = smb.getvector(q1, 4)
     q2 = smb.getvector(q2, 4)
-    s1 = q1[0]
-    v1 = q1[1:4]
-    s2 = q2[0]
-    v2 = q2[1:4]
+    s1, x1, y1, z1 = q1
+    s2, x2, y2, z2 = q2
 
-    return np.r_[s1 * s2 - np.dot(v1, v2), s1 * v2 + s2 * v1 + np.cross(v1, v2)]
+    # explicit scalar arithmetic avoids the generic-dispatch overhead of
+    # np.dot/np.cross on a 3-vector, which dominates cost at this size
+    return np.array(
+        [
+            s1 * s2 - x1 * x2 - y1 * y2 - z1 * z2,
+            s1 * x2 + x1 * s2 + y1 * z2 - z1 * y2,
+            s1 * y2 - x1 * z2 + y1 * s2 + z1 * x2,
+            s1 * z2 + x1 * y2 - y1 * x2 + z1 * s2,
+        ]
+    )
 
 
 def qinner(q1: ArrayLike4, q2: ArrayLike4) -> float:
@@ -398,8 +407,24 @@ def qvmul(q: ArrayLike4, v: ArrayLike3) -> R3:
     """
     q = smb.getvector(q, 4)
     v = smb.getvector(v, 3)
-    qv = qqmul(q, qqmul(qpure(v), qconj(q)))
-    return qv[1:4]
+    s, x, y, z = q
+    vx, vy, vz = v
+
+    # closed-form v' = v + 2s(w x v) + 2 w x (w x v), for q = (s, w) unit;
+    # mathematically equivalent to q * pure(v) * conj(q) but avoids two full
+    # Hamilton products (each wasting work on a zero scalar part) and the
+    # np.cross/np.dot dispatch overhead within them
+    tx = 2 * (y * vz - z * vy)
+    ty = 2 * (z * vx - x * vz)
+    tz = 2 * (x * vy - y * vx)
+
+    return np.array(
+        [
+            vx + s * tx + (y * tz - z * ty),
+            vy + s * ty + (z * tx - x * tz),
+            vz + s * tz + (x * ty - y * tx),
+        ]
+    )
 
 
 def vvmul(qa: ArrayLike3, qb: ArrayLike3) -> R3:
@@ -897,7 +922,7 @@ def _compute_cdf_sin_squared(theta: float):
 @lru_cache(maxsize=1)
 def _generate_inv_cdf_sin_squared_interp(
     num_interpolation_points: int = 256,
-) -> interpolate.interp1d:
+) -> "interpolate.interp1d":
     """
     Computes an interpolation function for the inverse CDF of the distribution of angular magnitude.
 
@@ -910,6 +935,8 @@ def _generate_inv_cdf_sin_squared_interp(
     This function returns interpolation function for the inverse of the integral of the
     pdf of angular magnitudes (2/pi * sin^2(theta/2)), which is not analytically defined.
     """
+    import scipy.interpolate as interpolate  # deferred, it is slow to import
+
     cdf_sin_squared_interp_angles = np.linspace(0, np.pi, num_interpolation_points)
     cdf_sin_squared_interp_values = _compute_cdf_sin_squared(
         cdf_sin_squared_interp_angles

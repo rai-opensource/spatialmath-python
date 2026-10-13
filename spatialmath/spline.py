@@ -11,8 +11,6 @@ from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, List, Optional, Tuple
 
 import numpy as np
-from scipy.interpolate import BSpline, CubicSpline
-from scipy.spatial.transform import Rotation, RotationSpline
 
 from spatialmath import SE3, SO3, Twist3
 from spatialmath.base.transforms3d import tranimate
@@ -121,6 +119,9 @@ class InterpSplineSE3(SplineSE3):
         if normalize_time:
             self.timepoints = self.timepoints - self.timepoints[0]
             self.timepoints = self.timepoints / self.timepoints[-1]
+
+        from scipy.interpolate import CubicSpline  # deferred, scipy is slow to import
+        from scipy.spatial.transform import Rotation, RotationSpline
 
         self.spline_xyz = CubicSpline(
             self.timepoints,
@@ -291,6 +292,8 @@ class BSplineSE3(SplineSE3):
                 knots, [1] * degree
             )  # ensures the curve ends on the last control pose
         self.knots = knots
+
+        from scipy.interpolate import BSpline  # deferred, scipy is slow to import
 
         self.splines = [
             BSpline(knots, self.control_pose_matrix[:, i], degree)

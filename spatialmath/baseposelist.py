@@ -154,6 +154,8 @@ class BasePoseList(UserList, ABC):
 
         #. None, an identity value is created
         #. a numpy.ndarray of the appropriate shape and value which is valid for the subclass
+        #. a stacked numpy.ndarray of shape (N, r, c), where (r, c) is the shape of one value
+           of the subclass, which is a sequence of N values
         #. a list whose elements all meet the criteria above
         #. an instance of the subclass
         #. a list whose elements are all singelton instances of the subclass
@@ -186,6 +188,19 @@ class BasePoseList(UserList, ABC):
 
         elif isinstance(arg, np.ndarray):
             # it's a numpy array
+
+            shape = tuple(self.shape)
+            if len(shape) == 2 and arg.ndim == 3 and arg.shape[1:] == shape:
+                # a stacked (N, r, c) array is a sequence of N values
+                values = [self._import(x, check=check) for x in arg]
+                if any(x is None for x in values):
+                    return False
+                self.data = values
+                return True
+
+            if not check and arg.shape != shape:
+                # check=False skips the value checks, but not the shape check
+                return False
 
             x = self._import(arg, check=check)
             if x is not None:

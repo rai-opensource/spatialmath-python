@@ -510,8 +510,8 @@ def isvector(v: Any, dim: Optional[int] = None) -> bool:
         if dim is None:
             return (
                 (len(s) == 1 and s[0] > 0)
-                or (s[0] == 1 and s[1] > 0)
-                or (s[0] > 0 and s[1] == 1)
+                or (len(s) == 2 and s[0] == 1 and s[1] > 0)
+                or (len(s) == 2 and s[0] > 0 and s[1] == 1)
             )
         else:
             return s == (dim,) or s == (1, dim) or s == (dim, 1)

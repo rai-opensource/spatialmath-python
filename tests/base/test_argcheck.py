@@ -11,6 +11,7 @@ import numpy as np
 import numpy.testing as nt
 
 from spatialmath.base.argcheck import *
+from spatialmath.base.transformsNd import e2h, h2e
 
 
 class Test_check(unittest.TestCase):
@@ -212,9 +213,29 @@ class Test_check(unittest.TestCase):
         self.assertFalse(isvector(np.array([[1, 2, 3]]), 4))
         self.assertFalse(isvector(np.array([[1], [2], [3]]), 4))
 
-    def test_isvector(self):
+    def test_assertvector(self):
         l = [1, 2, 3]
         nt.assert_raises(ValueError, assertvector, l, 4)
+
+    def test_isvector_unsupported_array_shapes(self):
+        for shape in [(), (2, 3), (1, 3, 2), (3, 1, 2), (1, 1, 1), (1, 3, 0)]:
+            with self.subTest(shape=shape):
+                value = np.ones(shape)
+                self.assertFalse(isvector(value))
+                with self.assertRaises(ValueError):
+                    assertvector(value)
+
+    def test_isvector_empty_arrays(self):
+        for shape in [(0,), (1, 0), (0, 1), (0, 0)]:
+            with self.subTest(shape=shape):
+                self.assertFalse(isvector(np.empty(shape)))
+
+    def test_homogeneous_conversion_unsupported_array_shapes(self):
+        for convert in [e2h, h2e]:
+            for shape in [(), (1, 3, 2), (3, 1, 2), (1, 1, 1)]:
+                with self.subTest(convert=convert.__name__, shape=shape):
+                    with self.assertRaises(ValueError):
+                        convert(np.ones(shape))
 
     def test_getvector(self):
         l = [1, 2, 3]

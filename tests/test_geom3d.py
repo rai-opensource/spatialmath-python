@@ -237,6 +237,26 @@ class Line3Test(unittest.TestCase):
         self.assertFalse(L1.isparallel(L3))
         self.assertFalse(L1 | L3)
 
+    def test_parallel_plucker_scale(self):
+        for scale1, scale2 in ((1, 1), (1e-8, 1e-8), (-1e-8, 1e-8)):
+            l1 = Line3.PointDir([0, 0, 0], [scale1, 0, 0])
+            perpendicular = Line3.PointDir([0, 0, 1], [0, scale2, 0])
+            parallel = Line3.PointDir([0, 0, 1], [scale2, 0, 0])
+
+            self.assertFalse(l1.isparallel(perpendicular))
+            self.assertFalse(l1 | perpendicular)
+            self.assertTrue(l1.isparallel(parallel))
+            self.assertTrue(l1 | parallel)
+
+        # A loose angular tolerance must not shrink when Plucker coordinates grow.
+        l1 = Line3.PointDir([0, 0, 0], [1, 0, 0])
+        # Only the directions matter here. A zero moment also avoids
+        # round-off in the constructor's Plucker orthogonality check.
+        almost_parallel = Line3.PointDir([0, 0, 0], [1, 1e-9, 0])
+        scaled = Line3.PointDir([0, 0, 0], [1e8, 0.1, 0])
+        self.assertTrue(l1.isparallel(almost_parallel, tol=1e8))
+        self.assertTrue(l1.isparallel(scaled, tol=1e8))
+
     def test_intersect(self):
         L1 = Line3.PointDir([4, 5, 6], [1, 2, 3])
         L2 = Line3.PointDir([5, 5, 6], [1, 2, 3])
@@ -253,6 +273,22 @@ class Line3Test(unittest.TestCase):
             L3 ^ L4,
         )
 
+    def test_intersect_plucker_scale(self):
+        for scale in (1, 1e-8, 1e8):
+            l1 = Line3.PointDir([0, 0, 0], [scale, 0, 0])
+            crossing = Line3.PointDir([0, 0, 0], [0, scale, 0])
+            skew = Line3.PointDir([0, 0, 1e-7], [0, scale, 0])
+
+            self.assertTrue(l1.isintersecting(crossing))
+            self.assertTrue(l1 ^ crossing)
+            self.assertFalse(l1.isintersecting(skew))
+            self.assertFalse(l1 ^ skew)
+
+        # Tolerance on the miss distance is independent of direction magnitude.
+        l1 = Line3.PointDir([0, 0, 0], [1e8, 0, 0])
+        near = Line3.PointDir([0, 0, 1e-8], [0, 1e8, 0])
+        self.assertTrue(l1.isintersecting(near, tol=1e9))
+
     def test_commonperp(self):
         L1 = Line3.PointDir([4, 5, 6], [0, 0, 1])
         L2 = Line3.PointDir([6, 5, 6], [0, 1, 0])
@@ -266,6 +302,22 @@ class Line3Test(unittest.TestCase):
 
         self.assertTrue(L ^ L1)
         self.assertTrue(L ^ L2)
+
+    def test_commonperp_plucker_scale(self):
+        for scale1, scale2 in ((1, 1), (1e-8, 1e-8), (-1e-8, 1e8)):
+            l1 = Line3.PointDir([1, 2, 3], [scale1, 0, 0])
+            l2 = Line3.PointDir([0, 2, 4], [scale2, scale2, 0])
+
+            common = l1.commonperp(l2)
+            self.assertIsNotNone(common)
+            nt.assert_allclose(common.pp, [0, 2, 0], atol=1e-12)
+            self.assertAlmostEqual(abs(common.uw[2]), 1)
+            self.assertTrue(common.isintersecting(l1))
+            self.assertTrue(common.isintersecting(l2))
+
+            nearest, distance = l1.closest_to_line(l2)
+            nt.assert_allclose(nearest, [0, 2, 3], atol=1e-12)
+            self.assertAlmostEqual(distance, 1)
 
     def test_line(self):
         # mindist

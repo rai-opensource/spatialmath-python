@@ -367,7 +367,12 @@ def ishom2(T: Any, check: bool = False, tol: float = 20) -> bool:  # TypeGuard(S
         and T.shape == (3, 3)
         and (
             not check
-            or (smb.isR(T[:2, :2], tol=tol) and all(T[2, :] == np.array([0, 0, 1])))
+            or (
+                smb.isR(T[:2, :2], tol=tol)
+                and T[2, 0] == 0
+                and T[2, 1] == 0
+                and T[2, 2] == 1
+            )
         )
     )
 
@@ -1340,7 +1345,6 @@ if _matplotlib_exists:
         width: float = 1,
         d1: float = 0.1,
         d2: float = 1.15,
-        **kwargs,
     ):
         """
         Plot a 2D coordinate frame
@@ -1607,9 +1611,18 @@ if _matplotlib_exists:
         """
         dims = kwargs.pop("dims", None)
         ax = kwargs.pop("ax", None)
+
+        # Animate2.run()'s own parameters must not also be forwarded to
+        # trplot2's drawing call, which now validates its keywords strictly
+        # (see Animate2.run's signature for this parameter set)
+        run_kwargs = {
+            k: kwargs.pop(k)
+            for k in ("movie", "repeat", "interval", "nframes", "wait")
+            if k in kwargs
+        }
         anim = smb.animate.Animate2(dims=dims, axes=ax, **kwargs)
         anim.trplot2(T, **kwargs)
-        return anim.run(**kwargs)
+        return anim.run(**run_kwargs)
 
 
 if __name__ == "__main__":  # pragma: no cover

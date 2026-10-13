@@ -312,6 +312,14 @@ class Test2D(unittest.TestCase):
         )
         plt.close("all")
 
+    def test_plot_rejects_unknown_kwarg(self):
+        # trplot2() used to silently swallow an unrecognized keyword via a
+        # bare **kwargs sink instead of raising -- e.g. a typo'd
+        # framelabel= (the real parameter is frame=) drew the frame with
+        # no label and no error at all.
+        with self.assertRaises(TypeError):
+            trplot2(transl2(1, 2), framelabel="A", block=False)
+
 
 # ---------------------------------------------------------------------------------------#
 if __name__ == "__main__":

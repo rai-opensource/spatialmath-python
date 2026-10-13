@@ -378,10 +378,34 @@ def isR(R: NDArray, tol: float = 20) -> bool:  # -> TypeGuard[SOnArray]:
 
     :seealso: isrot2, isrot
     """
-    return bool(
-        np.linalg.norm(R @ R.T - np.eye(R.shape[0])) < tol * _eps
-        and np.linalg.det(R) > 0
-    )
+    n = R.shape[0]
+    if n == 3:
+        # explicit cofactor expansion avoids the dispatch overhead of
+        # np.linalg.det/norm, which dominates cost for such a small matrix
+        det = (
+            R[0, 0] * (R[1, 1] * R[2, 2] - R[1, 2] * R[2, 1])
+            - R[0, 1] * (R[1, 0] * R[2, 2] - R[1, 2] * R[2, 0])
+            + R[0, 2] * (R[1, 0] * R[2, 1] - R[1, 1] * R[2, 0])
+        )
+        if det <= 0:
+            return False
+        D = R @ R.T
+        D[0, 0] -= 1.0
+        D[1, 1] -= 1.0
+        D[2, 2] -= 1.0
+        return bool(np.sum(D * D) < (tol * _eps) ** 2)
+    elif n == 2:
+        det = R[0, 0] * R[1, 1] - R[0, 1] * R[1, 0]
+        if det <= 0:
+            return False
+        D = R @ R.T
+        D[0, 0] -= 1.0
+        D[1, 1] -= 1.0
+        return bool(np.sum(D * D) < (tol * _eps) ** 2)
+    else:
+        return bool(
+            np.linalg.norm(R @ R.T - np.eye(n)) < tol * _eps and np.linalg.det(R) > 0
+        )
 
 
 def isskew(S: NDArray, tol: float = 20) -> bool:  # -> TypeGuard[sonArray]:
@@ -408,6 +432,11 @@ def isskew(S: NDArray, tol: float = 20) -> bool:  # -> TypeGuard[sonArray]:
 
     :seealso: isskewa
     """
+    # NB: unlike isR/isskewa, an explicit-arithmetic fast path here did not
+    # show a reliable win under careful (min-of-repeats) benchmarking - the
+    # only overhead being avoided is np.linalg.norm on an already-cheap
+    # `S + S.T`, not enough to reliably beat the scalar-indexing cost of
+    # unrolling it by hand. Left as the original implementation.
     return bool(np.linalg.norm(S + S.T) < tol * _eps)
 
 
@@ -436,9 +465,42 @@ def isskewa(S: NDArray, tol: float = 20) -> bool:  # -> TypeGuard[senArray]:
 
     :seealso: isskew
     """
-    return bool(np.linalg.norm(S[0:-1, 0:-1] + S[0:-1, 0:-1].T) < tol * _eps) and all(
-        S[-1, :] == 0
-    )
+    n = S.shape[0]
+    if n == 4:
+        # explicit sum-of-squares + scalar bottom-row check avoids the
+        # generic-dispatch overhead of np.linalg.norm and the array
+        # allocation + all() of the bottom-row comparison, same as isR/ishom
+        r00 = S[0, 0] + S[0, 0]
+        r01 = S[0, 1] + S[1, 0]
+        r02 = S[0, 2] + S[2, 0]
+        r11 = S[1, 1] + S[1, 1]
+        r12 = S[1, 2] + S[2, 1]
+        r22 = S[2, 2] + S[2, 2]
+        resid = r00 * r00 + r11 * r11 + r22 * r22 + 2.0 * (
+            r01 * r01 + r02 * r02 + r12 * r12
+        )
+        return bool(
+            resid < (tol * _eps) ** 2
+            and S[3, 0] == 0
+            and S[3, 1] == 0
+            and S[3, 2] == 0
+            and S[3, 3] == 0
+        )
+    elif n == 3:
+        r00 = S[0, 0] + S[0, 0]
+        r01 = S[0, 1] + S[1, 0]
+        r11 = S[1, 1] + S[1, 1]
+        resid = r00 * r00 + r11 * r11 + 2.0 * r01 * r01
+        return bool(
+            resid < (tol * _eps) ** 2
+            and S[2, 0] == 0
+            and S[2, 1] == 0
+            and S[2, 2] == 0
+        )
+    else:
+        return bool(
+            np.linalg.norm(S[0:-1, 0:-1] + S[0:-1, 0:-1].T) < tol * _eps
+        ) and all(S[-1, :] == 0)
 
 
 def iseye(S: NDArray, tol: float = 20) -> bool:
@@ -709,12 +771,15 @@ def h2e(v: NDArray) -> NDArray:
     :param v: homogeneous vector or matrix
     :type v: array_like(n), ndarray(n,m)
     :return: Euclidean vector
-    :rtype: ndarray(n-1), ndarray(n-1,m)
+    :rtype: ndarray(n-1,1), ndarray(n-1,m)
+    :raises ValueError: if ``v`` has fewer than two rows, or is not a vector or
+        matrix
 
-    - If ``v`` is an N-vector, return an (N-1)-column vector where the elements have
-      all been scaled by the last element of ``v``.
-    - If ``v`` is a matrix (NxM), return a matrix (N-1xM), where each column has
-      been scaled by its last element.
+    Each *column* of ``v`` is a homogeneous point, and is scaled by its last element:
+
+    - If ``v`` is an N-vector, shape (N,) or (N,1), or a list or tuple, return an
+      (N-1,1) column vector.
+    - If ``v`` is a matrix (NxM), return a matrix (N-1xM).
 
     .. runblock:: pycon
 
@@ -726,16 +791,24 @@ def h2e(v: NDArray) -> NDArray:
         >>> h2e(h)
 
     .. note:: The result is always a 2D array, a 1D input results in a column vector.
+    .. note:: A 2D array is always a matrix of column vectors, rows are never
+        points.  To convert a row vector of shape (1,N) pass its transpose.  A
+        homogeneous point needs at least two elements, so an input with a single
+        row, such as shape (1,N), raises a ``ValueError``.
 
-    :seealso: e2h
+    :seealso: :func:`e2h`
     """
     if isinstance(v, np.ndarray) and len(v.shape) == 2:
         # dealing with matrix
+        if v.shape[0] < 2:
+            raise ValueError("homogeneous input must have at least 2 rows")
         return v[:-1, :] / v[-1, :][np.newaxis, :]
 
     elif isvector(v):
         # dealing with shape (N,) array
         v = getvector(v, out="col")
+        if v.shape[0] < 2:
+            raise ValueError("homogeneous input must have at least 2 elements")
         return v[0:-1] / v[-1]
 
     else:
@@ -749,12 +822,15 @@ def e2h(v: NDArray) -> NDArray:
     :param v: Euclidean vector or matrix
     :type v: array_like(n), ndarray(n,m)
     :return: homogeneous vector
-    :rtype: ndarray(n+1,m)
+    :rtype: ndarray(n+1,1), ndarray(n+1,m)
+    :raises ValueError: if ``v`` is not a vector or matrix
 
-    - If ``v`` is an N-vector, return an (N+1)-column vector where a value of 1 has
-      been appended as the last element.
-    - If ``v`` is a matrix (NxM), return a matrix (N+1xM), where each column has
-      been appended with a value of 1, ie. a row of ones has been appended to the matrix.
+    Each *column* of ``v`` is a Euclidean point, and has a 1 appended:
+
+    - If ``v`` is an N-vector, shape (N,) or (N,1), or a list or tuple, return an
+      (N+1,1) column vector.
+    - If ``v`` is a matrix (NxM), return a matrix (N+1xM), ie. a row of ones has
+      been appended to the matrix.
 
     .. runblock:: pycon
 
@@ -765,8 +841,12 @@ def e2h(v: NDArray) -> NDArray:
         >>> e2h(e)
 
     .. note:: The result is always a 2D array, a 1D input results in a column vector.
+    .. note:: A 2D array is always a matrix of column vectors, rows are never
+        points.  A row vector of shape (1,N) is therefore N one-dimensional
+        points and the result has shape (2,N).  To convert a row vector to a
+        single point pass its transpose.
 
-    :seealso: e2h
+    :seealso: :func:`h2e`
     """
     if isinstance(v, np.ndarray) and len(v.shape) == 2:
         # dealing with matrix

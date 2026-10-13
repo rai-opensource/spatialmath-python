@@ -380,6 +380,42 @@ class TestUnitQuaternion(unittest.TestCase):
         R = rotz(-pi)
         qcompare(UnitQuaternion(R), np.r_[cos(pi / 2), sin(pi / 2) * np.r_[0, 0, 1]])
 
+    def test_conj(self):
+        # plain Quaternion: conj negates the vector part only
+        q = Quaternion([1, 2, 3, 4])
+        qcompare(q.conj(), [1, -2, -3, -4])
+        self.assertIsInstance(q.conj(), Quaternion)
+
+        # UnitQuaternion, positive scalar part: matches plain conjugate
+        u = UnitQuaternion(rotx(0.3))
+        self.assertGreater(u.A[0], 0)
+        qcompare(u.conj(), qconj(u.A))
+        self.assertIsInstance(u.conj(), UnitQuaternion)
+
+        # UnitQuaternion, negative scalar part (reachable via norm=False,
+        # e.g. a >180 deg rotation before its own construction-time
+        # canonicalization -- constructed directly here to isolate conj()):
+        # conj() must NOT re-canonicalize the result's sign to be
+        # positive, unlike normal UnitQuaternion construction. If it did,
+        # this would silently return -conj(u) instead of the true
+        # conjugate, breaking the identity u * conj(u) == 1 that
+        # downstream algebra (e.g. DualQuaternion) depends on.
+        u = UnitQuaternion(np.array([[-0.5, 0.5, 0.5, 0.5]]), norm=False)
+        self.assertLess(u.A[0], 0)
+        qcompare(u.conj(), [-0.5, -0.5, -0.5, -0.5])
+        self.assertIsInstance(u.conj(), UnitQuaternion)
+
+        # the algebraic identity that must hold regardless of sign
+        qcompare(u * u.conj(), [1, 0, 0, 0])
+
+        # multi-valued UnitQuaternion, mixed signs
+        us = UnitQuaternion(
+            np.array([[-0.5, 0.5, 0.5, 0.5], [0.5, -0.5, -0.5, -0.5]]), norm=False
+        )
+        conjs = us.conj()
+        qcompare(conjs.data[0], [-0.5, -0.5, -0.5, -0.5])
+        qcompare(conjs.data[1], [0.5, 0.5, 0.5, 0.5])
+
     def test_convert(self):
         # test conversion from rotn matrix to u.quaternion and back
         R = rotx(0)

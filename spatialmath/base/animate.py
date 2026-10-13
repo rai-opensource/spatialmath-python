@@ -163,8 +163,9 @@ class Animate:
             else:
                 self.start = start
 
-        # draw axes at the origin
-        smb.trplot(self.start, ax=self, **kwargs)
+        # Store frame geometry at the origin so each absolute pose is applied once.
+        smb.trplot(np.identity(4), ax=self, **kwargs)
+        self._draw(self.start)
 
     def set_proj_type(self, proj_type: str):
         self.ax.set_proj_type(proj_type)

@@ -261,6 +261,64 @@ class TestND(unittest.TestCase):
 
         nt.assert_almost_equal(h2e([2, 4, 6, 2]), np.c_[1, 2, 3].T)
 
+    def test_e2h_vector(self):
+        # list, tuple, 1D array, column vector all give an (N+1,1) column
+        expected = np.c_[1, 2, 3, 1].T
+        for v in ([1, 2, 3], (1, 2, 3), np.r_[1, 2, 3], np.c_[1, 2, 3].T):
+            with self.subTest(type=type(v).__name__):
+                out = e2h(v)
+                self.assertEqual(out.shape, (4, 1))
+                nt.assert_almost_equal(out, expected)
+
+    def test_e2h_matrix(self):
+        # each column gains a trailing 1
+        e = np.c_[[1, 2], [3, 4], [5, 6]]
+        nt.assert_almost_equal(e2h(e), np.array([[1, 3, 5], [2, 4, 6], [1, 1, 1]]))
+
+    def test_h2e_vector(self):
+        # the result is scaled by the last element
+        expected = np.c_[1, 2, 3].T
+        for v in ([2, 4, 6, 2], (2, 4, 6, 2), np.r_[2, 4, 6, 2], np.c_[2, 4, 6, 2].T):
+            with self.subTest(type=type(v).__name__):
+                out = h2e(v)
+                self.assertEqual(out.shape, (3, 1))
+                nt.assert_almost_equal(out, expected)
+
+    def test_h2e_matrix(self):
+        # each column is scaled by its own last element
+        h = np.c_[[1, 2, 1], [3, 4, 2], [5, 6, 1]]
+        nt.assert_almost_equal(h2e(h), np.array([[1, 1.5, 5], [2, 2, 6]]))
+
+    def test_homog_roundtrip(self):
+        v = np.c_[[1, 2, 3], [-4, 5, 0.5]]
+        nt.assert_almost_equal(h2e(e2h(v)), v)
+
+        h = np.c_[[2, 4, 6, 2], [3, 6, 9, 3]]
+        nt.assert_almost_equal(e2h(h2e(h)), np.c_[[1, 2, 3, 1], [1, 2, 3, 1]])
+
+    def test_homog_row_vector_is_matrix(self):
+        # Documents (rather than endorses) current behavior: a 2D array is
+        # always a matrix of column vectors, so a (1,N) row is N 1-vectors.
+        # Changing this would silently break callers passing 1xN matrices.
+        self.assertEqual(e2h(np.ones((1, 3))).shape, (2, 3))
+        nt.assert_almost_equal(e2h(np.c_[[1, 2, 3]].T), np.array([[1, 2, 3], [1, 1, 1]]))
+        nt.assert_almost_equal(h2e(np.array([[1.0, 2, 4], [1, 2, 2]])), np.array([[1, 1, 2]]))
+
+    def test_h2e_too_few_rows(self):
+        # a homogeneous point needs at least 2 elements, h2e of 1 row would be
+        # an empty (0,N) array
+        for bad in (np.ones((1, 3)), np.ones((1, 1)), [5], 5, np.ones((1,))):
+            with self.subTest(value=repr(bad)):
+                with self.assertRaises(ValueError):
+                    h2e(bad)
+
+    def test_homog_bad_type(self):
+        for convert in (e2h, h2e):
+            for bad in ("hello", None, np.empty((0,))):
+                with self.subTest(convert=convert.__name__, value=repr(bad)):
+                    with self.assertRaises(ValueError):
+                        convert(bad)
+
     def test_homtrans(self):
         # 3D
         T = trotx(pi / 2, t=[1, 2, 3])
