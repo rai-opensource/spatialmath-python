@@ -296,6 +296,23 @@ class Twist3(BaseTwist):
     3D rigid body transformation which is the unique elements of the Lie
     algebra se(3) of the corresponding SE(3) matrix.
 
+    A twist can be used in two ways which share the same 6-vector, the same
+    :math:`[\vec{v}, \omega]` layout and the same algebra:
+
+    - as a *displacement*, where ``exp(S)`` is the pose reached by following the
+      screw motion and ``exp(S * theta)`` scales it.  ``S`` is often a unit
+      twist, see :meth:`unit`.  This is the usage in Robotics, Vision & Control
+      and in Modern Robotics.
+    - as a *velocity*, where ``S`` has units of m/s and rad/s and ``exp(S * dt)``
+      is the pose change over a time ``dt``.  This is the meaning of ``Twist``
+      in ROS.  The typed counterpart, which also has acceleration, force and
+      momentum, is :class:`~spatialmath.spatialvector.SpatialVelocity`.
+
+    Properties that describe the screw axis, such as :attr:`pitch`,
+    :attr:`pole` and :meth:`line`, are unchanged by scaling the twist so apply
+    to both.  Those that depend on its magnitude, such as :attr:`theta`, are
+    an angle in the first usage and a rate in the second.
+
     :References:
         - Robotics, Vision & Control for Python, Section 2.3.2.3, P. Corke, Springer 2023.
         - Modern Robotics, Lynch & Park, Cambridge 2017
@@ -1255,6 +1272,20 @@ class Twist3(BaseTwist):
 
 
 class Twist2(BaseTwist):
+    r"""
+    2D twist class
+
+    A Twist2 object holds the parameters of a twist, a representation of a
+    2D rigid body transformation which is the unique elements of the Lie
+    algebra se(2) of the corresponding SE(2) matrix.  It is a 3-vector
+    :math:`[\vec{v}, \omega]`.
+
+    As for :class:`Twist3` it can be used as a *displacement*, where ``exp(S)``
+    is the pose reached by following the motion, or as a *velocity*, where
+    ``exp(S * dt)`` is the pose change over a time ``dt``.  Properties that
+    describe the axis, such as :attr:`pole`, are unchanged by scaling the twist.
+    """
+
     def __init__(self, arg=None, w=None, check=True):
         r"""
             Construct a new 2D Twist object
