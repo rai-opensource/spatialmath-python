@@ -67,6 +67,12 @@ class Twist3dTest(unittest.TestCase):
         T = SE3.Rx(0) * SE3(1, 2, 3)
         array_compare(Twist3(T).SE3(), T)
 
+        # from an SE(3) matrix, with and without checking
+        for check in (True, False):
+            tw = Twist3(T.A, check=check)
+            self.assertEqual(len(tw), 1)
+            array_compare(tw.SE3(), T)
+
     def test_conversion_se3(self):
         s = [1, 2, 3, 4, 5, 6]
         x = Twist3(s)
@@ -82,6 +88,12 @@ class Twist3dTest(unittest.TestCase):
                 ]
             ),
         )
+
+        # from an se(3) matrix, with and without checking
+        for check in (True, False):
+            tw = Twist3(x.skewa(), check=check)
+            self.assertEqual(len(tw), 1)
+            array_compare(tw, x)
 
     def test_conversion_Plucker(self):
         pass
@@ -293,6 +305,12 @@ class Twist2dTest(unittest.TestCase):
         self.assertIsInstance(tw.SE2(), SE2)
         self.assertEqual(len(tw.SE2()), 1)
 
+        # from an SE(2) matrix, with and without checking
+        for check in (True, False):
+            tw = Twist2(T.A, check=check)
+            self.assertEqual(len(tw), 1)
+            array_compare(tw.SE2(), T)
+
     def test_conversion_se2(self):
         s = [1, 2, 3]
         x = Twist2(s)
@@ -300,6 +318,12 @@ class Twist2dTest(unittest.TestCase):
         array_compare(
             x.skewa(), np.array([[0.0, -3.0, 1.0], [3.0, 0.0, 2.0], [0.0, 0.0, 0.0]])
         )
+
+        # from an se(2) matrix, with and without checking
+        for check in (True, False):
+            tw = Twist2(x.skewa(), check=check)
+            self.assertEqual(len(tw), 1)
+            array_compare(tw, x)
 
     def test_list_constuctor(self):
         x = Twist2([1, 0, 0])
