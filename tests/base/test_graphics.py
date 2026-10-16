@@ -9,6 +9,39 @@ from spatialmath.base import *
 # TODO check they actually create artists
 
 
+class TestWindowTitle(unittest.TestCase):
+    def teardown_method(self, method):
+        plt.close("all")
+
+    def test_sets_the_title_of_a_managed_figure(self):
+        from types import SimpleNamespace
+        from unittest import mock
+
+        manager = mock.Mock()
+        fig = SimpleNamespace(canvas=SimpleNamespace(manager=manager))
+        self.assertTrue(set_window_title(fig, "a title"))
+        manager.set_window_title.assert_called_once_with("a title")
+
+    def test_pyplot_figure(self):
+        # the Agg manager has no window, but does accept a title
+        fig = plt.figure()
+        self.assertIsInstance(set_window_title(fig, "a title"), bool)
+
+    def test_figure_without_a_manager(self):
+        from matplotlib.figure import Figure
+
+        self.assertFalse(set_window_title(Figure(), "a title"))
+
+    def test_manager_without_the_method(self):
+        from types import SimpleNamespace
+
+        class Manager:
+            pass
+
+        fig = SimpleNamespace(canvas=SimpleNamespace(manager=Manager()))
+        self.assertFalse(set_window_title(fig, "a title"))
+
+
 class TestGraphics(unittest.TestCase):
     def teardown_method(self, method):
         plt.close("all")

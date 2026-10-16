@@ -1783,6 +1783,37 @@ try:
         else:
             raise ValueError("nd is 2 or 3")
 
+    def set_window_title(fig: plt.Figure, title: str) -> bool:
+        """
+        Set the title of the window containing a figure, if it has one
+
+        :param fig: the figure
+        :type fig: Figure
+        :param title: the window title
+        :type title: str
+        :return: True if the title was set
+        :rtype: bool
+
+        A figure has a window only if it is managed by pyplot and the backend
+        provides one.  A figure on a headless backend such as ``Agg``, or one
+        created directly with ``matplotlib.figure.Figure``, does not, and then
+        nothing is done and False is returned.
+
+        Example::
+
+            >>> from spatialmath.base import plotvol2, set_window_title
+            >>> ax = plotvol2(5)
+            >>> set_window_title(ax.figure, "my plot")
+
+        .. note:: The title of the window is not the title of the axes, see
+            :meth:`matplotlib.axes.Axes.set_title`.
+        """
+        manager = getattr(fig.canvas, "manager", None)
+        if manager is not None and hasattr(manager, "set_window_title"):
+            manager.set_window_title(title)
+            return True
+        return False
+
     def isnotebook() -> bool:
         """
         Determine if code is being run from a Jupyter notebook
@@ -1848,4 +1879,7 @@ except ImportError:  # pragma: no cover
         raise NotImplementedError("Matplotlib is not installed: pip install matplotlib")
 
     def plot_cylinder(*args, **kwargs) -> None:
+        raise NotImplementedError("Matplotlib is not installed: pip install matplotlib")
+
+    def set_window_title(*args, **kwargs) -> None:
         raise NotImplementedError("Matplotlib is not installed: pip install matplotlib")

@@ -42,6 +42,7 @@ _LAZY_ATTRS = {
     "plot_cone": "graphics",
     "plot_cuboid": "graphics",
     "axes_logic": "graphics",
+    "set_window_title": "graphics",
     "plotvol2": "graphics",
     "plotvol3": "graphics",
     "expand_dims": "graphics",
@@ -391,6 +392,7 @@ __all__ = [
     "plot_cone",
     "plot_cuboid",
     "axes_logic",
+    "set_window_title",
     "expand_dims",
     "isnotebook",
     # spatial.base.numeric
