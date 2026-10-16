@@ -1759,11 +1759,18 @@ try:
             * A -> [-A, A, -A, A, -A, A]
             * [A,B] -> [A, B, A, B, A, B]
             * [A,B,C,D,E,F] -> [A, B, C, D, E, F]
+
+        A scalar is symmetric about zero, so its sign is ignored: ``-A`` is the
+        same as ``A``.  For the other forms the values are returned as given and
+        no ordering check is made.  If a minimum is greater than the
+        corresponding maximum, matplotlib will invert that axis when the limits
+        are applied, which is a convenient way to flip an axis direction.
         """
         dim = smb.getvector(dim)
 
         if nd == 2:
             if len(dim) == 1:
+                dim = abs(dim)
                 return np.r_[-dim, dim, -dim, dim]
             elif len(dim) == 2:
                 return np.r_[dim[0], dim[1], dim[0], dim[1]]
@@ -1773,6 +1780,7 @@ try:
                 raise ValueError("bad dimension specified")
         elif nd == 3:
             if len(dim) == 1:
+                dim = abs(dim)
                 return np.r_[-dim, dim, -dim, dim, -dim, dim]
             elif len(dim) == 2:
                 return np.r_[dim[0], dim[1], dim[0], dim[1], dim[0], dim[1]]

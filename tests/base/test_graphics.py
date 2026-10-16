@@ -13,6 +13,23 @@ class TestGraphics(unittest.TestCase):
     def teardown_method(self, method):
         plt.close("all")
 
+    def test_expand_dims(self):
+        np.testing.assert_array_equal(expand_dims(3), [-3, 3, -3, 3])
+        np.testing.assert_array_equal(expand_dims(-3), [-3, 3, -3, 3])
+        np.testing.assert_array_equal(expand_dims([1, 2]), [1, 2, 1, 2])
+        np.testing.assert_array_equal(expand_dims([1, 2, 3, 4]), [1, 2, 3, 4])
+        # reversed limits are passed through, matplotlib inverts the axis
+        np.testing.assert_array_equal(expand_dims([2, 1]), [2, 1, 2, 1])
+
+        np.testing.assert_array_equal(expand_dims(-3, nd=3), [-3, 3, -3, 3, -3, 3])
+        np.testing.assert_array_equal(expand_dims([1, 2], nd=3), [1, 2] * 3)
+        np.testing.assert_array_equal(expand_dims([1, 2, 3, 4, 5, 6], nd=3), [1, 2, 3, 4, 5, 6])
+
+        with self.assertRaises(ValueError):
+            expand_dims([1, 2, 3])
+        with self.assertRaises(ValueError):
+            expand_dims([1, 2, 3, 4], nd=3)
+
     @pytest.mark.skipif(
         sys.platform.startswith("darwin") and sys.version_info < (3, 11),
         reason="tkinter bug with mac",
