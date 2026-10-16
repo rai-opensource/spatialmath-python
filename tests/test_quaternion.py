@@ -943,6 +943,60 @@ class TestQuaternion(unittest.TestCase):
         self.assertIsInstance(qq, UnitQuaternion)
         nt.assert_array_almost_equal(qq.vec, np.r_[1, 0, 0, 0])
 
+    def test_log_small_rotation(self):
+        axis = np.array([1.0, -2.0, 3.0]) / math.sqrt(14)
+        for angle in (1e-12, -1e-9, 1e-7, 1e-4, 0.3):
+            for scale in (1.0, 3.0, 1e-6):
+                with self.subTest(angle=angle, scale=scale):
+                    values = scale * np.r_[cos(angle / 2), sin(angle / 2) * axis]
+                    q = UnitQuaternion(values) if scale == 1 else Quaternion(values)
+                    original = q.vec.copy()
+                    qlog = q.log()
+                    nt.assert_allclose(qlog.v, angle / 2 * axis, rtol=1e-13, atol=0)
+                    self.assertAlmostEqual(qlog.s, math.log(scale))
+                    nt.assert_allclose(qlog.exp().vec, q.vec, rtol=1e-13, atol=0)
+                    nt.assert_array_equal(q.vec, original)
+
+    def test_log_small_rotation_sequence(self):
+        angles = np.array([1e-12, -1e-9, 1e-7, 0.3])
+        axes = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 0, 0]])
+        values = np.column_stack(
+            (np.cos(angles / 2), np.sin(angles[:, None] / 2) * axes)
+        )
+        expected = angles[:, None] / 2 * axes
+        for scales in (
+            np.ones(4),
+            np.array([2.0, 3.0, 4.0, 5.0]),
+            1e-6 * np.ones(4),
+        ):
+            with self.subTest(scales=scales):
+                scaled = scales[:, None] * values
+                q = (
+                    UnitQuaternion(scaled)
+                    if np.all(scales == 1)
+                    else Quaternion(list(scaled))
+                )
+                original = q.vec.copy()
+                qlog = q.log()
+                self.assertEqual(len(qlog), len(q))
+                nt.assert_allclose(qlog.v, expected, rtol=1e-13, atol=0)
+                nt.assert_allclose(qlog.s, np.log(scales), atol=1e-15)
+                for i in range(len(q)):
+                    nt.assert_allclose(qlog[i].exp().vec, scaled[i], rtol=1e-13, atol=0)
+                    nt.assert_allclose(qlog[i].vec, q[i].log().vec, rtol=1e-13, atol=0)
+                nt.assert_array_equal(q.vec, original)
+
+    def test_log_near_negative_real(self):
+        # Keep the principal quaternion branch near pi, rather than folding
+        # a negative scalar part onto the small-angle branch.
+        angle = 1e-7
+        q = Quaternion([-cos(angle), sin(angle), 0, 0])
+        expected = np.r_[0, pi - angle, 0, 0]
+        nt.assert_allclose(q.log().vec, expected, rtol=0, atol=1e-15)
+        nt.assert_allclose(
+            Quaternion([q, q]).log().vec, [expected, expected], rtol=0, atol=1e-15
+        )
+
     def test_concat(self):
         u = Quaternion()
         uu = Quaternion([u, u, u, u])

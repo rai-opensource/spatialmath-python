@@ -1,6 +1,6 @@
 [project]
 name = "spatialmath-python"
-version = "1.1.17"
+version = "1.1.18"
 authors = [
   { name="Peter Corke", email="rvc@petercorke.com" },
 ]
@@ -37,7 +37,7 @@ dependencies = [
     "scipy",
     "matplotlib",
     "ansitable",
-    "typing_extensions",
+    "typing_extensions>=4.0.0",
     "pre-commit",
 ]
 

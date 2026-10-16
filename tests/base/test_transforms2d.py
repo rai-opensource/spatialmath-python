@@ -174,6 +174,22 @@ class Test2D(unittest.TestCase):
         T2 = ICP2d(p2, p1, T=xyt2tr([1, 2, 0.2]))
         nt.assert_almost_equal(T, T2)
 
+    def test_icp2d_returns_valid_se2(self):
+        # noisy correspondences plus a forced iteration count accumulate
+        # roundoff error in the T = T @ new_T composition -- the result
+        # must still pass ishom2(check=True), ie. be exactly orthonormal.
+        # seed fixed: this configuration reliably triggers the drift.
+        np.random.seed(0)
+        p1 = np.random.uniform(size=(2, 30))
+        T = xyt2tr([1, 2, 0.2])
+
+        p2 = homtrans(T, p1) + np.random.normal(scale=0.01, size=(2, 30))
+        k = np.random.permutation(p2.shape[1])
+        p2 = p2[:, k]
+
+        T2 = ICP2d(p2, p1, max_iter=100, min_delta_err=0)
+        self.assertTrue(ishom2(T2, check=True))
+
     def test_print2(self):
         T = transl2(1, 2) @ trot2(0.3)
 

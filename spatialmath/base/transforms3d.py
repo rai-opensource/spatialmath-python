@@ -61,6 +61,11 @@ if TYPE_CHECKING:
 
 _eps = np.finfo(np.float64).eps
 
+# read-only constant: safe to use directly as an operand in expressions that
+# produce a new array (e.g. `_EYE3 + ...`), never in a context that could
+# mutate it in place or return it directly to a caller
+_EYE3 = np.eye(3)
+
 # ---------------------------------------------------------------------------------------#
 
 
@@ -391,7 +396,13 @@ def ishom(T: Any, check: bool = False, tol: float = 20) -> bool:
         and T.shape == (4, 4)
         and (
             not check
-            or (isR(T[:3, :3], tol=tol) and all(T[3, :] == np.array([0, 0, 0, 1])))
+            or (
+                isR(T[:3, :3], tol=tol)
+                and T[3, 0] == 0
+                and T[3, 1] == 0
+                and T[3, 2] == 0
+                and T[3, 3] == 1
+            )
         )
     )
 
@@ -1364,7 +1375,7 @@ def trlog(
         else:
             # general case
             Ginv = (
-                np.eye(3)
+                _EYE3
                 - S / 2
                 + (1 / theta - 1 / math.tan(theta / 2) / 2) / theta * S @ S
             )
@@ -1383,8 +1394,7 @@ def trlog(
             diagonal = R.diagonal()
             k = diagonal.argmax()
             mx = diagonal[k]
-            I = np.eye(3)
-            col = R[:, k] + I[:, k]
+            col = R[:, k] + _EYE3[:, k]
             w = col / np.sqrt(2 * (1 + mx))
             theta = math.pi
             if twist:
@@ -1523,7 +1533,7 @@ def trexp(S, theta=None, check=True):
 
         skw = skew(w)
         V = (
-            np.eye(3) * theta
+            _EYE3 * theta
             + (1.0 - math.cos(theta)) * skw
             + (theta - math.sin(theta)) * skw @ skw
         )
@@ -1600,17 +1610,36 @@ def trnorm(T: SE3Array) -> SE3Array:
     if not ishom(T) and not isrot(T):
         raise ValueError("expecting SO(3) or SE(3)")
 
-    o = T[:3, 1]
-    a = T[:3, 2]
+    # explicit scalar arithmetic avoids the generic-dispatch overhead of
+    # np.cross/unitvec/np.stack (built for arbitrary shapes/broadcasting),
+    # which dominates cost for a fixed 3x3 rotation submatrix
+    o0, o1, o2 = T[0, 1], T[1, 1], T[2, 1]
+    a0, a1, a2 = T[0, 2], T[1, 2], T[2, 2]
 
-    n = np.cross(o, a)  # N = O x A
-    o = np.cross(a, n)  # (a)];
-    R = np.stack((unitvec(n), unitvec(o), unitvec(a)), axis=1)
+    # n = o x a
+    n0 = o1 * a2 - o2 * a1
+    n1 = o2 * a0 - o0 * a2
+    n2 = o0 * a1 - o1 * a0
 
-    if ishom(T):
-        return rt2tr(cast(SO3Array, R), T[:3, 3])
-    else:
-        return R
+    # o = a x n, to re-orthogonalize
+    o0, o1, o2 = a1 * n2 - a2 * n1, a2 * n0 - a0 * n2, a0 * n1 - a1 * n0
+
+    n_norm = (n0 * n0 + n1 * n1 + n2 * n2) ** 0.5
+    o_norm = (o0 * o0 + o1 * o1 + o2 * o2) ** 0.5
+    a_norm = (a0 * a0 + a1 * a1 + a2 * a2) ** 0.5
+
+    is_hom = ishom(T)
+    R = np.empty((4, 4) if is_hom else (3, 3))
+    R[0, 0], R[1, 0], R[2, 0] = n0 / n_norm, n1 / n_norm, n2 / n_norm
+    R[0, 1], R[1, 1], R[2, 1] = o0 / o_norm, o1 / o_norm, o2 / o_norm
+    R[0, 2], R[1, 2], R[2, 2] = a0 / a_norm, a1 / a_norm, a2 / a_norm
+
+    if is_hom:
+        R[3, :3] = 0.0
+        R[3, 3] = 1.0
+        R[:3, 3] = T[:3, 3]
+
+    return cast(SE3Array, R)
 
 
 @overload
@@ -2727,7 +2756,6 @@ def tr2adjoint(T):
     :SymPy: supported
     """
 
-    Z = np.zeros((3, 3), dtype=T.dtype)
     if T.shape == (3, 3):
         # SO(3) adjoint
         R = T
@@ -2735,12 +2763,14 @@ def tr2adjoint(T):
     elif T.shape == (4, 4):
         # SE(3) adjoint
         (R, t) = tr2rt(T)
-        # fmt: off
-        return np.block([
-                    [R, skew(t) @ R],
-                    [Z, R]
-                ])
-        # fmt: on
+        # direct block assignment avoids np.block's generic nested-list
+        # assembly overhead, which dominates cost for this fixed 6x6-from-
+        # four-3x3 layout; dtype preserved for SymPy support
+        A = np.zeros((6, 6), dtype=T.dtype)
+        A[:3, :3] = R
+        A[:3, 3:] = skew(t) @ R
+        A[3:, 3:] = R
+        return A
     else:
         raise ValueError("bad argument")
 
@@ -2783,7 +2813,7 @@ def rodrigues(w: ArrayLike3, theta: Optional[float] = None) -> SO3Array:
 
     skw = skew(cast(ArrayLike3, w))
     return (
-        np.eye(skw.shape[0])
+        _EYE3
         + math.sin(theta) * skw
         + (1.0 - math.cos(theta)) * skw @ skw
     )

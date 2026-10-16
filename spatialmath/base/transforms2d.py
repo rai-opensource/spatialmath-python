@@ -367,7 +367,12 @@ def ishom2(T: Any, check: bool = False, tol: float = 20) -> bool:  # TypeGuard(S
         and T.shape == (3, 3)
         and (
             not check
-            or (smb.isR(T[:2, :2], tol=tol) and all(T[2, :] == np.array([0, 0, 1])))
+            or (
+                smb.isR(T[:2, :2], tol=tol)
+                and T[2, 0] == 0
+                and T[2, 1] == 0
+                and T[2, 2] == 1
+            )
         )
     )
 
@@ -1312,7 +1317,11 @@ def ICP2d(
 
         num_iter += 1
 
-    return T
+    # T accumulates roundoff error through repeated composition
+    # (T = T @ new_T) over the iterations above, and can drift just
+    # outside ishom2()'s orthonormality tolerance -- restore exact
+    # orthonormality before returning.
+    return trnorm2(T)
 
 
 if _matplotlib_exists:

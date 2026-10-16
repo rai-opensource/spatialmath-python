@@ -17,6 +17,36 @@ import sys
 import matplotlib.pyplot as plt
 
 
+@pytest.mark.parametrize(
+    "p1, w1, p2, w2, expected",
+    [
+        ([0, 0, 0], [1, 0, 0], [0, 3, 4], [1, 0, 0], 5),
+        ([1, 2, 3], [1, 0, 0], [4, 2, 3], [-1, 0, 0], 0),
+        ([1, 2, 3], [2, 0, 0], [1, 2, 3], [0, 5, 0], 0),
+        ([0, 0, 0], [1, 0, 0], [0, 0, 2], [0.6, 0.8, 0], 2),
+        ([1, 2, 3], [2, 0, 0], [1, 2, 5], [3, 4, 0], 2),
+    ],
+    ids=["parallel", "coincident", "intersecting", "skew-unit", "skew-scaled"],
+)
+@pytest.mark.parametrize("scale1, scale2", [(1, 1), (2, 5), (-2, 0.25), (1e-8, 1e-8)])
+def test_line_distance(p1, w1, p2, w2, expected, scale1, scale2):
+    # Scaling either set of Plucker coordinates does not change the line.
+    line1 = Line3.PointDir(p1, np.array(w1) * scale1)
+    line2 = Line3.PointDir(p2, np.array(w2) * scale2)
+    for first, second in [(line1, line2), (line2, line1)]:
+        distance = first.distance(second)
+        assert np.isscalar(distance)
+        assert distance == pytest.approx(expected, abs=1e-12)
+
+
+def test_line_distance_parallel_tolerance():
+    line1 = Line3.PointDir([0, 0, 0], [1, 0, 0])
+    line2 = Line3.PointDir([0, 1, 2], [1, 1e-8, 0])
+    assert line1.distance(line2) == pytest.approx(2)
+    # A larger angular tolerance treats the directions as parallel.
+    assert line1.distance(line2, tol=1e8) == pytest.approx(np.sqrt(5))
+
+
 class Line3Test(unittest.TestCase):
     # Primitives
     def test_constructor1(self):

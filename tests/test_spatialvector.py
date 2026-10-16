@@ -228,6 +228,29 @@ class TestSpatialVector(unittest.TestCase):
         # twist x v, twist x a, twist x F
         pass
 
+    def test_spatial_transform_duality(self):
+        # A pose transform acts on motion (velocity/acceleration) by the
+        # adjoint Ad, and on force/momentum by the coadjoint Ad^-T, because
+        # force space is dual to motion space (Featherstone, "Rigid Body
+        # Dynamics Algorithms"). With a nonzero translation the SE(3) adjoint
+        # is not orthogonal, so Ad^-T differs from the adjoint transpose Ad^T.
+        T = SE3(1, 0, 0)
+        # ordering is [v(0:3); omega(3:6)] (see SE3.Ad docstring)
+        v = SpatialVelocity([0, 0, 0, 0, 1, 0])
+        f = SpatialForce([0, 0, 1, 0, 0, 0])
+        v2, f2 = T * v, T * f
+
+        # Instantaneous power f . v is frame-invariant; this is the self-oracle
+        # and is independent of the [v; omega] vs [omega; v] convention.
+        nt.assert_almost_equal(f2.A @ v2.A, f.A @ v.A)
+
+        # Explicit transformed wrench: the moment component flips sign.
+        nt.assert_almost_equal(f2.A, np.r_[0, 0, 1, 0, -1, 0])
+
+        # SpatialMomentum exercises the general SpatialVector.__rmul__ path.
+        m2 = T * SpatialMomentum([0, 0, 1, 0, 0, 0])
+        nt.assert_almost_equal(m2.A, np.r_[0, 0, 1, 0, -1, 0])
+
 
 # ---------------------------------------------------------------------------------------#
 if __name__ == "__main__":

@@ -54,8 +54,8 @@ class SpatialVector(BasePoseList):
     ===================   ====================  ===================  =========================
     SE3, Twist3           SpatialVelocity       SpatialVelocity      adjoint product
     SE3, Twist3           SpatialAcceleration   SpatialAcceleration  adjoint product
-    SE3, Twist3           SpatialMomentum       SpatialMomentum      adjoint transpose product
-    SE3, Twist3           SpatialForce          SpatialForce         adjoint transpose product
+    SE3, Twist3           SpatialMomentum       SpatialMomentum      coadjoint product
+    SE3, Twist3           SpatialForce          SpatialForce         coadjoint product
     SpatialAcceleration   SpatialInertia        SpatialForce         matrix-vector product**
     SpatialVelocity       SpatialInertia        SpatialMomentum      matrix-vector product**
     ===================   ====================  ===================  =========================
@@ -268,8 +268,9 @@ class SpatialVector(BasePoseList):
 
         ``X * S`` transforms the spatial vector ``S`` by the relative pose ``X``
         which may be either an ``SE3`` or ``Twist3`` instance.  The spatial
-        vector is premultiplied by the adjoint of ``X`` or adjoint transpose
-        of ``X`` depending on the SpatialVector subclass of ``S``.
+        vector is premultiplied by the adjoint of ``X``, or by the coadjoint
+        (the inverse-transpose of the adjoint) of ``X``, depending on the
+        SpatialVector subclass of ``S``.
 
         ===========  ====================  ===================  =========================
                    Multiplicands                   Product
@@ -278,16 +279,20 @@ class SpatialVector(BasePoseList):
         ===========  ====================  ===================  =========================
         SE3, Twist3  SpatialVelocity       SpatialVelocity      adjoint product
         SE3, Twist3  SpatialAcceleration   SpatialAcceleration  adjoint product
-        SE3, Twist3  SpatialMomentum       SpatialMomentum      adjoint transpose product
-        SE3, Twist3  SpatialForce          SpatialForce         adjoint transpose product
+        SE3, Twist3  SpatialMomentum       SpatialMomentum      coadjoint product
+        SE3, Twist3  SpatialForce          SpatialForce         coadjoint product
         ===========  ====================  ===================  =========================
         """
         if isinstance(left, (SE3, Twist3)):
-            X = left.Ad()
             if isinstance(right, SpatialM6):
-                return right.__class__(X @ right.A)
+                return right.__class__(left.Ad() @ right.A)
             else:
-                return right.__class__(X.T @ right.A)
+                # Force/momentum are dual to motion and transform by the
+                # coadjoint (inverse-transpose of the adjoint), not the
+                # adjoint transpose. These are only equal for a pure rotation.
+                # Ad(X)^-1 == Ad(X^-1), so take the adjoint of the inverse pose
+                # rather than inverting the 6x6 adjoint.
+                return right.__class__(left.inv().Ad().T @ right.A)
         else:
             raise TypeError("left operand of * must be SE3 or Twist3")
 
@@ -487,7 +492,11 @@ class SpatialForce(SpatialF6):
         right, left
     ):  # lgtm[py/not-named-self] pylint: disable=no-self-argument
         # Twist * SpatialForce -> SpatialForce
-        return SpatialForce(left.Ad().T @ right.A)
+        # A force is dual to motion, so it transforms by the coadjoint
+        # (inverse-transpose of the adjoint), not the adjoint transpose.
+        # Ad(X)^-1 == Ad(X^-1), so take the adjoint of the inverse pose
+        # rather than inverting the 6x6 adjoint.
+        return SpatialForce(left.inv().Ad().T @ right.A)
 
 
 # ------------------------------------------------------------------------- #
