@@ -137,6 +137,8 @@ git clone https://github.com/rai-opensource/spatialmath-python.git
 cd spatialmath-python
 pip install -e .
 # Optional: if you would like to contribute and commit code changes to the repository,
+# install the development tools (including pre-commit) and set up the git hooks
+# pip install -e .[dev]
 # pre-commit install
 ```
 

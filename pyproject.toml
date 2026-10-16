@@ -40,7 +40,6 @@ dependencies = [
     "matplotlib",
     "ansitable",
     "typing_extensions>=4.0.0",
-    "pre-commit",
 ]
 
 [project.urls]
@@ -52,6 +51,7 @@ dependencies = [
 [project.optional-dependencies]
 
 dev = [
+    "pre-commit",
     "sympy",
     "pytest",
     "pytest-timeout",
