@@ -2732,15 +2732,15 @@ def tr2adjoint(T):
 
     Computes an adjoint matrix that maps the Lie algebra between frames.
 
-    .. math:
+    .. math::
 
-        Ad(\mat{T}) \vec{X} X = \vee \left( \mat{T} \skew{\vec{X} \mat{T}^{-1} \right)
+        \mathrm{Ad}(\mat{T})\,\vec{X} = \vex{\mat{T}\,\sk{\vec{X}}\,\mat{T}^{-1}}
 
-    where :math:`\mat{T} \in \SE3`.
+    where :math:`\mat{T} \in \SE{3}`.
 
-    ``tr2jac(T)`` is an adjoint matrix (6x6) that maps spatial velocity or
-    differential motion between frame {B} to frame {A} which are attached to the
-    same moving body.  The pose of {B} relative to {A} is represented by the
+    ``tr2adjoint(T)`` is an adjoint matrix (6x6 for SE(3), 3x3 for SO(3)) that
+    maps spatial velocity or differential motion between frame {B} to frame {A}
+    which are attached to the same moving body.  The pose of {B} relative to {A} is represented by the
     homogeneous transform T = :math:`{}^A {\bf T}_B`.
 
     .. runblock:: pycon

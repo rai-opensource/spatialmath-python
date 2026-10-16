@@ -790,11 +790,11 @@ def tr2adjoint2(T):
 
     Computes an adjoint matrix that maps the Lie algebra between frames.
 
-    .. math:
+    .. math::
 
-        Ad(\mat{T}) \vec{X} X = \vee \left( \mat{T} \skew{\vec{X} \mat{T}^{-1} \right)
+        \mathrm{Ad}(\mat{T})\,\vec{X} = \vex{\mat{T}\,\sk{\vec{X}}\,\mat{T}^{-1}}
 
-    where :math:`\mat{T} \in \SE2`.
+    where :math:`\mat{T} \in \SE{2}`.
 
     ``tr2jac2(T)`` is an adjoint matrix (6x6) that maps spatial velocity or
     differential motion between frame {B} to frame {A} which are attached to the
