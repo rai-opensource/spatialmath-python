@@ -796,9 +796,9 @@ def tr2adjoint2(T):
 
     where :math:`\mat{T} \in \SE2`.
 
-    ``tr2jac2(T)`` is an adjoint matrix (6x6) that maps spatial velocity or
-    differential motion between frame {B} to frame {A} which are attached to the
-    same moving body.  The pose of {B} relative to {A} is represented by the
+    ``tr2adjoint2(T)`` is an adjoint matrix (3x3 for SE(2), 1x1 for SO(2)) that
+    maps spatial velocity or differential motion between frame {B} to frame {A}
+    which are attached to the same moving body.  The pose of {B} relative to {A} is represented by the
     homogeneous transform T = :math:`{}^A {\bf T}_B`.
 
     .. runblock:: pycon

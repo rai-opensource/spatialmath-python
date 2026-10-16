@@ -1633,13 +1633,26 @@ class Twist2(BaseTwist):
             # general twist: normalize so |w| == 1 (w is a scalar for Twist2)
             return Twist2(self.S / abs(self.w))
 
-    @property
     def ad(self):
-        """
-        Twist2.ad Logarithm of adjoint
+        r"""
+        Logarithm of adjoint of 2D twist
 
-        - ``S.ad()`` is the logarithm of the adjoint matrix of the corresponding
-          homogeneous transformation.
+        :return: logarithm of adjoint matrix
+        :rtype: ndarray(3,3), or list of ndarray if the twist is a sequence
+
+        ``S.ad()`` is the 3x3 matrix representation of the Lie bracket with
+        the twist ``S``, such that for twists ``S`` and ``T``
+
+        .. math::
+
+            \mathrm{ad}(S) \vec{T} = \vee \left( [S] [T] - [T] [S] \right)
+
+        where :math:`[S]` is the augmented skew-symmetric matrix of the twist.
+        For :math:`S = (v_x, v_y, \omega)` it is
+
+        .. math::
+
+            \begin{pmatrix} 0 & -\omega & v_y \\ \omega & 0 & -v_x \\ 0 & 0 & 0 \end{pmatrix}
 
         Example:
 
@@ -1648,16 +1661,46 @@ class Twist2(BaseTwist):
             >>> from spatialmath import SE2, Twist2
             >>> T = SE2(1, 2, 0.3)
             >>> S = Twist2(T)
-            >>> S.unit()
+            >>> S.ad()
 
-        :seealso: SE3.Ad.
+        .. note:: An alternative approach to computing the adjoint is to
+            exponentiate this 3x3 matrix.
+
+        :seealso: :func:`Twist2.Ad`
         """
-        return np.array(
-            [
-                [smb.skew(self.w), smb.skew(self.v)],
-                [np.zeros((3, 3)), smb.skew(self.w)],
-            ]
-        )
+        if len(self) == 1:
+            v, w = self.v, self.w
+            return np.array([[0, -w, v[1]], [w, 0, -v[0]], [0, 0, 0]])
+        else:
+            return [x.ad() for x in self]
+
+    def Ad(self):
+        """
+        Adjoint of 2D twist
+
+        :return: adjoint matrix
+        :rtype: ndarray(3,3)
+
+        ``S.Ad()`` is the 3x3 adjoint matrix of the corresponding
+        homogeneous transformation.
+
+        For a twist representing motion from frame {B} to {A}, the adjoint will
+        transform a twist relative to frame {A} to one relative to frame {B}.
+
+        Example:
+
+        .. runblock:: pycon
+
+            >>> from spatialmath import Twist2
+            >>> S = Twist2([1, 2, 0.3])
+            >>> S.Ad()
+
+        .. note:: This method computes the equivalent SE(2) matrix, then the adjoint
+            of that.
+
+        :seealso: :func:`Twist2.ad`, :func:`Twist2.SE2`, :func:`Twist2.exp`
+        """
+        return self.SE2().Ad()
 
     @classmethod
     def Tx(cls, x):

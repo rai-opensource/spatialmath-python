@@ -609,6 +609,32 @@ class SE2(SO2):
         else:
             return SE2([smb.rt2tr(x.R.T, -x.R.T @ x.t) for x in self], check=False)
 
+    def Ad(self):
+        r"""
+        Adjoint of SE(2)
+
+        :return: adjoint matrix
+        :rtype: ndarray(3,3)
+
+        ``SE2.Ad`` is the 3x3 adjoint matrix
+
+        If the twist or spatial velocity :math:`\nu = (v_x, v_y, \omega)^T`
+        and the SE(2) represents the pose of {B} relative to {A},
+        ie. :math:`{}^A {\bf T}_B`, and the adjoint is :math:`\mathbf{A}` then
+        :math:`{}^{A}\!\nu = \mathbf{A} {}^{B}\!\nu`.
+
+        Example:
+
+        .. runblock:: pycon
+
+            >>> from spatialmath import SE2
+            >>> SE2(1, 2, 0.3).Ad()
+
+        :seealso: :meth:`spatialmath.pose3d.SE3.Ad`, :meth:`spatialmath.twist.Twist2.ad`,
+            :func:`~spatialmath.base.transforms2d.tr2adjoint2`
+        """
+        return smb.tr2adjoint2(self.A)
+
     def SE3(self, z=0):
         """
         Create SE(3) from SE(2)
