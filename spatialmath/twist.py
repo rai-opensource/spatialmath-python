@@ -986,7 +986,7 @@ class Twist3(BaseTwist):
             >>> S = Twist3(T)
             >>> S.pole
         """
-        return np.cross(self.w, self.v) / self.theta
+        return np.cross(self.w, self.v) / np.dot(self.w, self.w)
 
     def SE3(self, theta=1, unit="rad"):
         """
@@ -1500,7 +1500,7 @@ class Twist2(BaseTwist):
             >>> S.pole
 
         """
-        p = np.cross(np.r_[0, 0, self.w], np.r_[self.v, 0]) / self.theta
+        p = np.cross(np.r_[0, 0, self.w], np.r_[self.v, 0]) / self.w**2
         return p[:2]
 
     # -------------------------  methods -------------------------------#
