@@ -358,13 +358,13 @@ class SE2(SO2):
 
         Return an SE2 instance with random rotation and translation.
 
-        - ``SE2.Rand()`` is a random SE(2) rotation.
+        - ``SE2.Rand()`` is a random SE(2) pose.
         - ``SE2.Rand(N)`` is an SE2 object containing a sequence of N random
           poses.
 
         Example, create random ten vehicles in the xy-plane::
 
-            >>> x = SE3.Rand(N=10, xrange=[-2,2], yrange=[-2,2])
+            >>> x = SE2.Rand(N=10, xrange=[-2,2], yrange=[-2,2])
             >>> len(x)
             10
 
