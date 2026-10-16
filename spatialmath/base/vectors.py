@@ -698,7 +698,10 @@ def angle_std(theta: ArrayLike) -> float:
     Y = np.sin(theta).mean()
     R = np.sqrt(X**2 + Y**2)
 
-    return np.sqrt(-2 * np.log(R))
+    # R is the length of an average of unit vectors so is at most 1, but
+    # rounding can make it 1 + eps, which would give the square root of a
+    # (tiny) negative number and nan
+    return np.sqrt(max(0.0, -2 * np.log(R)))
 
 
 def angle_mean(theta: ArrayLike) -> float:

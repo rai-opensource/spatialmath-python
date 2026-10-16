@@ -7,6 +7,7 @@ Created on Fri Apr 10 14:19:04 2020
 
 """
 
+import warnings
 import numpy as np
 import numpy.testing as nt
 import unittest
@@ -396,6 +397,17 @@ class TestVector(unittest.TestCase):
         theta = np.linspace(pi / 2, 3 * pi / 2, 50)
         self.assertAlmostEqual(angle_mean(theta), pi)
         self.assertAlmostEqual(angle_std(theta), 0.9717284050981313)
+
+    def test_angle_std_identical_angles(self):
+        # the length of the mean unit vector can come out as 1 + eps, which
+        # used to give the square root of a negative number
+        for angle in np.linspace(-3.1, 3.1, 63):
+            for n in (1, 2, 3, 7, 10, 100):
+                with warnings.catch_warnings():
+                    warnings.simplefilter("error")
+                    std = angle_std(np.full(n, angle))
+                self.assertTrue(np.isfinite(std))
+                self.assertLess(std, 1e-6)
 
     def test_removesmall(self):
         v = np.r_[1, 2, 3]
