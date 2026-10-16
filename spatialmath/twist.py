@@ -1014,7 +1014,7 @@ class Twist3(BaseTwist):
 
         if len(theta) == 1:
             # theta is a scalar
-            return SE3(smb.trexp(self.S * theta))
+            return SE3([smb.trexp(S * theta[0]) for S in self.data])
         else:
             # theta is a vector
             if len(self) == 1:
@@ -1072,6 +1072,8 @@ class Twist3(BaseTwist):
 
         if len(self) == 1:
             return SE3([smb.trexp(self.S * t) for t in theta], check=False)
+        elif len(theta) == 1:
+            return SE3([smb.trexp(s * theta[0]) for s in self.data], check=False)
         elif len(self) == len(theta):
             return SE3([smb.trexp(s * t) for s, t in zip(self.S, theta)], check=False)
         else:
@@ -1530,15 +1532,19 @@ class Twist2(BaseTwist):
         """
         from spatialmath.pose2d import SE2
 
-        if unit != "rad" and self.isprismatic:
+        if unit != "rad" and any(s.isprismatic for s in self):
             print("Twist3.exp: using degree mode for a prismatic twist")
 
         theta = smb.getunit(theta, unit)
 
         if len(theta) == 1:
-            return SE2(smb.trexp2(self.S * theta))
-        else:
+            return SE2([smb.trexp2(S * theta[0]) for S in self.data])
+        elif len(self) == 1:
             return SE2([smb.trexp2(self.S * t) for t in theta])
+        elif len(self) == len(theta):
+            return SE2([smb.trexp2(S * t) for S, t in zip(self.data, theta)])
+        else:
+            raise ValueError("length of twist and theta not consistent")
 
     def skewa(self):
         """
@@ -1605,6 +1611,8 @@ class Twist2(BaseTwist):
 
         if len(self) == 1:
             return SE2([smb.trexp2(self.S * t) for t in theta], check=False)
+        elif len(theta) == 1:
+            return SE2([smb.trexp2(s * theta[0]) for s in self.data], check=False)
         elif len(self) == len(theta):
             return SE2([smb.trexp2(s * t) for s, t in zip(self.S, theta)], check=False)
         else:
