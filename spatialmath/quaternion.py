@@ -1483,7 +1483,7 @@ class UnitQuaternion(Quaternion):
 
     @classmethod
     def OA(cls, o: ArrayLike3, a: ArrayLike3) -> UnitQuaternion:
-        """
+        r"""
         Construct a new unit quaternion from two vectors
 
         :param o: 3-vector parallel to Y- axis
