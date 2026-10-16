@@ -16,10 +16,12 @@ import numpy as np
 import spatialmath.base as smb
 from spatialmath.base.argcheck import getunit
 from spatialmath.base.types import *
-import scipy.interpolate as interpolate
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from functools import lru_cache
 import warnings
+
+if TYPE_CHECKING:
+    import scipy.interpolate as interpolate
 
 _eps = np.finfo(np.float64).eps
 
@@ -920,7 +922,7 @@ def _compute_cdf_sin_squared(theta: float):
 @lru_cache(maxsize=1)
 def _generate_inv_cdf_sin_squared_interp(
     num_interpolation_points: int = 256,
-) -> interpolate.interp1d:
+) -> "interpolate.interp1d":
     """
     Computes an interpolation function for the inverse CDF of the distribution of angular magnitude.
 
@@ -933,6 +935,8 @@ def _generate_inv_cdf_sin_squared_interp(
     This function returns interpolation function for the inverse of the integral of the
     pdf of angular magnitudes (2/pi * sin^2(theta/2)), which is not analytically defined.
     """
+    import scipy.interpolate as interpolate  # deferred, it is slow to import
+
     cdf_sin_squared_interp_angles = np.linspace(0, np.pi, num_interpolation_points)
     cdf_sin_squared_interp_values = _compute_cdf_sin_squared(
         cdf_sin_squared_interp_angles
