@@ -1551,6 +1551,9 @@ class UnitQuaternion(Quaternion):
         """
         v = smb.getvector(v, 3)
         theta = smb.getunit(theta, unit, vector=False)
+        if theta == 0:
+            return cls()
+        v = smb.unitvec(v)
         return cls(
             s=math.cos(theta / 2), v=math.sin(theta / 2) * v, norm=False, check=False
         )
