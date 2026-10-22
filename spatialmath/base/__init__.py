@@ -10,6 +10,7 @@ from spatialmath.base.transformsNd import *  # lgtm [py/polluting-import]
 from spatialmath.base.vectors import *  # lgtm [py/polluting-import]
 from spatialmath.base.symbolic import *  # lgtm [py/polluting-import]
 from spatialmath.base.numeric import *  # lgtm [py/polluting-import]
+from spatialmath.base._environment import *  # lgtm [py/polluting-import]
 
 import importlib
 
@@ -45,7 +46,6 @@ _LAZY_ATTRS = {
     "plotvol2": "graphics",
     "plotvol3": "graphics",
     "expand_dims": "graphics",
-    "isnotebook": "graphics",
 }
 
 
@@ -392,6 +392,7 @@ __all__ = [
     "plot_cuboid",
     "axes_logic",
     "expand_dims",
+    "environment",
     "isnotebook",
     # spatial.base.numeric
     "numjac",
