@@ -54,6 +54,13 @@ class Test2D(unittest.TestCase):
         nt.assert_array_almost_equal(rot2(180, "deg"), R)
         nt.assert_almost_equal(np.linalg.det(rot2(pi)), 1)
 
+    def test_rot2_container_theta(self):
+        # 1-element list/array angle, see test_transforms3d and issue #177
+        R = np.array([[0, -1], [1, 0]])
+        nt.assert_array_almost_equal(rot2([pi / 2]), R)
+        nt.assert_array_almost_equal(rot2(np.array([pi / 2])), R)
+        nt.assert_array_almost_equal(rot2([90], unit="deg"), R)
+
     def test_trot2(self):
         nt.assert_array_almost_equal(
             trot2(pi / 2, t=[3, 4]), np.array([[0, -1, 3], [1, 0, 4], [0, 0, 1]])
