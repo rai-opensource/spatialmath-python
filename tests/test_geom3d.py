@@ -47,6 +47,45 @@ def test_line_distance_parallel_tolerance():
     assert line1.distance(line2, tol=1e8) == pytest.approx(np.sqrt(5))
 
 
+@pytest.mark.parametrize(
+    "make_bounds",
+    [list, tuple, np.array, lambda b: np.array([b]), lambda b: np.array(b)[:, None]],
+    ids=["list", "tuple", "array", "row", "column"],
+)
+@pytest.mark.parametrize(
+    "point, direction, expected_points, expected_lam",
+    [
+        ([0, 1, 2], [1, 0, 0], [[-2, 1, 2], [3, 1, 2]], [-2, 3]),
+        (
+            [1, 1, 1],
+            [1, 2, 0],
+            [[0, -1, 1], [2.5, 4, 1]],
+            [-0.4 * np.sqrt(5), 2.1 * np.sqrt(5)],
+        ),
+        ([0, 6, 2], [1, 0, 0], [], []),
+    ],
+    ids=["axis-aligned", "oblique", "outside"],
+)
+def test_line_intersect_volume_bounds(
+    make_bounds, point, direction, expected_points, expected_lam
+):
+    line = Line3.PointDir(point, direction)
+    result = line.intersect_volume(make_bounds([-2, 3, -1, 4, 0, 5]))
+    expected = np.array(expected_points).reshape(-1, 3).T
+    assert result.p.shape == expected.shape
+    nt.assert_allclose(result.p, expected, atol=1e-12)
+    assert len(result.lam) == len(expected_lam)
+    nt.assert_allclose(np.asarray(result.lam).ravel(), expected_lam, atol=1e-12)
+
+
+@pytest.mark.parametrize("make_bounds", [list, tuple, np.array])
+@pytest.mark.parametrize("size", [5, 7])
+def test_line_intersect_volume_bounds_length(make_bounds, size):
+    line = Line3.PointDir([0, 0, 0], [1, 0, 0])
+    with pytest.raises(ValueError):
+        line.intersect_volume(make_bounds(range(size)))
+
+
 class Line3Test(unittest.TestCase):
     # Primitives
     def test_constructor1(self):
