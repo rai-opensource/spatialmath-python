@@ -158,6 +158,7 @@ class SplineFit:
         self.time_data = time_data
         self.pose_data = pose_data
         self.spline: Optional[SplineSE3] = None
+        self._normalize_time = False
 
     def stochastic_downsample_interpolation(
         self,
@@ -173,11 +174,18 @@ class SplineFit:
         of just that point if check_type=="local", checks the error of the whole trajectory is check_type=="global".
         Local is **much** faster.
 
+        If ``normalize_time`` is True (the default), the returned spline uses the
+        time range [0, 1]. Error checks still compare corresponding input poses:
+        an input time ``t`` is evaluated at
+        ``(t - time_data[0]) / (time_data[-1] - time_data[0])``.
+        If False, the returned spline uses the original input times.
+
             Return:
                 downsampled interpolating spline,
-                list of removed indices from input data
+                list of retained indices from input data
         """
 
+        self._normalize_time = normalize_time
         interpolation_indices = list(range(len(self.pose_data)))
 
         # randomly attempt to remove poses from the trajectory
@@ -196,7 +204,7 @@ class SplineFit:
                 bc_type=bc_type,
             )
 
-            sample_time = self.time_data[candidate_removal_index]
+            sample_time = self._spline_time(self.time_data[candidate_removal_index])
             if check_type == "local":
                 angular_error = SO3(self.pose_data[candidate_removal_index]).angdist(
                     SO3(self.spline.spline_so3(sample_time).as_matrix())
@@ -226,12 +234,19 @@ class SplineFit:
 
         return self.spline, interpolation_indices
 
+    def _spline_time(self, t: float) -> float:
+        """Map an input timestamp into the fitted spline's time domain."""
+        if self._normalize_time:
+            return (t - self.time_data[0]) / (self.time_data[-1] - self.time_data[0])
+        return t
+
     def max_angular_error(self) -> float:
         return np.max(self.angular_errors())
 
     def angular_errors(self) -> List[float]:
+        """Angular errors at the original input poses, in input order."""
         return [
-            pose.angdist(self.spline(t))
+            pose.angdist(self.spline(self._spline_time(t)))
             for pose, t in zip(self.pose_data, self.time_data)
         ]
 
@@ -239,8 +254,9 @@ class SplineFit:
         return np.max(self.euclidean_errors())
 
     def euclidean_errors(self) -> List[float]:
+        """Position errors at the original input poses, in input order."""
         return [
-            np.linalg.norm(pose.t - self.spline(t).t)
+            np.linalg.norm(pose.t - self.spline(self._spline_time(t)).t)
             for pose, t in zip(self.pose_data, self.time_data)
         ]
 
