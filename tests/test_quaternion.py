@@ -928,6 +928,9 @@ class TestQuaternion(unittest.TestCase):
         # tc.verifyError( @() Quaternion(2), 'SMTB:Quaternion:badarg')
         # tc.verifyError( @() Quaternion([1, 2, 3]), 'SMTB:Quaternion:badarg')
 
+        # an array that is not a 4-vector must not give an empty Quaternion
+        self.assertNotEqual(len(Quaternion(np.random.rand(3, 4))), 0)
+
     def test_string(self):
         u = Quaternion()
 
