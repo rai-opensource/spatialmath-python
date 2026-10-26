@@ -1513,7 +1513,10 @@ try:
             # handle the case of Animate objects pretending to be Axes
             classname = ax.__class__.__name__
             base_classes = ax.__class__.__bases__
-            if classname in ("Axes3DSubplot", "Animate") or any(base_class.__name__ in ("Axes3DSubplot", "Animate") for base_class in base_classes):
+            if classname in ("Axes3DSubplot", "Animate") or any(
+                base_class.__name__ in ("Axes3DSubplot", "Animate")
+                for base_class in base_classes
+            ):
                 return 3
             elif classname in ("AxesSubplot", "Animate2"):
                 return 2
@@ -1736,19 +1739,23 @@ try:
         ax._plotvol = True
         return ax
 
-    def expand_dims(dim: ArrayLike = None, nd: int = 2) -> NDArray:
+    def expand_dims(dim: ArrayLike | None = None, nd: int = 2) -> NDArray | None:
         """
         Expand compact axis dimensions
 
-        :param dim: dimensions, defaults to None
+        :param dim: dimensions, or None if unspecified, defaults to None
         :type dim: scalar, array_like(2), array_like(4), array_like(6), optional
-        :param nd: number of axes dimensions, defaults to 2
+        :param nd: number of axes dimensions (2 or 3), defaults to 2
         :type nd: int, optional
         :raises ValueError: bad arguments
-        :return: 2d or 3d dimensions vector
-        :rtype: ndarray(4) or ndarray(6)
+        :return: 2d or 3d dimensions vector, or None if unspecified
+        :rtype: ndarray(4), ndarray(6), or None
 
         Compute bounding dimensions for plots from shorthand notation.
+
+        ``None`` is returned unchanged so the caller can choose whether to
+        autoscale or obtain dimensions from another source. No default extent
+        is inferred.
 
         If ``nd==2``, [xmin, xmax, ymin, ymax]:
             * A -> [-A, A, -A, A]
@@ -1766,6 +1773,11 @@ try:
         corresponding maximum, matplotlib will invert that axis when the limits
         are applied, which is a convenient way to flip an axis direction.
         """
+        if nd not in (2, 3):
+            raise ValueError("nd is 2 or 3")
+        if dim is None:
+            return None
+
         dim = smb.getvector(dim)
 
         if nd == 2:
@@ -1788,8 +1800,6 @@ try:
                 return dim
             else:
                 raise ValueError("bad dimension specified")
-        else:
-            raise ValueError("nd is 2 or 3")
 
     def set_window_title(fig: plt.Figure, title: str) -> bool:
         """

@@ -46,6 +46,32 @@ class TestGraphics(unittest.TestCase):
     def teardown_method(self, method):
         plt.close("all")
 
+    def test_expand_dims_unspecified(self):
+        self.assertIsNone(expand_dims())
+        for nd in (2, 3):
+            with self.subTest(nd=nd):
+                self.assertIsNone(expand_dims(nd=nd))
+                self.assertIsNone(expand_dims(None, nd=nd))
+
+    def test_expand_dims_specified(self):
+        for nd in (2, 3):
+            with self.subTest(nd=nd):
+                # Zero is an explicit extent, not an unspecified one.
+                np.testing.assert_array_equal(expand_dims(0, nd), [0, 0] * nd)
+                np.testing.assert_array_equal(expand_dims(3, nd), [-3, 3] * nd)
+                np.testing.assert_array_equal(expand_dims([-2, 5], nd), [-2, 5] * nd)
+                limits = np.arange(2 * nd)
+                np.testing.assert_array_equal(expand_dims(limits, nd), limits)
+                with self.assertRaises(ValueError):
+                    expand_dims([1, 2, 3], nd)
+
+    def test_expand_dims_invalid_nd(self):
+        for nd in (1, 4):
+            for dim in (None, 1):
+                with self.subTest(nd=nd, dim=dim):
+                    with self.assertRaisesRegex(ValueError, "nd is 2 or 3"):
+                        expand_dims(dim, nd)
+
     def test_expand_dims(self):
         np.testing.assert_array_equal(expand_dims(3), [-3, 3, -3, 3])
         np.testing.assert_array_equal(expand_dims(-3), [-3, 3, -3, 3])
@@ -56,7 +82,9 @@ class TestGraphics(unittest.TestCase):
 
         np.testing.assert_array_equal(expand_dims(-3, nd=3), [-3, 3, -3, 3, -3, 3])
         np.testing.assert_array_equal(expand_dims([1, 2], nd=3), [1, 2] * 3)
-        np.testing.assert_array_equal(expand_dims([1, 2, 3, 4, 5, 6], nd=3), [1, 2, 3, 4, 5, 6])
+        np.testing.assert_array_equal(
+            expand_dims([1, 2, 3, 4, 5, 6], nd=3), [1, 2, 3, 4, 5, 6]
+        )
 
         with self.assertRaises(ValueError):
             expand_dims([1, 2, 3])
