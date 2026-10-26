@@ -339,6 +339,16 @@ class TestUnitQuaternion(unittest.TestCase):
         )
         nt.assert_array_almost_equal(UnitQuaternion.AngVec(th, -v).R, angvec2r(th, -v))
 
+        # angle as a 1-element list/array (issue #177)
+        nt.assert_array_almost_equal(UnitQuaternion.AngVec([th], v).R, angvec2r(th, v))
+        nt.assert_array_almost_equal(
+            UnitQuaternion.AngVec(np.array([th]), v).R, angvec2r(th, v)
+        )
+        nt.assert_array_almost_equal(
+            UnitQuaternion.AngVec([60], v, unit="deg").R,
+            UnitQuaternion.AngVec(60, v, unit="deg").R,
+        )
+
     def test_constructor_EulerVec(self):
         # (theta, v)
         th = 0.2

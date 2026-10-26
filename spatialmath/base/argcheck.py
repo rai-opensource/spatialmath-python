@@ -562,7 +562,8 @@ def getunit(
         - the input value is processed by :func:`getvector` and the argument ``dim`` can
           be used to check that ``v`` is the desired length.  Note that 0 means a scalar,
           whereas 1 means a 1-element array.
-        - the output is always an ndarray except if the input is a scalar and ``vector=False``.
+        - the output is always an ndarray except if ``vector=False``, in which
+          case a scalar (or 1-element iterable) input gives a float output.
 
     :seealso: :func:`getvector`
     """
@@ -593,11 +594,20 @@ def getunit(
             raise ValueError("for dim==0 input must be a scalar")
         v = getvector(v, dim=dim)
         if unit == "rad":
-            return v
+            pass
         elif unit == "deg":
-            return np.deg2rad(v)
+            v = np.deg2rad(v)
         else:
             raise ValueError("invalid angular units")
+        if not vector:
+            # scalar output was requested: a 1-element iterable is a
+            # scalar value in a container, return it as a float rather
+            # than a 1-element ndarray (which NumPy >= 2.4 refuses to
+            # convert to a Python scalar in math functions)
+            if v.size != 1:
+                raise ValueError("for vector=False input must be a scalar")
+            return float(v.item())
+        return v
 
 
 def isnumberlist(x: Any) -> bool:

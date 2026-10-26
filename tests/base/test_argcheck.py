@@ -185,6 +185,29 @@ class Test_check(unittest.TestCase):
             [x * math.pi / 180.0 for x in [3, 4, 5]],
         )
 
+    def test_unit_scalar_container(self):
+        # 1-element iterable -> scalar with vector=False (issue #177:
+        # NumPy >= 2.4 refuses to convert a 1-element ndarray to a
+        # Python scalar inside the math module functions)
+        self.assertEqual(getunit([1.5], vector=False), 1.5)
+        self.assertIsInstance(getunit([1.5], vector=False), float)
+        self.assertEqual(getunit((1.5,), vector=False), 1.5)
+        self.assertEqual(getunit(np.array([1.5]), vector=False), 1.5)
+        self.assertEqual(getunit(np.r_[1.5], vector=False), 1.5)
+        self.assertEqual(getunit([90], vector=False, unit="deg"), math.pi / 2)
+        self.assertIsInstance(getunit([90], vector=False, unit="deg"), float)
+        self.assertEqual(getunit([1.5], dim=1, vector=False), 1.5)
+
+        # a multi-element iterable is not a scalar
+        with self.assertRaises(ValueError):
+            getunit([1, 2], vector=False)
+        with self.assertRaises(ValueError):
+            getunit(np.r_[1, 2], vector=False, unit="deg")
+
+        # default vector=True behaviour is unchanged for containers
+        nt.assert_equal(getunit([1.5]), [1.5])
+        self.assertIsInstance(getunit([1.5]), np.ndarray)
+
     def test_isvector(self):
         # no length specified
         self.assertTrue(isvector(2))

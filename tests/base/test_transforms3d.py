@@ -100,6 +100,19 @@ class Test3D(unittest.TestCase):
         nt.assert_array_almost_equal(rotx(180, "deg"), R)
         nt.assert_almost_equal(np.linalg.det(rotx(pi)), 1)
 
+    def test_rot_container_theta(self):
+        # angle passed as a 1-element list/array must behave like the
+        # scalar (issue #177: a 1-element ndarray result from getunit
+        # can no longer be converted to a Python scalar by the math
+        # module with NumPy >= 2.4)
+        R = np.array([[1, 0, 0], [0, 0, -1], [0, 1, 0]])
+        nt.assert_array_almost_equal(rotx([pi / 2]), R)
+        nt.assert_array_almost_equal(rotx(np.array([pi / 2])), R)
+        nt.assert_array_almost_equal(rotx([90], unit="deg"), R)
+        nt.assert_array_almost_equal(roty([pi / 2]), roty(pi / 2))
+        nt.assert_array_almost_equal(rotz(np.array([pi / 2])), rotz(pi / 2))
+        nt.assert_array_almost_equal(rotz([30], unit="deg"), rotz(30, unit="deg"))
+
     def test_roty(self):
         R = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
         nt.assert_array_almost_equal(roty(0), R)
