@@ -39,15 +39,6 @@ if TYPE_CHECKING:
 
 _eps = np.finfo(np.float64).eps
 
-try:  # pragma: no cover
-    # print('Using SymPy')
-    import sympy
-
-    _symbolics = True
-
-except ImportError:  # pragma: no cover
-    _symbolics = False
-
 
 # ---------------------------------------------------------------------------------------#
 def rot2(theta: float, unit: str = "rad") -> SO2Array:
@@ -170,8 +161,13 @@ def tr2xyt(T: SE2Array, unit: str = "rad") -> R3:
     :seealso: trot2
     """
 
-    if T.dtype == "O" and _symbolics:
-        angle = sympy.atan2(T[1, 0], T[0, 0])
+    if T.dtype == "O":
+        try:
+            import sympy
+        except ImportError:
+            angle = math.atan2(T[1, 0], T[0, 0])
+        else:
+            angle = sympy.atan2(T[1, 0], T[0, 0])
     else:
         angle = math.atan2(T[1, 0], T[0, 0])
     return np.r_[T[0, 2], T[1, 2], angle]

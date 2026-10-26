@@ -11,61 +11,67 @@ If SymPy is not installed then only the standard numeric operations are
 supported.
 """
 
+from __future__ import annotations
+
 import math
+from typing import TYPE_CHECKING
 from spatialmath.base.types import *
 
-try:  # pragma: no cover
-    # print('Using SymPy')
-    import sympy
+import importlib as _importlib
+import sys as _sys
 
-    _symbolics = True
-    symtype = (sympy.Expr,)
+if TYPE_CHECKING:
     from sympy import Symbol
 
-except ImportError:  # pragma: no cover
-    # SymPy is not installed
-    _symbolics = False
-    symtype = ()
-    Symbol = Any
+
+def _sympy():
+    """Load the optional dependency only for a symbolic operation."""
+    return _importlib.import_module("sympy")
 
 
-# ---------------------------------------------------------------------------------------#
+def __getattr__(name):
+    """Keep explicit access to the SymPy type aliases lazy."""
+    if name == "Symbol":
+        return _sympy().Symbol
+    if name == "symtype":
+        try:
+            return (_sympy().Expr,)
+        except ImportError:
+            return ()
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
-if _symbolics:
 
-    def symbol(
-        name: str, real: Optional[bool] = True
-    ) -> Union[Symbol, Tuple[Symbol, ...]]:
-        """
-        Create symbolic variables
+def symbol(name: str, real: Optional[bool] = True) -> Union[Symbol, Tuple[Symbol, ...]]:
+    """
+    Create symbolic variables
 
-        :param name: symbol names
-        :type name: str
-        :param real: assume variable is real, defaults to True
-        :type real: bool, optional
-        :return: SymPy symbols
-        :rtype: sympy
+    :param name: symbol names
+    :type name: str
+    :param real: assume variable is real, defaults to True
+    :type real: bool, optional
+    :return: SymPy symbols
+    :rtype: sympy
 
-        .. runblock:: pycon
+    .. runblock:: pycon
 
-            >>> from spatialmath.base.symbolic import *
-            >>> theta = symbol('theta')
-            >>> theta
-            >>> theta, psi = symbol('theta psi')
-            >>> theta
-            >>> psi
-            >>> q = symbol('q_:6')
-            >>> q
+        >>> from spatialmath.base.symbolic import *
+        >>> theta = symbol('theta')
+        >>> theta
+        >>> theta, psi = symbol('theta psi')
+        >>> theta
+        >>> psi
+        >>> q = symbol('q_:6')
+        >>> q
 
-        .. note:: In Jupyter symbols are pretty printed.
+    .. note:: In Jupyter symbols are pretty printed.
 
-            - symbols named after greek letters will appear as greek letters
-            - underscore means subscript as it does in LaTex, so the symbols ``q``
-              above will be subscripted.
+        - symbols named after greek letters will appear as greek letters
+        - underscore means subscript as it does in LaTex, so the symbols ``q``
+          above will be subscripted.
 
-        :seealso: :func:`sympy.symbols`
-        """
-        return sympy.symbols(name, real=real)
+    :seealso: :func:`sympy.symbols`
+    """
+    return _sympy().symbols(name, real=real)
 
 
 def issymbol(var: Any) -> bool:
@@ -84,13 +90,12 @@ def issymbol(var: Any) -> bool:
         >>> issymbol(3.4)
 
     """
-    if _symbolics:
-        if isinstance(var, (list, tuple)):
-            return any([isinstance(x, symtype) for x in var])
-        else:
-            return isinstance(var, symtype)
-    else:
+    sympy = _sys.modules.get("sympy")
+    if sympy is None:
         return False
+    if isinstance(var, (list, tuple)):
+        return any(isinstance(x, sympy.Expr) for x in var)
+    return isinstance(var, sympy.Expr)
 
 
 @overload
@@ -122,7 +127,7 @@ def sin(theta):
     :seealso: :func:`sympy.sin`
     """
     if issymbol(theta):
-        return sympy.sin(theta)
+        return _sympy().sin(theta)
     else:
         return math.sin(theta)
 
@@ -156,7 +161,7 @@ def cos(theta):
     :seealso: :func:`sympy.cos`
     """
     if issymbol(theta):
-        return sympy.cos(theta)
+        return _sympy().cos(theta)
     else:
         return math.cos(theta)
 
@@ -190,7 +195,7 @@ def tan(theta):
     :seealso: :func:`sympy.cos`
     """
     if issymbol(theta):
-        return sympy.tan(theta)
+        return _sympy().tan(theta)
     else:
         return math.tan(theta)
 
@@ -224,7 +229,7 @@ def sqrt(v):
     :seealso: :func:`sympy.sqrt`
     """
     if issymbol(v):
-        return sympy.sqrt(v)
+        return _sympy().sqrt(v)
     else:
         return math.sqrt(v)
 
@@ -245,7 +250,7 @@ def zero() -> Symbol:
 
     :seealso: :func:`sympy.S.Zero`
     """
-    return sympy.S.Zero
+    return _sympy().S.Zero
 
 
 def one() -> Symbol:
@@ -264,7 +269,7 @@ def one() -> Symbol:
 
     :seealso: :func:`sympy.S.One`
     """
-    return sympy.S.One
+    return _sympy().S.One
 
 
 def negative_one() -> Symbol:
@@ -283,7 +288,7 @@ def negative_one() -> Symbol:
 
     :seealso: :func:`sympy.S.NegativeOne`
     """
-    return sympy.S.NegativeOne
+    return _sympy().S.NegativeOne
 
 
 def pi() -> Symbol:
@@ -302,7 +307,7 @@ def pi() -> Symbol:
 
     :seealso: :func:`sympy.S.Pi`
     """
-    return sympy.S.Pi
+    return _sympy().S.Pi
 
 
 def simplify(x: Symbol) -> Symbol:
@@ -324,10 +329,11 @@ def simplify(x: Symbol) -> Symbol:
 
     :seealso: :func:`sympy.simplify`
     """
-    if _symbolics:
-        return sympy.simplify(x)
-    else:
+    try:
+        sympy = _sympy()
+    except ImportError:
         return x
+    return sympy.simplify(x)
 
 
 def det(x):
@@ -352,4 +358,4 @@ def det(x):
     .. note:: Converts to a SymPy ``Matrix`` and then back again.
     """
 
-    return sympy.Matrix(x).det()
+    return _sympy().Matrix(x).det()
