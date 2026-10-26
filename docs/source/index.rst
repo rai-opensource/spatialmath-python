@@ -21,4 +21,5 @@ unit quaternions :math:`\q \in \mathrm{S}^3`, and twists :math:`S \in \se{2},
    intro
    spatialmath
    functions
+   troubleshooting
    indices
