@@ -47,6 +47,43 @@ def test_line_distance_parallel_tolerance():
     assert line1.distance(line2, tol=1e8) == pytest.approx(np.sqrt(5))
 
 
+@pytest.mark.parametrize(
+    "point, direction1, direction2",
+    [
+        ([0, 0, 0], [1, 0, 0], [0, 1, 0]),
+        ([1, 2, 3], [1, 0, 0], [1, 1, 0]),
+        ([-3, 1, 2], [1, 2, 3], [-2, 1, 1]),
+    ],
+    ids=["origin", "oblique", "spatial"],
+)
+@pytest.mark.parametrize(
+    "scale1, scale2", [(1, 1), (2, 5), (-2, 0.25), (1e-8, 1e-8), (1e-8, 1e8)]
+)
+def test_line_intersection_point(point, direction1, direction2, scale1, scale2):
+    point = np.array(point)
+    direction1, direction2 = np.array(direction1), np.array(direction2)
+    line1 = Line3.PointDir(point + 2 * direction1, scale1 * direction1)
+    line2 = Line3.PointDir(point - 3 * direction2, scale2 * direction2)
+
+    for first, second in [(line1, line2), (line2, line1)]:
+        intersection = first.intersects(second)
+        assert intersection is not None
+        assert intersection.shape == (3,)
+        nt.assert_allclose(intersection, point, rtol=0, atol=1e-12)
+
+
+@pytest.mark.parametrize(
+    "point, direction",
+    [([0, 1, 0], [1, 0, 0]), ([2, 0, 0], [-2, 0, 0]), ([0, 0, 1], [0, 1, 0])],
+    ids=["parallel", "coincident", "skew"],
+)
+def test_line_intersection_none(point, direction):
+    line1 = Line3.PointDir([0, 0, 0], [1, 0, 0])
+    line2 = Line3.PointDir(point, direction)
+    assert line1.intersects(line2) is None
+    assert line2.intersects(line1) is None
+
+
 class Line3Test(unittest.TestCase):
     # Primitives
     def test_constructor1(self):

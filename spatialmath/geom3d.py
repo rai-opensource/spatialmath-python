@@ -830,15 +830,12 @@ class Line3(BasePoseList):
         ``l1.intersects(l2)`` is the point of intersection of the two lines, or
         ``None`` if the lines do not intersect or are equivalent.
 
-        :seealso: :meth:`commonperp :meth:`eq` :meth:`__xor__`
+        :seealso: :meth:`commonperp` :meth:`isintersecting` :meth:`closest_to_line`
         """
         if l1 ^ l2:
-            # lines do intersect
-            return -(
-                np.dot(l1.v, l2.w) * np.eye(3, 3)
-                + l1.w.reshape((3, 1)) @ l2.v.reshape((1, 3))
-                - l2.w.reshape((3, 1)) @ l1.v.reshape((1, 3))
-            ) * base.unitvec(np.cross(l1.w, l2.w))
+            # For intersecting lines, the nearest point is their intersection.
+            point, _ = l1.closest_to_line(l2)
+            return point
         else:
             # lines don't intersect
             return None
