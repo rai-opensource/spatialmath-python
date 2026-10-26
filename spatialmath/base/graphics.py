@@ -1580,6 +1580,7 @@ try:
         """
 
         # print(f"new axis logic ({dimensions}D): ", end='')
+        use_current_figure = False
         if ax is None:
             # no axes passed in, find out what's happening
             # need to be careful to not use gcf() or gca() since they
@@ -1597,6 +1598,10 @@ try:
                     # print(f"ax has {_axes_dimensions(ax)} dimensions")
                     if _axes_dimensions(ax) == dimensions and not new:
                         return ax
+                elif not new:
+                    # the current figure is empty, eg. from a bare plt.figure():
+                    # put the axes in it rather than leave it empty and make another
+                    use_current_figure = True
             # otherwise it doesnt exist or dimension mismatch, create new axes
         else:
             # print("ax given", ax)
@@ -1607,7 +1612,8 @@ try:
                 return ax
             # print("mismatch in dimensions, create new axes")
         # print("create new axes")
-        plt.figure()
+        if not use_current_figure:
+            plt.figure()
         if dimensions == 2:
             ax = plt.axes()
             if autoscale:
