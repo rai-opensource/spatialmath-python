@@ -186,7 +186,8 @@ def getmatrix(
     :raises ValueError: if value is not of the specified shape
 
     ``getmatrix(m, shape)`` is a 2D matrix with shape ``shape`` formed from
-    ``m`` which can be a 2D array, 1D array-like or a scalar.
+    ``m`` which can be a 2D array, a list or tuple of rows, a 1D array-like
+    (including a ``range``) or a scalar.
 
     .. runblock:: pycon
 
@@ -197,6 +198,7 @@ def getmatrix(
         >>> getmatrix([3,4], (2, 1))
         >>> getmatrix([3,4,5,6], (2,2))
         >>> getmatrix(np.r_[3,4,5,6], (2,2))
+        >>> getmatrix([[0,1,2], [0,1,0]], (2,None))  # list of rows
 
     .. note::
 
@@ -213,6 +215,13 @@ def getmatrix(
     :seealso: :func:`ismatrix`, :func:`verifymatrix`
     :SymPy: supported
     """
+    if isinstance(m, range):
+        m = list(m)
+    if isinstance(m, (list, tuple)) and not isvector(m):
+        # passed a nested sequence, such as a list of rows: convert it and
+        # check its shape below
+        m = np.array(m)
+
     if isinstance(m, np.ndarray) and len(m.shape) == 2:
         # passed a 2D array
         mshape = m.shape
@@ -341,7 +350,7 @@ def getvector(
       where ``vec`` is any of:
 
         - a Python native int or float, a 1-vector
-        - Python native list or tuple
+        - Python native list, tuple or range
         - numPy real 1D array, ie. shape=(N,)
         - numPy real 2D array with a singleton dimension, ie. shape=(1,N)
           or (N,1)
@@ -386,6 +395,8 @@ def getvector(
     """
     dt = dtype
 
+    if isinstance(v, range):  # a range is a sequence of numbers
+        v = list(v)
     if isinstance(v, _scalartypes):  # handle scalar case
         v = [v]  # type: ignore
     if isinstance(v, (list, tuple)):

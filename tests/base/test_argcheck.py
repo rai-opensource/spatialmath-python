@@ -110,6 +110,31 @@ class Test_check(unittest.TestCase):
         with self.assertRaises(ValueError):
             m = getmatrix(a, (2, None))
 
+    def test_getmatrix_nested_sequence(self):
+        # a list of rows, as for a 2xN path of points (issue #255)
+        m = getmatrix([[0, 1, 2], [0, 1, 0]], (2, None))
+        self.assertIsInstance(m, np.ndarray)
+        nt.assert_array_equal(m, np.array([[0, 1, 2], [0, 1, 0]]))
+        self.assertEqual(m.dtype, np.float64)
+
+        # a list of tuples, Nx2
+        m = getmatrix([(0, 0), (1, 1), (2, 0)], (None, 2))
+        nt.assert_array_equal(m, np.array([[0, 0], [1, 1], [2, 0]]))
+
+        # a tuple of lists, fully specified shape
+        m = getmatrix(([1, 2], [3, 4]), (2, 2))
+        nt.assert_array_equal(m, np.array([[1, 2], [3, 4]]))
+
+        # the shape is checked, not reshaped
+        with self.assertRaises(ValueError):
+            getmatrix([[0, 1, 2], [0, 1, 0]], (3, None))
+        with self.assertRaises(ValueError):
+            getmatrix([[0, 0], [1, 1], [2, 0]], (2, None))
+
+        # a range is a 1D sequence of numbers
+        m = getmatrix(range(4), (2, 2))
+        nt.assert_array_equal(m, np.array([[0, 1], [2, 3]]))
+
     def test_verifymatrix(self):
         with self.assertRaises(TypeError):
             assertmatrix(3)
@@ -236,6 +261,20 @@ class Test_check(unittest.TestCase):
                 with self.subTest(convert=convert.__name__, shape=shape):
                     with self.assertRaises(ValueError):
                         convert(np.ones(shape))
+
+    def test_getvector_range(self):
+        # a range is a sequence of numbers (issue #255)
+        v = getvector(range(1, 7))
+        self.assertIsInstance(v, np.ndarray)
+        nt.assert_array_equal(v, np.r_[1, 2, 3, 4, 5, 6])
+
+        v = getvector(range(3), 3, out="list")
+        self.assertEqual(v, [0, 1, 2])
+
+        v = getvector(range(3), out="col")
+        nt.assert_equal(v.shape, (3, 1))
+
+        nt.assert_raises(ValueError, getvector, range(3), 4)
 
     def test_getvector(self):
         l = [1, 2, 3]
