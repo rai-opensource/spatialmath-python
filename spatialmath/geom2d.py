@@ -146,8 +146,8 @@ class Line2:
         """
         Test if point is in line
 
-        :param p1: point to test
-        :type p1: array_like(2) or array_like(3)
+        :param p: point to test
+        :type p: array_like(2) or array_like(3)
         :param tol: tolerance in units of eps, defaults to 20
         :type tol: float
         :return: True if point lies in the line

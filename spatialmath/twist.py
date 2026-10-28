@@ -483,8 +483,8 @@ class Twist3(BaseTwist):
         :type a: array_like(3)
         :param q: Point on the line of action
         :type q: array_like(3)
-        :param p: pitch, defaults to None
-        :type p: float, optional
+        :param pitch: pitch, defaults to None
+        :type pitch: float, optional
         :return: a rotational or helical twist
         :rtype: Twist instance
 
@@ -1030,8 +1030,8 @@ class Twist3(BaseTwist):
 
         :param theta: rotation magnitude, defaults to None
         :type theta: float, optional
-        :param units: rotational units, defaults to 'rad'
-        :type units: str, optional
+        :param unit: rotational units, defaults to 'rad'
+        :type unit: str, optional
         :return: SE(3) matrix
         :rtype: SE3 instance
 
