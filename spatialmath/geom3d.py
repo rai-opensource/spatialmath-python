@@ -190,7 +190,7 @@ class Plane3:
         :return: if the point is in the plane
         :rtype: bool
         """
-        return abs(np.dot(self.n, p) - self.d) < tol * _eps
+        return abs(np.dot(self.n, p) + self.d) < tol * _eps
 
     def plot(
         self,
