@@ -95,7 +95,7 @@ class Plane3:
 
         :seealso: :meth:`PointNormal`  :meth:`ThreePoints`
         """
-        n = np.cross(l.w, p)
+        n = np.cross(l.w, p) - l.v
         d = np.dot(l.v, p)
 
         return cls(np.r_[n, d])
