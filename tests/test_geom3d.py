@@ -47,6 +47,34 @@ def test_line_distance_parallel_tolerance():
     assert line1.distance(line2, tol=1e8) == pytest.approx(np.sqrt(5))
 
 
+@pytest.mark.parametrize("point", [[0, 0, 0], [1, 2, 3], [-1.5, 2, 3.25]])
+@pytest.mark.parametrize(
+    "normals", [np.eye(3), np.array([[1, 2, 0], [0, 1, 3], [2, 0, 1]])]
+)
+@pytest.mark.parametrize("scales", [[1, 1, 1], [-2, 0.5, 3]])
+def test_three_plane_intersection(point, normals, scales):
+    normals = normals * np.array(scales)[:, None]
+    planes = [Plane3.PointNormal(point, normal) for normal in normals]
+    intersection = Plane3.intersection(*planes)
+
+    assert intersection.shape == (3,)
+    nt.assert_allclose(intersection, point, atol=1e-12)
+    # Each plane is defined by n @ x + d = 0, regardless of coefficient scale.
+    nt.assert_allclose(
+        normals @ intersection + np.array([plane.d for plane in planes]),
+        0,
+        atol=1e-12,
+    )
+    nt.assert_allclose(Plane3.intersection(*reversed(planes)), point, atol=1e-12)
+
+
+@pytest.mark.parametrize("offset", [0, 1])
+def test_three_plane_intersection_singular(offset):
+    planes = [Plane3([1, 0, 0, 0]), Plane3([1, 0, 0, offset]), Plane3([0, 1, 0, 0])]
+    with pytest.raises(np.linalg.LinAlgError):
+        Plane3.intersection(*planes)
+
+
 class Line3Test(unittest.TestCase):
     # Primitives
     def test_constructor1(self):
