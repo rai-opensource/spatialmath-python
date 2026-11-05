@@ -225,8 +225,23 @@ class TestSpatialVector(unittest.TestCase):
         # v x v = a  *, v x F6 = a
         # a x I, I x a
         # v x I, I x v
-        # twist x v, twist x a, twist x F
-        pass
+
+        # twist x v, twist x a, twist x F, twist x momentum
+        T = SE3(1, 2, 3) * SE3.Rx(0.3)
+        S = Twist3(T)
+
+        v = SpatialVelocity([1, 2, 3, 4, 5, 6])
+        a = SpatialAcceleration([1, 2, 3, 4, 5, 6])
+        f = SpatialForce([1, 2, 3, 4, 5, 6])
+        m = SpatialMomentum([1, 2, 3, 4, 5, 6])
+
+        # Twist3 * X must agree with the equivalent SE3 * X: same
+        # underlying transform, two ways of expressing it.
+        for x in (v, a, f, m):
+            result = S * x
+            expected = T * x
+            self.assertIsInstance(result, type(x))
+            nt.assert_almost_equal(result.A, expected.A)
 
     def test_spatial_transform_duality(self):
         # A pose transform acts on motion (velocity/acceleration) by the
