@@ -289,8 +289,8 @@ twists.</p></li>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.Rand" title="spatialmath.twist.Twist3.Rand"><span class="n">Twist3</span><span class="o">.</span><span class="n">Rand</span></a><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="go">Twist3([</span>
-<span class="go">  [0.33482, -0.80857, 0.47644, 0.3078, -0.9436, 0.99931],</span>
-<span class="go">  [0.25936, 1.0925, -0.15244, -1.2773, -0.4338, 1.7055]</span>
+<span class="go">  [1.8358, 0.19347, 0.85591, -0.17687, 2.2949, 0.88456],</span>
+<span class="go">  [-0.29532, -0.33114, -0.43562, -2.3158, 0.016223, 1.1199]</span>
 <span class="go">])</span>
 </pre></div>
 </div>
@@ -654,8 +654,9 @@ transform a twist relative to frame {A} to one relative to frame {B}.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This method computes the equivalent SE(3) matrix, then the adjoint
-of that.</p>
+<p>Equivalent to, but faster than, <code class="docutils literal notranslate"><span class="pre">self.SE3().Ad()</span></code> – computes
+the adjoint directly from the twist’s exponential without
+constructing an intermediate <code class="docutils literal notranslate"><span class="pre">SE3</span></code> instance.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Seealso<span class="colon">:</span></dt>
@@ -1091,11 +1092,11 @@ The inverse is the negative of the twist vector.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a><span class="p">(</span><span class="n">SE3</span><span class="o">.</span><span class="n">Rand</span><span class="p">())</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a>
-<span class="go">Twist3([0.54393, -0.56698, 0.756, -1.027, -0.79965, 2.3351])</span>
+<span class="go">Twist3([0.26528, 0.1917, -0.97205, 1.8539, 0.67344, -1.7765])</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.inv" title="spatialmath.twist.Twist3.inv"><span class="n">S</span><span class="o">.</span><span class="n">inv</span></a><span class="p">()</span>
-<span class="go">Twist3([-0.54393, 0.56698, -0.756, 1.027, 0.79965, -2.3351])</span>
+<span class="go">Twist3([-0.26528, -0.1917, 0.97205, -1.8539, -0.67344, 1.7765])</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a> <span class="o">*</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.inv" title="spatialmath.twist.Twist3.inv"><span class="n">S</span><span class="o">.</span><span class="n">inv</span></a><span class="p">()</span>
-<span class="go">Twist3([-1.249e-16, 1.1102e-16, -1.1102e-16, 0, 0, 0])</span>
+<span class="go">Twist3([-5.5511e-17, 1.1102e-16, 3.6405e-34, 2.9828e-18, -1.9082e-17, 4.2282e-17])</span>
 </pre></div>
 </div>
 </dd></dl>

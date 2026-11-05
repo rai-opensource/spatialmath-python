@@ -491,9 +491,9 @@ scalars.</p></li>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_orient_SO3.html#spatialmath.pose3d.SO3" title="spatialmath.pose3d.SO3"><span class="n">SO3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_orient_SO3.html#spatialmath.pose3d.SO3" title="spatialmath.pose3d.SO3"><span class="n">x</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_orient_SO3.html#spatialmath.pose3d.SO3.Rand" title="spatialmath.pose3d.SO3.Rand"><span class="n">SO3</span><span class="o">.</span><span class="n">Rand</span></a><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_orient_SO3.html#spatialmath.pose3d.SO3" title="spatialmath.pose3d.SO3"><span class="n">x</span></a>
-<span class="go">SO3(array([[-0.4227,  0.8962, -0.1345],</span>
-<span class="go">           [-0.7874, -0.4366, -0.4351],</span>
-<span class="go">           [-0.4487, -0.078 ,  0.8903]]))</span>
+<span class="go">SO3(array([[ 0.4141,  0.8609, -0.2957],</span>
+<span class="go">           [-0.1   , -0.2799, -0.9548],</span>
+<span class="go">           [-0.9047,  0.4249, -0.0298]]))</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -1540,6 +1540,8 @@ many options, see the links below.</p></li>
 <ol class="arabic simple">
 <li><p>None, an identity value is created</p></li>
 <li><p>a numpy.ndarray of the appropriate shape and value which is valid for the subclass</p></li>
+<li><p>a stacked numpy.ndarray of shape (N, r, c), where (r, c) is the shape of one value
+of the subclass, which is a sequence of N values</p></li>
 <li><p>a list whose elements all meet the criteria above</p></li>
 <li><p>an instance of the subclass</p></li>
 <li><p>a list whose elements are all singelton instances of the subclass</p></li>
