@@ -97,6 +97,7 @@
 <span class="c1"># pylint: disable=invalid-name</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">spatialmath.base</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smb</span>
@@ -2275,7 +2276,7 @@
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Interpolate a unit quaternion</span>
 
-<span class="sd">        :param shortest: Take the shortest path along the great circle</span>
+<span class="sd">        :param shortest: deprecated, has no effect</span>
 <span class="sd">        :param s: interpolation coefficient, range 0 to 1, or number of steps</span>
 <span class="sd">        :type s: array_like or int</span>
 <span class="sd">        :return: interpolated unit quaternion</span>
@@ -2306,9 +2307,31 @@
 
 <span class="sd">        .. note:: values of ``s`` are silently clipped to the range [0, 1]</span>
 
+<span class="sd">        .. note:: ``shortest`` can never change the result here. Every</span>
+<span class="sd">            ``UnitQuaternion`` has a non-negative scalar part by construction</span>
+<span class="sd">            (see :func:`~spatialmath.base.quaternions.qunit`), and this method</span>
+<span class="sd">            always interpolates *from* the identity quaternion ``[1,0,0,0]``</span>
+<span class="sd">            -- whose dot product with any unit quaternion is just that</span>
+<span class="sd">            quaternion's own (always non-negative) scalar part. A negative</span>
+<span class="sd">            dot product is what ``shortest`` checks for to detect "the long</span>
+<span class="sd">            way round", and that condition can never occur here, unlike</span>
+<span class="sd">            :meth:`interp`, where it can.</span>
+
+<span class="sd">        .. deprecated:: 1.1.19</span>
+<span class="sd">            ``shortest`` has no effect and will be removed in a future</span>
+<span class="sd">            release.</span>
+
 <span class="sd">        :seealso: :func:`~spatialmath.base.quaternions.qslerp`</span>
 <span class="sd">        """</span>
         <span class="c1"># TODO allow self to have len() &gt; 1</span>
+
+        <span class="k">if</span> <span class="n">shortest</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">"shortest has no effect on interp1 and will be removed in a "</span>
+                <span class="s2">"future release: interpolation from the identity quaternion "</span>
+                <span class="s2">"is always the shortest path"</span><span class="p">,</span>
+                <span class="ne">DeprecationWarning</span><span class="p">,</span>
+            <span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
@@ -2316,9 +2339,7 @@
             <span class="n">s</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="n">getvector</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
             <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># enforce valid values</span>
 
-        <span class="n">q0_endpoint</span><span class="p">,</span> <span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="n">sin_theta</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">_qslerp_prepare</span><span class="p">(</span>
-            <span class="n">smb</span><span class="o">.</span><span class="n">qeye</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">,</span> <span class="n">shortest</span><span class="o">=</span><span class="n">shortest</span>
-        <span class="p">)</span>
+        <span class="n">q0_endpoint</span><span class="p">,</span> <span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="n">sin_theta</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">_qslerp_prepare</span><span class="p">(</span><span class="n">smb</span><span class="o">.</span><span class="n">qeye</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
         <span class="n">qi</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">sk</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">sk</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>

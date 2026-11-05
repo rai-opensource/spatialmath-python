@@ -440,11 +440,11 @@ values.</p></li>
 <p>Example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_orient_unitquaternion.html#spatialmath.quaternion.UnitQuaternion" title="spatialmath.quaternion.UnitQuaternion"><span class="n">UnitQuaternion</span></a> <span class="k">as</span> <span class="n">UQ</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="3d_orient_unitquaternion.html#spatialmath.quaternion.UnitQuaternion.Rand" title="spatialmath.quaternion.UnitQuaternion.Rand"><span class="n">UQ</span><span class="o">.</span><span class="n">Rand</span></a><span class="p">())</span>
-<span class="go"> 0.6115 &lt;&lt;  0.2088,  0.7510,  0.1360 &gt;&gt;</span>
+<span class="go"> 0.0881 &lt;&lt;  0.8630,  0.3679, -0.3348 &gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="3d_orient_unitquaternion.html#spatialmath.quaternion.UnitQuaternion.Rand" title="spatialmath.quaternion.UnitQuaternion.Rand"><span class="n">UQ</span><span class="o">.</span><span class="n">Rand</span></a><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-<span class="go"> 0.2087 &lt;&lt;  0.8186,  0.4728, -0.2505 &gt;&gt;</span>
-<span class="go"> 0.1019 &lt;&lt;  0.1576,  0.5119,  0.8383 &gt;&gt;</span>
-<span class="go"> 0.2717 &lt;&lt; -0.6679,  0.6740, -0.1610 &gt;&gt;</span>
+<span class="go"> 0.1189 &lt;&lt; -0.5027, -0.0008, -0.8563 &gt;&gt;</span>
+<span class="go"> 0.2063 &lt;&lt; -0.8165,  0.0749,  0.5341 &gt;&gt;</span>
+<span class="go"> 0.3982 &lt;&lt;  0.7996, -0.4471, -0.0467 &gt;&gt;</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -1849,7 +1849,7 @@ steps.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>shortest</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span>) – Take the shortest path along the great circle</p></li>
+<li><p><strong>shortest</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span>) – deprecated, has no effect</p></li>
 <li><p><strong>s</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – interpolation coefficient, range 0 to 1, or number of steps</p></li>
 </ul>
 </dd>
@@ -1891,6 +1891,22 @@ steps.</p></li>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>values of <code class="docutils literal notranslate"><span class="pre">s</span></code> are silently clipped to the range [0, 1]</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">shortest</span></code> can never change the result here. Every
+<code class="docutils literal notranslate"><span class="pre">UnitQuaternion</span></code> has a non-negative scalar part by construction
+(see <a class="reference internal" href="func_quat.html#spatialmath.base.quaternions.qunit" title="spatialmath.base.quaternions.qunit"><code class="xref py py-func docutils literal notranslate"><span class="pre">qunit()</span></code></a>), and this method
+always interpolates <em>from</em> the identity quaternion <code class="docutils literal notranslate"><span class="pre">[1,0,0,0]</span></code>
+– whose dot product with any unit quaternion is just that
+quaternion’s own (always non-negative) scalar part. A negative
+dot product is what <code class="docutils literal notranslate"><span class="pre">shortest</span></code> checks for to detect “the long
+way round”, and that condition can never occur here, unlike
+<a class="reference internal" href="#spatialmath.quaternion.UnitQuaternion.interp" title="spatialmath.quaternion.UnitQuaternion.interp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">interp()</span></code></a>, where it can.</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.1.19: </span><code class="docutils literal notranslate"><span class="pre">shortest</span></code> has no effect and will be removed in a future
+release.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Seealso<span class="colon">:</span></dt>
