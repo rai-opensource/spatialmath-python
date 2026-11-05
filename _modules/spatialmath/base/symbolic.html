@@ -92,63 +92,72 @@
 <span class="sd">supported.</span>
 <span class="sd">"""</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath.base.types</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
-<span class="k">try</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-    <span class="c1"># print('Using SymPy')</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">_importlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">_sys</span>
 
-    <span class="n">_symbolics</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">symtype</span> <span class="o">=</span> <span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">Expr</span><span class="p">,)</span>
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Symbol</span>
 
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-    <span class="c1"># SymPy is not installed</span>
-    <span class="n">_symbolics</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">symtype</span> <span class="o">=</span> <span class="p">()</span>
-    <span class="n">Symbol</span> <span class="o">=</span> <span class="n">Any</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sympy</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Load the optional dependency only for a symbolic operation."""</span>
+    <span class="k">return</span> <span class="n">_importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">"sympy"</span><span class="p">)</span>
 
 
-<span class="c1"># ---------------------------------------------------------------------------------------#</span>
+<div class="viewcode-block" id="__getattr__">
+<a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.__getattr__">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Keep explicit access to the SymPy type aliases lazy."""</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"Symbol"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">Symbol</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"symtype"</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">Expr</span><span class="p">,)</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">()</span>
+    <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"module </span><span class="si">{</span><span class="vm">__name__</span><span class="si">!r}</span><span class="s2"> has no attribute </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span></div>
 
-<span class="k">if</span> <span class="n">_symbolics</span><span class="p">:</span>
+
 
 <div class="viewcode-block" id="symbol">
 <a class="viewcode-back" href="../../../func_symbolic.html#spatialmath.base.symbolic.symbol">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">symbol</span><span class="p">(</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">real</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Symbol</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Symbol</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Create symbolic variables</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">symbol</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">real</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Symbol</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Symbol</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Create symbolic variables</span>
 
-<span class="sd">        :param name: symbol names</span>
-<span class="sd">        :type name: str</span>
-<span class="sd">        :param real: assume variable is real, defaults to True</span>
-<span class="sd">        :type real: bool, optional</span>
-<span class="sd">        :return: SymPy symbols</span>
-<span class="sd">        :rtype: sympy</span>
+<span class="sd">    :param name: symbol names</span>
+<span class="sd">    :type name: str</span>
+<span class="sd">    :param real: assume variable is real, defaults to True</span>
+<span class="sd">    :type real: bool, optional</span>
+<span class="sd">    :return: SymPy symbols</span>
+<span class="sd">    :rtype: sympy</span>
 
-<span class="sd">        .. runblock:: pycon</span>
+<span class="sd">    .. runblock:: pycon</span>
 
-<span class="sd">            &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
-<span class="sd">            &gt;&gt;&gt; theta = symbol('theta')</span>
-<span class="sd">            &gt;&gt;&gt; theta</span>
-<span class="sd">            &gt;&gt;&gt; theta, psi = symbol('theta psi')</span>
-<span class="sd">            &gt;&gt;&gt; theta</span>
-<span class="sd">            &gt;&gt;&gt; psi</span>
-<span class="sd">            &gt;&gt;&gt; q = symbol('q_:6')</span>
-<span class="sd">            &gt;&gt;&gt; q</span>
+<span class="sd">        &gt;&gt;&gt; from spatialmath.base.symbolic import *</span>
+<span class="sd">        &gt;&gt;&gt; theta = symbol('theta')</span>
+<span class="sd">        &gt;&gt;&gt; theta</span>
+<span class="sd">        &gt;&gt;&gt; theta, psi = symbol('theta psi')</span>
+<span class="sd">        &gt;&gt;&gt; theta</span>
+<span class="sd">        &gt;&gt;&gt; psi</span>
+<span class="sd">        &gt;&gt;&gt; q = symbol('q_:6')</span>
+<span class="sd">        &gt;&gt;&gt; q</span>
 
-<span class="sd">        .. note:: In Jupyter symbols are pretty printed.</span>
+<span class="sd">    .. note:: In Jupyter symbols are pretty printed.</span>
 
-<span class="sd">            - symbols named after greek letters will appear as greek letters</span>
-<span class="sd">            - underscore means subscript as it does in LaTex, so the symbols ``q``</span>
-<span class="sd">              above will be subscripted.</span>
+<span class="sd">        - symbols named after greek letters will appear as greek letters</span>
+<span class="sd">        - underscore means subscript as it does in LaTex, so the symbols ``q``</span>
+<span class="sd">          above will be subscripted.</span>
 
-<span class="sd">        :seealso: :func:`sympy.symbols`</span>
-<span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="n">real</span><span class="p">)</span></div>
+<span class="sd">    :seealso: :func:`sympy.symbols`</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="n">real</span><span class="p">)</span></div>
 
 
 
@@ -170,13 +179,12 @@
 <span class="sd">        &gt;&gt;&gt; issymbol(3.4)</span>
 
 <span class="sd">    """</span>
-    <span class="k">if</span> <span class="n">_symbolics</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
-            <span class="k">return</span> <span class="nb">any</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">symtype</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">var</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">symtype</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span></div>
+    <span class="n">sympy</span> <span class="o">=</span> <span class="n">_sys</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"sympy"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sympy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Expr</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">var</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Expr</span><span class="p">)</span></div>
 
 
 
@@ -211,7 +219,7 @@
 <span class="sd">    :seealso: :func:`sympy.sin`</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">issymbol</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span></div>
 
@@ -248,7 +256,7 @@
 <span class="sd">    :seealso: :func:`sympy.cos`</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">issymbol</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span></div>
 
@@ -285,7 +293,7 @@
 <span class="sd">    :seealso: :func:`sympy.cos`</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">issymbol</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span></div>
 
@@ -322,7 +330,7 @@
 <span class="sd">    :seealso: :func:`sympy.sqrt`</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">issymbol</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">)</span></div>
 
@@ -346,7 +354,7 @@
 
 <span class="sd">    :seealso: :func:`sympy.S.Zero`</span>
 <span class="sd">    """</span>
-    <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">Zero</span></div>
+    <span class="k">return</span> <span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">Zero</span></div>
 
 
 
@@ -368,7 +376,7 @@
 
 <span class="sd">    :seealso: :func:`sympy.S.One`</span>
 <span class="sd">    """</span>
-    <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">One</span></div>
+    <span class="k">return</span> <span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">One</span></div>
 
 
 
@@ -390,7 +398,7 @@
 
 <span class="sd">    :seealso: :func:`sympy.S.NegativeOne`</span>
 <span class="sd">    """</span>
-    <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">NegativeOne</span></div>
+    <span class="k">return</span> <span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">NegativeOne</span></div>
 
 
 
@@ -412,7 +420,7 @@
 
 <span class="sd">    :seealso: :func:`sympy.S.Pi`</span>
 <span class="sd">    """</span>
-    <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">Pi</span></div>
+    <span class="k">return</span> <span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">Pi</span></div>
 
 
 
@@ -437,10 +445,11 @@
 
 <span class="sd">    :seealso: :func:`sympy.simplify`</span>
 <span class="sd">    """</span>
-    <span class="k">if</span> <span class="n">_symbolics</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">x</span></div>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">sympy</span> <span class="o">=</span> <span class="n">_sympy</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
 
 
 
@@ -468,7 +477,7 @@
 <span class="sd">    .. note:: Converts to a SymPy ``Matrix`` and then back again.</span>
 <span class="sd">    """</span>
 
-    <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">det</span><span class="p">()</span></div>
+    <span class="k">return</span> <span class="n">_sympy</span><span class="p">()</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">det</span><span class="p">()</span></div>
 
 </pre></div>
 

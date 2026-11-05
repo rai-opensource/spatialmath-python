@@ -57,6 +57,7 @@
 <li class="toctree-l2"><a class="reference internal" href="func_nd.html">Transforms in ND</a></li>
 <li class="toctree-l2"><a class="reference internal" href="func_quat.html">Quaternions</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Symbolic computation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spatialmath.base.symbolic.__getattr__"><code class="docutils literal notranslate"><span class="pre">__getattr__()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spatialmath.base.symbolic.cos"><code class="docutils literal notranslate"><span class="pre">cos()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spatialmath.base.symbolic.det"><code class="docutils literal notranslate"><span class="pre">det()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spatialmath.base.symbolic.issymbol"><code class="docutils literal notranslate"><span class="pre">issymbol()</span></code></a></li>
@@ -111,6 +112,11 @@ generalizes some common functions so that they can accept numerical or
 Symbolic arguments.</p>
 <p>If SymPy is not installed then only the standard numeric operations are
 supported.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="spatialmath.base.symbolic.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#__getattr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.__getattr__" title="Link to this definition"></a></dt>
+<dd><p>Keep explicit access to the SymPy type aliases lazy.</p>
+</dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="spatialmath.base.symbolic.cos">
 <span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/base/symbolic.html#cos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.base.symbolic.cos" title="Link to this definition"></a></dt>
