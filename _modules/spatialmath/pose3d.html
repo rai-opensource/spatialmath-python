@@ -1253,9 +1253,6 @@
 <span class="sd">        - ``SE3([X1, X2, ... XN])`` has ``N`` values</span>
 <span class="sd">          given by the elements ``Xi`` each of which is an SE3 instance.</span>
 
-<span class="sd">        - ``SE3(A)`` where ``A`` is an ``(N, 4, 4)`` NumPy array has ``N`` values,</span>
-<span class="sd">          equivalent to ``SE3(list(A))``.</span>
-
 <span class="sd">        :SymPy: supported</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">z</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1275,10 +1272,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">smb</span><span class="o">.</span><span class="n">transl</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="k">for</span> <span class="n">T</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
 
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">"bad argument to constructor: expected an SE3, SO3 or SE2 instance, a 4x4 or "</span>
-                    <span class="s2">"(N, 4, 4) array, a list of those, a 3-vector or an (N, 3) array of translations"</span>
-                <span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"bad argument to constructor"</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">z</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># SE3(x, y, z)</span>
