@@ -245,7 +245,7 @@
 <span class="sd">        """</span>
         <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">pi1</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">pi2</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">pi3</span><span class="o">.</span><span class="n">n</span><span class="p">])</span>
         <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pi1</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="n">pi2</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="n">pi3</span><span class="o">.</span><span class="n">d</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="n">b</span></div>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="o">-</span><span class="n">b</span><span class="p">)</span></div>
 
 
     <span class="nd">@property</span>
