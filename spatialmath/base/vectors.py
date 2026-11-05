@@ -16,14 +16,7 @@ import numpy as np
 from spatialmath.base.argcheck import getvector
 from spatialmath.base.types import *
 
-try:  # pragma: no cover
-    # print('Using SymPy')
-    import sympy
-
-    _symbolics = True
-
-except ImportError:  # pragma: no cover
-    _symbolics = False
+from spatialmath.base import symbolic as sym
 
 _eps = np.finfo(np.float64).eps
 
@@ -55,8 +48,8 @@ def norm(v: ArrayLikePure) -> float:
     for x in v:
         sum += x * x
 
-    if _symbolics and isinstance(sum, sympy.Expr):
-        return sympy.sqrt(sum)
+    if sym.issymbol(sum):
+        return sym.sqrt(sum)
     else:
         return math.sqrt(sum)
 
