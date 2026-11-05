@@ -12,7 +12,7 @@ import numpy.testing as nt
 import unittest
 from math import pi
 import math
-from scipy.linalg import logm
+from scipy.linalg import expm, logm
 import pytest
 import sys
 
@@ -87,6 +87,25 @@ class Test2D(unittest.TestCase):
         nt.assert_array_almost_equal(trlog2(T), logm(T))
 
         nt.assert_array_almost_equal(trlog2(T, twist=True), vexa(logm(T)))
+
+    def test_trlog2_quadrants(self):
+        for c, s in (
+            (1, 0),
+            (math.sqrt(3) / 2, 0.5),
+            (-0.5, math.sqrt(3) / 2),
+            (-0.5, -math.sqrt(3) / 2),
+            (-1, 0),
+            (0, 1),
+            (0, -1),
+        ):
+            R = np.array([[c, -s], [s, c]])
+            for T in (R, rt2tr(R, [1, 2])):
+                for twist in (False, True):
+                    with self.subTest(c=c, s=s, shape=T.shape, twist=twist):
+                        S = trlog2(T, twist=twist)
+                        if twist:
+                            S = skew(S) if T.shape == (2, 2) else skewa(S)
+                        nt.assert_allclose(expm(S), T, atol=1e-12, rtol=0)
 
     def test_trexp2(self):
         R = trexp2(skew(0.5))
