@@ -78,7 +78,7 @@ ros-humble = [
 
 [build-system]
 
-requires = ["setuptools", "oldest-supported-numpy"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
