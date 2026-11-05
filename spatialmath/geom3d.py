@@ -145,7 +145,7 @@ class Plane3:
         """
         A = np.vstack([pi1.n, pi2.n, pi3.n])
         b = np.array([pi1.d, pi2.d, pi3.d])
-        return np.linalg.det(A) @ b
+        return np.linalg.solve(A, -b)
 
     @property
     def n(self) -> R3:
