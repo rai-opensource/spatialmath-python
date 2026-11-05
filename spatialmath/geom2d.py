@@ -178,12 +178,17 @@ class Line2:
         Tests whether the line intersects the line segment defined by endpoints
         ``p1`` and ``p2`` which are given in Euclidean or homogeneous form.
         """
+        # Use unit weight for finite endpoints in the sign and tolerance tests.
         p1 = smb.getvector(p1)
         if len(p1) == 2:
             p1 = np.r_[p1, 1]
+        elif p1[2] != 0:
+            p1 = p1 / p1[2]
         p2 = smb.getvector(p2)
         if len(p2) == 2:
             p2 = np.r_[p2, 1]
+        elif p2[2] != 0:
+            p2 = p2 / p2[2]
 
         z1 = np.dot(self.line, p1)
         z2 = np.dot(self.line, p2)

@@ -140,6 +140,18 @@ class Line2Test(unittest.TestCase):
         self.assertFalse(l1.intersect_segment((2, 1), (2, 3)))
         self.assertTrue(l1.intersect_segment((2, 1), (2, -1)))
 
+    def test_intersect_segment_homogeneous_endpoints(self):
+        line = Line2([0, 1, 0])  # y = 0
+        above = np.array([1, 2, 1])
+        below = np.array([1, -2, 1])
+        for p1, p2, expected in (
+            ((0, 1), -above, False),
+            (-below, (0, 1), True),
+            (1e-16 * above, (0, 1), False),
+        ):
+            with self.subTest(p1=p1, p2=p2):
+                self.assertEqual(line.intersect_segment(p1, p2), expected)
+
 
 class EllipseTest(unittest.TestCase):
     def test_constructor(self):
