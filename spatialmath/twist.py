@@ -1107,6 +1107,7 @@ class Twist3(BaseTwist):
         Twist3    scalar                Twist3               element-wise product
         scalar    Twist3                Twist3               element-wise product
         Twist3    SE3                   Twist3               exponential x SE3
+        Twist3    SpatialVector         SpatialVector        adjoint/coadjoint product
         ========  ====================  ===================  ========================
 
         .. note::
@@ -1114,7 +1115,10 @@ class Twist3(BaseTwist):
             #. scalar x Twist is handled by ``__rmul__``
             #. scalar multiplication is commutative but the result is not a group
                operation so the result will be a matrix
-            #. Any other input combinations result in a ValueError.
+            #. ``Twist3 * SpatialVector`` (velocity, acceleration, force, momentum)
+               is handled by falling back to
+               :meth:`~spatialmath.spatialvector.SpatialVector.__rmul__`.
+            #. Any other input combination raises a ``TypeError``.
 
         For pose composition the ``left`` and ``right`` operands may be a sequence
 
@@ -1147,7 +1151,11 @@ class Twist3(BaseTwist):
             # return Twist(left.S * right)
             return Twist3(left.binop(right, lambda x, y: x * y))
         else:
-            raise ValueError("twist *, incorrect right operand")
+            # not a type we handle directly -- return NotImplemented so Python
+            # falls back to right.__rmul__(left), which SpatialVector (velocity,
+            # acceleration, force, momentum) defines. If right has no __rmul__
+            # either, Python raises its own TypeError.
+            return NotImplemented
 
     def __rmul__(
         right, left
