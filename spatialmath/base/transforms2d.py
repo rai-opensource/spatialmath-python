@@ -549,7 +549,7 @@ def trlog2(
         else:
             st = T[1, 0]
             ct = T[0, 0]
-            theta = math.atan(st / ct)
+            theta = math.atan2(st, ct)
             if abs(theta) < tol * _eps:
                 tr = T[:2, 2].flatten()
             else:
@@ -564,7 +564,7 @@ def trlog2(
 
     elif isrot2(T, check=check, tol=tol):
         # SO(2) rotation matrix
-        theta = math.atan(T[1, 0] / T[0, 0])
+        theta = math.atan2(T[1, 0], T[0, 0])
         if twist:
             return theta
         else:
