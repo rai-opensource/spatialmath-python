@@ -3,6 +3,7 @@ from math import pi
 import numpy.testing as nt
 import unittest
 from unittest.mock import patch
+import warnings
 
 from spatialmath import *
 from spatialmath.base import *
@@ -782,6 +783,31 @@ class TestUnitQuaternion(unittest.TestCase):
             with patch("spatialmath.base.quaternions.np.dot", wraps=np.dot) as dot:
                 self.assertEqual(len(interpolate()), 5)
             self.assertEqual(dot.call_count, 1)
+
+    def test_interp1_shortest_deprecated(self):
+        # shortest never had an effect on interp1: every UnitQuaternion has
+        # a non-negative scalar part by construction (qunit()), and interp1
+        # always interpolates from the identity quaternion, whose dot
+        # product with any unit quaternion is just that quaternion's own
+        # (always non-negative) scalar part. So the "long way round" branch
+        # shortest exists to avoid is unreachable. Pin that True/False give
+        # identical results, that it warns, and that leaving it at its
+        # default doesn't.
+        q = UnitQuaternion.Rx(4.5)  # would be "the long way" if reachable
+
+        for s in (0, 0.25, 0.5, 0.75, 1):
+            qcompare(q.interp1(s, shortest=False), q.interp1(s, shortest=True))
+
+        for a, b in zip(q.interp1(11, shortest=False), q.interp1(11, shortest=True)):
+            qcompare(a, b)
+
+        with self.assertWarns(DeprecationWarning):
+            q.interp1(0.5, shortest=True)
+
+        with warnings.catch_warnings():
+            warnings.simplefilter("error")
+            q.interp1(0.5)  # default shortest=False must not warn
+            q.interp1(0.5, shortest=False)
 
     def test_increment(self):
         q = UnitQuaternion()
