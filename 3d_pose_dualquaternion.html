@@ -144,17 +144,17 @@
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_pose_dualquaternion.html#spatialmath.DualQuaternion.UnitDualQuaternion" title="spatialmath.DualQuaternion.UnitDualQuaternion"><span class="n">UnitDualQuaternion</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3" title="spatialmath.pose3d.SE3"><span class="n">SE3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3" title="spatialmath.pose3d.SE3"><span class="n">T</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3.Rand" title="spatialmath.pose3d.SE3.Rand"><span class="n">SE3</span><span class="o">.</span><span class="n">Rand</span></a><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3" title="spatialmath.pose3d.SE3"><span class="n">T</span></a><span class="p">)</span>
-<span class="go">  -0.4802   -0.865    -0.1454   -0.8809    </span>
-<span class="go">  -0.8385    0.404     0.3658   -0.4264    </span>
-<span class="go">  -0.2577    0.2976   -0.9193    0.05813   </span>
+<span class="go">   0.02731   0.9943   -0.1028    0.3929    </span>
+<span class="go">   0.9806   -0.04659  -0.1903   -0.02338   </span>
+<span class="go">  -0.194    -0.09556  -0.9763    0.5798    </span>
 <span class="go">   0         0         0         1</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_dualquaternion.html#spatialmath.DualQuaternion.UnitDualQuaternion" title="spatialmath.DualQuaternion.UnitDualQuaternion"><span class="n">d</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_pose_dualquaternion.html#spatialmath.DualQuaternion.UnitDualQuaternion" title="spatialmath.DualQuaternion.UnitDualQuaternion"><span class="n">UnitDualQuaternion</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3" title="spatialmath.pose3d.SE3"><span class="n">T</span></a><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="3d_pose_dualquaternion.html#spatialmath.DualQuaternion.UnitDualQuaternion" title="spatialmath.DualQuaternion.UnitDualQuaternion"><span class="n">d</span></a><span class="p">)</span>
-<span class="go"> 0.0335 &lt;&lt; -0.5087,  0.8372,  0.1981 &gt;&gt; + ε -0.0513 &lt; -0.0813,  0.0653, -0.4762 &gt;</span>
+<span class="go"> 0.0331 &lt;&lt;  0.7159,  0.6896, -0.1036 &gt;&gt; + ε -0.1025 &lt; -0.1922,  0.2275,  0.1534 &gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="3d_pose_dualquaternion.html#spatialmath.DualQuaternion.UnitDualQuaternion.SE3" title="spatialmath.DualQuaternion.UnitDualQuaternion.SE3"><span class="n">d</span><span class="o">.</span><span class="n">SE3</span></a><span class="p">())</span>
-<span class="go">  -0.4802   -0.865    -0.1454   -0.8809    </span>
-<span class="go">  -0.8385    0.404     0.3658   -0.4264    </span>
-<span class="go">  -0.2577    0.2976   -0.9193    0.05813   </span>
+<span class="go">   0.02731   0.9943   -0.1028    0.3929    </span>
+<span class="go">   0.9806   -0.04659  -0.1903   -0.02338   </span>
+<span class="go">  -0.194    -0.09556  -0.9763    0.5798    </span>
 <span class="go">   0         0         0         1</span>
 </pre></div>
 </div>
@@ -201,13 +201,13 @@ the rigid-body motion described by the SE3 value <code class="docutils literal n
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_pose_dualquaternion.html#spatialmath.DualQuaternion.UnitDualQuaternion" title="spatialmath.DualQuaternion.UnitDualQuaternion"><span class="n">UnitDualQuaternion</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3" title="spatialmath.pose3d.SE3"><span class="n">SE3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3" title="spatialmath.pose3d.SE3"><span class="n">T</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3.Rand" title="spatialmath.pose3d.SE3.Rand"><span class="n">SE3</span><span class="o">.</span><span class="n">Rand</span></a><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3" title="spatialmath.pose3d.SE3"><span class="n">T</span></a><span class="p">)</span>
-<span class="go">   0.6956    0.6611    0.2814    0.06066   </span>
-<span class="go">   0.6949   -0.7185   -0.02986  -0.8393    </span>
-<span class="go">   0.1825    0.2163   -0.9591   -0.6209    </span>
+<span class="go">  -0.3649    0.9297    0.05056   0.1202    </span>
+<span class="go">   0.04661  -0.03599   0.9983   -0.09404   </span>
+<span class="go">   0.9299    0.3667   -0.0302    0.4193    </span>
 <span class="go">   0         0         0         1</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_dualquaternion.html#spatialmath.DualQuaternion.UnitDualQuaternion" title="spatialmath.DualQuaternion.UnitDualQuaternion"><span class="n">d</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_pose_dualquaternion.html#spatialmath.DualQuaternion.UnitDualQuaternion" title="spatialmath.DualQuaternion.UnitDualQuaternion"><span class="n">UnitDualQuaternion</span></a><span class="p">(</span><a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3" title="spatialmath.pose3d.SE3"><span class="n">T</span></a><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="3d_pose_dualquaternion.html#spatialmath.DualQuaternion.UnitDualQuaternion" title="spatialmath.DualQuaternion.UnitDualQuaternion"><span class="n">d</span></a><span class="p">)</span>
-<span class="go"> 0.0670 &lt;&lt;  0.9183,  0.3692,  0.1263 &gt;&gt; + ε  0.1663 &lt;  0.0636, -0.3170,  0.3757 &gt;</span>
+<span class="go">-0.3771 &lt;&lt;  0.4187,  0.5829,  0.5854 &gt;&gt; + ε -0.1205 &lt; -0.1724,  0.0703, -0.0243 &gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="3d_pose_dualquaternion.html#spatialmath.DualQuaternion.UnitDualQuaternion" title="spatialmath.DualQuaternion.UnitDualQuaternion"><span class="n">d</span></a><span class="p">)</span>
 <span class="go">&lt;class 'spatialmath.DualQuaternion.UnitDualQuaternion'&gt;</span>
 </pre></div>

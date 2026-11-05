@@ -273,8 +273,8 @@ poses.</p></li>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.Rand" title="spatialmath.twist.Twist3.Rand"><span class="n">Twist3</span><span class="o">.</span><span class="n">Rand</span></a><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="go">Twist3([</span>
-<span class="go">  [0.27449, -0.29245, 0.8656, -0.35615, 0.19063, 2.3376],</span>
-<span class="go">  [0.79663, 0.88193, 0.32432, 0.30228, -0.53049, 2.4398]</span>
+<span class="go">  [-0.33854, 0.51962, 0.32883, 0.73387, -0.066044, -1.2246],</span>
+<span class="go">  [-0.54716, 0.080613, 1.4768, -0.39096, -1.4194, -1.9506]</span>
 <span class="go">])</span>
 </pre></div>
 </div>
@@ -1075,11 +1075,11 @@ The inverse is the negative of the twist vector.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a><span class="p">(</span><span class="n">SE3</span><span class="o">.</span><span class="n">Rand</span><span class="p">())</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a>
-<span class="go">Twist3([-0.80954, 0.027258, 0.56126, -2.1478, 0.4945, -1.4167])</span>
+<span class="go">Twist3([1.0635, 0.15894, 0.89469, 1.8841, -2.208, 0.31558])</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.inv" title="spatialmath.twist.Twist3.inv"><span class="n">S</span><span class="o">.</span><span class="n">inv</span></a><span class="p">()</span>
-<span class="go">Twist3([0.80954, -0.027258, -0.56126, 2.1478, -0.4945, 1.4167])</span>
+<span class="go">Twist3([-1.0635, -0.15894, -0.89469, -1.8841, 2.208, -0.31558])</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a> <span class="o">*</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.inv" title="spatialmath.twist.Twist3.inv"><span class="n">S</span><span class="o">.</span><span class="n">inv</span></a><span class="p">()</span>
-<span class="go">Twist3([-5.5511e-17, 1.1102e-16, 2.0817e-16, 0, -9.9267e-18, -1.7817e-18])</span>
+<span class="go">Twist3([1.1102e-16, 3.3307e-16, 4.4409e-16, -2.7756e-17, 1.7347e-18, -5.2042e-18])</span>
 </pre></div>
 </div>
 </dd></dl>
