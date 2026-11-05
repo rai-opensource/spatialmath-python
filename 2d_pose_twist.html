@@ -794,11 +794,11 @@ The inverse is the negative of the twist vector.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a><span class="p">(</span><span class="n">SE3</span><span class="o">.</span><span class="n">Rand</span><span class="p">())</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a>
-<span class="go">Twist3([0.44505, -0.10515, -0.17636, -1.2185, 1.7076, -0.94333])</span>
+<span class="go">Twist3([0.021318, -1.0057, -0.49911, 2.2957, 0.38381, -0.91043])</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.inv" title="spatialmath.twist.Twist3.inv"><span class="n">S</span><span class="o">.</span><span class="n">inv</span></a><span class="p">()</span>
-<span class="go">Twist3([-0.44505, 0.10515, 0.17636, 1.2185, -1.7076, 0.94333])</span>
+<span class="go">Twist3([-0.021318, 1.0057, 0.49911, -2.2957, -0.38381, 0.91043])</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a> <span class="o">*</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.inv" title="spatialmath.twist.Twist3.inv"><span class="n">S</span><span class="o">.</span><span class="n">inv</span></a><span class="p">()</span>
-<span class="go">Twist3([-6.9389e-17, -5.5511e-17, 1.6653e-16, 0, 0, 0])</span>
+<span class="go">Twist3([0, -2.7756e-17, 2.2204e-16, 0, 0, 0])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -920,7 +920,7 @@ Twist <code class="docutils literal notranslate"><span class="pre">S</span></cod
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.twist.Twist2.A">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">A</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">NDArray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">NDArray</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#spatialmath.twist.Twist2.A" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">A</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><span class="pre">NDArray</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><span class="pre">NDArray</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#spatialmath.twist.Twist2.A" title="Link to this definition"></a></dt>
 <dd><p>Array value of an instance (BasePoseList superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -1162,7 +1162,7 @@ this point is at infinity.</p>
 <hr/>
 <div role="contentinfo">
 <p>© Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 26-Oct-2026.
+      <span class="lastupdated">Last updated on 05-Nov-2026.
       </span></p>
 </div>
 

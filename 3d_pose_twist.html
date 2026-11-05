@@ -273,8 +273,8 @@ poses.</p></li>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.Rand" title="spatialmath.twist.Twist3.Rand"><span class="n">Twist3</span><span class="o">.</span><span class="n">Rand</span></a><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="go">Twist3([</span>
-<span class="go">  [0.72139, -0.34793, 0.8536, -0.02806, -0.039062, -0.95022],</span>
-<span class="go">  [-0.41231, 0.70265, -0.565, 2.1307, 0.05461, 1.3614]</span>
+<span class="go">  [0.27449, -0.29245, 0.8656, -0.35615, 0.19063, 2.3376],</span>
+<span class="go">  [0.79663, 0.88193, 0.32432, 0.30228, -0.53049, 2.4398]</span>
 <span class="go">])</span>
 </pre></div>
 </div>
@@ -780,6 +780,11 @@ Twist3 instance containing N motions</p></li>
 <td><p>Twist3</p></td>
 <td><p>exponential x SE3</p></td>
 </tr>
+<tr class="row-odd"><td><p>Twist3</p></td>
+<td><p>SpatialVector</p></td>
+<td><p>SpatialVector</p></td>
+<td><p>adjoint/coadjoint product</p></td>
+</tr>
 </tbody>
 </table>
 <div class="admonition note">
@@ -788,7 +793,10 @@ Twist3 instance containing N motions</p></li>
 <li><p>scalar x Twist is handled by <code class="docutils literal notranslate"><span class="pre">__rmul__</span></code></p></li>
 <li><p>scalar multiplication is commutative but the result is not a group
 operation so the result will be a matrix</p></li>
-<li><p>Any other input combinations result in a ValueError.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Twist3</span> <span class="pre">*</span> <span class="pre">SpatialVector</span></code> (velocity, acceleration, force, momentum)
+is handled by falling back to
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">__rmul__()</span></code>.</p></li>
+<li><p>Any other input combination raises a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p></li>
 </ol>
 </div>
 <p>For pose composition the <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code> operands may be a sequence</p>
@@ -1067,11 +1075,11 @@ The inverse is the negative of the twist vector.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a><span class="p">(</span><span class="n">SE3</span><span class="o">.</span><span class="n">Rand</span><span class="p">())</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a>
-<span class="go">Twist3([0.36805, -1.13, 0.32502, 0.19408, 1.6817, -2.4404])</span>
+<span class="go">Twist3([-0.80954, 0.027258, 0.56126, -2.1478, 0.4945, -1.4167])</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.inv" title="spatialmath.twist.Twist3.inv"><span class="n">S</span><span class="o">.</span><span class="n">inv</span></a><span class="p">()</span>
-<span class="go">Twist3([-0.36805, 1.13, -0.32502, -0.19408, -1.6817, 2.4404])</span>
+<span class="go">Twist3([0.80954, -0.027258, -0.56126, 2.1478, -0.4945, 1.4167])</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a> <span class="o">*</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.inv" title="spatialmath.twist.Twist3.inv"><span class="n">S</span><span class="o">.</span><span class="n">inv</span></a><span class="p">()</span>
-<span class="go">Twist3([-3.3307e-16, -1.1102e-16, -1.1102e-16, 0, 0, 0])</span>
+<span class="go">Twist3([-5.5511e-17, 1.1102e-16, 2.0817e-16, 0, -9.9267e-18, -1.7817e-18])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1217,7 +1225,7 @@ Twist <code class="docutils literal notranslate"><span class="pre">S</span></cod
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="spatialmath.twist.Twist3.A">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">A</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">NDArray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">NDArray</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#spatialmath.twist.Twist3.A" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">A</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><span class="pre">NDArray</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><span class="pre">NDArray</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#spatialmath.twist.Twist3.A" title="Link to this definition"></a></dt>
 <dd><p>Array value of an instance (BasePoseList superclass method)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -1485,7 +1493,7 @@ this point is at infinity.</p>
 <hr/>
 <div role="contentinfo">
 <p>© Copyright 2020-, Peter Corke..
-      <span class="lastupdated">Last updated on 26-Oct-2026.
+      <span class="lastupdated">Last updated on 05-Nov-2026.
       </span></p>
 </div>
 
