@@ -1096,6 +1096,9 @@ class SE3(SO3):
         - ``SE3([X1, X2, ... XN])`` has ``N`` values
           given by the elements ``Xi`` each of which is an SE3 instance.
 
+        - ``SE3(A)`` where ``A`` is an ``(N, 4, 4)`` NumPy array has ``N`` values,
+          equivalent to ``SE3(list(A))``.
+
         :SymPy: supported
         """
         if y is None and z is None:
@@ -1115,7 +1118,10 @@ class SE3(SO3):
                 self.data = [smb.transl(T) for T in x]
 
             else:
-                raise ValueError("bad argument to constructor")
+                raise ValueError(
+                    "bad argument to constructor: expected an SE3, SO3 or SE2 instance, a 4x4 or "
+                    "(N, 4, 4) array, a list of those, a 3-vector or an (N, 3) array of translations"
+                )
 
         elif y is not None and z is not None:
             # SE3(x, y, z)

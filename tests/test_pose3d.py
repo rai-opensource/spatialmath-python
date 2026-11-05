@@ -793,6 +793,26 @@ class TestSE3(unittest.TestCase):
     def tearDownClass(cls):
         plt.close("all")
 
+    def test_constructor_stacked_array(self):
+        # an (N, 4, 4) ndarray is a sequence of N poses, like a list of 4x4 arrays
+        poses = [SE3.Rx(0.3), SE3(1, 2, 3) * SE3.Ry(0.4), SE3.Rz(-0.2)]
+        stacked = np.array([T.A for T in poses])
+        for check in (True, False):
+            T = SE3(stacked, check=check)
+            self.assertEqual(len(T), 3)
+            for k in range(3):
+                nt.assert_array_almost_equal(T[k].A, poses[k].A)
+        self.assertEqual(len(SE3(np.empty((0, 4, 4)))), 0)
+        self.assertEqual(len(SO3(np.array([SO3.Rx(0.1).A, SO3.Ry(0.2).A]))), 2)
+
+        # stacked matrices that are not valid poses are still rejected by check=True
+        with self.assertRaises(ValueError):
+            SE3(2 * stacked)
+        # and a stack of matrices of the wrong size is rejected whatever the value of check
+        for check in (True, False):
+            with self.assertRaises(ValueError):
+                SE3(np.ones((3, 3, 3)), check=check)
+
     def test_constructor(self):
         # null constructor
         R = SE3()
