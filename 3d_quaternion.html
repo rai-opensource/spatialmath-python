@@ -762,6 +762,8 @@ A 3-vector of length N is a 3xN numpy array, where each column is a 3-vector.</p
 <ol class="arabic simple">
 <li><p>None, an identity value is created</p></li>
 <li><p>a numpy.ndarray of the appropriate shape and value which is valid for the subclass</p></li>
+<li><p>a stacked numpy.ndarray of shape (N, r, c), where (r, c) is the shape of one value
+of the subclass, which is a sequence of N values</p></li>
 <li><p>a list whose elements all meet the criteria above</p></li>
 <li><p>an instance of the subclass</p></li>
 <li><p>a list whose elements are all singelton instances of the subclass</p></li>

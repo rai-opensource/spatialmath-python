@@ -589,13 +589,13 @@ poses.</p></li>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3" title="spatialmath.pose3d.SE3"><span class="n">SE3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3.Rand" title="spatialmath.pose3d.SE3.Rand"><span class="n">SE3</span><span class="o">.</span><span class="n">Rand</span></a><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="go">SE3([</span>
-<span class="go">array([[-0.4812, -0.173 , -0.8594,  0.4575],</span>
-<span class="go">       [-0.7406,  0.6048,  0.2929,  0.4269],</span>
-<span class="go">       [ 0.4691,  0.7774, -0.4191, -0.0194],</span>
+<span class="go">array([[ 0.3586, -0.8227, -0.4411, -0.6558],</span>
+<span class="go">       [ 0.1542,  0.5183, -0.8412,  0.1286],</span>
+<span class="go">       [ 0.9207,  0.2336,  0.3127, -0.2478],</span>
 <span class="go">       [ 0.    ,  0.    ,  0.    ,  1.    ]]),</span>
-<span class="go">array([[ 0.8176, -0.5737, -0.0476, -0.7026],</span>
-<span class="go">       [-0.5752, -0.8106, -0.1096, -0.0833],</span>
-<span class="go">       [ 0.0243,  0.117 , -0.9928,  0.8046],</span>
+<span class="go">array([[ 0.5189, -0.525 , -0.6747,  0.7245],</span>
+<span class="go">       [ 0.1419,  0.8312, -0.5376, -0.6114],</span>
+<span class="go">       [ 0.843 ,  0.1832,  0.5058, -0.0405],</span>
 <span class="go">       [ 0.    ,  0.    ,  0.    ,  1.    ]]) ])</span>
 </pre></div>
 </div>
@@ -1285,6 +1285,8 @@ matrix belongs to SE(3).</p></li>
 - <code class="docutils literal notranslate"><span class="pre">SE2</span></code> is the z-axis rotation and x- and y-axis translation of <code class="docutils literal notranslate"><span class="pre">X</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SE3([X1,</span> <span class="pre">X2,</span> <span class="pre">...</span> <span class="pre">XN])</span></code> has <code class="docutils literal notranslate"><span class="pre">N</span></code> values
 given by the elements <code class="docutils literal notranslate"><span class="pre">Xi</span></code> each of which is an SE3 instance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SE3(A)</span></code> where <code class="docutils literal notranslate"><span class="pre">A</span></code> is an <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">4,</span> <span class="pre">4)</span></code> NumPy array has <code class="docutils literal notranslate"><span class="pre">N</span></code> values,
+equivalent to <code class="docutils literal notranslate"><span class="pre">SE3(list(A))</span></code>.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">SymPy<span class="colon">:</span></dt>
