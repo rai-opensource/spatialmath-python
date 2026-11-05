@@ -275,14 +275,14 @@ enforce homogeneity of objects within an array (with <code class="docutils liter
 </pre></div>
 </div>
 <p>The classes form a rich hierarchy</p>
-<div class="graphviz"><img alt="Inheritance diagram of spatialmath.SE3, spatialmath.SO3, spatialmath.SE2, spatialmath.SO2, spatialmath.Twist3, spatialmath.Twist2, spatialmath.UnitQuaternion, spatialmath.spatialvector" class="inheritance graphviz" src="_images/inheritance-0e01c92ae9fc6dae3eaaf6635bc1cd2bd8512fb2.png" usemap="#inheritance8a10d5ee9d"/></div>
+<div class="graphviz"><img alt="Inheritance diagram of spatialmath.SE3, spatialmath.SO3, spatialmath.SE2, spatialmath.SO2, spatialmath.Twist3, spatialmath.Twist2, spatialmath.UnitQuaternion, spatialmath.spatialvector" class="inheritance graphviz" src="_images/inheritance-ad0167f1033a02d70903039a54f9c15336da3e96.png" usemap="#inheritance8a10d5ee9d"/></div>
 <map id="inheritance8a10d5ee9d" name="inheritance8a10d5ee9d">
 <area alt="" coords="295,199,388,224" href="3d_quaternion.html#spatialmath.quaternion.Quaternion" id="node6" shape="rect" target="_top" title="Quaternion class"/>
 <area alt="" coords="288,248,394,273" href="6d_spatial.html#spatialmath.spatialvector.SpatialVector" id="node14" shape="rect" target="_top" title="Spatial 6-vector abstract superclass"/>
 <area alt="" coords="288,296,395,321" href="6d_inertia.html#spatialmath.spatialvector.SpatialInertia" id="node16" shape="rect" target="_top" title="Spatial inertia class"/>
 <area alt="" coords="475,5,546,30" href="2d_orient_SO2.html#spatialmath.pose2d.SO2" id="node8" shape="rect" target="_top" title="SO(2) matrix class"/>
 <area alt="" coords="475,54,546,79" href="3d_orient_SO3.html#spatialmath.pose3d.SO3" id="node10" shape="rect" target="_top" title="SO(3) matrix class"/>
-<area alt="" coords="475,102,546,127" href="2d_pose_twist.html#spatialmath.twist.Twist2" id="node19" shape="rect" target="_top" title="Twist2"/>
+<area alt="" coords="475,102,546,127" href="2d_pose_twist.html#spatialmath.twist.Twist2" id="node19" shape="rect" target="_top" title="2D twist class"/>
 <area alt="" coords="475,151,546,176" href="3d_pose_twist.html#spatialmath.twist.Twist3" id="node20" shape="rect" target="_top" title="3D twist class"/>
 <area alt="" coords="451,199,570,224" href="3d_orient_unitquaternion.html#spatialmath.quaternion.UnitQuaternion" id="node21" shape="rect" target="_top" title="Unit quaternion class"/>
 <area alt="" coords="655,5,725,30" href="2d_pose_SE2.html#spatialmath.pose2d.SE2" id="node7" shape="rect" target="_top" title="SE(2) matrix class"/>
@@ -434,7 +434,7 @@ listing to the console, file and returns a string:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3" title="spatialmath.pose3d.SE3"><span class="n">X</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3.Rand" title="spatialmath.pose3d.SE3.Rand"><span class="n">SE3</span><span class="o">.</span><span class="n">Rand</span></a><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_pose_SE3.html#spatialmath.pose3d.SE3.printline" title="spatialmath.pose3d.SE3.printline"><span class="n">X</span><span class="o">.</span><span class="n">printline</span></a><span class="p">()</span>
-<span class="go">t = -0.56, 0.724, -0.0507; rpy/zyx = -179°, 25.2°, 142°</span>
+<span class="go">t = -0.209, -0.758, -0.288; rpy/zyx = 117°, 23.1°, -70.5°</span>
 </pre></div>
 </div>
 <p>The classes <code class="docutils literal notranslate"><span class="pre">SE3</span></code>, <code class="docutils literal notranslate"><span class="pre">SO3</span></code>, <code class="docutils literal notranslate"><span class="pre">SE2</span></code> and <code class="docutils literal notranslate"><span class="pre">SO2</span></code> can provide colorized text output to the console:</p>

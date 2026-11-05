@@ -100,6 +100,15 @@
 <dt class="sig sig-object py" id="spatialmath.twist.Twist2">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Twist2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spatialmath/twist.html#Twist2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spatialmath.twist.Twist2" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseTwist</span></code></p>
+<p>2D twist class</p>
+<p>A Twist2 object holds the parameters of a twist, a representation of a
+2D rigid body transformation which is the unique elements of the Lie
+algebra se(2) of the corresponding SE(2) matrix.  It is a 3-vector
+<span class="math notranslate nohighlight">\([\vec{v}, \omega]\)</span>.</p>
+<p>As for <a class="reference internal" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><code class="xref py py-class docutils literal notranslate"><span class="pre">Twist3</span></code></a> it can be used as a <em>displacement</em>, where <code class="docutils literal notranslate"><span class="pre">exp(S)</span></code>
+is the pose reached by following the motion, or as a <em>velocity</em>, where
+<code class="docutils literal notranslate"><span class="pre">exp(S</span> <span class="pre">*</span> <span class="pre">dt)</span></code> is the pose change over a time <code class="docutils literal notranslate"><span class="pre">dt</span></code>.  Properties that
+describe the axis, such as <a class="reference internal" href="#spatialmath.twist.Twist2.pole" title="spatialmath.twist.Twist2.pole"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pole</span></code></a>, are unchanged by scaling the twist.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spatialmath.twist.Twist2.Alloc">
 <span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Alloc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialmath.twist.Twist2.Alloc" title="Link to this definition"></a></dt>
@@ -171,7 +180,7 @@ vector.</p>
 <dd class="field-odd"><p>Twist2 instance</p>
 </dd>
 </dl>
-<p><cite>Twist2.Tx(x)</cite> is an se(2) translation of <code class="docutils literal notranslate"><span class="pre">x</span></code> along the x-axis</p>
+<p><code class="docutils literal notranslate"><span class="pre">Twist2.Tx(x)</span></code> is an se(2) translation of <code class="docutils literal notranslate"><span class="pre">x</span></code> along the x-axis</p>
 <p>Example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="2d_pose_twist.html#spatialmath.twist.Twist2" title="spatialmath.twist.Twist2"><span class="n">Twist2</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="2d_pose_twist.html#spatialmath.twist.Twist2.Tx" title="spatialmath.twist.Twist2.Tx"><span class="n">Twist2</span><span class="o">.</span><span class="n">Tx</span></a><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -207,7 +216,7 @@ vector.</p>
 <dd class="field-odd"><p>Twist2 instance</p>
 </dd>
 </dl>
-<p><cite>Twist2.Ty(y) is an se(2) translation of ``y`</cite> along the y-axis</p>
+<p><code class="docutils literal notranslate"><span class="pre">Twist2.Ty(y)</span></code> is an se(2) translation of <code class="docutils literal notranslate"><span class="pre">y</span></code> along the y-axis</p>
 <p>Example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="2d_pose_twist.html#spatialmath.twist.Twist2" title="spatialmath.twist.Twist2"><span class="n">Twist2</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="2d_pose_twist.html#spatialmath.twist.Twist2.Ty" title="spatialmath.twist.Twist2.Ty"><span class="n">Twist2</span><span class="o">.</span><span class="n">Ty</span></a><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -267,7 +276,7 @@ vector.</p>
 <dd class="field-odd"><p><strong>q</strong> (<em>array_like</em><em>(</em><em>2</em><em>)</em>) – Point on the line of action</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>2D prismatic twist</p>
+<dd class="field-even"><p>2D revolute twist</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Twist2 instance</p>
@@ -294,7 +303,7 @@ vector.</p>
 <dd><p>Test if matrix is valid twist</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x</strong> (<em>ndarray</em>) – array to test</p>
+<dd class="field-odd"><p><strong>v</strong> (<em>ndarray</em>) – array to test</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether the value is a 3-vector or a valid 3x3 se(2) element</p>
@@ -303,7 +312,7 @@ vector.</p>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
-<p>A twist can be represented by a 6-vector or a 4x4 skew symmetric matrix,
+<p>A twist can be represented by a 3-vector or a 3x3 augmented skew symmetric matrix,
 for example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="2d_pose_twist.html#spatialmath.twist.Twist2" title="spatialmath.twist.Twist2"><span class="n">Twist2</span></a><span class="p">,</span> <span class="n">base</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/index.html#module-numpy"><span class="nn">numpy</span></a><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -366,7 +375,7 @@ of that.</p>
 <dd class="field-odd"><p>an SE(2) representation</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>SE3 instance</p>
+<dd class="field-even"><p>SE2 instance</p>
 </dd>
 </dl>
 <p><code class="docutils literal notranslate"><span class="pre">S.SE2()</span></code> is an SE2 object representing the homogeneous transformation
@@ -382,7 +391,7 @@ equivalent to the Twist2. This is the exponentiation of the twist vector.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Seealso<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="3d_pose_twist.html#spatialmath.twist.Twist3.exp" title="spatialmath.twist.Twist3.exp"><code class="xref py py-func docutils literal notranslate"><span class="pre">Twist3.exp()</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#spatialmath.twist.Twist2.exp" title="spatialmath.twist.Twist2.exp"><code class="xref py py-func docutils literal notranslate"><span class="pre">Twist2.exp()</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -422,14 +431,11 @@ equivalent to the Twist2. This is the exponentiation of the twist vector.</p>
 <dd><blockquote>
 <div><p>Construct a new 2D Twist object</p>
 <dl class="field-list simple">
-<dt class="field-odd">type a<span class="colon">:</span></dt>
-<dd class="field-odd"><p>2-element array-like</p>
+<dt class="field-odd">return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2D twist</p>
 </dd>
-<dt class="field-even">return<span class="colon">:</span></dt>
-<dd class="field-even"><p>2D prismatic twist</p>
-</dd>
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Twist2 instance</p>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>Twist2 instance</p>
 </dd>
 </dl>
 <ul class="simple">
@@ -440,7 +446,7 @@ a 3x3 matrix.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Twist2(X)</span></code> if X is an SO2 instance then create a 2D Twist object representing the SO(2) rotation,
 and if X is an SE2 instance then create a 2D Twist object representing the SE(2) motion</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Twist2(V)</span></code> is a  2D Twist object specified directly by a 3-element array-like comprising the
-moment vector (1 element) and direction vector (2 elements).</p></li>
+moment vector (2 elements) and direction vector (1 element).</p></li>
 </ul>
 </div></blockquote>
 <dl class="field-list simple">
@@ -455,7 +461,7 @@ moment vector (1 element) and direction vector (2 elements).</p></li>
 <p class="admonition-title">Note</p>
 <p>Compared to Lynch &amp; Park this module implements twist vectors
 with the translational components first, followed by rotational
-components, ie. <span class="math notranslate nohighlight">\([\omega, \vec{v}]\)</span>.</p>
+components, ie. <span class="math notranslate nohighlight">\([\vec{v}, \omega]\)</span>.</p>
 </div>
 </dd></dl>
 <dl class="py method">
@@ -667,7 +673,7 @@ exponentiate this 3x3 matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>theta</strong> (<em>float</em><em>, </em><em>optional</em>) – rotation magnitude, defaults to None</p></li>
+<li><p><strong>theta</strong> (<em>float</em><em>, </em><em>optional</em>) – rotation magnitude, defaults to 1</p></li>
 <li><p><strong>unit</strong> (<em>str</em><em>, </em><em>optional</em>) – rotational units, defaults to ‘rad’</p></li>
 </ul>
 </dd>
@@ -681,7 +687,7 @@ exponentiate this 3x3 matrix.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">X.exp()</span></code> is the homogeneous transformation equivalent to the twist,
 <span class="math notranslate nohighlight">\(e^{[S]}\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">X.exp(θ)</span> <span class="pre">as</span> <span class="pre">above</span> <span class="pre">but</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">rotation</span> <span class="pre">of</span> <span class="pre">``θ</span></code> about the twist axis,
+<li><p><code class="docutils literal notranslate"><span class="pre">X.exp(θ)</span></code> as above but with a rotation of <code class="docutils literal notranslate"><span class="pre">θ</span></code> about the twist axis,
 <span class="math notranslate nohighlight">\(e^{\theta[S]}\)</span></p></li>
 </ul>
 <p>Example:</p>
@@ -794,11 +800,11 @@ The inverse is the negative of the twist vector.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spatialmath</span><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">Twist3</span></a><span class="p">(</span><span class="n">SE3</span><span class="o">.</span><span class="n">Rand</span><span class="p">())</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a>
-<span class="go">Twist3([0.23379, 0.14965, 0.34343, -0.28888, -0.42531, 2.583])</span>
+<span class="go">Twist3([1.3927, 0.29457, -0.11785, 0.53086, -1.3491, 0.7801])</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.inv" title="spatialmath.twist.Twist3.inv"><span class="n">S</span><span class="o">.</span><span class="n">inv</span></a><span class="p">()</span>
-<span class="go">Twist3([-0.23379, -0.14965, -0.34343, 0.28888, 0.42531, -2.583])</span>
+<span class="go">Twist3([-1.3927, -0.29457, 0.11785, -0.53086, 1.3491, -0.7801])</span>
 <span class="gp">&gt;&gt;&gt; </span><a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3" title="spatialmath.twist.Twist3"><span class="n">S</span></a> <span class="o">*</span> <a class="sphinx-codeautolink-a" href="3d_pose_twist.html#spatialmath.twist.Twist3.inv" title="spatialmath.twist.Twist3.inv"><span class="n">S</span><span class="o">.</span><span class="n">inv</span></a><span class="p">()</span>
-<span class="go">Twist3([-2.7756e-17, 2.7756e-17, 0, 0, 0, 0])</span>
+<span class="go">Twist3([0, -2.2204e-16, -2.2204e-16, 0, 0, 0])</span>
 </pre></div>
 </div>
 </dd></dl>
