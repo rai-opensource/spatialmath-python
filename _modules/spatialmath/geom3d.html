@@ -996,15 +996,12 @@
 <span class="sd">        ``l1.intersects(l2)`` is the point of intersection of the two lines, or</span>
 <span class="sd">        ``None`` if the lines do not intersect or are equivalent.</span>
 
-<span class="sd">        :seealso: :meth:`commonperp :meth:`eq` :meth:`__xor__`</span>
+<span class="sd">        :seealso: :meth:`commonperp` :meth:`isintersecting` :meth:`closest_to_line`</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">l1</span> <span class="o">^</span> <span class="n">l2</span><span class="p">:</span>
-            <span class="c1"># lines do intersect</span>
-            <span class="k">return</span> <span class="o">-</span><span class="p">(</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="n">l2</span><span class="o">.</span><span class="n">w</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-                <span class="o">+</span> <span class="n">l1</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">@</span> <span class="n">l2</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-                <span class="o">-</span> <span class="n">l2</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">@</span> <span class="n">l1</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-            <span class="p">)</span> <span class="o">*</span> <span class="n">base</span><span class="o">.</span><span class="n">unitvec</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">l2</span><span class="o">.</span><span class="n">w</span><span class="p">))</span>
+            <span class="c1"># For intersecting lines, the nearest point is their intersection.</span>
+            <span class="n">point</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">l1</span><span class="o">.</span><span class="n">closest_to_line</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">point</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># lines don't intersect</span>
             <span class="k">return</span> <span class="kc">None</span></div>
