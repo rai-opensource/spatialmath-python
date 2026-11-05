@@ -1673,6 +1673,7 @@
 <span class="sd">        """</span>
 
         <span class="c1"># print(f"new axis logic ({dimensions}D): ", end='')</span>
+        <span class="n">use_current_figure</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># no axes passed in, find out what's happening</span>
             <span class="c1"># need to be careful to not use gcf() or gca() since they</span>
@@ -1690,6 +1691,10 @@
                     <span class="c1"># print(f"ax has {_axes_dimensions(ax)} dimensions")</span>
                     <span class="k">if</span> <span class="n">_axes_dimensions</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">==</span> <span class="n">dimensions</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">new</span><span class="p">:</span>
                         <span class="k">return</span> <span class="n">ax</span>
+                <span class="k">elif</span> <span class="ow">not</span> <span class="n">new</span><span class="p">:</span>
+                    <span class="c1"># the current figure is empty, eg. from a bare plt.figure():</span>
+                    <span class="c1"># put the axes in it rather than leave it empty and make another</span>
+                    <span class="n">use_current_figure</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="c1"># otherwise it doesnt exist or dimension mismatch, create new axes</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># print("ax given", ax)</span>
@@ -1700,7 +1705,8 @@
                 <span class="k">return</span> <span class="n">ax</span>
             <span class="c1"># print("mismatch in dimensions, create new axes")</span>
         <span class="c1"># print("create new axes")</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">use_current_figure</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">dimensions</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">autoscale</span><span class="p">:</span>
@@ -1927,26 +1933,6 @@
             <span class="n">manager</span><span class="o">.</span><span class="n">set_window_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">isnotebook</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Determine if code is being run from a Jupyter notebook</span>
-
-<span class="sd">        :references:</span>
-
-<span class="sd">            - https://stackoverflow.com/questions/15411967/how-can-i-check-if-code-</span>
-<span class="sd">            is-executed-in-the-ipython-notebook/39662359#39662359</span>
-<span class="sd">        """</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">shell</span> <span class="o">=</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-            <span class="k">if</span> <span class="n">shell</span> <span class="o">==</span> <span class="s2">"ZMQInteractiveShell"</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">True</span>  <span class="c1"># Jupyter notebook or qtconsole</span>
-            <span class="k">elif</span> <span class="n">shell</span> <span class="o">==</span> <span class="s2">"TerminalInteractiveShell"</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Terminal running IPython</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Other type (?)</span>
-        <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Probably standard Python interpreter</span>
 
     <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
