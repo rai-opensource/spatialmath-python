@@ -105,7 +105,7 @@ class BaseTwist(BasePoseList):
         if len(self) == 1:
             return smb.iszerovec(self.w)
         else:
-            return [smb.iszerovec(x.w) for x in self.data]
+            return [smb.iszerovec(x.w) for x in self]
 
     @property
     def isrevolute(self):
@@ -131,7 +131,7 @@ class BaseTwist(BasePoseList):
         if len(self) == 1:
             return smb.iszerovec(self.v)
         else:
-            return [smb.iszerovec(x.v) for x in self.data]
+            return [smb.iszerovec(x.v) for x in self]
 
     @property
     def isunit(self):
@@ -296,13 +296,30 @@ class Twist3(BaseTwist):
     3D rigid body transformation which is the unique elements of the Lie
     algebra se(3) of the corresponding SE(3) matrix.
 
+    A twist can be used in two ways which share the same 6-vector, the same
+    :math:`[\vec{v}, \omega]` layout and the same algebra:
+
+    - as a *displacement*, where ``exp(S)`` is the pose reached by following the
+      screw motion and ``exp(S * theta)`` scales it.  ``S`` is often a unit
+      twist, see :meth:`unit`.  This is the usage in Robotics, Vision & Control
+      and in Modern Robotics.
+    - as a *velocity*, where ``S`` has units of m/s and rad/s and ``exp(S * dt)``
+      is the pose change over a time ``dt``.  This is the meaning of ``Twist``
+      in ROS.  The typed counterpart, which also has acceleration, force and
+      momentum, is :class:`~spatialmath.spatialvector.SpatialVelocity`.
+
+    Properties that describe the screw axis, such as :attr:`pitch`,
+    :attr:`pole` and :meth:`line`, are unchanged by scaling the twist so apply
+    to both.  Those that depend on its magnitude, such as :attr:`theta`, are
+    an angle in the first usage and a rate in the second.
+
     :References:
         - Robotics, Vision & Control for Python, Section 2.3.2.3, P. Corke, Springer 2023.
         - Modern Robotics, Lynch & Park, Cambridge 2017
 
     .. note:: Compared to Lynch & Park this module implements twist vectors
         with the translational components first, followed by rotational
-        components, ie. :math:`[\omega, \vec{v}]`.
+        components, ie. :math:`[\vec{v}, \omega]`.
 
     """
 
@@ -364,8 +381,8 @@ class Twist3(BaseTwist):
         """
         Test if matrix is valid twist
 
-        :param x: array to test
-        :type x: ndarray
+        :param v: array to test
+        :type v: ndarray
         :return: Whether the value is a 6-vector or a valid 4x4 se(3) element
         :rtype: bool
 
@@ -538,7 +555,7 @@ class Twist3(BaseTwist):
         :return: 3D twist vector
         :rtype: Twist3 instance
 
-        - ``Twist3.Rx(θ)`` is an SE(3) rotation of θ radians about the x-axis
+        - ``Twist3.Rx(θ)`` is an se(3) rotation of θ radians about the x-axis
         - ``Twist3.Rx(θ, "deg")`` as above but θ is in degrees
 
         If ``θ`` is an array then the result is a sequence of rotations defined
@@ -569,7 +586,7 @@ class Twist3(BaseTwist):
         :return: 3D twist vector
         :rtype: Twist3 instance
 
-        - ``Twist3.Ry(θ)`` is an SO(3) rotation of θ radians about the y-axis
+        - ``Twist3.Ry(θ)`` is an se(3) rotation of θ radians about the y-axis
         - ``Twist3.Ry(θ, "deg")`` as above but θ is in degrees
 
         If ``θ`` is an array then the result is a sequence of rotations defined
@@ -600,7 +617,7 @@ class Twist3(BaseTwist):
         :return: 3D twist vector
         :rtype: Twist3 instance
 
-        - ``Twist3.Rz(θ)`` is an SO(3) rotation of θ radians about the z-axis
+        - ``Twist3.Rz(θ)`` is an se(3) rotation of θ radians about the z-axis
         - ``Twist3.Rz(θ, "deg")`` as above but θ is in degrees
 
         If ``θ`` is an array then the result is a sequence of rotations defined
@@ -765,14 +782,14 @@ class Twist3(BaseTwist):
         :type zrange: 2-element sequence, optional
         :param N: number of random transforms
         :type N: int
-        :return: SE(3) matrix
-        :rtype: SE3 instance
+        :return: 3D twist
+        :rtype: Twist3 instance
 
-        Return an SE3 instance with random rotation and translation.
+        Return a Twist3 instance with random rotation and translation.
 
-        - ``SE3.Rand()`` is a random SE(3) translation.
-        - ``SE3.Rand(N=N)`` is an SE3 object containing a sequence of N random
-          poses.
+        - ``Twist3.Rand()`` is a random se(3) twist.
+        - ``Twist3.Rand(N=N)`` is a Twist3 object containing a sequence of N random
+          twists.
 
         Example:
 
@@ -781,7 +798,7 @@ class Twist3(BaseTwist):
             >>> from spatialmath import Twist3
             >>> Twist3.Rand(N=2)
 
-        :seealso: :func:`~spatialmath.quaternions.UnitQuaternion.Rand`
+        :seealso: :meth:`~spatialmath.pose3d.SE3.Rand`
         """
         from spatialmath.pose3d import SO3
 
@@ -792,7 +809,7 @@ class Twist3(BaseTwist):
             low=yrange[0], high=yrange[1], size=N
         )  # random values in the range
         Z = np.random.uniform(
-            low=yrange[0], high=zrange[1], size=N
+            low=zrange[0], high=zrange[1], size=N
         )  # random values in the range
         R = SO3.Rand(N=N)
 
@@ -886,12 +903,13 @@ class Twist3(BaseTwist):
             >>> S = Twist3.Rx(0.3)
             >>> S.Ad()
 
-        .. note:: This method computes the equivalent SE(3) matrix, then the adjoint
-            of that.
+        .. note:: Equivalent to, but faster than, ``self.SE3().Ad()`` -- computes
+            the adjoint directly from the twist's exponential without
+            constructing an intermediate ``SE3`` instance.
 
         :seealso: :func:`Twist3.ad`, :func:`Twist3.SE3`, :func:`Twist3.exp`
         """
-        return self.SE3().Ad()
+        return smb.tr2adjoint(smb.trexp(self.S, check=False))
 
     def skewa(self):
         """
@@ -986,7 +1004,7 @@ class Twist3(BaseTwist):
             >>> S = Twist3(T)
             >>> S.pole
         """
-        return np.cross(self.w, self.v) / self.theta
+        return np.cross(self.w, self.v) / np.dot(self.w, self.w)
 
     def SE3(self, theta=1, unit="rad"):
         """
@@ -1014,7 +1032,7 @@ class Twist3(BaseTwist):
 
         if len(theta) == 1:
             # theta is a scalar
-            return SE3(smb.trexp(self.S * theta))
+            return SE3([smb.trexp(S * theta[0]) for S in self.data])
         else:
             # theta is a vector
             if len(self) == 1:
@@ -1028,7 +1046,7 @@ class Twist3(BaseTwist):
         """
         Exponentiate a 3D twist
 
-        :param theta: rotation magnitude, defaults to None
+        :param theta: rotation magnitude, defaults to 1
         :type theta: float, optional
         :param units: rotational units, defaults to 'rad'
         :type units: str, optional
@@ -1037,7 +1055,7 @@ class Twist3(BaseTwist):
 
         - ``X.exp()`` is the homogeneous transformation equivalent to the twist,
           :math:`e^{[S]}`
-        - ``X.exp(θ) as above but with a rotation of ``θ`` about the twist axis,
+        - ``X.exp(θ)`` as above but with a rotation of ``θ`` about the twist axis,
           :math:`e^{\theta[S]}`
 
         If ``len(X)==1`` and ``len(θ)==N`` then the resulting SE3 object has
@@ -1072,6 +1090,8 @@ class Twist3(BaseTwist):
 
         if len(self) == 1:
             return SE3([smb.trexp(self.S * t) for t in theta], check=False)
+        elif len(theta) == 1:
+            return SE3([smb.trexp(s * theta[0]) for s in self.data], check=False)
         elif len(self) == len(theta):
             return SE3([smb.trexp(s * t) for s, t in zip(self.S, theta)], check=False)
         else:
@@ -1105,6 +1125,7 @@ class Twist3(BaseTwist):
         Twist3    scalar                Twist3               element-wise product
         scalar    Twist3                Twist3               element-wise product
         Twist3    SE3                   Twist3               exponential x SE3
+        Twist3    SpatialVector         SpatialVector        adjoint/coadjoint product
         ========  ====================  ===================  ========================
 
         .. note::
@@ -1112,7 +1133,10 @@ class Twist3(BaseTwist):
             #. scalar x Twist is handled by ``__rmul__``
             #. scalar multiplication is commutative but the result is not a group
                operation so the result will be a matrix
-            #. Any other input combinations result in a ValueError.
+            #. ``Twist3 * SpatialVector`` (velocity, acceleration, force, momentum)
+               is handled by falling back to
+               :meth:`~spatialmath.spatialvector.SpatialVector.__rmul__`.
+            #. Any other input combination raises a ``TypeError``.
 
         For pose composition the ``left`` and ``right`` operands may be a sequence
 
@@ -1145,7 +1169,11 @@ class Twist3(BaseTwist):
             # return Twist(left.S * right)
             return Twist3(left.binop(right, lambda x, y: x * y))
         else:
-            raise ValueError("twist *, incorrect right operand")
+            # not a type we handle directly -- return NotImplemented so Python
+            # falls back to right.__rmul__(left), which SpatialVector (velocity,
+            # acceleration, force, momentum) defines. If right has no __rmul__
+            # either, Python raises its own TypeError.
+            return NotImplemented
 
     def __rmul__(
         right, left
@@ -1163,7 +1191,7 @@ class Twist3(BaseTwist):
         - ``s * X`` performs elementwise multiplication of the elements of ``X`` by ``s``
         """
         if smb.isscalar(left):
-            return Twist3(right.S * left)
+            return Twist3(right.binop(left, lambda x, y: x * y))
         else:
             raise ValueError("Twist3 *, incorrect left operand")
 
@@ -1178,10 +1206,10 @@ class Twist3(BaseTwist):
 
         Example:
 
-        .. runblock: pycon
+        .. runblock:: pycon
 
             >>> from spatialmath import Twist3
-            >>> x = Twist3.R([1,2,3], [4,5,6])
+            >>> x = Twist3.UnitRevolute([1,2,3], [4,5,6])
             >>> print(x)
         """
         return "\n".join(
@@ -1202,13 +1230,11 @@ class Twist3(BaseTwist):
 
         Example:
 
-        .. runblock: pycon
+        .. runblock:: pycon
 
             >>> from spatialmath import Twist3
-            >>> x = Twist3.R([1,2,3], [4,5,6])
+            >>> x = Twist3.UnitRevolute([1,2,3], [4,5,6])
             >>> x
-            >>> a.append(a)
-            >>> a
 
         """
         if len(self) == 0:
@@ -1255,12 +1281,25 @@ class Twist3(BaseTwist):
 
 
 class Twist2(BaseTwist):
+    r"""
+    2D twist class
+
+    A Twist2 object holds the parameters of a twist, a representation of a
+    2D rigid body transformation which is the unique elements of the Lie
+    algebra se(2) of the corresponding SE(2) matrix.  It is a 3-vector
+    :math:`[\vec{v}, \omega]`.
+
+    As for :class:`Twist3` it can be used as a *displacement*, where ``exp(S)``
+    is the pose reached by following the motion, or as a *velocity*, where
+    ``exp(S * dt)`` is the pose change over a time ``dt``.  Properties that
+    describe the axis, such as :attr:`pole`, are unchanged by scaling the twist.
+    """
+
     def __init__(self, arg=None, w=None, check=True):
         r"""
             Construct a new 2D Twist object
 
-            :type a: 2-element array-like
-            :return: 2D prismatic twist
+            :return: 2D twist
             :rtype: Twist2 instance
 
             - ``Twist2(R)`` is a 2D Twist object representing the SO(2) rotation expressed as
@@ -1270,7 +1309,7 @@ class Twist2(BaseTwist):
             - ``Twist2(X)`` if X is an SO2 instance then create a 2D Twist object representing the SO(2) rotation,
               and if X is an SE2 instance then create a 2D Twist object representing the SE(2) motion
             - ``Twist2(V)`` is a  2D Twist object specified directly by a 3-element array-like comprising the
-              moment vector (1 element) and direction vector (2 elements).
+              moment vector (2 elements) and direction vector (1 element).
 
         :References:
             - Robotics, Vision & Control for Python, Section 2.2.2.4, P. Corke, Springer 2023.
@@ -1278,7 +1317,7 @@ class Twist2(BaseTwist):
 
         .. note:: Compared to Lynch & Park this module implements twist vectors
             with the translational components first, followed by rotational
-            components, ie. :math:`[\omega, \vec{v}]`.
+            components, ie. :math:`[\vec{v}, \omega]`.
         """
         from spatialmath.pose2d import SE2
 
@@ -1328,12 +1367,12 @@ class Twist2(BaseTwist):
         """
         Test if matrix is valid twist
 
-        :param x: array to test
-        :type x: ndarray
+        :param v: array to test
+        :type v: ndarray
         :return: Whether the value is a 3-vector or a valid 3x3 se(2) element
         :rtype: bool
 
-        A twist can be represented by a 6-vector or a 4x4 skew symmetric matrix,
+        A twist can be represented by a 3-vector or a 3x3 augmented skew symmetric matrix,
         for example:
 
         .. runblock:: pycon
@@ -1369,7 +1408,7 @@ class Twist2(BaseTwist):
 
         :param q: Point on the line of action
         :type q: array_like(2)
-        :return: 2D prismatic twist
+        :return: 2D revolute twist
         :rtype: Twist2 instance
 
         - ``Twist2.UnitRevolute(q)`` is a 2D Twist object representing rotation about the 2D point ``q``.
@@ -1500,7 +1539,7 @@ class Twist2(BaseTwist):
             >>> S.pole
 
         """
-        p = np.cross(np.r_[0, 0, self.w], np.r_[self.v, 0]) / self.theta
+        p = np.cross(np.r_[0, 0, self.w], np.r_[self.v, 0]) / self.w**2
         return p[:2]
 
     # -------------------------  methods -------------------------------#
@@ -1513,7 +1552,7 @@ class Twist2(BaseTwist):
         Convert 2D twist to SE(2) matrix
 
         :return: an SE(2) representation
-        :rtype: SE3 instance
+        :rtype: SE2 instance
 
         ``S.SE2()`` is an SE2 object representing the homogeneous transformation
         equivalent to the Twist2. This is the exponentiation of the twist vector.
@@ -1526,19 +1565,23 @@ class Twist2(BaseTwist):
             >>> S = Twist2.UnitPrismatic([1,2])
             >>> S.SE2()
 
-        :seealso: :func:`Twist3.exp`
+        :seealso: :func:`Twist2.exp`
         """
         from spatialmath.pose2d import SE2
 
-        if unit != "rad" and self.isprismatic:
-            print("Twist3.exp: using degree mode for a prismatic twist")
+        if unit != "rad" and any(s.isprismatic for s in self):
+            print("Twist2.SE2: using degree mode for a prismatic twist")
 
         theta = smb.getunit(theta, unit)
 
         if len(theta) == 1:
-            return SE2(smb.trexp2(self.S * theta))
-        else:
+            return SE2([smb.trexp2(S * theta[0]) for S in self.data])
+        elif len(self) == 1:
             return SE2([smb.trexp2(self.S * t) for t in theta])
+        elif len(self) == len(theta):
+            return SE2([smb.trexp2(S * t) for S, t in zip(self.data, theta)])
+        else:
+            raise ValueError("length of twist and theta not consistent")
 
     def skewa(self):
         """
@@ -1570,7 +1613,7 @@ class Twist2(BaseTwist):
         r"""
         Exponentiate a 2D twist
 
-        :param theta: rotation magnitude, defaults to None
+        :param theta: rotation magnitude, defaults to 1
         :type theta: float, optional
         :param unit: rotational units, defaults to 'rad'
         :type unit: str, optional
@@ -1579,7 +1622,7 @@ class Twist2(BaseTwist):
 
         - ``X.exp()`` is the homogeneous transformation equivalent to the twist,
           :math:`e^{[S]}`
-        - ``X.exp(θ) as above but with a rotation of ``θ`` about the twist axis,
+        - ``X.exp(θ)`` as above but with a rotation of ``θ`` about the twist axis,
           :math:`e^{\theta[S]}`
 
         Example:
@@ -1605,6 +1648,8 @@ class Twist2(BaseTwist):
 
         if len(self) == 1:
             return SE2([smb.trexp2(self.S * t) for t in theta], check=False)
+        elif len(theta) == 1:
+            return SE2([smb.trexp2(s * theta[0]) for s in self.data], check=False)
         elif len(self) == len(theta):
             return SE2([smb.trexp2(s * t) for s, t in zip(self.S, theta)], check=False)
         else:
@@ -1633,13 +1678,26 @@ class Twist2(BaseTwist):
             # general twist: normalize so |w| == 1 (w is a scalar for Twist2)
             return Twist2(self.S / abs(self.w))
 
-    @property
     def ad(self):
-        """
-        Twist2.ad Logarithm of adjoint
+        r"""
+        Logarithm of adjoint of 2D twist
 
-        - ``S.ad()`` is the logarithm of the adjoint matrix of the corresponding
-          homogeneous transformation.
+        :return: logarithm of adjoint matrix
+        :rtype: ndarray(3,3), or list of ndarray if the twist is a sequence
+
+        ``S.ad()`` is the 3x3 matrix representation of the Lie bracket with
+        the twist ``S``, such that for twists ``S`` and ``T``
+
+        .. math::
+
+            \mathrm{ad}(S) \vec{T} = \vee \left( [S] [T] - [T] [S] \right)
+
+        where :math:`[S]` is the augmented skew-symmetric matrix of the twist.
+        For :math:`S = (v_x, v_y, \omega)` it is
+
+        .. math::
+
+            \begin{pmatrix} 0 & -\omega & v_y \\ \omega & 0 & -v_x \\ 0 & 0 & 0 \end{pmatrix}
 
         Example:
 
@@ -1648,16 +1706,46 @@ class Twist2(BaseTwist):
             >>> from spatialmath import SE2, Twist2
             >>> T = SE2(1, 2, 0.3)
             >>> S = Twist2(T)
-            >>> S.unit()
+            >>> S.ad()
 
-        :seealso: SE3.Ad.
+        .. note:: An alternative approach to computing the adjoint is to
+            exponentiate this 3x3 matrix.
+
+        :seealso: :func:`Twist2.Ad`
         """
-        return np.array(
-            [
-                [smb.skew(self.w), smb.skew(self.v)],
-                [np.zeros((3, 3)), smb.skew(self.w)],
-            ]
-        )
+        if len(self) == 1:
+            v, w = self.v, self.w
+            return np.array([[0, -w, v[1]], [w, 0, -v[0]], [0, 0, 0]])
+        else:
+            return [x.ad() for x in self]
+
+    def Ad(self):
+        """
+        Adjoint of 2D twist
+
+        :return: adjoint matrix
+        :rtype: ndarray(3,3)
+
+        ``S.Ad()`` is the 3x3 adjoint matrix of the corresponding
+        homogeneous transformation.
+
+        For a twist representing motion from frame {B} to {A}, the adjoint will
+        transform a twist relative to frame {A} to one relative to frame {B}.
+
+        Example:
+
+        .. runblock:: pycon
+
+            >>> from spatialmath import Twist2
+            >>> S = Twist2([1, 2, 0.3])
+            >>> S.Ad()
+
+        .. note:: This method computes the equivalent SE(2) matrix, then the adjoint
+            of that.
+
+        :seealso: :func:`Twist2.ad`, :func:`Twist2.SE2`, :func:`Twist2.exp`
+        """
+        return self.SE2().Ad()
 
     @classmethod
     def Tx(cls, x):
@@ -1669,7 +1757,7 @@ class Twist2(BaseTwist):
         :return: 2D twist vector
         :rtype: Twist2 instance
 
-        `Twist2.Tx(x)` is an se(2) translation of ``x`` along the x-axis
+        ``Twist2.Tx(x)`` is an se(2) translation of ``x`` along the x-axis
 
         Example:
 
@@ -1695,7 +1783,7 @@ class Twist2(BaseTwist):
         :return: 2D twist vector
         :rtype: Twist2 instance
 
-        `Twist2.Ty(y) is an se(2) translation of ``y`` along the y-axis
+        ``Twist2.Ty(y)`` is an se(2) translation of ``y`` along the y-axis
 
         Example:
 
@@ -1774,11 +1862,25 @@ class Twist2(BaseTwist):
         else:
             raise ValueError("Twist2 *, incorrect right operand")
 
-    def __rmul(self, left):
+    def __rmul__(
+        right, left
+    ):  # lgtm[py/not-named-self] pylint: disable=no-self-argument
+        """
+        Overloaded ``*`` operator
+
+        :arg right: right multiplicand
+        :arg left: left multiplicand
+        :return: product
+        :raises: ValueError
+
+        Left-multiplication by a scalar
+
+        - ``s * X`` performs elementwise multiplication of the elements of ``X`` by ``s``
+        """
         if smb.isscalar(left):
-            return Twist2(self.S * left)
+            return Twist2(right.binop(left, lambda x, y: x * y))
         else:
-            raise ValueError("twist *, incorrect left operand")
+            raise ValueError("Twist2 *, incorrect left operand")
 
     def __str__(self):
         """
@@ -1791,8 +1893,9 @@ class Twist2(BaseTwist):
 
         Example:
 
-        .. runblock: pycon
+        .. runblock:: pycon
 
+            >>> from spatialmath import Twist2
             >>> x = Twist2([1,2,3])
             >>> print(x)
         """
@@ -1807,13 +1910,11 @@ class Twist2(BaseTwist):
 
         Example:
 
-        .. runblock: pycon
+        .. runblock:: pycon
 
             >>> from spatialmath import Twist2
             >>> x = Twist2([1,2,3])
             >>> x
-            >>> a.append(a)
-            >>> a
 
         """
 

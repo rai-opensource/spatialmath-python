@@ -358,13 +358,13 @@ class SE2(SO2):
 
         Return an SE2 instance with random rotation and translation.
 
-        - ``SE2.Rand()`` is a random SE(2) rotation.
+        - ``SE2.Rand()`` is a random SE(2) pose.
         - ``SE2.Rand(N)`` is an SE2 object containing a sequence of N random
           poses.
 
         Example, create random ten vehicles in the xy-plane::
 
-            >>> x = SE3.Rand(N=10, xrange=[-2,2], yrange=[-2,2])
+            >>> x = SE2.Rand(N=10, xrange=[-2,2], yrange=[-2,2])
             >>> len(x)
             10
 
@@ -608,6 +608,32 @@ class SE2(SO2):
             return SE2(smb.rt2tr(self.R.T, -self.R.T @ self.t), check=False)
         else:
             return SE2([smb.rt2tr(x.R.T, -x.R.T @ x.t) for x in self], check=False)
+
+    def Ad(self):
+        r"""
+        Adjoint of SE(2)
+
+        :return: adjoint matrix
+        :rtype: ndarray(3,3)
+
+        ``SE2.Ad`` is the 3x3 adjoint matrix
+
+        If the twist or spatial velocity :math:`\nu = (v_x, v_y, \omega)^T`
+        and the SE(2) represents the pose of {B} relative to {A},
+        ie. :math:`{}^A {\bf T}_B`, and the adjoint is :math:`\mathbf{A}` then
+        :math:`{}^{A}\!\nu = \mathbf{A} {}^{B}\!\nu`.
+
+        Example:
+
+        .. runblock:: pycon
+
+            >>> from spatialmath import SE2
+            >>> SE2(1, 2, 0.3).Ad()
+
+        :seealso: :meth:`spatialmath.pose3d.SE3.Ad`, :meth:`spatialmath.twist.Twist2.ad`,
+            :func:`~spatialmath.base.transforms2d.tr2adjoint2`
+        """
+        return smb.tr2adjoint2(self.A)
 
     def SE3(self, z=0):
         """

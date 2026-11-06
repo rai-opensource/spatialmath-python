@@ -275,6 +275,26 @@ class Test3D(unittest.TestCase):
         nt.assert_array_almost_equal(angvec2r(pi / 4, [0, 0, 1]), rotz(pi / 4))
         nt.assert_array_almost_equal(angvec2r(-pi / 4, [0, 0, 1]), rotz(-pi / 4))
 
+    def test_angvec2r_nonunit_axis(self):
+        # the axis is normalized, so its length is irrelevant
+        nt.assert_array_almost_equal(
+            angvec2r(0.5, [1, 2, 3]), angvec2r(0.5, np.array([1, 2, 3]) / np.sqrt(14))
+        )
+        nt.assert_array_almost_equal(angvec2r(pi / 4, [0, 0, 5]), rotz(pi / 4))
+
+    def test_angvec2r_zero_axis(self):
+        # zero rotation about a zero axis is the identity, any angle units
+        nt.assert_array_almost_equal(angvec2r(0, [0, 0, 0]), np.eye(3))
+        nt.assert_array_almost_equal(angvec2r(0, [0, 0, 0], unit="deg"), np.eye(3))
+
+        # a non-zero rotation about a zero axis is meaningless
+        with self.assertRaises(ValueError):
+            angvec2r(0.5, [0, 0, 0])
+        with self.assertRaises(ValueError):
+            angvec2r(pi, [0, 0, 0])
+        with self.assertRaises(ValueError):
+            angvec2r(90, [0, 0, 0], unit="deg")
+
     def test_angvec2tr(self):
         r2d = 180 / pi
 
@@ -289,6 +309,14 @@ class Test3D(unittest.TestCase):
         nt.assert_array_almost_equal(angvec2tr(0, [0, 0, 1]), trotz(0))
         nt.assert_array_almost_equal(angvec2tr(pi / 4, [0, 0, 1]), trotz(pi / 4))
         nt.assert_array_almost_equal(angvec2tr(-pi / 4, [0, 0, 1]), trotz(-pi / 4))
+
+        # non-unit axis is normalized
+        nt.assert_array_almost_equal(angvec2tr(pi / 4, [0, 0, 5]), trotz(pi / 4))
+
+        # zero rotation about a zero axis is the identity, otherwise an error
+        nt.assert_array_almost_equal(angvec2tr(0, [0, 0, 0]), np.eye(4))
+        with self.assertRaises(ValueError):
+            angvec2tr(0.5, [0, 0, 0])
 
         r2d = 180 / pi
 

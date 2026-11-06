@@ -16,10 +16,10 @@ import numpy as np
 from collections.abc import Iterable
 
 # from spatialmath.base import symbolic as sym # HACK
-from spatialmath.base.symbolic import issymbol, symtype
+from spatialmath.base.symbolic import issymbol
 
 # valid scalar types
-_scalartypes = (int, np.integer, float, np.floating) + symtype
+_scalartypes = (int, np.integer, float, np.floating)
 
 # from typing import Union, List, Tuple, Any, Optional, Type, Callable
 # from numpy.typing import DTypeLike
@@ -47,7 +47,9 @@ def isscalar(x: Any) -> bool:
         >>> isscalar([1])
 
     """
-    return isinstance(x, _scalartypes)
+    return isinstance(x, _scalartypes) or (
+        not isinstance(x, (list, tuple)) and issymbol(x)
+    )
 
 
 def isinteger(x: Any) -> bool:
@@ -386,7 +388,7 @@ def getvector(
     """
     dt = dtype
 
-    if isinstance(v, _scalartypes):  # handle scalar case
+    if isscalar(v):  # handle scalar case
         v = [v]  # type: ignore
     if isinstance(v, (list, tuple)):
         # list or tuple was passed in
@@ -501,7 +503,7 @@ def isvector(v: Any, dim: Optional[int] = None) -> bool:
     if (
         isinstance(v, (list, tuple))
         and (dim is None or len(v) == dim)
-        and all(map(lambda x: isinstance(x, _scalartypes), v))
+        and all(map(isscalar, v))
     ):
         return True  # list or tuple
 
@@ -516,7 +518,7 @@ def isvector(v: Any, dim: Optional[int] = None) -> bool:
         else:
             return s == (dim,) or s == (1, dim) or s == (dim, 1)
 
-    if (dim is None or dim == 1) and isinstance(v, _scalartypes):
+    if (dim is None or dim == 1) and isscalar(v):
         return True
 
     return False
@@ -620,11 +622,7 @@ def isnumberlist(x: Any) -> bool:
         >>> isnumberlist(np.r_[1,2])
     """
 
-    return (
-        isinstance(x, (list, tuple))
-        and len(x) > 0
-        and all(map(lambda x: isinstance(x, _scalartypes), x))
-    )
+    return isinstance(x, (list, tuple)) and len(x) > 0 and all(map(isscalar, x))
 
 
 def isvectorlist(x: Any, n: int) -> bool:

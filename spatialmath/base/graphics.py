@@ -1513,7 +1513,10 @@ try:
             # handle the case of Animate objects pretending to be Axes
             classname = ax.__class__.__name__
             base_classes = ax.__class__.__bases__
-            if classname in ("Axes3DSubplot", "Animate") or any(base_class.__name__ in ("Axes3DSubplot", "Animate") for base_class in base_classes):
+            if classname in ("Axes3DSubplot", "Animate") or any(
+                base_class.__name__ in ("Axes3DSubplot", "Animate")
+                for base_class in base_classes
+            ):
                 return 3
             elif classname in ("AxesSubplot", "Animate2"):
                 return 2
@@ -1580,6 +1583,7 @@ try:
         """
 
         # print(f"new axis logic ({dimensions}D): ", end='')
+        use_current_figure = False
         if ax is None:
             # no axes passed in, find out what's happening
             # need to be careful to not use gcf() or gca() since they
@@ -1597,6 +1601,10 @@ try:
                     # print(f"ax has {_axes_dimensions(ax)} dimensions")
                     if _axes_dimensions(ax) == dimensions and not new:
                         return ax
+                elif not new:
+                    # the current figure is empty, eg. from a bare plt.figure():
+                    # put the axes in it rather than leave it empty and make another
+                    use_current_figure = True
             # otherwise it doesnt exist or dimension mismatch, create new axes
         else:
             # print("ax given", ax)
@@ -1607,7 +1615,8 @@ try:
                 return ax
             # print("mismatch in dimensions, create new axes")
         # print("create new axes")
-        plt.figure()
+        if not use_current_figure:
+            plt.figure()
         if dimensions == 2:
             ax = plt.axes()
             if autoscale:
@@ -1736,19 +1745,23 @@ try:
         ax._plotvol = True
         return ax
 
-    def expand_dims(dim: ArrayLike = None, nd: int = 2) -> NDArray:
+    def expand_dims(dim: ArrayLike | None = None, nd: int = 2) -> NDArray | None:
         """
         Expand compact axis dimensions
 
-        :param dim: dimensions, defaults to None
+        :param dim: dimensions, or None if unspecified, defaults to None
         :type dim: scalar, array_like(2), array_like(4), array_like(6), optional
-        :param nd: number of axes dimensions, defaults to 2
+        :param nd: number of axes dimensions (2 or 3), defaults to 2
         :type nd: int, optional
         :raises ValueError: bad arguments
-        :return: 2d or 3d dimensions vector
-        :rtype: ndarray(4) or ndarray(6)
+        :return: 2d or 3d dimensions vector, or None if unspecified
+        :rtype: ndarray(4), ndarray(6), or None
 
         Compute bounding dimensions for plots from shorthand notation.
+
+        ``None`` is returned unchanged so the caller can choose whether to
+        autoscale or obtain dimensions from another source. No default extent
+        is inferred.
 
         If ``nd==2``, [xmin, xmax, ymin, ymax]:
             * A -> [-A, A, -A, A]
@@ -1759,11 +1772,23 @@ try:
             * A -> [-A, A, -A, A, -A, A]
             * [A,B] -> [A, B, A, B, A, B]
             * [A,B,C,D,E,F] -> [A, B, C, D, E, F]
+
+        A scalar is symmetric about zero, so its sign is ignored: ``-A`` is the
+        same as ``A``.  For the other forms the values are returned as given and
+        no ordering check is made.  If a minimum is greater than the
+        corresponding maximum, matplotlib will invert that axis when the limits
+        are applied, which is a convenient way to flip an axis direction.
         """
+        if nd not in (2, 3):
+            raise ValueError("nd is 2 or 3")
+        if dim is None:
+            return None
+
         dim = smb.getvector(dim)
 
         if nd == 2:
             if len(dim) == 1:
+                dim = abs(dim)
                 return np.r_[-dim, dim, -dim, dim]
             elif len(dim) == 2:
                 return np.r_[dim[0], dim[1], dim[0], dim[1]]
@@ -1773,6 +1798,7 @@ try:
                 raise ValueError("bad dimension specified")
         elif nd == 3:
             if len(dim) == 1:
+                dim = abs(dim)
                 return np.r_[-dim, dim, -dim, dim, -dim, dim]
             elif len(dim) == 2:
                 return np.r_[dim[0], dim[1], dim[0], dim[1], dim[0], dim[1]]
@@ -1780,28 +1806,37 @@ try:
                 return dim
             else:
                 raise ValueError("bad dimension specified")
-        else:
-            raise ValueError("nd is 2 or 3")
 
-    def isnotebook() -> bool:
+    def set_window_title(fig: plt.Figure, title: str) -> bool:
         """
-        Determine if code is being run from a Jupyter notebook
+        Set the title of the window containing a figure, if it has one
 
-        :references:
+        :param fig: the figure
+        :type fig: Figure
+        :param title: the window title
+        :type title: str
+        :return: True if the title was set
+        :rtype: bool
 
-            - https://stackoverflow.com/questions/15411967/how-can-i-check-if-code-
-            is-executed-in-the-ipython-notebook/39662359#39662359
+        A figure has a window only if it is managed by pyplot and the backend
+        provides one.  A figure on a headless backend such as ``Agg``, or one
+        created directly with ``matplotlib.figure.Figure``, does not, and then
+        nothing is done and False is returned.
+
+        Example::
+
+            >>> from spatialmath.base import plotvol2, set_window_title
+            >>> ax = plotvol2(5)
+            >>> set_window_title(ax.figure, "my plot")
+
+        .. note:: The title of the window is not the title of the axes, see
+            :meth:`matplotlib.axes.Axes.set_title`.
         """
-        try:
-            shell = get_ipython().__class__.__name__
-            if shell == "ZMQInteractiveShell":
-                return True  # Jupyter notebook or qtconsole
-            elif shell == "TerminalInteractiveShell":
-                return False  # Terminal running IPython
-            else:
-                return False  # Other type (?)
-        except NameError:
-            return False  # Probably standard Python interpreter
+        manager = getattr(fig.canvas, "manager", None)
+        if manager is not None and hasattr(manager, "set_window_title"):
+            manager.set_window_title(title)
+            return True
+        return False
 
     if __name__ == "__main__":
         import pathlib
@@ -1848,4 +1883,7 @@ except ImportError:  # pragma: no cover
         raise NotImplementedError("Matplotlib is not installed: pip install matplotlib")
 
     def plot_cylinder(*args, **kwargs) -> None:
+        raise NotImplementedError("Matplotlib is not installed: pip install matplotlib")
+
+    def set_window_title(*args, **kwargs) -> None:
         raise NotImplementedError("Matplotlib is not installed: pip install matplotlib")

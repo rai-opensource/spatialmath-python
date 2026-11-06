@@ -618,7 +618,7 @@ class BasePoseMatrix(BasePoseList):
         return np.dstack(self.data)
 
     def conjugation(self, A: NDArray) -> NDArray:
-        """
+        r"""
         Matrix conjugation
 
         :param A: matrix to conjugate

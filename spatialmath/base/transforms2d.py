@@ -39,15 +39,6 @@ if TYPE_CHECKING:
 
 _eps = np.finfo(np.float64).eps
 
-try:  # pragma: no cover
-    # print('Using SymPy')
-    import sympy
-
-    _symbolics = True
-
-except ImportError:  # pragma: no cover
-    _symbolics = False
-
 
 # ---------------------------------------------------------------------------------------#
 def rot2(theta: float, unit: str = "rad") -> SO2Array:
@@ -170,8 +161,13 @@ def tr2xyt(T: SE2Array, unit: str = "rad") -> R3:
     :seealso: trot2
     """
 
-    if T.dtype == "O" and _symbolics:
-        angle = sympy.atan2(T[1, 0], T[0, 0])
+    if T.dtype == "O":
+        try:
+            import sympy
+        except ImportError:
+            angle = math.atan2(T[1, 0], T[0, 0])
+        else:
+            angle = sympy.atan2(T[1, 0], T[0, 0])
     else:
         angle = math.atan2(T[1, 0], T[0, 0])
     return np.r_[T[0, 2], T[1, 2], angle]
@@ -549,7 +545,7 @@ def trlog2(
         else:
             st = T[1, 0]
             ct = T[0, 0]
-            theta = math.atan(st / ct)
+            theta = math.atan2(st, ct)
             if abs(theta) < tol * _eps:
                 tr = T[:2, 2].flatten()
             else:
@@ -564,7 +560,7 @@ def trlog2(
 
     elif isrot2(T, check=check, tol=tol):
         # SO(2) rotation matrix
-        theta = math.atan(T[1, 0] / T[0, 0])
+        theta = math.atan2(T[1, 0], T[0, 0])
         if twist:
             return theta
         else:
@@ -790,15 +786,15 @@ def tr2adjoint2(T):
 
     Computes an adjoint matrix that maps the Lie algebra between frames.
 
-    .. math:
+    .. math::
 
-        Ad(\mat{T}) \vec{X} X = \vee \left( \mat{T} \skew{\vec{X} \mat{T}^{-1} \right)
+        \mathrm{Ad}(\mat{T})\,\vec{X} = \vex{\mat{T}\,\sk{\vec{X}}\,\mat{T}^{-1}}
 
-    where :math:`\mat{T} \in \SE2`.
+    where :math:`\mat{T} \in \SE{2}`.
 
-    ``tr2jac2(T)`` is an adjoint matrix (6x6) that maps spatial velocity or
-    differential motion between frame {B} to frame {A} which are attached to the
-    same moving body.  The pose of {B} relative to {A} is represented by the
+    ``tr2adjoint2(T)`` is an adjoint matrix (3x3 for SE(2), 1x1 for SO(2)) that
+    maps spatial velocity or differential motion between frame {B} to frame {A}
+    which are attached to the same moving body.  The pose of {B} relative to {A} is represented by the
     homogeneous transform T = :math:`{}^A {\bf T}_B`.
 
     .. runblock:: pycon

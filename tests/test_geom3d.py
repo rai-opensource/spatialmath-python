@@ -86,6 +86,43 @@ def test_line_intersect_volume_bounds_length(make_bounds, size):
         line.intersect_volume(make_bounds(range(size)))
 
 
+@pytest.mark.parametrize(
+    "point, direction1, direction2",
+    [
+        ([0, 0, 0], [1, 0, 0], [0, 1, 0]),
+        ([1, 2, 3], [1, 0, 0], [1, 1, 0]),
+        ([-3, 1, 2], [1, 2, 3], [-2, 1, 1]),
+    ],
+    ids=["origin", "oblique", "spatial"],
+)
+@pytest.mark.parametrize(
+    "scale1, scale2", [(1, 1), (2, 5), (-2, 0.25), (1e-8, 1e-8), (1e-8, 1e8)]
+)
+def test_line_intersection_point(point, direction1, direction2, scale1, scale2):
+    point = np.array(point)
+    direction1, direction2 = np.array(direction1), np.array(direction2)
+    line1 = Line3.PointDir(point + 2 * direction1, scale1 * direction1)
+    line2 = Line3.PointDir(point - 3 * direction2, scale2 * direction2)
+
+    for first, second in [(line1, line2), (line2, line1)]:
+        intersection = first.intersects(second)
+        assert intersection is not None
+        assert intersection.shape == (3,)
+        nt.assert_allclose(intersection, point, rtol=0, atol=1e-12)
+
+
+@pytest.mark.parametrize(
+    "point, direction",
+    [([0, 1, 0], [1, 0, 0]), ([2, 0, 0], [-2, 0, 0]), ([0, 0, 1], [0, 1, 0])],
+    ids=["parallel", "coincident", "skew"],
+)
+def test_line_intersection_none(point, direction):
+    line1 = Line3.PointDir([0, 0, 0], [1, 0, 0])
+    line2 = Line3.PointDir(point, direction)
+    assert line1.intersects(line2) is None
+    assert line2.intersects(line1) is None
+
+
 class Line3Test(unittest.TestCase):
     # Primitives
     def test_constructor1(self):
@@ -442,6 +479,34 @@ class Line3Test(unittest.TestCase):
     #
     #     px.intersect_plane(plane)
     #     py.intersect_plane(plane)
+
+
+@pytest.mark.parametrize("point", [[0, 0, 0], [1, 2, 3], [-1.5, 2, 3.25]])
+@pytest.mark.parametrize(
+    "normals", [np.eye(3), np.array([[1, 2, 0], [0, 1, 3], [2, 0, 1]])]
+)
+@pytest.mark.parametrize("scales", [[1, 1, 1], [-2, 0.5, 3]])
+def test_three_plane_intersection(point, normals, scales):
+    normals = normals * np.array(scales)[:, None]
+    planes = [Plane3.PointNormal(point, normal) for normal in normals]
+    intersection = Plane3.intersection(*planes)
+
+    assert intersection.shape == (3,)
+    nt.assert_allclose(intersection, point, atol=1e-12)
+    # Each plane is defined by n @ x + d = 0, regardless of coefficient scale.
+    nt.assert_allclose(
+        normals @ intersection + np.array([plane.d for plane in planes]),
+        0,
+        atol=1e-12,
+    )
+    nt.assert_allclose(Plane3.intersection(*reversed(planes)), point, atol=1e-12)
+
+
+@pytest.mark.parametrize("offset", [0, 1])
+def test_three_plane_intersection_singular(offset):
+    planes = [Plane3([1, 0, 0, 0]), Plane3([1, 0, 0, offset]), Plane3([0, 1, 0, 0])]
+    with pytest.raises(np.linalg.LinAlgError):
+        Plane3.intersection(*planes)
 
 
 if __name__ == "__main__":
