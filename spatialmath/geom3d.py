@@ -1136,7 +1136,7 @@ class Line3(BasePoseList):
         Line intersection with a volume
 
         :param bounds: Bounds of an axis-aligned rectangular cuboid
-        :type plane: array_like(6)
+        :type bounds: array_like(6)
         :return: Intersection point, λ value
         :rtype: ndarray(3,N), ndarray(N)
 
@@ -1156,9 +1156,10 @@ class Line3(BasePoseList):
         See also :meth:`plot` :meth:`point`
         """
 
+        bounds = base.getvector(bounds, 6)
         intersections = []
 
-        # reshape, top row is minimum, bottom row is maximum
+        # reshape, each row contains one axis's minimum and maximum
         bounds23 = bounds.reshape((3, 2))
 
         for face in range(0, 6):
