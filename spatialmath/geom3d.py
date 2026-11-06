@@ -1122,7 +1122,7 @@ class Line3(BasePoseList):
 
         den = np.dot(self.w, plane.n)
 
-        if abs(den) > (tol * _eps):
+        if abs(den) > tol * _eps * np.linalg.norm(self.w) * np.linalg.norm(plane.n):
             # P = -(np.cross(line.v, plane.n) + plane.d * line.w) / den
             p = (np.cross(self.v, plane.n) - plane.d * self.w) / den
 

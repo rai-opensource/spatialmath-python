@@ -85,6 +85,40 @@ def test_line_intersection_none(point, direction):
 
 
 class Line3Test(unittest.TestCase):
+    def test_intersect_plane_coordinate_scale(self):
+        for line_scale, plane_scale in (
+            (1, 1),
+            (1e-8, 1e-8),
+            (-1e-8, 1e-8),
+            (1e-8, -1e-8),
+            (1e8, 1e8),
+        ):
+            with self.subTest(line_scale=line_scale, plane_scale=plane_scale):
+                line = Line3.PointDir([1, 2, 3], [0, 0, line_scale])
+                plane = Plane3(plane_scale * np.array([0, 0, 1, -5]))
+                result = line.intersect_plane(plane)
+                self.assertIsNotNone(result)
+                nt.assert_allclose(result.p, [1, 2, 5])
+                nt.assert_allclose(line.point(result.lam).ravel(), result.p)
+
+    def test_intersect_plane_angular_tolerance(self):
+        for line_scale, plane_scale in ((1, 1), (1e-8, 1e-8), (1e8, 1e8)):
+            with self.subTest(line_scale=line_scale, plane_scale=plane_scale):
+                line = Line3.PointDir([0, 0, 0], line_scale * np.array([1, 0, 1e-9]))
+                plane = Plane3(plane_scale * np.array([0, 0, 1, -1]))
+                self.assertIsNone(line.intersect_plane(plane, tol=1e8))
+                result = line.intersect_plane(plane, tol=1)
+                self.assertIsNotNone(result)
+                nt.assert_allclose(result.p, [1e9, 0, 1])
+
+    def test_intersect_plane_parallel_scale(self):
+        for scale in (1e-8, 1, 1e8):
+            with self.subTest(scale=scale):
+                line = Line3.PointDir([1, 2, 3], [scale, 0, 0])
+                self.assertIsNone(
+                    line.intersect_plane(Plane3([0, 0, scale, -5 * scale]))
+                )
+
     # Primitives
     def test_constructor1(self):
         # construct from 6-vector
