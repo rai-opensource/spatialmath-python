@@ -142,6 +142,42 @@ class Line2Test(unittest.TestCase):
 
 
 class EllipseTest(unittest.TestCase):
+    def test_polynomial_circle_size(self):
+        for coefficients, centre in (
+            ([1, 1, 0, 0, 0, -4], (0, 0)),
+            ([1, 1, 0, -6, -8, 21], (3, 4)),
+        ):
+            with self.subTest(centre=centre):
+                circle = Ellipse.Polynomial(coefficients)
+                nt.assert_allclose(circle.centre, centre)
+                nt.assert_allclose(circle.radii, [2, 2])
+                self.assertAlmostEqual(circle.area, 4 * np.pi)
+
+    def test_polynomial_scale(self):
+        for theta, centre, scale, implicit in (
+            (0, (0, 0), 1, False),
+            (0, (0, 0), 4, False),
+            (0, (3, 4), 1, False),
+            (0.4, (3, -2), 3, False),
+            (0.4, (3, -2), 1, True),
+        ):
+            with self.subTest(
+                theta=theta, centre=centre, scale=scale, implicit=implicit
+            ):
+                expected = Ellipse(radii=(2, 3), theta=theta, centre=centre)
+                E = expected.E
+                c = np.array(centre)
+                linear = -2 * E @ c
+                coefficients = (
+                    scale * np.r_[E[0, 0], E[1, 1], 2 * E[0, 1], linear, c @ E @ c - 1]
+                )
+                if implicit:
+                    coefficients = (coefficients / coefficients[0])[1:]
+                actual = Ellipse.Polynomial(coefficients)
+                nt.assert_allclose(actual.centre, c, atol=1e-12)
+                nt.assert_allclose(actual.E, expected.E, atol=1e-12)
+                self.assertAlmostEqual(actual.area, expected.area)
+
     def test_constructor(self):
         E = np.array([[1, 1], [1, 3]])
         e = Ellipse(E=E)

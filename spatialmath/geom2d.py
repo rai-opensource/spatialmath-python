@@ -765,10 +765,8 @@ class Ellipse:
 
             x^2 + \epsilon_1 y^2 + \epsilon_2 xy + \epsilon_3 x + \epsilon_4 y + \epsilon_5 = 0
 
-        In this latter case, position, orientation and aspect ratio of the
-        ellipse will be correct, but the overall scale of the ellipse is not
-        determined.  To correct this, we can pass in a single point ``p`` that
-        we know lies on the perimeter of the ellipse.
+        Both forms determine the position, orientation and size of the ellipse.
+        An optional perimeter point ``p`` can be used to override the size.
 
         Example:
 
@@ -802,6 +800,9 @@ class Ellipse:
             p = smb.getvector(p, 2) - centre
             s = p @ E @ p
             E /= s
+        else:
+            # Complete the square: (x-centre).T E (x-centre) = s.
+            E /= centre @ E @ centre - e[5]
 
         return cls(E=E, centre=centre)
 
