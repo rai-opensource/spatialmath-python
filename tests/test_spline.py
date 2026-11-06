@@ -73,6 +73,29 @@ class TestInterpSplineSE3:
             np.linspace(0, InterpSplineSE3._e, len(self.waypoints)), self.waypoints
         )
 
+    @pytest.mark.parametrize(
+        "start, end",
+        [
+            (-5, -1),
+            (10, 20),
+        ],
+    )
+    @pytest.mark.parametrize("normalize_time", [False, True])
+    def test_nonzero_offset_time_range(self, start, end, normalize_time):
+        InterpSplineSE3(
+            np.linspace(start, end, len(self.waypoints)),
+            self.waypoints,
+            normalize_time=normalize_time,
+        )
+
+    def test_zero_time_span(self):
+        with pytest.raises(ValueError, match=str(InterpSplineSE3._e)):
+            InterpSplineSE3(
+                np.full(len(self.waypoints), -1.0),
+                self.waypoints,
+                normalize_time=True,
+            )
+
     @pytest.mark.skipif(
         plt.get_backend().lower() == "agg" or os.environ.get("CI") == "true",
         reason="animate=True busy-waits on a timer callback that never "

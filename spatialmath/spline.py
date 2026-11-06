@@ -105,9 +105,9 @@ class InterpSplineSE3(SplineSE3):
         self.control_poses = control_poses
         self.timepoints = np.array(timepoints)
 
-        if self.timepoints[-1] < self._e:
+        if self.timepoints[-1] - self.timepoints[0] < self._e:
             raise ValueError(
-                "Difference between start and end timepoints is less than {self._e}"
+                f"Difference between start and end timepoints is less than {self._e}"
             )
 
         if len(self.control_poses) != len(self.timepoints):
