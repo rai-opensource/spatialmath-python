@@ -104,6 +104,10 @@ class DualQuaternion:
         :return: Norm as a dual number
         :rtype: 2-tuple
 
+        For a nonzero real part, the norm of ``p + epsilon*q`` is the dual
+        number ``(||p||, dot(p, q) / ||p||)``. Its dual coefficient is signed.
+        The existing convention for a zero real part is ``(0, 0)``.
+
         The norm of a ``UnitDualQuaternion`` is unity, represented by the dual
         number (1,0).
 
@@ -117,11 +121,12 @@ class DualQuaternion:
         """
         a = self.real * self.real.conj()
         b = self.real * self.dual.conj() + self.dual * self.real.conj()
-        # a.s/b.s are mathematically guaranteed non-negative (they're the
-        # scalar part of q*conj(q)-like products), but floating-point
-        # rounding can leave a value like -1e-17 instead of exactly 0,
-        # which sqrt() rejects outright. Clamp away that noise.
-        return (base.sqrt(max(0.0, a.s)), base.sqrt(max(0.0, b.s)))
+        # sqrt(a + epsilon*b) = sqrt(a) + epsilon*b/(2*sqrt(a)).
+        # The dual coefficient can have either sign, unlike the real norm.
+        real_norm = base.sqrt(max(0.0, a.s))
+        if real_norm == 0:
+            return (0.0, 0.0)  # retain the existing zero-real convention
+        return (real_norm, b.s / (2 * real_norm))
 
     def conj(self) -> Self:
         r"""
