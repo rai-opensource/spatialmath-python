@@ -698,7 +698,7 @@ class Ellipse:
         :type E: ndarray(2,2), optional
         :param centre: centre of ellipse, defaults to (0, 0)
         :type centre: arraylike(2), optional
-        :param theta: orientation of ellipse, defaults to None
+        :param theta: orientation of ellipse; None (default) means zero rotation
         :type theta: float, optional
         :raises ValueError: bad parameters
 
@@ -731,6 +731,8 @@ class Ellipse:
                 raise ValueError("determinant of E must be > 0 for an ellipse")
             self._E = E
         elif radii is not None:
+            if theta is None:
+                theta = 0.0
             M = np.array(
                 [[np.cos(theta), np.sin(theta)], [np.sin(theta), -np.cos(theta)]]
             )
