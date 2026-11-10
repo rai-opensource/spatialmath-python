@@ -659,6 +659,12 @@ class Test3D(unittest.TestCase):
         nt.assert_array_almost_equal(trinterp(start=T0, end=T1, s=1), T1)
         nt.assert_array_almost_equal(trinterp(start=T0, end=T1, s=0.5), np.eye(4))
 
+        with self.assertRaises(ValueError):
+            trinterp(None, np.zeros((2, 2)), 0.5)
+
+        with self.assertRaises(ValueError):
+            trinterp(None, np.zeros((5, 5)), 0.5)
+
     def test_tr2delta(self):
         # unit testing tr2delta with a tr matrix
         nt.assert_array_almost_equal(

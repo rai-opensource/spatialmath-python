@@ -1743,7 +1743,7 @@ def trinterp(start, end, s, shortest=True):
 
         return rt2tr(q2r(qunit(qr)), pr)
     else:
-        return ValueError("Argument must be SO(3) or SE(3)")
+        raise ValueError("Argument must be SO(3) or SE(3)")
 
 
 def delta2tr(d: R6) -> SE3Array:
