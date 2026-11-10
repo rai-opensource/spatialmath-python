@@ -205,7 +205,7 @@ class DualQuaternion:
             dual = left.real * right.dual + left.dual * right.real
 
             if isinstance(left, UnitDualQuaternion) and isinstance(
-                left, UnitDualQuaternion
+                right, UnitDualQuaternion
             ):
                 return UnitDualQuaternion(real, dual)
             else:
