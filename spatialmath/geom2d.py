@@ -486,7 +486,7 @@ class Polygon2:
             self.patch.remove()
         self.path = self.path0.transformed(Affine2D(T.A))
         if len(kwargs) > 0:
-            self.args = kwargs
+            self.kwargs = kwargs
         self.patch = PathPatch(self.path, **self.kwargs)
         self.ax.add_patch(self.patch)
 
