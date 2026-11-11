@@ -637,6 +637,7 @@ class Polygon2:
         """
         new = Polygon2()
         new.path = self.path.transformed(Affine2D(T.A))
+        new.path0 = new.path
         return new
 
     def vertices(self, unique: bool = True) -> Points2:
