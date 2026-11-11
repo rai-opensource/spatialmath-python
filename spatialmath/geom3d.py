@@ -638,14 +638,16 @@ class Line3(BasePoseList):
         the Line3 object self.
 
         If ``X`` is an array with 3 rows, the test is performed on every column and
-        an array of booleans is returned.
+        an array of booleans is returned. The tolerance applies to perpendicular
+        distance, independent of the scale of the Plucker coordinates.
         """
+        direction = self.w / np.linalg.norm(self.w)
         if base.isvector(x, 3):
             x = cast(R3, base.getvector(x))
-            return bool(np.linalg.norm(np.cross(x - self.pp, self.w)) < tol * _eps)
+            return bool(np.linalg.norm(np.cross(x - self.pp, direction)) < tol * _eps)
         elif base.ismatrix(x, (3, None)):
             return [
-                bool(np.linalg.norm(np.cross(p - self.pp, self.w)) < tol * _eps)
+                bool(np.linalg.norm(np.cross(p - self.pp, direction)) < tol * _eps)
                 for p in x.T
             ]
         else:
