@@ -100,7 +100,7 @@ class SpatialVector(BasePoseList):
         elif base.isvector(value, 3):
             self.data = [np.r_[value, 0, 0, 0]]
         elif isinstance(value, SpatialVector):
-            self.data = [value.A]
+            self.data = list(value.data)
         elif base.ismatrix(value, (6, None)):
             self.data = [x for x in value.T]
         elif not super().arghandler(value):
