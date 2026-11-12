@@ -6,6 +6,30 @@ from spatialmath.spatialvector import *
 
 
 class TestSpatialVector(unittest.TestCase):
+    def test_copy_constructor_preserves_sequence(self):
+        classes = (SpatialVelocity, SpatialAcceleration, SpatialForce, SpatialMomentum)
+        for cls in classes:
+            for count in (0, 1, 2, 4):
+                with self.subTest(cls=cls.__name__, count=count):
+                    values = np.arange(6 * count, dtype=float).reshape(6, count)
+                    original = cls(values[:, 0] if count == 1 else values)
+                    copied = cls(original)
+                    self.assertEqual(len(copied), count)
+                    self.assertEqual(copied.shape, (6,))
+                    for i in range(count):
+                        nt.assert_array_equal(copied[i].A, values[:, i])
+                    self.assertEqual(str(copied), str(original))
+                    copied.append(cls(np.ones(6)))
+                    self.assertEqual(len(original), count)
+                    self.assertEqual(len(copied), count + 1)
+
+    def test_copy_constructor_cross_subclass(self):
+        original = SpatialVelocity(np.arange(18).reshape(6, 3))
+        copied = SpatialAcceleration(original)
+        self.assertEqual(len(copied), 3)
+        for i in range(3):
+            nt.assert_array_equal(copied[i].A, original[i].A)
+
     def test_list_powers(self):
         x = SpatialVelocity.Empty()
         self.assertEqual(len(x), 0)
