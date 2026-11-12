@@ -142,6 +142,38 @@ class Line2Test(unittest.TestCase):
 
 
 class EllipseTest(unittest.TestCase):
+    def test_exported_polynomial_matches_ellipse_equation(self):
+        for radii in ((1, 2), (2, 3)):
+            for centre in ((0, 0), (3, -4)):
+                for theta in (0, 0.4, -0.7):
+                    with self.subTest(radii=radii, centre=centre, theta=theta):
+                        ellipse = Ellipse(radii=radii, centre=centre, theta=theta)
+                        coefficients = ellipse.polynomial
+                        angles = np.linspace(0, 2 * np.pi, 17)
+                        rotation = np.array(
+                            [
+                                [np.cos(theta), -np.sin(theta)],
+                                [np.sin(theta), np.cos(theta)],
+                            ]
+                        )
+                        points = rotation @ (
+                            np.array(radii)[:, None]
+                            * np.array([np.cos(angles), np.sin(angles)])
+                        )
+                        points += np.array(centre)[:, None]
+                        x, y = points
+                        terms = np.array([x * x, y * y, x * y, x, y, np.ones_like(x)])
+                        nt.assert_allclose(coefficients @ terms, 0, atol=1e-12)
+                        x, y = centre
+                        self.assertAlmostEqual(
+                            coefficients @ [x * x, y * y, x * y, x, y, 1], -1
+                        )
+                        outside = 2 * (points[:, 0] - centre) + centre
+                        x, y = outside
+                        self.assertAlmostEqual(
+                            coefficients @ [x * x, y * y, x * y, x, y, 1], 3
+                        )
+
     def test_constructor(self):
         E = np.array([[1, 1], [1, 3]])
         e = Ellipse(E=E)
