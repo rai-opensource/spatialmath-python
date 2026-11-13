@@ -727,8 +727,8 @@ class Ellipse:
                 raise ValueError("matrix must be 2x2")
             if not np.allclose(E, E.T):
                 raise ValueError("matrix must be symmetric")
-            if np.linalg.det(E) <= 0:
-                raise ValueError("determinant of E must be > 0 for an ellipse")
+            if np.any(np.linalg.eigvalsh(E) <= 0):
+                raise ValueError("E must be positive definite for an ellipse")
             self._E = E
         elif radii is not None:
             M = np.array(
