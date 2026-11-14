@@ -900,6 +900,9 @@ class Line3(BasePoseList):
         For two sets of lines, of equal size, return an array of closest points
         and distances.
 
+        For parallel or coincident lines, return the principal point on the first
+        line as a representative closest point.
+
         Example::
 
             .. runblock:: pycon
@@ -922,6 +925,9 @@ class Line3(BasePoseList):
         dists = []
 
         def intersection(line1, line2):
+            if line1.isparallel(line2):
+                # Any point on the first line is a closest point in this case.
+                return line1.pp, line1.distance(line2)
             with np.errstate(divide="ignore", invalid="ignore"):
                 # compute the distance between all pairs of lines
                 v1 = line1.v
