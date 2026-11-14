@@ -1168,7 +1168,9 @@ def qangle(q1: ArrayLike4, q2: ArrayLike4) -> float:
 
     q1 = smb.getvector(q1, 4)
     q2 = smb.getvector(q2, 4)
-    return 4.0 * math.atan2(smb.norm(q1 - q2), smb.norm(q1 + q2))
+    difference = smb.norm(q1 - q2)
+    total = smb.norm(q1 + q2)
+    return 4.0 * math.atan2(min(difference, total), max(difference, total))
 
 
 def q2str(
