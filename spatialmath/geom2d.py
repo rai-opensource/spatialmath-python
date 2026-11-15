@@ -146,6 +146,10 @@ class Line2:
         """
         Test if point is in line
 
+        For a Euclidean point (or a homogeneous point with unit weight),
+        ``tol`` bounds the perpendicular distance in units of machine epsilon,
+        independently of a nonzero scale on the line coefficients.
+
         :param p1: point to test
         :type p1: array_like(2) or array_like(3)
         :param tol: tolerance in units of eps, defaults to 20
@@ -156,7 +160,8 @@ class Line2:
         p = smb.getvector(p)
         if len(p) == 2:
             p = np.r_[p, 1]
-        return abs(np.dot(self.line, p)) < tol * _eps
+        normal = np.hypot(self.line[0], self.line[1])
+        return abs(np.dot(self.line / normal, p)) < tol * _eps
 
     # variant that gives lambda
 
