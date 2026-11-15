@@ -1149,8 +1149,11 @@ class Line3(BasePoseList):
         The number of
         columns N is either:
 
-        - 0, when the line is outside the plot volume or,
-        - 2 when the line pierces the bounding volume.
+        - 0, when the line is outside the plot volume,
+        - 1, when the line touches the volume at a single point, or
+        - 2, when the line pierces the bounding volume.
+
+        Edge and corner intersections are returned only once.
 
 
         See also :meth:`plot` :meth:`point`
@@ -1200,8 +1203,15 @@ class Line3(BasePoseList):
 
         #                     print('  HIT');
 
-        # put them in ascending order
-        intersections.sort()
+        # A convex cuboid has at most two distinct boundary intersections.
+        # Edge/corner hits can be found once for each incident face. Keep the
+        # extremal parameters without a tolerance that could merge a thin chord.
+        intersections = sorted(float(lam[0]) for lam in intersections)
+        if len(intersections) > 1:
+            if intersections[0] == intersections[-1]:
+                intersections = intersections[:1]
+            else:
+                intersections = [intersections[0], intersections[-1]]
         p = self.point(intersections)
 
         return namedtuple("intersect_volume", "p lam")(p, intersections)
