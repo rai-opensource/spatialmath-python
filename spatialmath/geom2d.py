@@ -1130,7 +1130,7 @@ class Ellipse:
         """
         Approximate with a polygon
 
-        :param resolution: number of polygon vertices, defaults to 20
+        :param resolution: number of polygon vertices, defaults to 10
         :type resolution: int, optional
         :return: a polygon approximating the ellipse
         :rtype: :class:`Polygon2` instance
@@ -1148,7 +1148,7 @@ class Ellipse:
 
         :seealso: :meth:`points`
         """
-        return Polygon2(smb.ellipse(self.E, self.centre, resolution=resolution - 1))
+        return Polygon2(smb.ellipse(self.E, self.centre, resolution=resolution))
 
 
 if __name__ == "__main__":
