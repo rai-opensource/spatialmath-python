@@ -670,8 +670,10 @@ class Line3(BasePoseList):
 
         :seealso: :meth:`__eq__`
         """
+        # A common sign reversal of both Plucker components is the same line.
         return bool(
-            abs(1 - np.dot(base.unitvec(l1.vec), base.unitvec(l2.vec))) < tol * _eps
+            abs(1 - abs(np.dot(base.unitvec(l1.vec), base.unitvec(l2.vec))))
+            < tol * _eps
         )
 
     def isparallel(
