@@ -219,16 +219,25 @@ class Plane3:
         if bounds is None:
             bounds = np.r_[ax.get_xlim(), ax.get_ylim(), ax.get_zlim()]
 
-        # X, Y = np.meshgrid(bounds[0: 2], bounds[2: 4])
-        # Z = -(X * self.plane[0] + Y * self.plane[1] + self.plane[3]) / self.plane[2]
-
-        X, Y = np.meshgrid(
-            np.linspace(bounds[0], bounds[1], 50), np.linspace(bounds[2], bounds[3], 50)
+        # Solve for the coordinate with the largest normal component.  A
+        # fixed z coordinate cannot represent vertical planes, and a nearly
+        # zero z component makes that parameterization ill-conditioned.
+        normal = self.n
+        dependent = np.argmax(np.abs(normal))
+        independent = [i for i in range(3) if i != dependent]
+        coordinates = [None, None, None]
+        coordinates[independent[0]], coordinates[independent[1]] = np.meshgrid(
+            *[np.linspace(bounds[2 * i], bounds[2 * i + 1], 50) for i in independent]
         )
-        Z = -(X * self.plane[0] + Y * self.plane[1] + self.plane[3]) / self.plane[2]
-        Z[Z < bounds[4]] = np.nan
-        Z[Z > bounds[5]] = np.nan
-        ax.plot_surface(X, Y, Z, **kwargs)
+        coordinates[dependent] = (
+            -(sum(normal[i] * coordinates[i] for i in independent) + self.d)
+            / normal[dependent]
+        )
+        values = coordinates[dependent]
+        values[
+            (values < bounds[2 * dependent]) | (values > bounds[2 * dependent + 1])
+        ] = np.nan
+        ax.plot_surface(*coordinates, **kwargs)
 
     def __str__(self) -> str:
         """
