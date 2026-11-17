@@ -282,17 +282,23 @@ class SpatialVector(BasePoseList):
         SE3, Twist3  SpatialMomentum       SpatialMomentum      coadjoint product
         SE3, Twist3  SpatialForce          SpatialForce         coadjoint product
         ===========  ====================  ===================  =========================
+
+        Singleton operands broadcast over sequences. Two sequences must have
+        the same length and are transformed element by element.
         """
         if isinstance(left, (SE3, Twist3)):
-            if isinstance(right, SpatialM6):
-                return right.__class__(left.Ad() @ right.A)
-            else:
-                # Force/momentum are dual to motion and transform by the
-                # coadjoint (inverse-transpose of the adjoint), not the
-                # adjoint transpose. These are only equal for a pure rotation.
-                # Ad(X)^-1 == Ad(X^-1), so take the adjoint of the inverse pose
-                # rather than inverting the 6x6 adjoint.
-                return right.__class__(left.inv().Ad().T @ right.A)
+
+            def transform(pose, vector):
+                pose = left.__class__(pose)
+                if isinstance(right, SpatialM6):
+                    return pose.Ad() @ vector
+                else:
+                    # Forces and momenta use the coadjoint, preserving power.
+                    return pose.inv().Ad().T @ vector
+
+            result = right.__class__.Empty()
+            result.data = left.binop(right, transform)
+            return result
         else:
             raise TypeError("left operand of * must be SE3 or Twist3")
 
@@ -491,12 +497,7 @@ class SpatialForce(SpatialF6):
     def __rmul__(
         right, left
     ):  # lgtm[py/not-named-self] pylint: disable=no-self-argument
-        # Twist * SpatialForce -> SpatialForce
-        # A force is dual to motion, so it transforms by the coadjoint
-        # (inverse-transpose of the adjoint), not the adjoint transpose.
-        # Ad(X)^-1 == Ad(X^-1), so take the adjoint of the inverse pose
-        # rather than inverting the 6x6 adjoint.
-        return SpatialForce(left.inv().Ad().T @ right.A)
+        return super().__rmul__(left)
 
 
 # ------------------------------------------------------------------------- #
