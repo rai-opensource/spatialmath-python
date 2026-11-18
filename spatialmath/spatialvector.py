@@ -610,6 +610,10 @@ class SpatialInertia(BasePoseList):
         return (6, 6)
 
     def __getitem__(self, i):
+        if isinstance(i, slice):
+            result = SpatialInertia.Empty()
+            result.data = self.data[i]
+            return result
         return SpatialInertia(self.data[i])
 
     def __repr__(self):
