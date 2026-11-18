@@ -501,6 +501,15 @@ class Quaternion(BasePoseList):
 
         :seealso: :meth:`Quaternion.log` :meth:`UnitQuaternion.log` :meth:`UnitQuaternion.AngVec` :meth:`UnitQuaternion.EulerVec`
         """
+        if len(self) != 1:
+            values = [Quaternion(q).exp(tol=tol) for q in self.data]
+            if values and all(isinstance(q, UnitQuaternion) for q in values):
+                result = UnitQuaternion.Empty()
+            else:
+                result = Quaternion.Empty()
+            result.data = [q.data[0] for q in values]
+            return result
+
         exp_s = math.exp(self.s)
         norm_v = smb.norm(self.v)
         s = exp_s * math.cos(norm_v)
