@@ -185,7 +185,7 @@ class Quaternion(BasePoseList):
         if len(self) == 1:
             return self._A[0]
         else:
-            return np.array([q.s for q in self])
+            return np.array([q[0] for q in self.data])
 
     @property
     def v(self) -> R3:
@@ -212,7 +212,7 @@ class Quaternion(BasePoseList):
         if len(self) == 1:
             return self._A[1:4]
         else:
-            return np.array([q.v for q in self])
+            return np.array([q[1:4] for q in self.data])
 
     @property
     def vec(self) -> R4:
@@ -241,7 +241,7 @@ class Quaternion(BasePoseList):
         if len(self) == 1:
             return self._A
         else:
-            return np.array([q._A for q in self])
+            return np.array(self.data)
 
     @property
     def vec_xyzs(self) -> R4:
@@ -271,7 +271,7 @@ class Quaternion(BasePoseList):
         if len(self) == 1:
             return np.roll(self._A, -1)
         else:
-            return np.array([np.roll(q._A, -1) for q in self])
+            return np.array([np.roll(q, -1) for q in self.data])
 
     @property
     def matrix(self) -> R4x4:
@@ -926,9 +926,9 @@ class Quaternion(BasePoseList):
             >>> -Quaternion([np.r_[1,2,3,4], np.r_[5,6,7,8]])
         """
 
-        return UnitQuaternion(
-            [-x for x in self.data]
-        )  # pylint: disable=invalid-unary-operand-type
+        result = self.__class__.Empty()
+        result.data = [-x for x in self.data]
+        return result
 
     def __repr__(self) -> str:
         """
