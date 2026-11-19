@@ -189,8 +189,18 @@ class Plane3:
         :type tol: float
         :return: if the point is in the plane
         :rtype: bool
+
+        The tolerance applies to perpendicular distance from the plane and is
+        independent of the scale of the plane coefficients.
         """
-        return abs(np.dot(self.n, p) + self.d) < tol * _eps
+        normal_length = math.hypot(*self.n)
+        if normal_length == 0:
+            return abs(self.d) < tol * _eps
+        # Plane coefficients are homogeneous. Compare point-to-plane distance,
+        # not the residual whose size depends on their arbitrary scale.
+        return (
+            abs(np.dot(self.n / normal_length, p) + self.d / normal_length) < tol * _eps
+        )
 
     def plot(
         self,
