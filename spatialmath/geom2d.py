@@ -123,24 +123,28 @@ class Line2:
         """
         smb.plot_homline(self.line, **kwargs)
 
-    def intersect(self, other: Line2, tol: float = 20) -> R3:
+    def intersect(self, other: Line2, tol: float = 20) -> bool:
         """
-        Intersection with line
+        Test whether two lines have a finite intersection
 
         :param other: another 2D line
         :type other: Line2
-        :param tol: tolerance in units of eps, defaults to 20
+        :param tol: angular tolerance in units of eps, defaults to 20
         :type tol: float
-        :return: intersection point in homogeneous form
-        :rtype: ndarray(3)
+        :return: True if the lines are not parallel
+        :rtype: bool
 
-        If the lines are parallel then the third element of the returned
-        homogeneous point will be zero (an ideal point).
+        The sine of the angle between the line normals must exceed
+        ``tol * eps``, independently of a nonzero scale on either line's
+        homogeneous coefficients.  A line with zero normal returns False.
         """
-        # return intersection of 2 lines
-        # return mindist and points if no intersect
-        c = np.cross(self.line, other.line)
-        return abs(c[2]) > tol * _eps
+        n1 = np.hypot(*self.line[:2])
+        n2 = np.hypot(*other.line[:2])
+        if n1 == 0 or n2 == 0:
+            return False
+        a1, b1 = self.line[:2] / n1
+        a2, b2 = other.line[:2] / n2
+        return abs(a1 * b2 - b1 * a2) > tol * _eps
 
     def contains(self, p: ArrayLike2, tol: float = 20) -> bool:
         """
