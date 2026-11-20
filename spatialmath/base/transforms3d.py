@@ -1578,7 +1578,7 @@ def trnorm(T: SE3Array) -> SE3Array:
     :type T: ndarray(4,4) or ndarray(3,3)
     :return: normalized SE(3) or SO(3) matrix
     :rtype: ndarray(4,4) or ndarray(3,3)
-    :raises ValueError: bad arguments
+    :raises ValueError: bad arguments or a zero-norm axis during normalization
 
     - ``trnorm(R)`` is guaranteed to be a proper orthogonal matrix rotation
       matrix (3x3) which is *close* to the input matrix R (3x3).
@@ -1632,6 +1632,10 @@ def trnorm(T: SE3Array) -> SE3Array:
     n_norm = (n0 * n0 + n1 * n1 + n2 * n2) ** 0.5
     o_norm = (o0 * o0 + o1 * o1 + o2 * o2) ** 0.5
     a_norm = (a0 * a0 + a1 * a1 + a2 * a2) ** 0.5
+
+    # Retain the zero-norm checks previously performed by unitvec on each axis.
+    if not (n_norm > 20 * _eps and o_norm > 20 * _eps and a_norm > 20 * _eps):
+        raise ValueError("zero norm vector")
 
     is_hom = ishom(T)
     R = np.empty((4, 4) if is_hom else (3, 3))
