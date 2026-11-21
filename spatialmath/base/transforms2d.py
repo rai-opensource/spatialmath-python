@@ -1289,8 +1289,8 @@ def ICP2d(
         # note: svd step doesn't use homogeneous points
         new_T = points2tr2(matched_source, matched_ref_pts)
 
-        # update transformation between point sets
-        T = T @ new_T
+        # new_T corrects the already-transformed source in the reference frame.
+        T = new_T @ T
 
         # apply transformation to the source points
         tf_source = cast(NDArray, T) @ source_hom
