@@ -141,7 +141,9 @@ class BaseTwist(BasePoseList):
         :return: Whether twist is a unit-twist
         :rtype: bool
 
-        A unit twist is one with a norm of 1, ie. :math:`\| S \| = 1`.
+        A unit twist has a unit-length angular component, or a zero angular
+        component and a unit-length translational component. The full vector's
+        Euclidean norm need not be one for a rotational screw.
 
         Example:
 
@@ -153,10 +155,11 @@ class BaseTwist(BasePoseList):
             >>> S = Twist3.UnitRevolute([1,2,3], [4,5,6])
             >>> S.isunit
         """
+        predicate = smb.isunittwist2 if self.N == 2 else smb.isunittwist
         if len(self) == 1:
-            return smb.isunitvec(self.S)
+            return predicate(self.S)
         else:
-            return [smb.isunitvec(x) for x in self.data]
+            return [predicate(x) for x in self.data]
 
     @property
     def theta(self):
