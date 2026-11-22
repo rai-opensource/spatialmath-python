@@ -1091,7 +1091,7 @@ class BasePoseMatrix(BasePoseList):
         for T in self.data:
             Tprod = Tprod @ T
         if norm:
-            Tprod = smb.trnorm(Tprod)
+            Tprod = smb.trnorm2(Tprod) if self.N == 2 else smb.trnorm(Tprod)
         return self.__class__(Tprod, check=check)
 
     def __pow__(self, n: int) -> Self:
