@@ -643,7 +643,7 @@ class BasePoseMatrix(BasePoseList):
         if self.isSO:
             return self.A @ A @ self.A.T
         else:
-            return self.A @ A @ self.inv().A.T
+            return self.A @ A @ self.inv().A
 
     # ----------------------- i/o stuff
 
