@@ -24,6 +24,7 @@ _LAZY_SUBMODULES = ("animate", "graphics")
 _LAZY_ATTRS = {
     "Animate": "animate",
     "Animate2": "animate",
+    "parse_fmt": "graphics",
     "plot_text": "graphics",
     "plot_point": "graphics",
     "plot_homline": "graphics",
@@ -374,6 +375,7 @@ __all__ = [
     "plotvol2",
     "plotvol3",
     "plot_point",
+    "parse_fmt",
     "plot_text",
     "plot_box",
     "plot_polygon",
