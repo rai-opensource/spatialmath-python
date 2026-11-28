@@ -1409,9 +1409,11 @@ def trlog(
         else:
             # general case
             tr = (np.trace(R) - 1) / 2
-            # min for inaccuracies near identity yielding trace > 3
-            theta = math.acos(min(tr, 1.0))
-            st = math.sin(theta)
+            # sin(theta) from the skew-symmetric part, cos(theta) from the trace.
+            # atan2 of the two is accurate for every angle, acos(tr) alone loses
+            # precision close to pi (and close to 0).
+            st = norm(vex(R - R.T)) / 2
+            theta = math.atan2(st, tr)
             if st == 0:
                 if twist:
                     return np.zeros((3,))

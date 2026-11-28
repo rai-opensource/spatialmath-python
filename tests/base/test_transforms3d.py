@@ -375,6 +375,29 @@ class Test3D(unittest.TestCase):
             v = trlog(R, twist=True)
             nt.assert_almost_equal(np.linalg.norm(v), theta, decimal=12)
 
+    def test_trlog_near_pi(self):
+        # Just below a half turn, acos((trace(R) - 1) / 2) loses most of its
+        # digits: before the fix the angle was off by up to 0.1 rad at
+        # pi - 1e-7 and could come out larger than pi.
+        axis = np.r_[1.0, 2.0, 3.0] / np.sqrt(14)
+        for delta in (1e-5, 1e-6, 3e-7, 1e-7):
+            theta = pi - delta
+            R = angvec2r(theta, axis)
+
+            v = trlog(R, twist=True)
+            nt.assert_almost_equal(np.linalg.norm(v), theta, decimal=12)
+            nt.assert_array_almost_equal(v / np.linalg.norm(v), axis, decimal=8)
+            nt.assert_array_almost_equal(trexp(v), R, decimal=8)
+
+            angle, vec = tr2angvec(R)
+            nt.assert_almost_equal(angle, theta, decimal=12)
+            nt.assert_array_almost_equal(vec, axis, decimal=8)
+
+            # same rotation inside an SE(3) matrix
+            T = rt2tr(R, [1, 2, 3])
+            w = trlog(T, twist=True)[3:]
+            nt.assert_almost_equal(np.linalg.norm(w), theta, decimal=12)
+
     def test_trexp(self):
         R = trexp(skew([0.5, 0, 0]))
         nt.assert_array_almost_equal(R, rotx(0.5))
